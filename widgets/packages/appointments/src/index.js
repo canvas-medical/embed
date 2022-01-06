@@ -1,5 +1,5 @@
 import { h, render } from "preact"
-import { Demo } from "@canvas/common"
+import { Demo, StyledDemo } from "@canvas/common"
 import styles from "./styles.css"
 import styled, { StyleSheetManager } from "styled-components"
 
@@ -12,7 +12,7 @@ const App = ({ rootId }) => {
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
       <StyledExample>
         <h1>Appointments</h1>
-        <span>This is the appointments app</span>
+        <StyledDemo>This is the appointments app</StyledDemo>
         <Demo text="electric boogie" />
       </StyledExample>
     </StyleSheetManager>

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "preact": "^10.6.4"
+    "preact": "^10.6.4",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
