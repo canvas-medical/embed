@@ -6,5 +6,6 @@ export const Demo = ({ text }) => (
 )
 
 export const StyledDemo = styled.span`
-  color: blue;
+  color: #fff;
+  font-weight: 700;
 `

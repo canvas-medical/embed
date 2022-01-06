@@ -13,8 +13,8 @@ const App = ({ rootId }) => {
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
       <StyledExample>
-        <h1>Appointments</h1>
-        <StyledDemo>This is the appointments app</StyledDemo>
+        <h1>Scheduler</h1>
+        <StyledDemo>This is the scheduler app</StyledDemo>
         <Demo text="electric boogie" />
       </StyledExample>
     </StyleSheetManager>

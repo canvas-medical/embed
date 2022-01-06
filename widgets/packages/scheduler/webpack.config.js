@@ -6,8 +6,8 @@ module.exports = {
   entry: path.join(__dirname, "src"),
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "appointments.js",
-    library: "Appointments",
+    filename: "scheduler.js",
+    library: "Scheduler",
     libraryTarget: "umd",
     umdNamedDefine: true,
   },
@@ -40,7 +40,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     static: path.join(__dirname, "dist"),
-    port: 3010,
+    port: 3000,
   },
   resolve: {
     alias: {
