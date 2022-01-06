@@ -6,7 +6,8 @@ module.exports = {
         pragma: 'h',
         pragmaFrag: 'Fragment',
       },
-      'babel-plugin-styled-components',
     ],
+    'babel-plugin-styled-components',
   ],
+  presets: ['babel-preset-preact'],
 }
