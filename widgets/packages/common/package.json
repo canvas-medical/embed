@@ -6,6 +6,10 @@
     "preact": "^10.6.4",
     "styled-components": "^5.3.3"
   },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/preact": "^2.0.1",
