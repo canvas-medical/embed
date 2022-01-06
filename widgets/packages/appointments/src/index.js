@@ -1,7 +1,7 @@
-import { h, render } from "preact"
-import { Demo, StyledDemo } from "@canvas/common"
-import styles from "./styles.css"
-import styled, { StyleSheetManager } from "styled-components"
+import { h, render } from 'preact'
+import { Demo, StyledDemo } from '@canvas/common'
+import styles from './styles.css'
+import styled, { StyleSheetManager } from 'styled-components'
 
 const StyledExample = styled.div`
   display: flex;
@@ -24,10 +24,10 @@ const App = ({ rootId }) => {
 export const init = ({ rootId }) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
-    mode: "open",
+    mode: 'open',
   })
 
-  const styleTag = document.createElement("style")
+  const styleTag = document.createElement('style')
   styleTag.innerHTML = styles
   appRoot.shadowRoot.appendChild(styleTag)
 
