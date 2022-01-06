@@ -4,7 +4,19 @@
   "private": true,
   "scripts": {
     "start": "webpack server --open",
-    "build": "webpack build"
+    "build": "webpack build",
+    "test": "jest"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "jest": {
+    "preset": "jest-preset-preact",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/**"
+    ]
   },
   "dependencies": {
     "autoprefixer": "^10.4.1",
@@ -20,6 +32,7 @@
     "@testing-library/preact": "^2.0.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-styled-components": "^2.0.2",
+    "babel-preset-preact": "^2.0.0",
     "css-loader": "^6.5.1",
     "eslint": "^8.6.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -27,6 +40,7 @@
     "jest": "^27.4.7",
     "jest-preset-preact": "^4.0.5",
     "preact-cli": "^3.3.3",
+    "preact-render-to-string": "^5.1.19",
     "prettier": "^2.5.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.65.0",
