@@ -1,19 +1,10 @@
 import { h } from 'preact'
-import { Demo, StyledDemo } from '@canvas/common'
-import styled from 'styled-components'
-
-const StyledExample = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: green;
-`
+import { AppContainer } from '@canvas/common'
 
 export const App = () => {
   return (
-    <StyledExample>
+    <AppContainer>
       <h1>Appointments</h1>
-      <StyledDemo>This is the appointments app</StyledDemo>
-      <Demo text="electric boogie" />
-    </StyledExample>
+    </AppContainer>
   )
 }
