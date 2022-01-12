@@ -1,3 +1,4 @@
+import { h } from 'preact'
 import {
   Box,
   BigCalendar,
@@ -8,7 +9,6 @@ import {
   Button,
   OutlineButton,
 } from '@canvas/common'
-import { h } from 'preact'
 
 export const ConfirmSection = ({
   provider,
@@ -19,7 +19,7 @@ export const ConfirmSection = ({
 }) => {
   return (
     <Box>
-      <H2>Confirm Your Appointment</H2>
+      <H2 id="confirm-slot">Confirm Your Appointment</H2>
       <Box mt="16px" mb="16px">
         <IconBox>
           <BigCalendar />

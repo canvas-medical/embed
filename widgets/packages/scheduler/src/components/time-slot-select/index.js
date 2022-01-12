@@ -1,17 +1,12 @@
 import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
-import { Section, Popover } from '@canvas/common/components'
-import { H2 } from '@canvas/common/components/typography'
-import {
-  RadioButtonInput,
-  RadioButtonItem,
-  RadioButtonLabel,
-  RadioButtonList,
-  RadioButtonText,
-} from './styles'
+import { Section, Popover, H2 } from '@canvas/common'
 import { ConfirmSection } from './confirm-section'
+import { TimeSlotButton, TimeSlotContainer } from './styles'
+import { useAppContext } from '../../hooks'
 
-export const TimeSlotSelect = ({ colors, setScreen }) => {
+export const TimeSlotSelect = ({ setScreen }) => {
+  const { shadowRoot, colors } = useAppContext()
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({
     popoverOpen: false,
   })
@@ -61,33 +56,35 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
       {data.map(({ provider, timeSlots, id, treatment }) => {
         return (
           <Section key={id} mb="16px" backgroundColor={colors.accent}>
-            <H2>{provider}</H2>
-            <RadioButtonList>
-              {timeSlots.map(({ id, start, end }) => (
-                <RadioButtonItem key={id}>
-                  <RadioButtonInput
-                    type="radio"
-                    id={id}
-                    onClick={() =>
-                      setTimeSlot({ id, start, provider, treatment })
-                    }
-                  />
-                  <RadioButtonLabel
-                    for={id}
-                    backgroundColor={colors.primary}
-                    focusColor={colors.focus}
-                  >
-                    <RadioButtonText>{`${start} - ${end}`}</RadioButtonText>
-                  </RadioButtonLabel>
-                </RadioButtonItem>
+            <H2 id={`providerName-${id}`}>{provider}</H2>
+            <TimeSlotContainer aria-labelledby={`providerName-${id}`}>
+              {timeSlots.map(({ id: slotId, start, end }) => (
+                <TimeSlotButton
+                  id={`${id}-${slotId}`}
+                  backgroundColor={colors.primary}
+                  focusColor={colors.focus}
+                  ml="7px"
+                  mr="7px"
+                  key={slotId}
+                  onClick={() =>
+                    setTimeSlot({
+                      slotId,
+                      start,
+                      provider,
+                      treatment,
+                    })
+                  }
+                >{`${start} - ${end}`}</TimeSlotButton>
               ))}
-            </RadioButtonList>
+            </TimeSlotContainer>
           </Section>
         )
       })}
       <Popover
+        shadowRoot={shadowRoot}
         open={selectedTimeSlot.popoverOpen}
         onClose={() => cancelConfirmation()}
+        titleId={'confirm-slot'}
       >
         <ConfirmSection
           {...selectedTimeSlot}

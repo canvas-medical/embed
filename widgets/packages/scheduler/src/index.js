@@ -1,12 +1,19 @@
 import { h, render } from 'preact'
-import { cssStyles } from '@canvas/common'
+import { cssStyles, generateColors } from '@canvas/common'
 import { StyleSheetManager } from 'styled-components'
 import { App } from './App'
+import { AppContext } from './hooks'
 
 const StyledApp = ({ rootId, brandColor }) => {
+  const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
+  const generatedColors = generateColors(brandColor)
+  const colors = { primary: brandColor, ...generatedColors }
+
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
-      <App brandColor={brandColor} />
+      <AppContext.Provider value={{ shadowRoot, colors }}>
+        <App brandColor={brandColor} shadowRoot={shadowRoot} />
+      </AppContext.Provider>
     </StyleSheetManager>
   )
 }
