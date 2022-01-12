@@ -1,40 +1,27 @@
 import { h, Fragment } from 'preact'
-import { useState, useRef } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { Section, Popover, H2 } from '@canvas/common'
 import { ConfirmSection } from './confirm-section'
 import { TimeSlotButton, TimeSlotContainer } from './styles'
+import { useAppContext } from '../../hooks'
 
-export const TimeSlotSelect = ({ colors, setScreen }) => {
+export const TimeSlotSelect = ({ setScreen }) => {
+  const { shadowRoot, colors } = useAppContext()
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({
     popoverOpen: false,
   })
 
-  const refs = useRef([])
-
-  const addToRefs = item => {
-    if (item && !refs.current.includes(item)) {
-      refs.current.push(item)
-    }
-  }
-
   const cancelConfirmation = () => {
-    const previousRef = refs.current.find(
-      el => el.id === selectedTimeSlot.refId
-    )
-    if (previousRef) {
-      previousRef.focus()
-    }
     setSelectedTimeSlot({ popoverOpen: false })
   }
 
-  const setTimeSlot = ({ id, start, provider, treatment, refId }) => {
+  const setTimeSlot = ({ id, start, provider, treatment }) => {
     setSelectedTimeSlot({
       popoverOpen: true,
       id,
       start,
       provider,
       treatment,
-      refId,
     })
   }
 
@@ -73,7 +60,6 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
             <TimeSlotContainer aria-labelledby={`providerName-${id}`}>
               {timeSlots.map(({ id: slotId, start, end }) => (
                 <TimeSlotButton
-                  ref={addToRefs}
                   id={`${id}-${slotId}`}
                   backgroundColor={colors.primary}
                   focusColor={colors.focus}
@@ -86,7 +72,6 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
                       start,
                       provider,
                       treatment,
-                      refId: `${id}-${slotId}`,
                     })
                   }
                 >{`${start} - ${end}`}</TimeSlotButton>
@@ -96,6 +81,7 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
         )
       })}
       <Popover
+        shadowRoot={shadowRoot}
         open={selectedTimeSlot.popoverOpen}
         onClose={() => cancelConfirmation()}
         titleId={'confirm-slot'}

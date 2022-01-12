@@ -2,10 +2,14 @@ import { h } from 'preact'
 import FocusTrap from 'focus-trap-react'
 import { PopoverBackdrop, PopoverContainer } from './styles'
 
-export const Popover = ({ open, children, titleId }) => {
+export const Popover = ({ open, children, titleId, shadowRoot }) => {
   if (open) {
     return (
-      <FocusTrap>
+      <FocusTrap
+        focusTrapOptions={{
+          document: shadowRoot,
+        }}
+      >
         <PopoverBackdrop>
           <PopoverContainer aria-labelledby={titleId}>
             {children}

@@ -18,8 +18,10 @@ import {
   formatDate,
   styles,
 } from '@canvas/common'
+import { useAppContext } from '../../hooks'
 
-export const DateSelect = ({ date, colors }) => {
+export const DateSelect = ({ date }) => {
+  const { colors } = useAppContext()
   const backDisabled = isToday(date)
   const userTimezone = new Date()
     .toLocaleTimeString('en-us', { timeZoneName: 'short' })

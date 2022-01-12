@@ -1,27 +1,23 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
-import { AppContainer, Body, generateColors, Header } from '@canvas/common'
+import { AppContainer, Body, Header } from '@canvas/common'
 import { DateSelect, TimeSlotSelect } from './components'
+import { useAppContext } from './hooks'
 
-export const App = ({ brandColor }) => {
+export const App = ({ shadowRoot }) => {
+  const { colors } = useAppContext()
   const [screen, setScreen] = useState('SELECT')
   const [date, setDate] = useState(new Date())
 
-  const generatedColors = generateColors(brandColor)
-  const orchestratedColors = { primary: brandColor, ...generatedColors }
-
   return (
     <AppContainer>
-      <Header colors={orchestratedColors} bailoutURL={'https://viget.com'} />
+      <Header colors={colors} bailoutURL={'https://viget.com'} />
       {screen === 'SELECT' ? (
         <Body>
-          <DateSelect
-            date={date}
-            colors={orchestratedColors}
-            setDate={setDate}
-          />
+          <DateSelect date={date} colors={colors} setDate={setDate} />
           <TimeSlotSelect
-            colors={orchestratedColors}
+            shadowRoot={shadowRoot}
+            colors={colors}
             setScreen={() => setScreen('CONFIRM')}
           />
         </Body>
