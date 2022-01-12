@@ -2,37 +2,40 @@ import { styles } from '@canvas/common/utils/styles'
 import styled from 'styled-components'
 
 export const DateViewContainer = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  max-width: ${styles.minWidth};
-  height: 40px;
-  border-radius: 25px;
   background-color: ${p => p.backgroundColor || styles.default.accent};
+  border-radius: 1.25rem;
   display: flex;
+  height: 2.5rem;
+  margin: 0 auto;
+  max-width: ${styles.minWidth};
+  width: 100%;
 `
 
 export const DateSelectButton = styled.button`
+  align-items: center;
   background-color: unset;
   border: unset;
-  margin: auto;
   display: flex;
-  height: 100%;
+  flex-grow: 1;
+  justify-content: center;
 
   &:focus,
   &:hover {
-    background-color: green;
   }
 `
 
 export const DateScrollButton = styled.button`
+  align-items: center;
   background-color: unset;
   border: unset;
+  border-radius: 100%;
   display: flex;
-  height: 100%;
+  justify-content: center;
+  padding: 0;
+  width: 2.5rem;
 
   &:focus,
   &:hover {
-    background-color: green;
   }
 
   &:disabled {
@@ -41,11 +44,11 @@ export const DateScrollButton = styled.button`
 `
 
 export const IconContainer = styled.div`
-  margin: auto;
 `
 
 export const DateHeading = styled.h2`
-  margin: auto;
-  margin-left: 4px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-left: 10px;
   color: #000;
 `

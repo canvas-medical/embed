@@ -26,6 +26,7 @@ export const OutlineButton = styled(Button)`
   background-color: #fff;
   border: 1px solid #595959;
   color: #000;
+
   &:focus,
   &:hover {
     background-color: #a8a8a8;

@@ -1,7 +1,7 @@
 import Color from 'color'
 
 export const styles = {
-  minWidth: '343px', // 375 - 16px
+  minWidth: '345px', // 375 - 16px
   maxWidth: '650px', // 768 - 59px
   default: {
     primary: '#2185d0',

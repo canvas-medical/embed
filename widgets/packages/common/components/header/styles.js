@@ -9,27 +9,32 @@ import { styles } from '../../utils/styles'
  */
 export const StyledHeader = styled.div`
   background-color: ${p => p.backgroundColor || styles.default.primary};
-  height: 60px;
   display: flex;
+  height: 3.75rem;
   justify-content: center;
+  padding: 0 0.5rem;
 `
 export const ContainedHeader = styled.div`
+  display: flex;
   min-width: ${styles.minWidth};
   max-width: ${styles.maxWidth};
   width: 100%;
-  display: flex;
 `
 
 export const HeadingWrapper = styled.div`
   display: flex;
+  height: 3.75rem;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 60px;
+  z-index: 1;
 `
 
 export const Heading = styled.h1`
-  position: relative;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
   margin: auto;
+  position: relative;
 `
