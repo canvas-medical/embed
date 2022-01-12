@@ -29,7 +29,7 @@ export const TimeSlotSelect = ({ setScreen }) => {
     {
       provider: 'Jane Doe, MD',
       id: 1,
-      treatment: 'Exmaple treatment',
+      treatment: 'Example treatment',
       timeSlots: [
         { start: '10:00AM', end: '10:30AM', id: 1 },
         { start: '10:30AM', end: '11:00AM', id: 2 },

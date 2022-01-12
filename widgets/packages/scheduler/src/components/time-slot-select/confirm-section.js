@@ -3,12 +3,16 @@ import {
   Box,
   BigCalendar,
   H2,
-  H3,
   IconBox,
-  LargerSpan,
   Button,
   OutlineButton,
 } from '@canvas/common'
+import {
+  PopoverIcon,
+  PopoverMessages,
+  PopoverMessage,
+  PopoverButtons,
+} from '@canvas/common/components/popover/styles'
 
 export const ConfirmSection = ({
   provider,
@@ -19,27 +23,25 @@ export const ConfirmSection = ({
 }) => {
   return (
     <Box>
-      <H2 id="confirm-slot">Confirm Your Appointment</H2>
-      <Box mt="16px" mb="16px">
+      <H2>Confirm Your Appointment</H2>
+
+      <PopoverIcon>
         <IconBox>
           <BigCalendar />
         </IconBox>
-      </Box>
-      <H3>{start}</H3>
-      <LargerSpan>{`${treatment} with ${provider}`}</LargerSpan>
-      <Box
-        flexDirection="row"
-        width="auto"
-        ml="auto"
-        mr="auto"
-        mt="16px"
-        mb="16px"
-      >
-        <Button ml="16px" mr="16px" onClick={setScreen}>
-          Confirm
-        </Button>
+      </PopoverIcon>
+
+      <PopoverMessages>
+        <PopoverMessage>
+          <strong>{start}</strong>
+        </PopoverMessage>
+        <PopoverMessage>{`${treatment} with ${provider}`}</PopoverMessage>
+      </PopoverMessages>
+
+      <PopoverButtons>
+        <Button onClick={setScreen}>Confirm</Button>
         <OutlineButton onClick={onCancel}>Cancel</OutlineButton>
-      </Box>
+      </PopoverButtons>
     </Box>
   )
 }

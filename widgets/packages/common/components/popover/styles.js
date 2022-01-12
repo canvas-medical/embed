@@ -1,20 +1,44 @@
 import styled from 'styled-components'
 
 export const PopoverBackdrop = styled.div`
+  background-color: hsla(0, 100%, 100%, 0.9);
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  background-color: hsla(0, 100%, 100%, 0.9);
 `
 
 export const PopoverContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   background-color: #fff;
+  bottom: 0;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.21);
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+  position: absolute;
+  width: 100%;
+`
+
+export const PopoverIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+`
+
+export const PopoverMessages = styled.ul`
+`
+
+export const PopoverMessage = styled.li`
+  margin-top: 1rem;
+`
+
+export const PopoverButtons = styled.p`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+
+  * + * {
+    margin-left: 1rem;
+  }
 `
