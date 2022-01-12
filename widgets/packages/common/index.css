@@ -15,6 +15,10 @@ span {
   color: #fff;
 }
 
+html {
+  font-size: 16px;
+}
+
 p,
 span {
   font-size: 0.875rem;
