@@ -21,6 +21,15 @@ export const DateSelectButton = styled.button`
 
   &:focus,
   &:hover {
+    background-color: ${p => p.backgroundColor || styles.default.focus};
+
+    h2 {
+      color: #fff;
+    }
+
+    path {
+      fill: #fff;
+    }
   }
 `
 
@@ -28,14 +37,26 @@ export const DateScrollButton = styled.button`
   align-items: center;
   background-color: unset;
   border: unset;
-  border-radius: 100%;
   display: flex;
   justify-content: center;
   padding: 0;
   width: 2.5rem;
 
+  &:first-child {
+    border-radius: 100% 0 0 100%;
+  }
+
+  &:last-child {
+    border-radius: 0 100% 100% 0;
+  }
+
   &:focus,
   &:hover {
+    background-color: ${p => p.backgroundColor || styles.default.focus};
+
+    path {
+      stroke: #fff;
+    }
   }
 
   &:disabled {
