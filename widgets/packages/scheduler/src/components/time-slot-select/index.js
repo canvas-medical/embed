@@ -1,15 +1,8 @@
 import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
-import { Section, Popover } from '@canvas/common/components'
-import { H2 } from '@canvas/common/components/typography'
-import {
-  RadioButtonInput,
-  RadioButtonItem,
-  RadioButtonLabel,
-  RadioButtonList,
-  RadioButtonText,
-} from './styles'
+import { Section, Popover, H2 } from '@canvas/common'
 import { ConfirmSection } from './confirm-section'
+import { TimeSlotButton, TimeSlotContainer } from './styles'
 
 export const TimeSlotSelect = ({ colors, setScreen }) => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({
@@ -62,26 +55,20 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
         return (
           <Section key={id} mb="16px" backgroundColor={colors.accent}>
             <H2>{provider}</H2>
-            <RadioButtonList>
+            <TimeSlotContainer>
               {timeSlots.map(({ id, start, end }) => (
-                <RadioButtonItem key={id}>
-                  <RadioButtonInput
-                    type="radio"
-                    id={id}
-                    onClick={() =>
-                      setTimeSlot({ id, start, provider, treatment })
-                    }
-                  />
-                  <RadioButtonLabel
-                    for={id}
-                    backgroundColor={colors.primary}
-                    focusColor={colors.focus}
-                  >
-                    <RadioButtonText>{`${start} - ${end}`}</RadioButtonText>
-                  </RadioButtonLabel>
-                </RadioButtonItem>
+                <TimeSlotButton
+                  backgroundColor={colors.primary}
+                  focusColor={colors.focus}
+                  ml="7px"
+                  mr="7px"
+                  key={id}
+                  onClick={() =>
+                    setTimeSlot({ id, start, provider, treatment })
+                  }
+                >{`${start} - ${end}`}</TimeSlotButton>
               ))}
-            </RadioButtonList>
+            </TimeSlotContainer>
           </Section>
         )
       })}
