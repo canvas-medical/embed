@@ -1,5 +1,5 @@
 import { h, Fragment } from 'preact'
-import { useState } from 'preact/hooks'
+import { useState, useRef } from 'preact/hooks'
 import { Section, Popover, H2 } from '@canvas/common'
 import { ConfirmSection } from './confirm-section'
 import { TimeSlotButton, TimeSlotContainer } from './styles'
@@ -9,17 +9,32 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
     popoverOpen: false,
   })
 
+  const refs = useRef([])
+
+  const addToRefs = item => {
+    if (item && !refs.current.includes(item)) {
+      refs.current.push(item)
+    }
+  }
+
   const cancelConfirmation = () => {
+    const previousRef = refs.current.find(
+      el => el.id === selectedTimeSlot.refId
+    )
+    if (previousRef) {
+      previousRef.focus()
+    }
     setSelectedTimeSlot({ popoverOpen: false })
   }
 
-  const setTimeSlot = ({ id, start, provider, treatment }) => {
+  const setTimeSlot = ({ id, start, provider, treatment, refId }) => {
     setSelectedTimeSlot({
       popoverOpen: true,
       id,
       start,
       provider,
       treatment,
+      refId,
     })
   }
 
@@ -54,17 +69,25 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
       {data.map(({ provider, timeSlots, id, treatment }) => {
         return (
           <Section key={id} mb="16px" backgroundColor={colors.accent}>
-            <H2>{provider}</H2>
-            <TimeSlotContainer>
-              {timeSlots.map(({ id, start, end }) => (
+            <H2 id={`providerName-${id}`}>{provider}</H2>
+            <TimeSlotContainer aria-labelledby={`providerName-${id}`}>
+              {timeSlots.map(({ id: slotId, start, end }) => (
                 <TimeSlotButton
+                  ref={addToRefs}
+                  id={`${id}-${slotId}`}
                   backgroundColor={colors.primary}
                   focusColor={colors.focus}
                   ml="7px"
                   mr="7px"
-                  key={id}
+                  key={slotId}
                   onClick={() =>
-                    setTimeSlot({ id, start, provider, treatment })
+                    setTimeSlot({
+                      slotId,
+                      start,
+                      provider,
+                      treatment,
+                      refId: `${id}-${slotId}`,
+                    })
                   }
                 >{`${start} - ${end}`}</TimeSlotButton>
               ))}
@@ -75,6 +98,7 @@ export const TimeSlotSelect = ({ colors, setScreen }) => {
       <Popover
         open={selectedTimeSlot.popoverOpen}
         onClose={() => cancelConfirmation()}
+        titleId={'confirm-slot'}
       >
         <ConfirmSection
           {...selectedTimeSlot}
