@@ -2,16 +2,11 @@ import { h } from 'preact'
 
 export const ArrowBack = ({ fill }) => (
   <svg
+    height="16"
+    viewBox="0 0 10 16"
+    width="10"
     xmlns="http://www.w3.org/2000/svg"
-    enable-background="new 0 0 24 24"
-    height="24px"
-    viewBox="0 0 24 24"
-    width="24px"
-    fill={fill || '#fff'}
   >
-    <rect fill="none" height="24" width="24" />
-    <g>
-      <polygon points="17.77,3.77 16,2 6,12 16,22 17.77,20.23 9.54,12" />
-    </g>
+    <path d="m401.034779 24.5989021v10h10" fill="none" stroke={fill || '#fff'} stroke-width="2" transform="matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)"/>
   </svg>
 )
