@@ -8,9 +8,10 @@
       .preview {
         width: 100%;
         max-width: 1100px;
-        margin: 80px auto;
+        margin: 80px 0;
         border: 1px dashed rgba(0, 0, 0, 0.2);
         position: relative;
+        max-height: 600px;
       }
 
       .preview::before {
@@ -22,8 +23,8 @@
         color: rgba(0, 0, 0, 0.5);
       }
 
-      .preview span {
-        color: blue;
+      .preview div {
+        background-color: blue;
       }
     </style>
   </head>
@@ -33,6 +34,7 @@
     <script type="text/javascript">
       Scheduler.init({
         rootId: 'scheduler-root',
+        // brandColor: '#0a3d00',
       })
     </script>
   </body>

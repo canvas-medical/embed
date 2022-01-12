@@ -9,7 +9,8 @@
   },
   "prettier": {
     "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "arrowParens": "avoid"
   },
   "jest": {
     "preset": "jest-preset-preact",

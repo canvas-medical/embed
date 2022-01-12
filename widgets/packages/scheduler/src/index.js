@@ -1,25 +1,28 @@
 import { h, render } from 'preact'
-import styles from './styles.css'
+import { cssStyles } from '@canvas/common'
 import { StyleSheetManager } from 'styled-components'
 import { App } from './App'
 
-const StyledApp = ({ rootId }) => {
+const StyledApp = ({ rootId, brandColor }) => {
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
-      <App />
+      <App brandColor={brandColor} />
     </StyleSheetManager>
   )
 }
 
-export const init = ({ rootId }) => {
+export const init = ({ rootId, brandColor }) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
     mode: 'open',
   })
 
   const styleTag = document.createElement('style')
-  styleTag.innerHTML = styles
+  styleTag.innerHTML = cssStyles
   appRoot.shadowRoot.appendChild(styleTag)
 
-  render(<StyledApp rootId={rootId} />, appRoot.shadowRoot)
+  render(
+    <StyledApp rootId={rootId} brandColor={brandColor} />,
+    appRoot.shadowRoot
+  )
 }

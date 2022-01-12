@@ -1,11 +1,6 @@
-import { h } from "preact"
-import styled from "styled-components"
+import cssStyles from './index.css'
 
-export const Demo = ({ text }) => (
-  <span>{`This is a demo. Here's some text: ${text}`}</span>
-)
-
-export const StyledDemo = styled.span`
-  color: #fff;
-  font-weight: 700;
-`
+export * from './components'
+export * from './assets'
+export * from './utils'
+export { cssStyles }

@@ -1,19 +1,36 @@
 import { h } from 'preact'
-import { Demo, StyledDemo } from '@canvas/common'
-import styled from 'styled-components'
+import { useState } from 'preact/hooks'
+import { AppContainer, Body, generateColors, Header } from '@canvas/common'
+import { DateSelect, TimeSlotSelect } from './components'
 
-const StyledExample = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: green;
-`
+export const App = ({ brandColor }) => {
+  const [screen, setScreen] = useState('SELECT')
+  const [date, setDate] = useState(new Date())
 
-export const App = () => {
+  const generatedColors = generateColors(brandColor)
+  const orchestratedColors = { primary: brandColor, ...generatedColors }
+
   return (
-    <StyledExample>
-      <h1>Scheduler</h1>
-      <StyledDemo>This is the scheduler app</StyledDemo>
-      <Demo text="electric boogie" />
-    </StyledExample>
+    <AppContainer>
+      <Header colors={orchestratedColors} bailoutURL={'https://viget.com'} />
+      {screen === 'SELECT' ? (
+        <Body>
+          <DateSelect
+            date={date}
+            colors={orchestratedColors}
+            setDate={setDate}
+          />
+          <TimeSlotSelect
+            colors={orchestratedColors}
+            setScreen={() => setScreen('CONFIRM')}
+          />
+        </Body>
+      ) : (
+        <Body>
+          Confirm Screen Inprogress
+          <button onClick={() => setScreen('SELECT')}>Return to Select</button>
+        </Body>
+      )}
+    </AppContainer>
   )
 }
