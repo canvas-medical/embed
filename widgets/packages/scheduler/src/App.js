@@ -4,7 +4,7 @@ import { AppContainer, Body, Header } from '@canvas/common'
 import { DateSelect, TimeSlotSelect } from './components'
 import { useAppContext } from './hooks'
 
-export const App = ({ shadowRoot }) => {
+export const App = () => {
   const { colors } = useAppContext()
   const [screen, setScreen] = useState('SELECT')
   const [date, setDate] = useState(new Date())
@@ -14,12 +14,8 @@ export const App = ({ shadowRoot }) => {
       <Header colors={colors} bailoutURL={'https://viget.com'} />
       {screen === 'SELECT' ? (
         <Body>
-          <DateSelect date={date} colors={colors} setDate={setDate} />
-          <TimeSlotSelect
-            shadowRoot={shadowRoot}
-            colors={colors}
-            setScreen={() => setScreen('CONFIRM')}
-          />
+          <DateSelect date={date} setDate={setDate} />
+          <TimeSlotSelect setScreen={() => setScreen('CONFIRM')} />
         </Body>
       ) : (
         <Body>
