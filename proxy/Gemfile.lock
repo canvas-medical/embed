@@ -114,7 +114,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.0)
+    nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     puma (5.5.2)
@@ -204,7 +204,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.5p203
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
