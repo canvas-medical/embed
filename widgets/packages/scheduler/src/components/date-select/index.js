@@ -14,9 +14,9 @@ import {
   Box,
   Calendar,
   isToday,
-  Span,
   formatDate,
   styles,
+  TzMessage,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 
@@ -59,9 +59,7 @@ export const DateSelect = ({ date }) => {
         </DateScrollButton>
       </DateViewContainer>
 
-      <Box mt="12px" mb="16px">
-        <Span>{`Appointment times shown in ${userTimezone}`}</Span>
-      </Box>
+      <TzMessage>{`Appointment times shown in ${userTimezone}`}</TzMessage>
     </Box>
   )
 }

@@ -6,6 +6,7 @@ import styled from 'styled-components'
  */
 
 export const AppContainer = styled.div`
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
   overflow: auto;
 `

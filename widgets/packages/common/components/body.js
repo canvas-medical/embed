@@ -6,12 +6,12 @@ import { styles } from '../utils/styles'
  */
 
 export const Body = styled.div`
-  min-width: ${styles.minWidth};
-  max-width: ${styles.maxWidth};
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: auto;
+  min-width: ${styles.minWidth};
+  max-width: ${styles.maxWidth};
   padding: 0 16px;
+  width: 100%;
 `

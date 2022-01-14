@@ -3,9 +3,11 @@ import { styles } from '../utils/styles'
 
 // TODO - determine hover / focus styles for links
 export const IconButtonLink = styled.a`
-  margin: auto 8px;
+  align-items: center;
   display: flex;
-  padding: 8px;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 2;
 
   &:focus,
   &:hover {
