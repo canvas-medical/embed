@@ -28,7 +28,7 @@ export const DateSelect = ({ date }) => {
     .split(' ')[2]
 
   return (
-    <Box mt="16px">
+    <Box style={{ '--mt': '16px' }}>
       <DateViewContainer backgroundColor={colors.accent}>
         <DateScrollButton
           disabled={backDisabled}

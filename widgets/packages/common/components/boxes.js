@@ -1,20 +1,19 @@
 import styled from 'styled-components'
-import { styles } from '../utils/styles'
+import { accentBackgoundColor, margin } from '../utils/styles'
 
 export const Box = styled.div`
+  ${margin}
+
   align-content: center;
   display: flex;
-  flex-direction: ${p => p.flexDirection || 'column'};
-  margin-top: ${p => p.mt || null};
-  margin-right: ${p => p.mr || null};
-  margin-bottom: ${p => p.mb || null};
-  margin-left: ${p => p.ml || null};
+  flex-direction: var(--fd, column);
   text-align: center;
-  width: ${p => p.width || '100%'};
+  width: var(--width, 100%);
 `
 
 export const Fieldset = styled.fieldset`
-  background-color: ${p => p.backgroundColor || styles.default.accent};
+  ${accentBackgoundColor}
+
   border: none;
   border-radius: 5px;
   margin: 0 0 1rem;
