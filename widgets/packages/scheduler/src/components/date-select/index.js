@@ -8,6 +8,7 @@ import {
   formatDate,
   styles,
   TzMessage,
+  userTimezone,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 import {
@@ -18,12 +19,9 @@ import {
   IconContainer,
 } from './styles'
 
-export const DateSelect = ({ date }) => {
-  const { colors } = useAppContext()
+export const DateSelect = () => {
+  const { colors, date } = useAppContext()
   const backDisabled = isToday(date)
-  const userTimezone = new Date()
-    .toLocaleTimeString('en-us', { timeZoneName: 'short' })
-    .split(' ')[2]
 
   return (
     <Box style={{ '--mt': '16px' }}>

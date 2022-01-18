@@ -7,14 +7,13 @@ import { useAppContext } from './hooks'
 export const App = () => {
   const { colors } = useAppContext()
   const [screen, setScreen] = useState('SELECT')
-  const [date, setDate] = useState(new Date())
 
   return (
     <AppContainer>
       <Header colors={colors} bailoutURL={'https://viget.com'} />
       {screen === 'SELECT' ? (
         <Body>
-          <DateSelect date={date} setDate={setDate} />
+          <DateSelect />
           <TimeSlotSelect setScreen={() => setScreen('CONFIRM')} />
         </Body>
       ) : (
