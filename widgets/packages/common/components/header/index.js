@@ -9,9 +9,12 @@ import {
 } from './styles'
 
 export const Header = ({ colors, bailoutURL }) => (
-  <StyledHeader backgroundColor={colors.primary}>
+  <StyledHeader style={{ '--bg': colors.primary }}>
     <ContainedHeader>
-      <IconButtonLink focusColor={colors.focus} href={bailoutURL}>
+      <IconButtonLink
+        style={{ '--fc': colors.focus, '--hc': colors.hover }}
+        href={bailoutURL}
+      >
         <ArrowBack />
       </IconButtonLink>
       <HeadingWrapper>

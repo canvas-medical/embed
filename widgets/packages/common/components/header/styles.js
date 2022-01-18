@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { styles } from '../../utils/styles'
+import { primaryBackgoundColor, styles } from '../../utils/styles'
 
 /*
  * The "header" can extend past the max-width of the application
@@ -8,7 +8,8 @@ import { styles } from '../../utils/styles'
  * the application width
  */
 export const StyledHeader = styled.div`
-  background-color: ${p => p.backgroundColor || styles.default.primary};
+  ${primaryBackgoundColor}
+
   display: flex;
   height: 3.75rem;
   justify-content: center;
