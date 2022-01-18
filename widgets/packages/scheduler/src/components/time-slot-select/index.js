@@ -5,31 +5,28 @@ import { TimeSlotButton, TimeSlotItem, TimeSlotList } from './styles'
 import { ConfirmSection } from './confirm-section'
 import { useAppContext } from '../../hooks'
 
-export const TimeSlotSelect = ({ setScreen }) => {
-  const { shadowRoot, colors } = useAppContext()
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState({
-    popoverOpen: false,
-  })
+export const TimeSlotSelect = () => {
+  const { shadowRoot, colors, setTimeSlot } = useAppContext()
+  const [popoverOpen, setPopoverOpen] = useState(false)
 
   const cancelConfirmation = () => {
-    setSelectedTimeSlot({ popoverOpen: false })
+    setPopoverOpen(false)
+    setTimeSlot(null)
   }
 
-  const setTimeSlot = ({ id, start, provider, treatment }) => {
-    setSelectedTimeSlot({
-      popoverOpen: true,
-      id,
+  const selectTimeSlot = ({ start, end, provider }) => {
+    setTimeSlot({
       start,
+      end,
       provider,
-      treatment,
     })
+    setPopoverOpen(true)
   }
 
   const data = [
     {
       provider: 'Jane Doe, MD',
       id: 1,
-      treatment: 'Example treatment',
       timeSlots: [
         { start: '10:00AM', end: '10:30AM', id: 1 },
         { start: '10:30AM', end: '11:00AM', id: 2 },
@@ -53,7 +50,7 @@ export const TimeSlotSelect = ({ setScreen }) => {
 
   return (
     <Fragment>
-      {data.map(({ provider, timeSlots, id, treatment }) => {
+      {data.map(({ provider, timeSlots, id }) => {
         return (
           <Fieldset
             key={id}
@@ -73,7 +70,11 @@ export const TimeSlotSelect = ({ setScreen }) => {
                     }}
                     id={id}
                     onClick={() =>
-                      setTimeSlot({ id, start, provider, treatment })
+                      selectTimeSlot({
+                        end,
+                        provider,
+                        start,
+                      })
                     }
                   >{`${start} - ${end}`}</TimeSlotButton>
                 </TimeSlotItem>
@@ -84,15 +85,11 @@ export const TimeSlotSelect = ({ setScreen }) => {
       })}
       <Popover
         shadowRoot={shadowRoot}
-        open={selectedTimeSlot.popoverOpen}
+        open={popoverOpen}
         onClose={() => cancelConfirmation()}
         titleId={'confirm-slot'}
       >
-        <ConfirmSection
-          {...selectedTimeSlot}
-          onCancel={() => cancelConfirmation()}
-          setScreen={setScreen}
-        />
+        <ConfirmSection onCancel={() => cancelConfirmation()} />
       </Popover>
     </Fragment>
   )

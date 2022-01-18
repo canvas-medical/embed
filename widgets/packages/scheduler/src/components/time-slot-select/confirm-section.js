@@ -6,22 +6,22 @@ import {
   IconBox,
   Button,
   OutlineButton,
-  styles,
-} from '@canvas/common'
-import {
   PopoverIcon,
   PopoverMessages,
   PopoverMessage,
   PopoverButtons,
-} from '@canvas/common/components/popover/styles'
+  styles,
+} from '@canvas/common'
+import { useAppContext } from '../../hooks'
 
-export const ConfirmSection = ({
-  provider,
-  start,
-  treatment,
-  onCancel,
-  setScreen,
-}) => {
+export const ConfirmSection = ({ onCancel }) => {
+  const { timeSlot, setScreen, treatment } = useAppContext()
+
+  const handleConfirmation = () => {
+    // Do some API Call then
+    setScreen('CONFIRM')
+  }
+
   return (
     <Box>
       <H2>Confirm Your Appointment</H2>
@@ -34,9 +34,9 @@ export const ConfirmSection = ({
 
       <PopoverMessages>
         <PopoverMessage>
-          <strong>{start}</strong>
+          <strong>{timeSlot.start}</strong>
         </PopoverMessage>
-        <PopoverMessage>{`${treatment} with ${provider}`}</PopoverMessage>
+        <PopoverMessage>{`${treatment} with ${timeSlot.provider}`}</PopoverMessage>
       </PopoverMessages>
 
       <PopoverButtons>
@@ -47,7 +47,7 @@ export const ConfirmSection = ({
             '--hc': styles.buttons.primary.hover,
             '--mx': '16px',
           }}
-          onClick={() => setScreen()}
+          onClick={() => handleConfirmation()}
         >
           Confirm
         </Button>

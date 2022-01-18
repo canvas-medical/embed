@@ -1,20 +1,18 @@
 import { h } from 'preact'
-import { useState } from 'preact/hooks'
 import { AppContainer, Body, Header } from '@canvas/common'
 import { DateSelect, TimeSlotSelect } from './components'
 import { useAppContext } from './hooks'
 
 export const App = () => {
-  const { colors } = useAppContext()
-  const [screen, setScreen] = useState('SELECT')
+  const { screen, colors, setScreen, bailoutURL } = useAppContext()
 
   return (
     <AppContainer>
-      <Header colors={colors} bailoutURL={'https://viget.com'} />
+      <Header colors={colors} bailoutURL={bailoutURL} />
       {screen === 'SELECT' ? (
         <Body>
           <DateSelect />
-          <TimeSlotSelect setScreen={() => setScreen('CONFIRM')} />
+          <TimeSlotSelect />
         </Body>
       ) : (
         <Body>

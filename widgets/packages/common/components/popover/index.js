@@ -21,3 +21,5 @@ export const Popover = ({ open, children, titleId, shadowRoot }) => {
 
   return null
 }
+
+export * from './styles'
