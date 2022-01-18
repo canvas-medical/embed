@@ -1,6 +1,6 @@
 require 'oauth2'
 
-class FHIRClient 
+class FHIRClient
   attr_accessor :client, :token
 
   def initialize(id, secret, base_url)
@@ -17,7 +17,7 @@ class FHIRClient
     })
   end
 
-  def get(path)
-    @token.get(path, headers: {"Accept": "application/json"})
+  def get(path, base_url = "")
+    @token.get(base_url + path, headers: {"Accept": "application/json"})
   end
 end
