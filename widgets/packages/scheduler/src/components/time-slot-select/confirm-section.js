@@ -6,6 +6,7 @@ import {
   IconBox,
   Button,
   OutlineButton,
+  styles,
 } from '@canvas/common'
 import {
   PopoverIcon,
@@ -39,7 +40,17 @@ export const ConfirmSection = ({
       </PopoverMessages>
 
       <PopoverButtons>
-        <Button onClick={setScreen}>Confirm</Button>
+        <Button
+          style={{
+            '--bg': styles.buttons.primary.background,
+            '--fc': styles.buttons.primary.focus,
+            '--hc': styles.buttons.primary.hover,
+            '--mx': '16px',
+          }}
+          onClick={() => setScreen()}
+        >
+          Confirm
+        </Button>
         <OutlineButton onClick={onCancel}>Cancel</OutlineButton>
       </PopoverButtons>
     </Box>

@@ -61,7 +61,11 @@ export const TimeSlotSelect = ({ setScreen }) => {
               {timeSlots.map(({ id, start, end }) => (
                 <TimeSlotItem key={id}>
                   <TimeSlotButton
-                    type="radio"
+                    style={{
+                      '--bg': colors.primary,
+                      '--fc': colors.focus,
+                      '--hc': colors.focus,
+                    }}
                     id={id}
                     onClick={() =>
                       setTimeSlot({ id, start, provider, treatment })

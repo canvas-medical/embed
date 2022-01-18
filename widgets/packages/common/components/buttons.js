@@ -1,24 +1,18 @@
 import styled from 'styled-components'
-import { styles } from '..'
+import { primaryBackgoundColor, margin, hoverAndFocusColor } from '../utils'
 
 export const Button = styled.button`
-  background-color: ${p => p.backgroundColor || styles.buttons.primary.background};
+  ${primaryBackgoundColor}
+  ${margin}
+  ${hoverAndFocusColor}
+
   border: none;
   border-radius: 5px;
   color: #fff;
   font-size: 1.125rem;
   font-weight: 700;
   height: 50px;
-  margin-top: ${p => p.mt || null};
-  margin-right: ${p => p.mr || null};
-  margin-bottom: ${p => p.mb || null};
-  margin-left: ${p => p.ml || null};
   width: 200px;
-
-  &:focus,
-  &:hover {
-    background-color: ${p => p.focusColor || styles.buttons.primary.focus};
-  }
 `
 
 export const OutlineButton = styled(Button)`
