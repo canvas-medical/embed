@@ -11,3 +11,7 @@ export const isToday = date => {
     date.getFullYear() === today.getFullYear()
   )
 }
+
+export const userTimezone = new Date()
+  .toLocaleTimeString('en-us', { timeZoneName: 'short' })
+  .split(' ')[2]
