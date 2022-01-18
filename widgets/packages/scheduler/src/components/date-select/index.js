@@ -1,13 +1,4 @@
 import { h } from 'preact'
-
-import {
-  DateHeading,
-  DateScrollButton,
-  DateSelectButton,
-  DateViewContainer,
-  IconContainer,
-} from './styles'
-
 import {
   ArrowBack,
   ArrowForward,
@@ -19,6 +10,13 @@ import {
   TzMessage,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
+import {
+  DateHeading,
+  DateScrollButton,
+  DateSelectButton,
+  DateViewContainer,
+  IconContainer,
+} from './styles'
 
 export const DateSelect = ({ date }) => {
   const { colors } = useAppContext()
@@ -29,7 +27,7 @@ export const DateSelect = ({ date }) => {
 
   return (
     <Box style={{ '--mt': '16px' }}>
-      <DateViewContainer backgroundColor={colors.accent}>
+      <DateViewContainer style={{ '--bg': colors.accent }}>
         <DateScrollButton
           disabled={backDisabled}
           onClick={() => console.log("I'll send us back a day")}
@@ -54,7 +52,7 @@ export const DateSelect = ({ date }) => {
           onClick={() => console.log("I'll send us forward a day")}
         >
           <IconContainer>
-            <ArrowForward fill={styles.default.primary} />
+            <ArrowForward fill={colors.primary || styles.default.primary} />
           </IconContainer>
         </DateScrollButton>
       </DateViewContainer>

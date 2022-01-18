@@ -1,8 +1,12 @@
-import { styles } from '@canvas/common/utils/styles'
+import {
+  accentBackgoundColor,
+  hoverAndFocusColor,
+  styles,
+} from '@canvas/common'
 import styled from 'styled-components'
 
 export const DateViewContainer = styled.div`
-  background-color: ${p => p.backgroundColor || styles.default.accent};
+  ${accentBackgoundColor}
   border-radius: 1.25rem;
   display: flex;
   height: 2.5rem;
@@ -12,6 +16,8 @@ export const DateViewContainer = styled.div`
 `
 
 export const DateSelectButton = styled.button`
+  ${hoverAndFocusColor}
+
   align-items: center;
   background-color: unset;
   border: unset;
@@ -21,8 +27,6 @@ export const DateSelectButton = styled.button`
 
   &:focus,
   &:hover {
-    background-color: ${p => p.backgroundColor || styles.default.focus};
-
     h2 {
       color: #fff;
     }
@@ -34,6 +38,8 @@ export const DateSelectButton = styled.button`
 `
 
 export const DateScrollButton = styled.button`
+  ${hoverAndFocusColor}
+
   align-items: center;
   background-color: unset;
   border: unset;
@@ -52,8 +58,6 @@ export const DateScrollButton = styled.button`
 
   &:focus,
   &:hover {
-    background-color: ${p => p.backgroundColor || styles.default.focus};
-
     path {
       stroke: #fff;
     }
@@ -64,8 +68,7 @@ export const DateScrollButton = styled.button`
   }
 `
 
-export const IconContainer = styled.div`
-`
+export const IconContainer = styled.div``
 
 export const DateHeading = styled.h2`
   font-size: 1.125rem;
