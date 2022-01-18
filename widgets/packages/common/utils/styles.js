@@ -26,12 +26,16 @@ export const styles = {
 export const generateColors = brandColor => {
   if (brandColor)
     return {
+      primary: brandColor,
       accent: Color(brandColor).lighten(0.99),
       focus: Color(brandColor).darken(0.66),
+      hover: Color(brandColor).darken(0.66),
     }
   return {
+    primary: null,
     accent: null,
     focus: null,
+    hover: null,
   }
 }
 

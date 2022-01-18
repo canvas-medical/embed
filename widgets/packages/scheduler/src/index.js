@@ -6,8 +6,7 @@ import { AppContext } from './hooks'
 
 const StyledApp = ({ rootId, brandColor }) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
-  const generatedColors = generateColors(brandColor)
-  const colors = { primary: brandColor, ...generatedColors }
+  const colors = generateColors(brandColor)
 
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
