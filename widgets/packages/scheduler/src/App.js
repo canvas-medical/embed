@@ -1,10 +1,10 @@
 import { h } from 'preact'
 import { AppContainer, Body, Header } from '@canvas/common'
-import { DateSelect, TimeSlotSelect } from './components'
+import { DateSelect, TimeSlotSelect, Confirmation } from './components'
 import { useAppContext } from './hooks'
 
 export const App = () => {
-  const { screen, colors, setScreen, bailoutURL } = useAppContext()
+  const { screen, colors, bailoutURL } = useAppContext()
 
   return (
     <AppContainer>
@@ -16,8 +16,7 @@ export const App = () => {
         </Body>
       ) : (
         <Body>
-          Confirm Screen Inprogress
-          <button onClick={() => setScreen('SELECT')}>Return to Select</button>
+          <Confirmation />
         </Body>
       )}
     </AppContainer>
