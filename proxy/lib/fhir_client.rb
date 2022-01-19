@@ -1,6 +1,6 @@
 require 'oauth2'
 
-class FHIRClient
+class FhirClient
   attr_accessor :client, :token
 
   def initialize(id, secret, base_url)
