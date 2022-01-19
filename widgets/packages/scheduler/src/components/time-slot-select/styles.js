@@ -1,15 +1,16 @@
 import styled from 'styled-components'
-import { styles, Button } from '@canvas/common'
+import {
+  Button,
+  primaryBackgoundColor,
+  hoverAndFocusBackgroundColor,
+} from '@canvas/common'
 
 export const TimeSlotButton = styled(Button)`
-  background-color: ${p => p.backgroundColor || styles.default.primary};
+  ${primaryBackgoundColor}
+  ${hoverAndFocusBackgroundColor}
+
   font-size: 0.875rem;
   width: stretch;
-
-  &:focus,
-  &:hover {
-    background-color: ${p => p.focusColor || styles.default.focus};
-  }
 `
 
 export const TimeSlotList = styled.ul`

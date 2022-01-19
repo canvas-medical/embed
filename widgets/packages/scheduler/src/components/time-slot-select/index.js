@@ -55,13 +55,22 @@ export const TimeSlotSelect = ({ setScreen }) => {
     <Fragment>
       {data.map(({ provider, timeSlots, id, treatment }) => {
         return (
-          <Fieldset key={id} backgroundColor={colors.accent}>
+          <Fieldset
+            key={id}
+            style={{
+              '--bg': colors.accent,
+            }}
+          >
             <Legend>{provider}</Legend>
             <TimeSlotList>
               {timeSlots.map(({ id, start, end }) => (
                 <TimeSlotItem key={id}>
                   <TimeSlotButton
-                    type="radio"
+                    style={{
+                      '--bg': colors.primary,
+                      '--fc': colors.focus,
+                      '--hc': colors.focus,
+                    }}
                     id={id}
                     onClick={() =>
                       setTimeSlot({ id, start, provider, treatment })
