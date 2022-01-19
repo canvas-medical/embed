@@ -1,10 +1,16 @@
 import { h } from 'preact'
-import { AppContainer } from '@canvas/common'
+import { AppContainer, Header } from '@canvas/common'
+import { AppointmentsView } from './components'
 
-export const App = () => {
+export const App = ({ bailoutURL, colors }) => {
   return (
     <AppContainer>
-      <h1>Appointments</h1>
+      <Header
+        colors={colors}
+        bailoutURL={bailoutURL}
+        title={'Your Appointments'}
+      />
+      <AppointmentsView colors={colors} />
     </AppContainer>
   )
 }
