@@ -240,7 +240,6 @@ DEPENDENCIES
   rails (~> 7.0.1)
   rspec-rails
   simplecov
-  tzinfo-data
   web-console
 
 RUBY VERSION
