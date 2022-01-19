@@ -1,8 +1,6 @@
-import {
-  Calendar,
-} from '@canvas/common'
 import { h } from 'preact'
+import { Calendar } from '.'
 
-export const BigCalendar = () => (
-  <Calendar height="36" width="34" />
+export const BigCalendar = ({ fill }) => (
+  <Calendar height="36" width="34" fill={fill} />
 )

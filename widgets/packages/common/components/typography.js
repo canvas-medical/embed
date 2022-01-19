@@ -15,8 +15,9 @@ export const H3 = styled.h3`
   font-weight: 700;
 `
 
-export const LargerSpan = styled.span`
+export const Span = styled.span`
   ${margin}
 
+  color: var(--color, #000);
   font-size: 1rem;
 `

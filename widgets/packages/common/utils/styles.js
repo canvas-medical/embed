@@ -21,6 +21,10 @@ export const styles = {
       hover: '#470B0B',
     },
   },
+  font: {
+    grey25: '#C0C0C0',
+    grey50: '#7F7F7F',
+  },
 }
 
 export const generateColors = brandColor => {
