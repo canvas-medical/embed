@@ -47,7 +47,7 @@ export const accentBackgoundColor = `
   background-color: var(--bg, ${styles.default.accent});
 `
 
-export const hoverAndFocusColor = `
+export const hoverAndFocusBackgroundColor = `
   &:focus {
     background-color: var(--fc, ${styles.default.focus});
   }

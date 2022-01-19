@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { hoverAndFocusColor } from '../utils/styles'
+import { hoverAndFocusBackgroundColor } from '../utils/styles'
 
 // TODO - determine hover / focus styles for links
 export const IconButtonLink = styled.a`
-  ${hoverAndFocusColor}
+  ${hoverAndFocusBackgroundColor}
 
   align-items: center;
   display: flex;

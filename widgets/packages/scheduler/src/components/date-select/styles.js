@@ -1,6 +1,6 @@
 import {
   accentBackgoundColor,
-  hoverAndFocusColor,
+  hoverAndFocusBackgroundColor,
   styles,
 } from '@canvas/common'
 import styled from 'styled-components'
@@ -16,7 +16,7 @@ export const DateViewContainer = styled.div`
 `
 
 export const DateSelectButton = styled.button`
-  ${hoverAndFocusColor}
+  ${hoverAndFocusBackgroundColor}
 
   align-items: center;
   background-color: unset;
@@ -38,7 +38,7 @@ export const DateSelectButton = styled.button`
 `
 
 export const DateScrollButton = styled.button`
-  ${hoverAndFocusColor}
+  ${hoverAndFocusBackgroundColor}
 
   align-items: center;
   background-color: unset;

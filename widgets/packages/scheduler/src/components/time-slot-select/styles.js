@@ -2,12 +2,12 @@ import styled from 'styled-components'
 import {
   Button,
   primaryBackgoundColor,
-  hoverAndFocusColor,
+  hoverAndFocusBackgroundColor,
 } from '@canvas/common'
 
 export const TimeSlotButton = styled(Button)`
   ${primaryBackgoundColor}
-  ${hoverAndFocusColor}
+  ${hoverAndFocusBackgroundColor}
 
   font-size: 0.875rem;
   width: stretch;

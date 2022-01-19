@@ -1,10 +1,14 @@
 import styled from 'styled-components'
-import { primaryBackgoundColor, margin, hoverAndFocusColor } from '../utils'
+import {
+  primaryBackgoundColor,
+  margin,
+  hoverAndFocusBackgroundColor,
+} from '../utils'
 
 export const Button = styled.button`
   ${primaryBackgoundColor}
   ${margin}
-  ${hoverAndFocusColor}
+  ${hoverAndFocusBackgroundColor}
 
   border: none;
   border-radius: 5px;
