@@ -8,7 +8,7 @@ import {
   StyledHeader,
 } from './styles'
 
-export const Header = ({ colors, bailoutURL }) => (
+export const Header = ({ colors, bailoutURL, title }) => (
   <StyledHeader style={{ '--bg': colors.primary }}>
     <ContainedHeader>
       <IconButtonLink
@@ -18,7 +18,7 @@ export const Header = ({ colors, bailoutURL }) => (
         <ArrowBack />
       </IconButtonLink>
       <HeadingWrapper>
-        <Heading>Schedule an Appointment</Heading>
+        <Heading>{title}</Heading>
       </HeadingWrapper>
     </ContainedHeader>
   </StyledHeader>
