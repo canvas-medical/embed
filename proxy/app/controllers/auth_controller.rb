@@ -2,8 +2,8 @@ class AuthController < ApplicationController
 
   def authorize
     if authorize_params[:key] == ENV["API_KEY"]
-      redis.set(authorize_params[:patient_id], SecureRandom.uuid)
-      render json: { patient_key: redis.get(authorize_params[:patient_id]) }
+      ProxyRedis.set(authorize_params[:patient_id], SecureRandom.uuid)
+      render json: { patient_key: ProxyRedis.get(authorize_params[:patient_id]) }
     else
       render status: :unauthorized, json: { error: "You are not authorized to access this resource. Verify that you are passing your key." }
     end
@@ -16,9 +16,5 @@ class AuthController < ApplicationController
       :key,
       :patient_id
     )
-  end
-
-  def redis
-    @redis ||= Redis.new(url: ENV["REDIS_URL"])
   end
 end
