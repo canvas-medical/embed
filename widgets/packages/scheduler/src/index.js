@@ -1,23 +1,57 @@
 import { h, render } from 'preact'
-import { cssStyles, generateColors } from '@canvas/common'
+import { cssStyles, generateColors, getAppointmentType } from '@canvas/common'
 import { StyleSheetManager } from 'styled-components'
 import { App } from './App'
-import { AppContext } from './hooks'
+import { ContextWrapper } from './hooks'
 
-const StyledApp = ({ rootId, brandColor }) => {
+const StyledApp = ({
+  appointmentTypeCode,
+  bailoutURL,
+  brandColor,
+  duration,
+  locationId,
+  patientId,
+  providerIds,
+  reason,
+  rootId,
+}) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
   const colors = generateColors(brandColor)
+  const treatment = getAppointmentType(appointmentTypeCode).type
 
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
-      <AppContext.Provider value={{ shadowRoot, colors }}>
+      <ContextWrapper
+        values={{
+          bailoutURL,
+          shadowRoot,
+          colors,
+          patientId,
+          providerIds,
+          locationId,
+          appointmentTypeCode,
+          treatment,
+          reason,
+          duration,
+        }}
+      >
         <App brandColor={brandColor} shadowRoot={shadowRoot} />
-      </AppContext.Provider>
+      </ContextWrapper>
     </StyleSheetManager>
   )
 }
 
-export const init = ({ rootId, brandColor }) => {
+export const init = ({
+  bailoutURL,
+  rootId,
+  patientId,
+  providerIds,
+  locationId,
+  appointmentTypeCode,
+  reason,
+  duration,
+  brandColor,
+}) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
     mode: 'open',
@@ -28,7 +62,17 @@ export const init = ({ rootId, brandColor }) => {
   appRoot.shadowRoot.appendChild(styleTag)
 
   render(
-    <StyledApp rootId={rootId} brandColor={brandColor} />,
+    <StyledApp
+      bailoutURL={bailoutURL}
+      rootId={rootId}
+      patientId={patientId}
+      providerIds={providerIds}
+      locationId={locationId}
+      appointmentTypeCode={appointmentTypeCode}
+      reason={reason}
+      duration={duration}
+      brandColor={brandColor}
+    />,
     appRoot.shadowRoot
   )
 }
