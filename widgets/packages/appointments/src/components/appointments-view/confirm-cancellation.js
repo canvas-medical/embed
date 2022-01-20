@@ -15,9 +15,9 @@ export const ConfirmCancellation = ({ cancelAppointment, keepAppointment }) => (
     <PopoverButtons>
       <Button
         style={{
-          '--bg': styles.buttons.primary.background,
-          '--fc': styles.buttons.primary.focus,
-          '--hc': styles.buttons.primary.hover,
+          '--bg': styles.buttons.secondary.background,
+          '--fc': styles.buttons.secondary.focus,
+          '--hc': styles.buttons.secondary.hover,
           '--mx': '16px',
         }}
         onClick={cancelAppointment}
