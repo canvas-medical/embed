@@ -22,9 +22,9 @@ export const ConfirmCancellation = ({ cancelAppointment, keepAppointment }) => (
         }}
         onClick={cancelAppointment}
       >
-        Confirm
+        Yes, cancel it
       </Button>
-      <OutlineButton onClick={keepAppointment}>Cancel</OutlineButton>
+      <OutlineButton onClick={keepAppointment}>No, keep it</OutlineButton>
     </PopoverButtons>
   </Box>
 )
