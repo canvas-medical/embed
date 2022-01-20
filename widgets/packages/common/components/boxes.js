@@ -4,11 +4,18 @@ import { accentBackgoundColor, margin } from '../utils/styles'
 export const Box = styled.div`
   ${margin}
 
-  align-content: center;
+  align-items: center;
   display: flex;
   flex-direction: var(--fd, column);
   text-align: center;
   width: var(--width, 100%);
+`
+
+export const AccentBox = styled(Box)`
+  ${accentBackgoundColor}
+
+  border-radius: 5px;
+  padding: 1rem;
 `
 
 export const Fieldset = styled.fieldset`

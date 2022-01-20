@@ -11,11 +11,12 @@ import {
   PopoverMessage,
   PopoverButtons,
   styles,
+  formatDate,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 
 export const ConfirmSection = ({ onCancel }) => {
-  const { timeSlot, setScreen, treatment } = useAppContext()
+  const { timeSlot, setScreen, treatment, date } = useAppContext()
 
   const handleConfirmation = () => {
     // Do some API Call then
@@ -34,7 +35,7 @@ export const ConfirmSection = ({ onCancel }) => {
 
       <PopoverMessages>
         <PopoverMessage>
-          <strong>{timeSlot.start}</strong>
+          <strong>{`${formatDate(date)} at ${timeSlot.start}`}</strong>
         </PopoverMessage>
         <PopoverMessage>{`${treatment} with ${timeSlot.provider}`}</PopoverMessage>
       </PopoverMessages>
