@@ -2,8 +2,8 @@ class AuthController < ApplicationController
 
   def authorize
     if authorize_params[:key] == ENV["API_KEY"]
-      $redis.set(authorize_params[:patient_id], SecureRandom.uuid)
-      render json: { patient_key: $redis.get(authorize_params[:patient_id]) }
+      $redis.set(authorize_params[:patient], SecureRandom.uuid)
+      render json: { patient_key: $redis.get(authorize_params[:patient]) }
     else
       render_401("Invalid API Key")
     end
@@ -14,7 +14,7 @@ class AuthController < ApplicationController
   def authorize_params
     @authorize_params ||= params.permit(
       :key,
-      :patient_id
+      :patient
     )
   end
 end
