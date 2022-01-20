@@ -1,11 +1,27 @@
 class ApplicationController < ActionController::API
-  
+
   def client
     @client ||= FhirClient.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], ENV["EMR_BASE_URL"])
   end
 
   def render_401(error_message)
     render status: :unauthorized, json: { error: error_message }
+  end
+
+  def render_fhir_response(fhir_response)
+    response.headers.each do |key, value|
+      response.delete_header(key)
+    end
+    fhir_response.headers.each do |key, value|
+      if key != 'content-length'
+        response.set_header(key, value)
+      else
+        response.set_header('content-length', fhir_response.body.length)
+      end
+    end
+    response.set_header('Last-Modified', Time.now.httpdate)
+    response.status = fhir_response.status
+    render json: fhir_response.body, content_type: 'application/fhir+json; charset=UTF-8'
   end
 
   def valid_patient_check
