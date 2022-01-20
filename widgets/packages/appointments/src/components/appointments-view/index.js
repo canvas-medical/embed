@@ -8,10 +8,18 @@ import {
   H3,
   Span,
   OutlineButton,
+  Popover,
 } from '@canvas/common'
 import { NoAppointments } from './no-appointments'
+import { ConfirmCancellation } from './confirm-cancellation'
 
-export const AppointmentsView = ({ colors }) => {
+export const AppointmentsView = ({ colors, shadowRoot }) => {
+  const [appointment, setAppointment] = useState({
+    popoverOpen: false,
+    id: null,
+  })
+
+  // This will be removed at a later stage when the proxy is able to return appointments
   const [appointments, setAppointments] = useState([
     {
       id: 1,
@@ -27,9 +35,20 @@ export const AppointmentsView = ({ colors }) => {
     },
   ])
 
+  const handleCancel = id => {
+    setAppointment({ popoverOpen: true, id })
+  }
+
   const onCancel = id => {
     console.log('Some API request here')
+
+    // This is just simulating removing an appointment. It will be removed later.
     setAppointments(appointments.filter(appointment => appointment.id !== id))
+    setAppointment({ popoverOpen: false, id: null })
+  }
+
+  const keepAppointment = () => {
+    setAppointment({ popoverOpen: false, id: null })
   }
 
   return (
@@ -49,7 +68,7 @@ export const AppointmentsView = ({ colors }) => {
             </Span>
             <OutlineButton
               style={{ '--my': '8px' }}
-              onClick={() => onCancel(appointment.id)}
+              onClick={() => handleCancel(appointment.id)}
             >
               Cancel
             </OutlineButton>
@@ -58,6 +77,17 @@ export const AppointmentsView = ({ colors }) => {
       ) : (
         <NoAppointments />
       )}
+      <Popover
+        shadowRoot={shadowRoot}
+        open={appointment.popoverOpen}
+        onClose={() => keepAppointment()}
+        titleId={'confirm-cancellation'}
+      >
+        <ConfirmCancellation
+          cancelAppointment={() => onCancel(appointment.id)}
+          keepAppointment={() => keepAppointment()}
+        />
+      </Popover>
     </Body>
   )
 }

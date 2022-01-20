@@ -9,7 +9,7 @@ const StyledApp = ({ bailoutURL, brandColor, rootId }) => {
 
   return (
     <StyleSheetManager target={shadowRoot}>
-      <App bailoutURL={bailoutURL} colors={colors} />
+      <App bailoutURL={bailoutURL} colors={colors} shadowRoot={shadowRoot} />
     </StyleSheetManager>
   )
 }
