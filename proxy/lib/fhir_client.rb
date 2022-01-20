@@ -9,7 +9,8 @@ class FhirClient
       secret,
       site: base_url,
       token_url: "auth/token",
-      authorize_url: "auth/authorize"
+      authorize_url: "auth/authorize",
+      raise_errors: false
     )
 
     @token = @client.get_token({
@@ -17,7 +18,15 @@ class FhirClient
     })
   end
 
-  def get(path, base_url = "")
-    @token.get(base_url + path, headers: {"Accept": "application/json"})
+  def get(path, base_url = "", params = {})
+    @token.get(base_url + path, params: params, headers: {"Accept": "application/json"})
+  end
+
+  def post(path, base_url = "", body = {})
+    @token.post(base_url + path, body: body, headers: {"Accept": "application/json"})
+  end
+
+  def put(path, base_url = "", body = {})
+    @token.put(base_url + path, body: body, headers: {"Accept": "application/json"})
   end
 end
