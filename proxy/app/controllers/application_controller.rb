@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
       stored_patient_key = $redis.get(patient_params[:patient])
 
       if stored_patient_key != patient_params[:patient_key]
-        render_401("Patient Key does not match stored patient key for this Patient ID.")
+        render_401("patient_key does not match stored patient key for this patient.")
       end
     else
       render_401("patient and patient_key required.")
