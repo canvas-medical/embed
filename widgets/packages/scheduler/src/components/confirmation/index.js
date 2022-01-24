@@ -7,7 +7,7 @@ import {
   formatDate,
   H2,
   H3,
-  LargerSpan,
+  Span,
   OutlineButton,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
@@ -26,9 +26,9 @@ export const Confirmation = () => {
         <H3 style={{ '--mb': '8px' }}>
           {`${formatDate(date)} at ${timeSlot.start}`}
         </H3>
-        <LargerSpan style={{ '--my': '8px' }}>
+        <Span style={{ '--my': '8px' }}>
           {`${treatment} with ${timeSlot.provider}`}
-        </LargerSpan>
+        </Span>
         <OutlineButton
           style={{ '--my': '8px' }}
           onClick={() => setScreen('SELECT')}

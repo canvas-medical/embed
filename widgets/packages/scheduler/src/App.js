@@ -8,7 +8,11 @@ export const App = () => {
 
   return (
     <AppContainer>
-      <Header colors={colors} bailoutURL={bailoutURL} />
+      <Header
+        colors={colors}
+        bailoutURL={bailoutURL}
+        title="Schedule an Appointment"
+      />
       {screen === 'SELECT' ? (
         <Body>
           <DateSelect />
