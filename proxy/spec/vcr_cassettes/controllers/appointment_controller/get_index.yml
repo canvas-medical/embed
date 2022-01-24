@@ -1,0 +1,220 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://training.canvasmedical.com/auth/token
+    body:
+      encoding: UTF-8
+      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.9.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Date:
+      - Tue, 25 Jan 2022 19:04:59 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Location:
+      - "/auth/token/"
+      Referrer-Policy:
+      - strict-origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      Content-Security-Policy-Report-Only:
+      - 'font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; connect-src
+        http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; block-all-mixed-content; script-src ''self'' ''unsafe-eval''
+        https://cdnjs.cloudflare.com https://checkout.stripe.com https://js.stripe.com
+        https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
+        ''self'' https://canvas-client-media.s3.amazonaws.com; frame-ancestors ''none'';
+        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
+        https://js.stripe.com; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; img-src ''self'' data: https://*.canvasmedical.com
+        https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
+        https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
+        https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; upgrade-insecure-requests;
+        report-uri https://canvas.report-uri.com/r/d/csp/enforce'
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 25 Jan 2022 19:05:00 GMT
+- request:
+    method: post
+    uri: https://training.canvasmedical.com/auth/token/
+    body:
+      encoding: UTF-8
+      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.9.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 25 Jan 2022 19:05:00 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      - Cookie, Origin
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - strict-origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Security-Policy-Report-Only:
+      - 'font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; connect-src
+        http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; block-all-mixed-content; script-src ''self'' ''unsafe-eval''
+        https://cdnjs.cloudflare.com https://checkout.stripe.com https://js.stripe.com
+        https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
+        ''self'' https://canvas-client-media.s3.amazonaws.com; frame-ancestors ''none'';
+        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
+        https://js.stripe.com; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; img-src ''self'' data: https://*.canvasmedical.com
+        https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
+        https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
+        https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; upgrade-insecure-requests;
+        report-uri https://canvas.report-uri.com/r/d/csp/enforce'
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token": "GAyn6rAalX0YmM8cM8XMLnpB1FMa5y", "expires_in": 36000,
+        "token_type": "Bearer", "scope": "launch launch/patient offline_access openid
+        fhirUser user/*.read user/*.write user/*.* user/AllergyIntolerance.read user/AllergyIntolerance.write
+        user/AllergyIntolerance.* user/CarePlan.read user/CarePlan.write user/CarePlan.*
+        user/CareTeam.read user/CareTeam.write user/CareTeam.* user/Condition.read
+        user/Condition.write user/Condition.* user/Device.read user/Device.write user/Device.*
+        user/DiagnosticReport.read user/DiagnosticReport.write user/DiagnosticReport.*
+        user/DocumentReference.read user/DocumentReference.write user/DocumentReference.*
+        user/Encounter.read user/Encounter.write user/Encounter.* user/Goal.read user/Goal.write
+        user/Goal.* user/Immunization.read user/Immunization.write user/Immunization.*
+        user/Location.read user/Location.write user/Location.* user/Medication.read
+        user/Medication.write user/Medication.* user/MedicationRequest.read user/MedicationRequest.write
+        user/MedicationRequest.* user/Observation.read user/Observation.write user/Observation.*
+        user/Organization.read user/Organization.write user/Organization.* user/Patient.read
+        user/Patient.write user/Patient.* user/Practitioner.read user/Practitioner.write
+        user/Practitioner.* user/Procedure.read user/Procedure.write user/Procedure.*
+        user/Provenance.read user/Provenance.write user/Provenance.* patient/Medication.read
+        patient/AllergyIntolerance.read patient/CarePlan.read patient/CareTeam.read
+        patient/Condition.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.read
+        patient/Encounter.read patient/Goal.read patient/Immunization.read patient/Location.read
+        patient/MedicationRequest.read patient/Observation.read patient/Organization.read
+        patient/Patient.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read",
+        "smart_style_url": "https://canvas-storages.s3.us-west-2.amazonaws.com/fhir-static-resources/smart-style.json"}'
+  recorded_at: Tue, 25 Jan 2022 19:05:00 GMT
+- request:
+    method: get
+    uri: https://fhir-training.canvasmedical.com/Appointment?action=index&controller=appointment&patient=Patient/cf10ff9d14d0429cb5bb7040611d1a24&patient_key=7d22d422-7e11-11ec-90d6-0242ac120003
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.9.3
+      Accept:
+      - application/json
+      Authorization:
+      - Bearer GAyn6rAalX0YmM8cM8XMLnpB1FMa5y
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 25 Jan 2022 19:05:00 GMT
+      Content-Type:
+      - application/fhir+json; charset=UTF-8
+      Content-Length:
+      - '959'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Location, Location
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"resourceType":"Bundle","type":"searchset","total":11,"entry":[{"resource":{"resourceType":"Appointment","id":"e79835ff-4261-4e39-a399-9861272cfd89","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-0","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in test
+        update","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-0","type":"Endpoint"}],"start":"2021-03-16T13:30:00.000Z","end":"2021-03-16T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"ee739de8-4d21-4233-8dd7-0e676a3edd79","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-1","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-1","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"4aa44d6d-55ac-4fb7-9fad-c2351e47750b","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-2","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-2","type":"Endpoint"}],"start":"2021-03-29T13:00:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"47eed7eb-a600-4b38-aeb8-678bd5117a1f","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-3","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-3","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"3d5346cd-d5ef-4b25-94cd-fafe94e78545","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-4","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-4","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"101782ef-de3d-4eb7-a79d-307c81f45618","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-5","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-5","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"7f12b7cf-e826-40f7-99a8-ac379661a5c5","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-6","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-6","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"eebc8003-7397-46a6-867e-bebcfc9db0f5","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-7","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-7","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"61fa27bb-d3ff-4f11-b785-386e07f15c65","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-8","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-8","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"897e0778-7a99-4839-8706-63455f17fab3","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-9","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-9","type":"Endpoint"}],"start":"2021-03-29T13:30:00.000Z","end":"2021-03-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}},{"resource":{"resourceType":"Appointment","id":"74e2d998-d85b-4eed-a064-74881130dc4b","contained":[{"resourceType":"Endpoint","id":"appointment-meeting-endpoint-10","status":"active","connectionType":{"code":"https"},"payloadType":[{"coding":[{"code":"video-call"}]}],"address":"https://canvasmedical.zoom.us/my/ceciliaorta"}],"status":"booked","appointmentType":{"coding":[{"system":"http://snomed.info/sct","code":"448337001","display":"Telemedicine
+        consultation with patient (procedure)"}]},"description":"Weekly check-in.","supportingInformation":[{"reference":"Location/1"},{"reference":"#appointment-meeting-endpoint-10","type":"Endpoint"}],"start":"2022-01-29T13:30:00.000Z","end":"2022-01-29T14:00:00.000Z","participant":[{"actor":{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"},"status":"accepted"},{"actor":{"reference":"Patient/cf10ff9d14d0429cb5bb7040611d1a24"},"status":"accepted"}]}}]}'
+  recorded_at: Tue, 25 Jan 2022 19:05:00 GMT
+recorded_with: VCR 6.0.0
