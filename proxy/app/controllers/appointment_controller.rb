@@ -3,15 +3,19 @@ class AppointmentController < ApplicationController
   before_action :valid_patient_check
 
   def index
-    render_fhir_response(client.get("/Appointment", ENV["FHIR_BASE_URL"], params))
+    fhir_response = client.get("/Appointment", ENV["FHIR_BASE_URL"], params)
+    render_fhir_response(fhir_response)
   end
 
   def create
-    render_fhir_response(client.post("/Appointment", ENV["FHIR_BASE_URL"], body))
+    fhir_response = client.post("/Appointment", ENV["FHIR_BASE_URL"], body)
+    render_fhir_response(fhir_response)
   end
 
   def update
-    render_fhir_response(client.put("/Appointment/#{update_params[:id]}", ENV["FHIR_BASE_URL"], body))
+    path = "/Appointment/#{update_params[:id]}"
+    fhir_response = client.put(path, ENV["FHIR_BASE_URL"], body)
+    render_fhir_response(fhir_response)
   end
 
   private

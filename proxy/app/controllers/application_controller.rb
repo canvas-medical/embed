@@ -9,17 +9,9 @@ class ApplicationController < ActionController::API
   end
 
   def render_fhir_response(fhir_response)
-    response.headers.each do |key, value|
-      response.delete_header(key)
-    end
-    fhir_response.headers.each do |key, value|
-      if key != 'content-length'
-        response.set_header(key, value)
-      else
-        response.set_header('content-length', fhir_response.body.length)
-      end
-    end
-    response.set_header('Last-Modified', Time.now.httpdate)
+    remove_old_headers()
+    add_new_headers(fhir_response)
+
     response.status = fhir_response.status
     render json: fhir_response.body, content_type: 'application/fhir+json; charset=UTF-8'
   end
@@ -41,5 +33,24 @@ class ApplicationController < ActionController::API
       :patient,
       :patient_key
     )
+  end
+
+  private
+
+  def remove_old_headers()
+    response.headers.each_key do |key|
+      response.delete_header(key)
+    end
+  end
+
+  def add_new_headers(fhir_response)
+    fhir_response.headers.each do |key, value|
+      if key != 'content-length'
+        response.set_header(key, value)
+      else
+        response.set_header('content-length', fhir_response.body.length)
+      end
+    end
+    response.set_header('Last-Modified', Time.now.httpdate)
   end
 end
