@@ -1,19 +1,16 @@
 class ApplicationController < ActionController::API
-
-  def client
-    @client ||= FhirClient.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], ENV["EMR_BASE_URL"])
+  unless Rails.env.development?
+    rescue_from StandardError,
+      with: :render_500
   end
 
   def render_401(error_message)
     render status: :unauthorized, json: { error: error_message }
   end
 
-  def render_fhir_response(fhir_response)
-    remove_old_headers()
-    add_new_headers(fhir_response)
-
-    response.status = fhir_response.status
-    render json: fhir_response.body, content_type: 'application/fhir+json; charset=UTF-8'
+  def render_500(error)
+    Sentry.capture_exception(error)
+    render status: 500, json: { error: "Something went wrong, we've been notified of the problem."}
   end
 
   def valid_patient_check
@@ -28,14 +25,41 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def get_fhir(path, params = {})
+    fhir_response = client.get(path, ENV["FHIR_BASE_URL"], params)
+    render_fhir_response(fhir_response)
+  end
+
+  def post_fhir(path, body = {})
+    fhir_response = client.post(path, ENV["FHIR_BASE_URL"], body)
+    render_fhir_response(fhir_response)
+  end
+
+  def put_fhir(path, body = {})
+    fhir_response = client.put(path, ENV["FHIR_BASE_URL"], body)
+    render_fhir_response(fhir_response)
+  end
+
+  private
+
+  def client
+    @client ||= FhirClient.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], ENV["EMR_BASE_URL"])
+  end
+
+  def render_fhir_response(fhir_response)
+    remove_old_headers
+    add_new_headers(fhir_response)
+
+    response.status = fhir_response.status
+    render json: fhir_response.body, content_type: 'application/fhir+json; charset=UTF-8'
+  end
+
   def patient_params
     @patient_params ||= params.permit(
       :patient,
       :patient_key
     )
   end
-
-  private
 
   def remove_old_headers()
     response.headers.each_key do |key|
