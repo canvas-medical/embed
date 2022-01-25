@@ -7,7 +7,9 @@ jobs:
 
     services:
       redis:
-        image: redis
+        image: redis:alpine
+        ports: ["6379:6379"]
+        options: --entrypoint redis-server
 
     steps:
     # - name: Set Timezone
@@ -22,11 +24,6 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7.5
-
-    - name: Setup Redis
-      uses: shogo82148/actions-setup-redis@v1
-      with:
-        redis-version: '6.0.1'
 
     - name: Cache ruby gems
       uses: actions/cache@v1
@@ -52,6 +49,7 @@ jobs:
         EMR_BASE_URL: https://training.canvasmedical.com
         FHIR_BASE_URL: https://fhir-training.canvasmedical.com
         API_KEY: realapikey
+        REDIS_URL: redis://localhost:6379/0
       run: |
         cd proxy
         bundle exec rspec
