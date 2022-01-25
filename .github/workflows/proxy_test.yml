@@ -52,7 +52,6 @@ jobs:
         EMR_BASE_URL: https://training.canvasmedical.com
         FHIR_BASE_URL: https://fhir-training.canvasmedical.com
         API_KEY: realapikey
-        REDIS_URL: redis://redis:6379/1
       run: |
         cd proxy
         bundle exec rspec
