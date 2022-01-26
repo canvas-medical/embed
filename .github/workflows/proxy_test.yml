@@ -58,7 +58,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: coverage
+        path: proxy/coverage
 
   coverage:
     runs-on: ubuntu-latest
@@ -69,10 +69,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: coverage-report
-        path: coverage
+        path: proxy/coverage
 
     - name: Check coverage
       uses: vigetlabs/simplecov-check@1.0
       with:
         minimum_coverage: 100
-        coverage_path: coverage/.last_run.json
+        coverage_path: proxy/coverage/.last_run.json
