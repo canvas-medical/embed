@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-export const PopoverBackdrop = styled.div`
-  background-color: hsla(0, 100%, 100%, 0.9);
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-`
-
 export const PopoverContainer = styled.div`
   background-color: #fff;
   bottom: 0;
@@ -26,8 +17,7 @@ export const PopoverIcon = styled.div`
   margin: 1rem 0 0;
 `
 
-export const PopoverMessages = styled.ul`
-`
+export const PopoverMessages = styled.ul``
 
 export const PopoverMessage = styled.li`
   margin-top: 1rem;
