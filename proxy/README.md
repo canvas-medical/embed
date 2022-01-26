@@ -10,6 +10,3 @@
 ### Lint/Formatting
 
 1. run `bundle exec rubocop -A`
-
-
-Testing Github Actions
