@@ -22,9 +22,20 @@ import {
 import { useState } from 'preact/hooks'
 
 export const DateSelect = () => {
+  const { colors, date, setDate } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
-  const { colors, date } = useAppContext()
   const backDisabled = isToday(date)
+
+  const navigateBack = () => {
+    setDate(new Date(date - 1))
+  }
+
+  const navigateForward = () => {
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const day = date.getDate()
+    setDate(new Date(year, month, day + 1))
+  }
 
   return (
     <Fragment>
@@ -32,7 +43,7 @@ export const DateSelect = () => {
         <DateViewContainer style={{ '--bg': colors.accent }}>
           <DateScrollButton
             disabled={backDisabled}
-            onClick={() => console.log("I'll send us back a day")}
+            onClick={() => navigateBack()}
           >
             <IconContainer>
               <ArrowBack
@@ -50,9 +61,7 @@ export const DateSelect = () => {
             <DateHeading>{formatDate(date)}</DateHeading>
           </DateSelectButton>
 
-          <DateScrollButton
-            onClick={() => console.log("I'll send us forward a day")}
-          >
+          <DateScrollButton onClick={() => navigateForward()}>
             <IconContainer>
               <ArrowForward fill={colors.primary || styles.default.primary} />
             </IconContainer>
