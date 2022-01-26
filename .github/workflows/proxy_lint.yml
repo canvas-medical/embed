@@ -1,0 +1,34 @@
+name: Proxy Lint
+on: [push]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up ruby 2.7.5
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.5
+
+    - name: Cache ruby gems
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ubuntu-20-04-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ubuntu-20-04-gems-
+
+    - name: Install ruby dependencies
+      run: |
+        cd proxy
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+
+    - name: Check ruby formatting with RuboCop
+      run: |
+        cd proxy
+        bundle exec rubocop

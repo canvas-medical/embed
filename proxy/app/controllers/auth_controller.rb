@@ -1,5 +1,4 @@
 class AuthController < ApplicationController
-
   def authorize
     if authorize_params[:key] == ENV["API_KEY"]
       $redis.set(authorize_params[:patient], SecureRandom.uuid)

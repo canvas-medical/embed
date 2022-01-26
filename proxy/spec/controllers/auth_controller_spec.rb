@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe AuthController, type: :controller do
   describe "GET authorize" do
-
     let(:patient) { "Patient/1d545066432b485e83011f6c97f2c00c" }
 
     before do

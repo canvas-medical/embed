@@ -1,5 +1,4 @@
 class SlotController < ApplicationController
-
   before_action :valid_patient_check
 
   def index

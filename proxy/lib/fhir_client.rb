@@ -1,4 +1,4 @@
-require 'oauth2'
+require "oauth2"
 
 class FhirClient
   attr_accessor :client, :token
@@ -14,19 +14,19 @@ class FhirClient
     )
 
     @token = @client.get_token({
-      grant_type: "client_credentials"
-    })
+                                 grant_type: "client_credentials"
+                               })
   end
 
   def get(path, base_url = "", params = {})
-    @token.get(base_url + path, params: params, headers: {"Accept": "application/json"})
+    @token.get(base_url + path, params: params, headers: { "Accept": "application/json" })
   end
 
   def post(path, base_url = "", body = {})
-    @token.post(base_url + path, body: body, headers: {"Accept": "application/json"})
+    @token.post(base_url + path, body: body, headers: { "Accept": "application/json" })
   end
 
   def put(path, base_url = "", body = {})
-    @token.put(base_url + path, body: body, headers: {"Accept": "application/json"})
+    @token.put(base_url + path, body: body, headers: { "Accept": "application/json" })
   end
 end
