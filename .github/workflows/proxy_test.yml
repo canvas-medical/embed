@@ -1,5 +1,8 @@
 name: Proxy Test
-on: [push]
+on:
+  push:
+    paths:
+    - 'proxy/**'
 
 jobs:
   rspec:
