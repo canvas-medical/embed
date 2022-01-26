@@ -1,5 +1,8 @@
 name: Proxy Lint
-on: [push]
+on:
+  push:
+    paths:
+    - 'proxy/**'
 
 jobs:
   rubocop:
