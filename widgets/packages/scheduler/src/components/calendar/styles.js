@@ -2,18 +2,18 @@ import styled from 'styled-components'
 import { styles } from '@canvas/common'
 
 export const CalendarContainer = styled.div`
-  width: 343px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+  height: fit-content;
   margin-top: 16px;
   padding-bottom: 16px;
-  height: fit-content;
+  width: 343px;
 `
 
 export const CalendarHeaderBox = styled.div`
-  width: inherit;
   margin-left: 40px;
+  width: inherit;
 `
 
 export const CalendarDateContainer = styled.div`
@@ -30,18 +30,18 @@ export const CalendarList = styled.ul`
 `
 
 export const CalendarListItem = styled.li`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  font-size: 0.875rem;
   color: ${styles.font.grey50};
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: center;
+  position: relative;
 `
 
 export const CalendarDateButton = styled.button`
-  border: none;
-  border-radius: 50%;
   background-color: ${p =>
     p.selected ? `var(--bg, ${styles.default.primary})` : 'unset'};
+  border: none;
+  border-radius: 50%;
   color: ${p =>
     p.disabled
       ? styles.font.grey25
@@ -53,23 +53,23 @@ export const CalendarDateButton = styled.button`
 `
 
 export const MonthSelect = styled.select`
-  border: none;
   background-color: unset;
-  margin-left: 1rem;
+  border: none;
   font-size: 1rem;
   font-weight: 700;
+  margin-left: 1rem;
 `
 
 export const CalendarHeading = styled.h2`
   color: var(--c, ${styles.default.primary});
   font-size: 1.125rem;
   font-weight: 700;
-  position: relative;
   left: auto;
+  position: relative;
   right: auto;
 `
 
 export const MonthBox = styled.div`
-  padding: 8px;
   display: flex;
+  padding: 8px;
 `
