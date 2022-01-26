@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.describe AppointmentController, type: :controller do
-
   let(:patient) { "Patient/cf10ff9d14d0429cb5bb7040611d1a24" }
   let(:patient_key) { "7d22d422-7e11-11ec-90d6-0242ac120003" }
 
   describe "GET index" do
-
     context "without patient_key" do
       before do
         get :index, params: { patient: patient }
@@ -31,7 +29,8 @@ RSpec.describe AppointmentController, type: :controller do
 
         body = JSON.parse(response.body)
 
-        expect(body["error"]).to eq("patient_key does not match stored patient key for this patient.")
+        error_message = "patient_key does not match stored patient key for this patient."
+        expect(body["error"]).to eq(error_message)
       end
     end
 
@@ -56,9 +55,8 @@ RSpec.describe AppointmentController, type: :controller do
   end
 
   describe "POST create" do
-
-    let(:post_body_json) {
-      <<~EOS
+    let(:post_body_json) do
+      <<~JSON
         {
           "resource": {
               "resourceType": "Appointment",
@@ -96,8 +94,8 @@ RSpec.describe AppointmentController, type: :controller do
               ]
           }
         }
-      EOS
-    }
+      JSON
+    end
 
     context "without patient_key" do
       before do
@@ -115,7 +113,8 @@ RSpec.describe AppointmentController, type: :controller do
 
     context "with wrong patient_key" do
       before do
-        post :create, params: { patient: patient, patient_key: "fakepatientkey" }, body: post_body_json
+        post :create, params: { patient: patient, patient_key: "fakepatientkey" },
+                      body: post_body_json
       end
 
       it "returns a 401 with error message" do
@@ -123,7 +122,8 @@ RSpec.describe AppointmentController, type: :controller do
 
         body = JSON.parse(response.body)
 
-        expect(body["error"]).to eq("patient_key does not match stored patient key for this patient.")
+        error_message = "patient_key does not match stored patient key for this patient."
+        expect(body["error"]).to eq(error_message)
       end
     end
 
@@ -131,7 +131,8 @@ RSpec.describe AppointmentController, type: :controller do
       before do
         VCR.use_cassette("controllers/appointment_controller/post_create") do
           $redis.set(patient, patient_key)
-          post :create, params: { patient: patient, patient_key: patient_key }, body: post_body_json
+          post :create, params: { patient: patient, patient_key: patient_key },
+                        body: post_body_json
         end
       end
 
@@ -142,10 +143,9 @@ RSpec.describe AppointmentController, type: :controller do
   end
 
   describe "PUT update" do
-
     let(:id) { "e79835ff-4261-4e39-a399-9861272cfd89" }
-    let(:put_body_json) {
-      <<~EOS
+    let(:put_body_json) do
+      <<~JSON
         {
           "resource": {
               "resourceType": "Appointment",
@@ -183,8 +183,8 @@ RSpec.describe AppointmentController, type: :controller do
               ]
           }
         }
-      EOS
-    }
+      JSON
+    end
 
     context "without patient_key" do
       before do
@@ -202,7 +202,8 @@ RSpec.describe AppointmentController, type: :controller do
 
     context "with wrong patient_key" do
       before do
-        put :update, params: { id: id, patient: patient, patient_key: "fakepatientkey" }, body: put_body_json
+        put :update, params: { id: id, patient: patient, patient_key: "fakepatientkey" },
+                     body: put_body_json
       end
 
       it "returns a 401 with error message" do
@@ -210,7 +211,8 @@ RSpec.describe AppointmentController, type: :controller do
 
         body = JSON.parse(response.body)
 
-        expect(body["error"]).to eq("patient_key does not match stored patient key for this patient.")
+        error_message = "patient_key does not match stored patient key for this patient."
+        expect(body["error"]).to eq(error_message)
       end
     end
 
@@ -218,7 +220,8 @@ RSpec.describe AppointmentController, type: :controller do
       before do
         VCR.use_cassette("controllers/appointment_controller/put_update") do
           $redis.set(patient, patient_key)
-          put :update, params: { id: id, patient: patient, patient_key: patient_key }, body: put_body_json
+          put :update, params: { id: id, patient: patient, patient_key: patient_key },
+                       body: put_body_json
         end
       end
 

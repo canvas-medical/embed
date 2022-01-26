@@ -1,4 +1,4 @@
-name: Test
+name: Proxy Test
 on: [push]
 
 jobs:

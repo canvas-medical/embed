@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   unless Rails.env.development?
     rescue_from StandardError,
-      with: :render_500
+                with: :render_500
   end
 
   def render_401(error_message)
@@ -10,11 +10,12 @@ class ApplicationController < ActionController::API
 
   def render_500(error)
     Sentry.capture_exception(error)
-    render status: 500, json: { error: "Something went wrong, we've been notified of the problem."}
+    render status: 500,
+           json: { error: "Something went wrong, we've been notified of the problem." }
   end
 
   def valid_patient_check
-    if patient_params[:patient] and patient_params[:patient_key]
+    if patient_params[:patient] && patient_params[:patient_key]
       stored_patient_key = $redis.get(patient_params[:patient])
 
       if stored_patient_key != patient_params[:patient_key]
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::API
     add_new_headers(fhir_response)
 
     response.status = fhir_response.status
-    render json: fhir_response.body, content_type: 'application/fhir+json; charset=UTF-8'
+    render json: fhir_response.body, content_type: "application/fhir+json; charset=UTF-8"
   end
 
   def patient_params
@@ -61,7 +62,7 @@ class ApplicationController < ActionController::API
     )
   end
 
-  def remove_old_headers()
+  def remove_old_headers
     response.headers.each_key do |key|
       response.delete_header(key)
     end
@@ -69,12 +70,12 @@ class ApplicationController < ActionController::API
 
   def add_new_headers(fhir_response)
     fhir_response.headers.each do |key, value|
-      if key != 'content-length'
-        response.set_header(key, value)
+      if key == "content-length"
+        response.set_header("content-length", fhir_response.body.length)
       else
-        response.set_header('content-length', fhir_response.body.length)
+        response.set_header(key, value)
       end
     end
-    response.set_header('Last-Modified', Time.now.httpdate)
+    response.set_header("Last-Modified", Time.now.httpdate)
   end
 end

@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe SlotController, type: :controller do
   describe "GET index" do
-
     let(:patient) { "Patient/1d545066432b485e83011f6c97f2c00c" }
     let(:patient_key) { "7d22d422-7e11-11ec-90d6-0242ac120003" }
     let(:schedule) { "Schedule/Location.1-Staff.c2ff4546548e46ab8959af887b563eab" }
@@ -31,7 +30,8 @@ RSpec.describe SlotController, type: :controller do
 
         body = JSON.parse(response.body)
 
-        expect(body["error"]).to eq("patient_key does not match stored patient key for this patient.")
+        error_message = "patient_key does not match stored patient key for this patient."
+        expect(body["error"]).to eq(error_message)
       end
     end
 

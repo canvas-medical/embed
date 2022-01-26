@@ -18,6 +18,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "simplecov", require: false
+  gem "rubocop", "~> 1.8.1", require: false
 
   gem 'dotenv-rails'
 end
