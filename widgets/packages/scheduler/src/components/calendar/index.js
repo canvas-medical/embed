@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { useAppContext } from '../../hooks'
-import { getMonthAndYearOptions } from './utils'
+import { getMonthAndYearOptions, getNextMonth, getPreviousMonth } from './utils'
 import { Ui } from './ui'
 
 export const Calendar = ({ open, close }) => {
@@ -19,33 +19,11 @@ export const Calendar = ({ open, close }) => {
       monthsAndYears[monthsAndYears.length - 1].date.getFullYear()
 
   const navigateForward = () => {
-    const month = date.getMonth()
-    const year = date.getFullYear()
-
-    if (month === 11) {
-      setDate(new Date(year + 1, 0, 1))
-    }
-
-    setDate(new Date(year, month + 1, 1))
+    setDate(getNextMonth(date))
   }
 
   const navigateBack = () => {
-    const month = date.getMonth()
-    const year = date.getFullYear()
-
-    if (month === 0) {
-      if (today.getFullYear() === year - 1 && today.getMonth === 11) {
-        setDate(new Date(year - 1, 11, today.getDate()))
-      } else {
-        setDate(new Date(year - 1, 11, 1))
-      }
-    }
-
-    if (today.getFullYear() === year && today.getMonth() === month - 1) {
-      setDate(new Date(year, month - 1, today.getDate()))
-    } else {
-      setDate(new Date(year, month - 1, 1))
-    }
+    setDate(getPreviousMonth(date))
   }
 
   const handleDateChange = day => {
@@ -62,8 +40,8 @@ export const Calendar = ({ open, close }) => {
       close={close}
       backDisabled={backDisabled}
       forwardDisabled={forwardDisabled}
-      navigateForward={() => navigateForward()}
-      navigateBack={() => navigateBack()}
+      navigateForward={navigateForward}
+      navigateBack={navigateBack}
       handleDateChange={handleDateChange}
       monthsAndYears={monthsAndYears}
     />

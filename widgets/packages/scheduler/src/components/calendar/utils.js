@@ -45,7 +45,6 @@ function getDateString(year, month, day) {
   return new Date(year, month, day).toDateString()
 }
 
-// This will need to expand to handle dates with appointmentments.
 export function generateDays(date) {
   const year = date.getFullYear()
   const month = date.getMonth()
@@ -56,8 +55,8 @@ export function generateDays(date) {
   for (let i = 1; i < daysInMonth + 1; i++) {
     if (
       i < today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
+      month <= today.getMonth() &&
+      year <= today.getFullYear()
     ) {
       days.push({
         date: i,
@@ -118,4 +117,33 @@ export function getMonthAndYearOptions(date) {
   }
 
   return months
+}
+
+export function getNextMonth(date) {
+  const month = date.getMonth()
+  const year = date.getFullYear()
+
+  if (month === 11) {
+    return new Date(year + 1, 0, 1)
+  }
+
+  return new Date(year, month + 1, 1)
+}
+
+export function getPreviousMonth(date) {
+  const today = new Date()
+  const month = date.getMonth()
+  const year = date.getFullYear()
+
+  if (month === 0) {
+    if (today.getFullYear() === year - 1 && today.getMonth === 11) {
+      return new Date(year - 1, 11, today.getDate())
+    }
+    return new Date(year - 1, 11, 1)
+  }
+
+  if (today.getFullYear() === year && today.getMonth() === month - 1) {
+    return new Date(year, month - 1, today.getDate())
+  }
+  return new Date(year, month - 1, 1)
 }

@@ -73,3 +73,12 @@ export const MonthBox = styled.div`
   display: flex;
   padding: 8px;
 `
+
+export const ScreenReaderOnly = styled.div`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`

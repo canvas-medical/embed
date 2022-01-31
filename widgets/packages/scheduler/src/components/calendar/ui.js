@@ -19,6 +19,7 @@ import {
   CalendarListItem,
   MonthBox,
   MonthSelect,
+  ScreenReaderOnly,
 } from './styles'
 import { getSkipDays, generateDays, getMonthAndYearString } from './utils'
 
@@ -39,7 +40,12 @@ export const Ui = ({
 
   return (
     <Backdrop open={open} close={close} shadowRoot={shadowRoot}>
-      <CalendarContainer>
+      <CalendarContainer
+        id="container"
+        role="dialog"
+        labelledby="calendar_label"
+        aria-modal="true"
+      >
         <Box
           style={{
             '--fd': 'row',
@@ -49,6 +55,7 @@ export const Ui = ({
         >
           <CalendarHeaderBox>
             <CalendarHeading
+              id="calendar_label"
               style={{
                 '--c': colors.primary,
               }}
@@ -57,19 +64,30 @@ export const Ui = ({
             </CalendarHeading>
           </CalendarHeaderBox>
           <IconButton
+            aria-label="Close Calendar"
             onClick={close}
             style={{ '--mt': 0, '--mb': 0, '--mr': '8px', '--ml': 'auto' }}
+            tabIndex={-1}
           >
             <Close fill={colors.primary || styles.default.primary} />
           </IconButton>
         </Box>
 
+        <ScreenReaderOnly aria-live="assertive" role="region" id="monthSelect">
+          {getMonthAndYearString(date)}
+        </ScreenReaderOnly>
+
         <MonthBox style={{ '--p': '8px' }}>
-          <MonthSelect value={getMonthAndYearString(date)}>
+          <MonthSelect
+            // value={getMonthAndYearString(date)}
+            onChange={e => setDate(new Date(e.target.value))}
+            autoFocus
+          >
             {monthsAndYears.map(monthAndYear => (
               <option
+                selected={getMonthAndYearString(date) === monthAndYear.string}
                 key={monthAndYear.string}
-                onClick={() => setDate(monthAndYear.date)}
+                value={monthAndYear.date}
               >
                 {monthAndYear.string}
               </option>
@@ -80,6 +98,7 @@ export const Ui = ({
             disabled={backDisabled}
             style={{ '--ml': 'auto', '--mr': '8px' }}
             onClick={navigateBack}
+            aria-label="Previous Month"
           >
             <ArrowBack
               fill={backDisabled ? styles.font.grey25 : styles.font.grey50}
@@ -90,6 +109,7 @@ export const Ui = ({
             disabled={forwardDisabled}
             style={{ '--ml': '4px', '--mr': '24px' }}
             onClick={navigateForward}
+            aria-label="Next Month"
           >
             <ArrowForward
               fill={forwardDisabled ? styles.font.grey25 : styles.font.grey50}

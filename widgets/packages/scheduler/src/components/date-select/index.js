@@ -19,7 +19,7 @@ import {
   DateViewContainer,
   IconContainer,
 } from './styles'
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 
 export const DateSelect = () => {
   const { colors, date, setDate } = useAppContext()
@@ -36,6 +36,19 @@ export const DateSelect = () => {
     const day = date.getDate()
     setDate(new Date(year, month, day + 1))
   }
+
+  useEffect(() => {
+    const handleEsc = event => {
+      if (event.keyCode === 27) {
+        setCalendarOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [])
 
   return (
     <Fragment>
