@@ -1,3 +1,4 @@
+# The controller to hand the /Schedule requests.
 class ScheduleController < ApplicationController
   before_action :valid_patient_check
 

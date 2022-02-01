@@ -1,3 +1,4 @@
+# The controller to handle the /Appointment requests.
 class AppointmentController < ApplicationController
   before_action :valid_patient_check
 
@@ -16,6 +17,11 @@ class AppointmentController < ApplicationController
 
   private
 
+  # Returns the body of the incoming request. We must rewind before and after to
+  # make sure we get the whole body and that anything that uses the body after
+  # this without rewinding also gets the whole body.
+  #
+  # @return [String]
   def body
     request.body.rewind
     body = request.body.read
