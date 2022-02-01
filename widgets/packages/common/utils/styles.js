@@ -22,8 +22,10 @@ export const styles = {
     },
   },
   font: {
+    white: '#FFFFFF',
     grey25: '#C0C0C0',
     grey50: '#7F7F7F',
+    grey75: '#262626',
   },
 }
 
@@ -64,5 +66,5 @@ export const margin = `
   margin-top: var(--mt, var(--my, var(--m, 0)));
   margin-bottom: var(--mb, var(--my, var(--m, 0)));
   margin-left: var(--ml, var(--mx, var(--m, 0)));
-  margin-right: var(--ml, var(--mx, var(--m, 0)));
+  margin-right: var(--mr, var(--mx, var(--m, 0)));
 `

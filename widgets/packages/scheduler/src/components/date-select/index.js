@@ -1,15 +1,16 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import {
   ArrowBack,
   ArrowForward,
   Box,
-  Calendar,
+  Calendar as CalendarIcon,
   isToday,
   formatDate,
   styles,
   TzMessage,
   userTimezone,
 } from '@canvas/common'
+import { Calendar } from '../calendar'
 import { useAppContext } from '../../hooks'
 import {
   DateHeading,
@@ -18,44 +19,71 @@ import {
   DateViewContainer,
   IconContainer,
 } from './styles'
+import { useEffect, useState } from 'preact/hooks'
 
 export const DateSelect = () => {
-  const { colors, date } = useAppContext()
+  const { colors, date, setDate } = useAppContext()
+  const [calendarOpen, setCalendarOpen] = useState(false)
   const backDisabled = isToday(date)
 
+  const navigateBack = () => {
+    setDate(new Date(date - 1))
+  }
+
+  const navigateForward = () => {
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const day = date.getDate()
+    setDate(new Date(year, month, day + 1))
+  }
+
+  useEffect(() => {
+    const handleEsc = event => {
+      if (event.keyCode === 27) {
+        setCalendarOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [])
+
   return (
-    <Box style={{ '--mt': '16px' }}>
-      <DateViewContainer style={{ '--bg': colors.accent }}>
-        <DateScrollButton
-          disabled={backDisabled}
-          onClick={() => console.log("I'll send us back a day")}
-        >
-          <IconContainer>
-            <ArrowBack
-              fill={
-                backDisabled ? null : colors.primary || styles.default.primary
-              }
-            />
-          </IconContainer>
-        </DateScrollButton>
+    <Fragment>
+      <Box style={{ '--mt': '16px' }}>
+        <DateViewContainer style={{ '--bg': colors.accent }}>
+          <DateScrollButton
+            disabled={backDisabled}
+            onClick={() => navigateBack()}
+          >
+            <IconContainer>
+              <ArrowBack
+                fill={
+                  backDisabled ? null : colors.primary || styles.default.primary
+                }
+              />
+            </IconContainer>
+          </DateScrollButton>
 
-        <DateSelectButton>
-          <IconContainer>
-            <Calendar />
-          </IconContainer>
-          <DateHeading>{formatDate(date)}</DateHeading>
-        </DateSelectButton>
+          <DateSelectButton onClick={() => setCalendarOpen(true)}>
+            <IconContainer>
+              <CalendarIcon />
+            </IconContainer>
+            <DateHeading>{formatDate(date)}</DateHeading>
+          </DateSelectButton>
 
-        <DateScrollButton
-          onClick={() => console.log("I'll send us forward a day")}
-        >
-          <IconContainer>
-            <ArrowForward fill={colors.primary || styles.default.primary} />
-          </IconContainer>
-        </DateScrollButton>
-      </DateViewContainer>
+          <DateScrollButton onClick={() => navigateForward()}>
+            <IconContainer>
+              <ArrowForward fill={colors.primary || styles.default.primary} />
+            </IconContainer>
+          </DateScrollButton>
+        </DateViewContainer>
 
-      <TzMessage>{`Appointment times shown in ${userTimezone}`}</TzMessage>
-    </Box>
+        <TzMessage>{`Appointment times shown in ${userTimezone}`}</TzMessage>
+      </Box>
+      <Calendar open={calendarOpen} close={() => setCalendarOpen(false)} />
+    </Fragment>
   )
 }
