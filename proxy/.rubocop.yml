@@ -16,9 +16,6 @@ Style/StringLiterals:
   EnforcedStyle: double_quotes
   ConsistentQuotesInMultiline: true
 
-Style/Documentation:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 

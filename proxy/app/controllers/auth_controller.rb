@@ -1,4 +1,6 @@
+# The controller to handle the requests to authenticate the widgets.
 class AuthController < ApplicationController
+  # The endpoint for getting the patient_key given the API key and a patient.
   def authorize
     if authorize_params[:key] == ENV["API_KEY"]
       $redis.set(authorize_params[:patient], SecureRandom.uuid)
