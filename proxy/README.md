@@ -114,3 +114,25 @@ This proxy handles the OAuth authentication for the JS embedded widgets when the
   bundle exec rubocop -A
   ```
 </details>
+
+
+## Deployment
+
+To deploy:
+
+1. In the project folder, run:
+
+    ```sh
+    zip -r deploy/deploy_proxy.zip .
+    ```
+
+2. Log into AWS account and navigate to the `Proxyapplication-env` environment in Elastic Beanstalk.
+3. Click the `Upload and deploy` button
+4. Select your zip file located at `deploy/deploy_proxy.zip` in the project folder and give it a version label.
+5. Click the `Deploy` button.
+
+Available environments:
+
+| Name         | URL                               |
+| ---          | ---                               |
+| `staging`    | http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com/    |
