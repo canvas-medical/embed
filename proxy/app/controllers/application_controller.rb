@@ -11,7 +11,6 @@ class ApplicationController < ActionController::API
   #
   # @param [String] error_message
   def render_401(error_message)
-    remove_old_headers
     add_cors_headers
     render status: :unauthorized, json: { error: error_message }
   end
@@ -22,7 +21,6 @@ class ApplicationController < ActionController::API
   # @param [StandardError] error
   def render_500(error)
     Sentry.capture_exception(error)
-    remove_old_headers
     add_cors_headers
     render status: 500,
            json: { error: "Something went wrong, we've been notified of the problem." }
@@ -72,16 +70,9 @@ class ApplicationController < ActionController::API
     render_fhir_response(fhir_response)
   end
 
-  # Removes all the old headers from the initial Rails response in order to
-  # replace them with the headers from the response from the FHIR API.
-  def remove_old_headers
-    response.headers.each_key do |key|
-      response.delete_header(key)
-    end
-  end
-
   # Adds the headers to the response necessary to prevent CORS issues
   def add_cors_headers
+    remove_old_headers
     response.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
     response.set_header("Access-Control-Allow-Origin", "*")
     response.set_header("Access-Control-Expose-Headers", "Content-Location, Location")
@@ -113,6 +104,14 @@ class ApplicationController < ActionController::API
       :patient,
       :patient_key
     )
+  end
+
+  # Removes all the old headers from the initial Rails response in order to
+  # replace them with the headers from the response from the FHIR API.
+  def remove_old_headers
+    response.headers.each_key do |key|
+      response.delete_header(key)
+    end
   end
 
   # Adds the headers from the response from the FHIR API to the Rails response
