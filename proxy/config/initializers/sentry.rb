@@ -2,12 +2,7 @@ Sentry.init do |config|
   config.dsn = Rails.application.credentials.sentry_url
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
-  # Set tracesSampleRate to 1.0 to capture 100%
+  # Set tracesSampleRate to 0.0 to capture 0%
   # of transactions for performance monitoring.
-  # We recommend adjusting this value in production
-  config.traces_sample_rate = 0.5
-  # or
-  config.traces_sampler = lambda do |context|
-    true
-  end
+  config.traces_sample_rate = 0.0
 end
