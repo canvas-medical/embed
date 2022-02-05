@@ -2,12 +2,14 @@ import { h, createContext } from 'preact'
 import { useContext, useState, useMemo } from 'preact/hooks'
 
 export const AppContext = createContext({
+  api: null,
+  appointmentTypeCode: null,
   bailoutURL: null,
   shadowRoot: null,
   patientId: null,
+  patientKey: null,
   providerIds: null,
   locationId: null,
-  appointmentTypeCode: null,
   treatment: null,
   reason: null,
   duration: null,

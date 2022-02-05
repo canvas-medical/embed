@@ -5,41 +5,31 @@
     <title>Scheduler</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
-      .preview {
-        width: 100%;
-        max-width: 1100px;
-        margin: 80px 0;
-        border: 1px dashed rgba(0, 0, 0, 0.2);
-        position: relative;
-        max-height: 600px;
-      }
-
-      .preview::before {
-        content: 'WIDGET PREVIEW';
-        position: absolute;
-        display: block;
-        top: -18px;
-        font-size: 11px;
-        color: rgba(0, 0, 0, 0.5);
-      }
-
-      .preview div {
-        background-color: blue;
+      body {
+        margin: 0;
       }
     </style>
   </head>
   <body>
-    <div id="scheduler-root" class="preview"></div>
+    <div id="scheduler-root"></div>
     <script src="./scheduler.js" type="text/javascript"></script>
     <script type="text/javascript">
       Scheduler.init({
+        api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
         appointmentTypeCode: '439708006',
         bailoutURL: 'https://viget.com',
         // brandColor: '#4d9d57',
         duration: '30',
-        locationId: '5',
-        patientId: 'abcdefghijklmnopqrstuvwxyz',
-        providerIds: ['1a2b3c', '7'],
+        locationId: '1',
+        patientId: '1d545066432b485e83011f6c97f2c00c',
+        patientKey: '208b7fa7-a4a7-45ae-a264-5d2ca76f5c3f',
+        providers: [
+          { name: 'Saharsh Patel, MD', id: 'c2ff4546548e46ab8959af887b563eab' },
+          {
+            name: 'Michael Zimmerman, MD',
+            id: 'fc87cbb2525f4c5eb50294f620c7a15e',
+          },
+        ],
         reason: 'high fever, cough, leeches',
         rootId: 'scheduler-root',
       })
