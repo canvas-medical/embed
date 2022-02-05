@@ -14,13 +14,55 @@ import {
   formatDate,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
+import axios from 'axios'
 
 export const ConfirmSection = ({ onCancel }) => {
-  const { timeSlot, setScreen, treatment, date } = useAppContext()
+  const {
+    timeSlot,
+    setScreen,
+    treatment,
+    date,
+    api,
+    patientId,
+    locationId,
+    appointmentTypeCode,
+    reason,
+  } = useAppContext()
 
   const handleConfirmation = () => {
-    // Do some API Call then
-    setScreen('CONFIRM')
+    axios
+      .post(`${api}/Appointment`, {
+        body: {
+          appointmentType: {
+            coding: [
+              {
+                code: `${appointmentTypeCode}`,
+              },
+            ],
+          },
+          description: `${reason}`,
+          supportingInformation: [
+            {
+              reference: `Location/${locationId}`,
+            },
+          ],
+          start: new Date(timeSlot.start).toISOString(),
+          end: new Date(timeSlot.end).toISOString(),
+          participant: [
+            {
+              actor: {
+                reference: `Patient/${patientId}`,
+              },
+            },
+            {
+              actor: {
+                reference: `Practitioner/${timeSlot.provider.id}`,
+              },
+            },
+          ],
+        },
+      })
+      .then(() => setScreen('CONFIRM'))
   }
 
   return (
@@ -37,7 +79,7 @@ export const ConfirmSection = ({ onCancel }) => {
         <PopoverMessage>
           <strong>{`${formatDate(date)} at ${timeSlot.start}`}</strong>
         </PopoverMessage>
-        <PopoverMessage>{`${treatment} with ${timeSlot.provider}`}</PopoverMessage>
+        <PopoverMessage>{`${treatment} with ${timeSlot.provider.name}`}</PopoverMessage>
       </PopoverMessages>
 
       <PopoverButtons>

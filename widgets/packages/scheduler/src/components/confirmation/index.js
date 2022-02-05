@@ -27,7 +27,7 @@ export const Confirmation = () => {
           {`${formatDate(date)} at ${timeSlot.start}`}
         </H3>
         <Span style={{ '--my': '8px' }}>
-          {`${treatment} with ${timeSlot.provider}`}
+          {`${treatment} with ${timeSlot.provider.name}`}
         </Span>
         <OutlineButton
           style={{ '--my': '8px' }}
