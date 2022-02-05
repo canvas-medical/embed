@@ -8,11 +8,14 @@ services:
       - 3000:3000
     environment:
       REDIS_URL: redis://redis:6379/1
+      PIDFILE: /tmp/pids/server.pid
     entrypoint: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000"]
     depends_on:
       - redis
     volumes:
       - .:/app
+    tmpfs:
+      - /tmp/pids/
 
   redis:
     image: redis:alpine
