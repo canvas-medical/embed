@@ -5,13 +5,15 @@ import { App } from './App'
 import { ContextWrapper } from './hooks'
 
 const StyledApp = ({
+  api,
   appointmentTypeCode,
   bailoutURL,
   brandColor,
   duration,
   locationId,
   patientId,
-  providerIds,
+  patientKey,
+  providers,
   reason,
   rootId,
 }) => {
@@ -23,11 +25,13 @@ const StyledApp = ({
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
       <ContextWrapper
         values={{
+          api,
           bailoutURL,
           shadowRoot,
           colors,
           patientId,
-          providerIds,
+          patientKey,
+          providers,
           locationId,
           appointmentTypeCode,
           treatment,
@@ -42,12 +46,14 @@ const StyledApp = ({
 }
 
 export const init = ({
+  appointmentTypeCode,
+  api,
   bailoutURL,
   rootId,
   patientId,
-  providerIds,
+  patientKey,
+  providers,
   locationId,
-  appointmentTypeCode,
   reason,
   duration,
   brandColor,
@@ -63,10 +69,12 @@ export const init = ({
 
   render(
     <StyledApp
+      api={api}
       bailoutURL={bailoutURL}
       rootId={rootId}
       patientId={patientId}
-      providerIds={providerIds}
+      patientKey={patientKey}
+      providers={providers}
       locationId={locationId}
       appointmentTypeCode={appointmentTypeCode}
       reason={reason}
