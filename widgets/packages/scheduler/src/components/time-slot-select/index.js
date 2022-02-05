@@ -1,96 +1,76 @@
-import { h, Fragment } from 'preact'
-import { useState } from 'preact/hooks'
-import { Fieldset, Legend, Popover } from '@canvas/common/components'
-import { TimeSlotButton, TimeSlotItem, TimeSlotList } from './styles'
-import { ConfirmSection } from './confirm-section'
+import { h } from 'preact'
+import { useCallback, useEffect, useState } from 'preact/hooks'
+import axios from 'axios'
 import { useAppContext } from '../../hooks'
+import { Ui } from './ui'
 
 export const TimeSlotSelect = () => {
-  const { shadowRoot, colors, setTimeSlot } = useAppContext()
-  const [popoverOpen, setPopoverOpen] = useState(false)
+  const { api, date, locationId, providers, patientId, patientKey } =
+    useAppContext()
+  const [loading, setLoading] = useState(true)
+  const [timeSlots, setTimeSlots] = useState([])
 
-  const cancelConfirmation = () => {
-    setPopoverOpen(false)
-    setTimeSlot(null)
-  }
+  const isSameDay = useCallback(
+    queryDate => {
+      const parsedDate = new Date(queryDate)
 
-  const selectTimeSlot = ({ start, end, provider }) => {
-    setTimeSlot({
-      start,
-      end,
-      provider,
-    })
-    setPopoverOpen(true)
-  }
-
-  const data = [
-    {
-      provider: 'Jane Doe, MD',
-      id: 1,
-      timeSlots: [
-        { start: '10:00AM', end: '10:30AM', id: 1 },
-        { start: '10:30AM', end: '11:00AM', id: 2 },
-        { start: '11:00AM', end: '11:30AM', id: 3 },
-        { start: '11:30AM', end: '12:00PM', id: 4 },
-        { start: '12:00AM', end: '12:30AM', id: 5 },
-      ],
+      return (
+        date.getDate() === parsedDate.getDate() &&
+        date.getMonth() === parsedDate.getMonth() &&
+        date.getFullYear() === parsedDate.getFullYear()
+      )
     },
-    {
-      provider: 'Jim Deer, MD',
-      id: 2,
-      timeSlots: [
-        { start: '10:00AM', end: '10:30AM', id: 1 },
-        { start: '10:30AM', end: '11:00AM', id: 2 },
-        { start: '11:00AM', end: '11:30AM', id: 3 },
-        { start: '11:30AM', end: '12:00PM', id: 4 },
-        { start: '12:00AM', end: '12:30AM', id: 5 },
-      ],
-    },
-  ]
-
-  return (
-    <Fragment>
-      {data.map(({ provider, timeSlots, id }) => {
-        return (
-          <Fieldset
-            key={id}
-            style={{
-              '--bg': colors.accent,
-            }}
-          >
-            <Legend>{provider}</Legend>
-            <TimeSlotList>
-              {timeSlots.map(({ id, start, end }) => (
-                <TimeSlotItem key={id}>
-                  <TimeSlotButton
-                    style={{
-                      '--bg': colors.primary,
-                      '--fc': colors.focus,
-                      '--hc': colors.focus,
-                    }}
-                    id={id}
-                    onClick={() =>
-                      selectTimeSlot({
-                        end,
-                        provider,
-                        start,
-                      })
-                    }
-                  >{`${start} - ${end}`}</TimeSlotButton>
-                </TimeSlotItem>
-              ))}
-            </TimeSlotList>
-          </Fieldset>
-        )
-      })}
-      <Popover
-        shadowRoot={shadowRoot}
-        open={popoverOpen}
-        onClose={() => cancelConfirmation()}
-        titleId={'confirm-slot'}
-      >
-        <ConfirmSection onCancel={() => cancelConfirmation()} />
-      </Popover>
-    </Fragment>
+    [date]
   )
+
+  const fetchSlots = useCallback(() => {
+    return providers.map(provider => {
+      return axios
+        .get(`${api}/Slot`, {
+          params: {
+            schedule: `Schedule/Location.${locationId}-Staff.${provider.id}`,
+            patient: patientId,
+            patient_key: patientKey,
+            start: date.toISOString(),
+          },
+        })
+        .then(response => {
+          return { provider, slots: response.data }
+        })
+    })
+  }, [api, date, locationId, patientId, patientKey, providers])
+
+  const parseSlots = useCallback(
+    data => {
+      console.log(data)
+      const slots = []
+      data.forEach(datum => {
+        const providerSlots = []
+        const totalSlots = datum.slots.total || -1
+        for (let i = 0; i < totalSlots; i++) {
+          if (isSameDay(datum.slots.entry[i].resource.start)) {
+            providerSlots.push({
+              start: datum.slots.entry[i].resource.start,
+              end: datum.slots.entry[i].resource.start,
+            })
+          } else {
+            i = totalSlots
+          }
+        }
+        slots.push({ provider: datum.provider, providerSlots })
+      })
+      setTimeSlots(slots)
+      setLoading(false)
+    },
+    [isSameDay]
+  )
+
+  useEffect(() => {
+    setLoading(true)
+    Promise.all(fetchSlots())
+      .then(response => parseSlots(response))
+      .catch(response => console.log(response))
+  }, [date, fetchSlots, parseSlots])
+
+  return <Ui loading={loading} timeSlots={timeSlots} />
 }

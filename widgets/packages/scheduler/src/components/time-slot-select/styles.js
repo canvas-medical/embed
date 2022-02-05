@@ -10,6 +10,7 @@ export const TimeSlotButton = styled(Button)`
   ${hoverAndFocusBackgroundColor}
 
   font-size: 0.875rem;
+  padding: 0 1.25rem;
   width: stretch;
 `
 
