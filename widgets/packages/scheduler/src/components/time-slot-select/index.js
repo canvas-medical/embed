@@ -51,7 +51,7 @@ export const TimeSlotSelect = () => {
           if (isSameDay(datum.slots.entry[i].resource.start)) {
             providerSlots.push({
               start: datum.slots.entry[i].resource.start,
-              end: datum.slots.entry[i].resource.start,
+              end: datum.slots.entry[i].resource.end,
             })
           } else {
             i = totalSlots

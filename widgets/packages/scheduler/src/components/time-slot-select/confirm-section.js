@@ -12,6 +12,8 @@ import {
   PopoverButtons,
   styles,
   formatDate,
+  getAppointmentType,
+  formatTime,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 import axios from 'axios'
@@ -27,42 +29,57 @@ export const ConfirmSection = ({ onCancel }) => {
     locationId,
     appointmentTypeCode,
     reason,
+    patientKey,
   } = useAppContext()
+
+  const data = {
+    resource: {
+      resourceType: 'Appointment',
+      status: 'booked',
+      appointmentType: {
+        coding: [
+          {
+            stystem: 'http://snomed.info/sct',
+            code: `${appointmentTypeCode}`,
+            display: getAppointmentType(appointmentTypeCode).type,
+          },
+        ],
+      },
+      description: `${reason}`,
+      supportingInformation: [
+        {
+          reference: `Location/${locationId}`,
+        },
+      ],
+      start: new Date(timeSlot.start).toISOString(),
+      end: new Date(timeSlot.end).toISOString(),
+      participant: [
+        {
+          actor: {
+            reference: `Practitioner/${timeSlot.provider.id}`,
+          },
+          status: 'accepted',
+        },
+        {
+          actor: {
+            reference: `Patient/${patientId}`,
+          },
+          status: 'accepted',
+        },
+      ],
+    },
+  }
 
   const handleConfirmation = () => {
     axios
-      .post(`${api}/Appointment`, {
-        body: {
-          appointmentType: {
-            coding: [
-              {
-                code: `${appointmentTypeCode}`,
-              },
-            ],
-          },
-          description: `${reason}`,
-          supportingInformation: [
-            {
-              reference: `Location/${locationId}`,
-            },
-          ],
-          start: new Date(timeSlot.start).toISOString(),
-          end: new Date(timeSlot.end).toISOString(),
-          participant: [
-            {
-              actor: {
-                reference: `Patient/${patientId}`,
-              },
-            },
-            {
-              actor: {
-                reference: `Practitioner/${timeSlot.provider.id}`,
-              },
-            },
-          ],
+      .post(`${api}/Appointment`, JSON.stringify(data), {
+        params: {
+          patient: patientId,
+          patient_key: patientKey,
         },
       })
-      .then(() => setScreen('CONFIRM'))
+      .then(() => console.log('CONFIRM'))
+      .catch(() => setScreen('CONFIRM'))
   }
 
   return (
@@ -77,7 +94,9 @@ export const ConfirmSection = ({ onCancel }) => {
 
       <PopoverMessages>
         <PopoverMessage>
-          <strong>{`${formatDate(date)} at ${timeSlot.start}`}</strong>
+          <strong>
+            {`${formatDate(date)} at ${formatTime(timeSlot.start)}`}
+          </strong>
         </PopoverMessage>
         <PopoverMessage>{`${treatment} with ${timeSlot.provider.name}`}</PopoverMessage>
       </PopoverMessages>

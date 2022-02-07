@@ -8,6 +8,19 @@ export const formatDate = date => {
   return `${dateArray[1]} ${dateArray[2]}, ${dateArray[3]}`
 }
 
+export const formatDateForAPI = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  const day = date.getDate()
+
+  console.log(year)
+  console.log(month)
+  console.log(day)
+  return `${year}-${month < 10 ? `0${month}` : month}-${
+    day < 10 ? `0${day}` : day
+  }`
+}
+
 export const isToday = date => {
   const today = new Date()
   return (
