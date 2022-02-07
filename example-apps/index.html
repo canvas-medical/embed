@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Page Description" />
+    <title>Example Static Site</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="./script.js"></script>
+  </head>
+  <body>
+    <h1>Example Static Site</h1>
+    <div>
+      <div>
+        <h3>How to Use</h3>
+        <p>
+          This allows you to modify the configuration of the embeds and navigate
+          to them.
+        </p>
+        <p>Fill out the following fields or leave them as their defaults.</p>
+        <p>Then click the button for whichever embed you'd like to see.</p>
+      </div>
+      <button onClick="authAndScheduler()">Scheduler</button>
+      <button onClick="authAndAppointments()">Appointments</button>
+    </div>
+
+    <div>
+      <h2>Configuration</h2>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>API</td>
+          <td>
+            <input
+              id="api"
+              type="text"
+              value="http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>API Key</td>
+          <td>
+            <input id="apiKey" type="password" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Appointment Type Code</td>
+          <td>
+            <input id="appointmentTypeCode" type="text" value="439708006" />
+          </td>
+        </tr>
+        <tr>
+          <td>Bailout URL</td>
+          <td>
+            <input id="bailoutURL" type="text" value="https://viget.com" />
+          </td>
+        </tr>
+        <tr>
+          <td>Duration</td>
+          <td>
+            <input id="duration" type="text" value="30" />
+          </td>
+        </tr>
+        <tr>
+          <td>Location ID</td>
+          <td>
+            <input id="locationId" type="text" value="1" />
+          </td>
+        </tr>
+        <tr>
+          <td>Patient ID</td>
+          <td>
+            <input
+              id="patientId"
+              type="text"
+              value="d7370b4c04f142abb594b634a8126a91"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 1 Name (required)</td>
+          <td>
+            <input id="provider1Name" type="text" value="Saharsh Patel, MD" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 1 ID (required)</td>
+          <td>
+            <input
+              id="provider1Id"
+              type="text"
+              value="c2ff4546548e46ab8959af887b563eab"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 2 Name (optional)</td>
+          <td>
+            <input id="provider2Name" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 2 ID (optional)</td>
+          <td>
+            <input id="provider2Id" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 3 Name (optional)</td>
+          <td>
+            <input id="provider3Name" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 3 ID (optional)</td>
+          <td>
+            <input id="provider3Id" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 4 Name (optional)</td>
+          <td>
+            <input id="provider4Name" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Provider 4 ID (optional)</td>
+          <td>
+            <input id="provider4Id" type="text" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Reason</td>
+          <td>
+            <input id="reason" type="text" value="high fever, cough, leeches" />
+          </td>
+        </tr>
+        <tr>
+          <td>Return URL</td>
+          <td>
+            <input id="returnURL" type="text" value="https://viget.com" />
+          </td>
+        </tr>
+        <tr>
+          <td>Root ID</td>
+          <td>
+            <input id="rootId" type="text" value="scheduler-root" />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
