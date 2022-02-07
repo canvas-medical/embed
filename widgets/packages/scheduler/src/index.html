@@ -16,10 +16,8 @@
     <script type="text/javascript">
       Scheduler.init({
         api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
-        //api: 'http://localhost:3000',
         appointmentTypeCode: '439708006',
         bailoutURL: 'https://viget.com',
-        // brandColor: '#4d9d57',
         duration: '30',
         locationId: '1',
         patientId: 'd7370b4c04f142abb594b634a8126a91',
@@ -32,6 +30,7 @@
           },
         ],
         reason: 'high fever, cough, leeches',
+        returnURL: 'https://viget.com',
         rootId: 'scheduler-root',
       })
     </script>

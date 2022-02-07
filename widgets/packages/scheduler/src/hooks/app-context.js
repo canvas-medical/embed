@@ -5,28 +5,26 @@ export const AppContext = createContext({
   api: null,
   appointmentTypeCode: null,
   bailoutURL: null,
-  shadowRoot: null,
-  patientId: null,
-  patientKey: null,
-  providerIds: null,
-  locationId: null,
-  treatment: null,
-  reason: null,
-  duration: null,
   colors: {
     primary: null,
     accent: null,
     focus: null,
   },
-  screen: null,
-  setScreen: () => {},
-  date: null,
-  setDate: () => {},
+  duration: null,
+  locationId: null,
+  patientId: null,
+  patientKey: null,
+  providerIds: null,
+  reason: null,
+  returnURL: null,
+  shadowRoot: null,
+  treatment: null,
 })
 
 export const ContextWrapper = ({ children, values }) => {
   const [screen, setScreen] = useState('SELECT')
   const [date, setDate] = useState(new Date())
+  const [error, setError] = useState(null)
   const [timeSlot, setTimeSlot] = useState({
     start: null,
     end: null,
@@ -40,10 +38,12 @@ export const ContextWrapper = ({ children, values }) => {
       setScreen,
       date,
       setDate,
+      error,
+      setError,
       timeSlot,
       setTimeSlot,
     }
-  }, [values, screen, setScreen, date, setDate, timeSlot])
+  }, [values, screen, date, error, timeSlot])
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

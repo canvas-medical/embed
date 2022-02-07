@@ -5,8 +5,16 @@ import { useAppContext } from '../../hooks'
 import { Ui } from './ui'
 
 export const TimeSlotSelect = () => {
-  const { api, date, locationId, providers, patientId, patientKey } =
-    useAppContext()
+  const {
+    api,
+    date,
+    locationId,
+    providers,
+    patientId,
+    patientKey,
+    duration,
+    setError,
+  } = useAppContext()
   const [loading, setLoading] = useState(true)
   const [timeSlots, setTimeSlots] = useState([])
 
@@ -32,13 +40,14 @@ export const TimeSlotSelect = () => {
             patient: patientId,
             patient_key: patientKey,
             start: date.toISOString(),
+            duration,
           },
         })
         .then(response => {
           return { provider, slots: response.data }
         })
     })
-  }, [api, date, locationId, patientId, patientKey, providers])
+  }, [api, date, locationId, patientId, patientKey, providers, duration])
 
   const parseSlots = useCallback(
     data => {
@@ -69,8 +78,8 @@ export const TimeSlotSelect = () => {
     setLoading(true)
     Promise.all(fetchSlots())
       .then(response => parseSlots(response))
-      .catch(response => console.log(response))
-  }, [date, fetchSlots, parseSlots])
+      .catch(() => setError('Error Fetcthing Appointments'))
+  }, [date, fetchSlots, parseSlots, setError])
 
   return <Ui loading={loading} timeSlots={timeSlots} />
 }

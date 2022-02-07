@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { useEffect } from 'preact/hooks'
+import { useCallback, useEffect, useState } from 'preact/hooks'
 import {
   AccentBox,
   BigCalendar,
@@ -26,8 +26,10 @@ export const Confirmation = () => {
     patientId,
     api,
     patientKey,
+    returnURL,
+    setError,
   } = useAppContext()
-  const today = new Date()
+  const [appointmentId, setAppointmentId] = useState(null)
 
   const data = {
     resource: {
@@ -57,29 +59,69 @@ export const Confirmation = () => {
     },
   }
 
+  const findAppointment = useCallback(
+    appointments => {
+      return (
+        appointments.entry.find(({ resource }) => {
+          return (
+            new Date(resource.start).toISOString() ===
+              new Date(timeSlot.start).toISOString() &&
+            new Date(resource.end).toISOString() ===
+              new Date(timeSlot.end).toISOString()
+          )
+        })?.resource?.id || 'error'
+      )
+    },
+    [timeSlot]
+  )
+
+  const handleAppointmentId = useCallback(
+    appointment => {
+      if (appointment) {
+        setAppointmentId(appointment)
+      } else {
+        setError('Error Fetching Appointment')
+      }
+    },
+    [setError]
+  )
+
   useEffect(() => {
-    console.log(`ge${formatDateForAPI(today)}`)
     axios
       .get(`${api}/Appointment`, {
         params: {
           patient: patientId,
           patient_key: patientKey,
-          date: `ge${formatDateForAPI(today)}`,
+          date: `ge${formatDateForAPI(date)}`,
+          practitioner: timeSlot.provider.id,
         },
       })
-      .then(response => console.log(response.data))
-  }, [])
+      .then(response => findAppointment(response.data))
+      .then(appointment => handleAppointmentId(appointment))
+      .catch(() => setError('Error Fetching Appointment'))
+  }, [
+    api,
+    date,
+    findAppointment,
+    handleAppointmentId,
+    patientId,
+    patientKey,
+    setError,
+    timeSlot.provider.id,
+  ])
 
   const handleCancel = () => {
-    axios
-      .put(`${api}/Appointment`, JSON.stringify(data), {
-        params: {
-          patient: patientId,
-          patient_key: patientKey,
-        },
-      })
-      .then(() => console.log('CONFIRM'))
-      .catch(() => setScreen('CONFIRM'))
+    if (appointmentId && appointmentId !== 'error') {
+      axios
+        .put(`${api}/Appointment/${appointmentId}`, JSON.stringify(data), {
+          params: {
+            patient: patientId,
+            patient_key: patientKey,
+          },
+        })
+        .then(() => (window.location = returnURL))
+        .catch(() => setError('Error Cancelling Appointment Appointment'))
+    }
   }
 
   return (

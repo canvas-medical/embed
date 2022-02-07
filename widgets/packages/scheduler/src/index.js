@@ -15,6 +15,7 @@ const StyledApp = ({
   patientKey,
   providers,
   reason,
+  returnURL,
   rootId,
 }) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
@@ -26,17 +27,18 @@ const StyledApp = ({
       <ContextWrapper
         values={{
           api,
+          appointmentTypeCode,
           bailoutURL,
-          shadowRoot,
           colors,
+          duration,
+          locationId,
           patientId,
           patientKey,
           providers,
-          locationId,
-          appointmentTypeCode,
-          treatment,
           reason,
-          duration,
+          returnURL,
+          shadowRoot,
+          treatment,
         }}
       >
         <App brandColor={brandColor} shadowRoot={shadowRoot} />
@@ -49,14 +51,15 @@ export const init = ({
   appointmentTypeCode,
   api,
   bailoutURL,
-  rootId,
+  brandColor,
+  duration,
+  locationId,
   patientId,
   patientKey,
   providers,
-  locationId,
   reason,
-  duration,
-  brandColor,
+  returnURL,
+  rootId,
 }) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
@@ -70,16 +73,17 @@ export const init = ({
   render(
     <StyledApp
       api={api}
+      appointmentTypeCode={appointmentTypeCode}
       bailoutURL={bailoutURL}
-      rootId={rootId}
+      brandColor={brandColor}
+      duration={duration}
+      locationId={locationId}
       patientId={patientId}
       patientKey={patientKey}
       providers={providers}
-      locationId={locationId}
-      appointmentTypeCode={appointmentTypeCode}
       reason={reason}
-      duration={duration}
-      brandColor={brandColor}
+      returnURL={returnURL}
+      rootId={rootId}
     />,
     appRoot.shadowRoot
   )

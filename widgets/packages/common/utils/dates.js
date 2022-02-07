@@ -12,10 +12,8 @@ export const formatDateForAPI = date => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const day = date.getDate()
+  console.log(date.toISOString().slice(0, 10))
 
-  console.log(year)
-  console.log(month)
-  console.log(day)
   return `${year}-${month < 10 ? `0${month}` : month}-${
     day < 10 ? `0${day}` : day
   }`

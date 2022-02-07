@@ -12,7 +12,6 @@ import {
   PopoverButtons,
   styles,
   formatDate,
-  getAppointmentType,
   formatTime,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
@@ -30,6 +29,7 @@ export const ConfirmSection = ({ onCancel }) => {
     appointmentTypeCode,
     reason,
     patientKey,
+    setError,
   } = useAppContext()
 
   const data = {
@@ -41,7 +41,7 @@ export const ConfirmSection = ({ onCancel }) => {
           {
             stystem: 'http://snomed.info/sct',
             code: `${appointmentTypeCode}`,
-            display: getAppointmentType(appointmentTypeCode).type,
+            display: treatment,
           },
         ],
       },
@@ -78,8 +78,8 @@ export const ConfirmSection = ({ onCancel }) => {
           patient_key: patientKey,
         },
       })
-      .then(() => console.log('CONFIRM'))
-      .catch(() => setScreen('CONFIRM'))
+      .then(() => setScreen('CONFIRM'))
+      .catch(() => setError('Error Creatinug Appointment'))
   }
 
   return (
