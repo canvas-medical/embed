@@ -55,7 +55,7 @@ class ApplicationController < ActionController::API
   #
   # @param [String] path
   # @param [String] body
-  def post_fhir(path, body = {})
+  def post_fhir(path, body = "")
     fhir_response = client.post(path, ENV["FHIR_BASE_URL"], body)
     render_fhir_response(fhir_response)
   end
@@ -65,7 +65,7 @@ class ApplicationController < ActionController::API
   #
   # @param [String] path
   # @param [String] body
-  def put_fhir(path, body = {})
+  def put_fhir(path, body = "")
     fhir_response = client.put(path, ENV["FHIR_BASE_URL"], body)
     render_fhir_response(fhir_response)
   end
@@ -88,7 +88,8 @@ class ApplicationController < ActionController::API
     @client ||= FhirClient.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], ENV["EMR_BASE_URL"])
   end
 
-  # Renders the passed in response from the FHIR API.
+  # Renders the passed in response from the FHIR API. Sets the body when the
+  # current one is blank to prevent CORS issues
   #
   # @param [OAuth2::Response] fhir_response
   def render_fhir_response(fhir_response)
@@ -96,7 +97,14 @@ class ApplicationController < ActionController::API
     add_new_headers(fhir_response)
 
     response.status = fhir_response.status
-    render json: fhir_response.body, content_type: "application/fhir+json; charset=UTF-8"
+    if fhir_response.body.empty?
+      body = { message: "Success" }
+      response.delete_header("transfer-encoding")
+      response.set_header("content-length", body.to_s.length)
+      render json: body, content_type: "application/fhir+json; charset=UTF-8"
+    else
+      render json: fhir_response.body, content_type: "application/fhir+json; charset=UTF-8"
+    end
   end
 
   def patient_params
