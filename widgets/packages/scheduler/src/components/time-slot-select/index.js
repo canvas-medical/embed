@@ -51,7 +51,6 @@ export const TimeSlotSelect = () => {
 
   const parseSlots = useCallback(
     data => {
-      console.log(data)
       const slots = []
       data.forEach(datum => {
         const providerSlots = []

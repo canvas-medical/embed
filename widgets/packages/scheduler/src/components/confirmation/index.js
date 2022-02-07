@@ -18,7 +18,6 @@ import axios from 'axios'
 export const Confirmation = () => {
   const {
     colors,
-    setScreen,
     timeSlot,
     treatment,
     date,
@@ -143,10 +142,9 @@ export const Confirmation = () => {
         </OutlineButton>
       </AccentBox>
 
-      {/* This will eventually be some callback function or redirect */}
       <Button
         style={{ '--bg': colors.primary, '--mt': '32px' }}
-        onClick={() => setScreen('SELECT')}
+        onClick={() => (window.location = returnURL)}
       >
         Finish
       </Button>

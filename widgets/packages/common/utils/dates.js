@@ -9,14 +9,7 @@ export const formatDate = date => {
 }
 
 export const formatDateForAPI = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth()
-  const day = date.getDate()
-  console.log(date.toISOString().slice(0, 10))
-
-  return `${year}-${month < 10 ? `0${month}` : month}-${
-    day < 10 ? `0${day}` : day
-  }`
+  return date.toISOString().slice(0, 10)
 }
 
 export const isToday = date => {

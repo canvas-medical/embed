@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <AppContainer>
       {/*TODO: Add an actual error state*/}
-      {error && <div>Error</div>}
+      {error && <div>{error}</div>}
       <Header
         colors={colors}
         bailoutURL={bailoutURL}

@@ -23,8 +23,6 @@ export const Ui = ({ loading, timeSlots }) => {
     setPopoverOpen(true)
   }
 
-  console.log(timeSlots)
-
   if (loading) {
     return <Loader />
   }
