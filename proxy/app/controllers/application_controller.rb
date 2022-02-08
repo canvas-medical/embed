@@ -7,6 +7,8 @@ class ApplicationController < ActionController::API
                 with: :render_500
   end
 
+  DEFAULT_RESPONSE_BODY = { message: "Success" }.freeze
+
   # Renders a 401 response with the passed in error_message as the body.
   #
   # @param [String] error_message
@@ -93,15 +95,16 @@ class ApplicationController < ActionController::API
   #
   # @param [OAuth2::Response] fhir_response
   def render_fhir_response(fhir_response)
+    use_default = fhir_response.body.empty?
+
     remove_old_headers
-    add_new_headers(fhir_response)
+    add_new_headers(fhir_response, use_default ? DEFAULT_RESPONSE_BODY.to_s : fhir_response.body)
 
     response.status = fhir_response.status
-    if fhir_response.body.empty?
-      body = { message: "Success" }
+
+    if use_default
       response.delete_header("transfer-encoding")
-      response.set_header("content-length", body.to_s.length)
-      render json: body, content_type: "application/fhir+json; charset=UTF-8"
+      render json: DEFAULT_RESPONSE_BODY, content_type: "application/fhir+json; charset=UTF-8"
     else
       render json: fhir_response.body, content_type: "application/fhir+json; charset=UTF-8"
     end
@@ -129,14 +132,12 @@ class ApplicationController < ActionController::API
   # actual body length.
   #
   # @param [OAuth2::Response] fhir_response
-  def add_new_headers(fhir_response)
+  # @param [String] response_body
+  def add_new_headers(fhir_response, response_body)
     fhir_response.headers.each do |key, value|
-      if key == "content-length"
-        response.set_header("content-length", fhir_response.body.length)
-      else
-        response.set_header(key, value)
-      end
+      response.set_header(key, value) unless key == "content-length"
     end
     response.set_header("Last-Modified", Time.now.httpdate)
+    response.set_header("Content-Length", response_body.length)
   end
 end
