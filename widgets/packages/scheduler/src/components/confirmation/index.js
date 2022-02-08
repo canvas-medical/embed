@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { useCallback, useEffect, useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import {
   AccentBox,
   BigCalendar,
@@ -10,10 +10,10 @@ import {
   H3,
   Span,
   OutlineButton,
-  formatDateForAPI,
+  putAppointment,
+  getScheduledAppointment,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
-import axios from 'axios'
 
 export const Confirmation = () => {
   const {
@@ -27,99 +27,41 @@ export const Confirmation = () => {
     patientKey,
     returnURL,
     setError,
+    appointmentTypeCode,
+    reason,
   } = useAppContext()
   const [appointmentId, setAppointmentId] = useState(null)
-
-  const data = {
-    resource: {
-      resourceType: 'Appointment',
-      status: 'cancelled',
-      supportingInformation: [
-        {
-          reference: `Location/${locationId}`,
-        },
-      ],
-      start: new Date(timeSlot.start).toISOString(),
-      end: new Date(timeSlot.end).toISOString(),
-      participant: [
-        {
-          actor: {
-            reference: `Practitioner/${timeSlot.provider.id}`,
-          },
-          status: 'accepted',
-        },
-        {
-          actor: {
-            reference: `Patient/${patientId}`,
-          },
-          status: 'accepted',
-        },
-      ],
-    },
-  }
-
-  const findAppointment = useCallback(
-    appointments => {
-      return (
-        appointments.entry.find(({ resource }) => {
-          return (
-            new Date(resource.start).toISOString() ===
-              new Date(timeSlot.start).toISOString() &&
-            new Date(resource.end).toISOString() ===
-              new Date(timeSlot.end).toISOString()
-          )
-        })?.resource?.id || 'error'
-      )
-    },
-    [timeSlot]
-  )
-
-  const handleAppointmentId = useCallback(
-    appointment => {
-      if (appointment) {
-        setAppointmentId(appointment)
-      } else {
-        setError('Error Fetching Appointment')
-      }
-    },
-    [setError]
-  )
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    axios
-      .get(`${api}/Appointment`, {
-        params: {
-          patient: patientId,
-          patient_key: patientKey,
-          date: `ge${formatDateForAPI(date)}`,
-          practitioner: timeSlot.provider.id,
-        },
-      })
-      .then(response => findAppointment(response.data))
-      .then(appointment => handleAppointmentId(appointment))
-      .catch(() => setError('Error Fetching Appointment'))
-  }, [
-    api,
-    date,
-    findAppointment,
-    handleAppointmentId,
-    patientId,
-    patientKey,
-    setError,
-    timeSlot.provider.id,
-  ])
+    getScheduledAppointment(
+      setLoading,
+      setError,
+      setAppointmentId,
+      api,
+      patientId,
+      patientKey,
+      date,
+      timeSlot
+    )
+  }, [api, date, patientId, patientKey, setError, timeSlot])
 
   const handleCancel = () => {
-    if (appointmentId && appointmentId !== 'error') {
-      axios
-        .put(`${api}/Appointment/${appointmentId}`, JSON.stringify(data), {
-          params: {
-            patient: patientId,
-            patient_key: patientKey,
-          },
-        })
-        .then(() => (window.location = returnURL))
-        .catch(() => setError('Error Cancelling Appointment Appointment'))
+    if (appointmentId) {
+      putAppointment(
+        returnURL,
+        setError,
+        setLoading,
+        appointmentTypeCode,
+        treatment,
+        reason,
+        locationId,
+        timeSlot,
+        patientId,
+        patientKey,
+        api,
+        appointmentId
+      )
     }
   }
 
@@ -137,7 +79,11 @@ export const Confirmation = () => {
         <Span style={{ '--my': '8px' }}>
           {`${treatment} with ${timeSlot.provider.name}`}
         </Span>
-        <OutlineButton style={{ '--my': '8px' }} onClick={() => handleCancel()}>
+        <OutlineButton
+          disabled={loading}
+          style={{ '--my': '8px' }}
+          onClick={() => handleCancel()}
+        >
           Cancel
         </OutlineButton>
       </AccentBox>
