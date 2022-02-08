@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.1",
-    "axios": "^0.25.0",
     "preact": "^10.6.4",
     "styled-components": "^5.3.3"
   },
