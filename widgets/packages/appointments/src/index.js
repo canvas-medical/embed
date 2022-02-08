@@ -3,18 +3,46 @@ import { cssStyles, generateColors } from '@canvas/common'
 import { StyleSheetManager } from 'styled-components'
 import { App } from './App'
 
-const StyledApp = ({ bailoutURL, brandColor, rootId }) => {
+const StyledApp = ({
+  api,
+  bailoutURL,
+  brandColor,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+  rootId,
+}) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
   const colors = generateColors(brandColor)
 
   return (
     <StyleSheetManager target={shadowRoot}>
-      <App bailoutURL={bailoutURL} colors={colors} shadowRoot={shadowRoot} />
+      <App
+        api={api}
+        bailoutURL={bailoutURL}
+        locationId={locationId}
+        patientId={patientId}
+        patientKey={patientKey}
+        providers={providers}
+        colors={colors}
+        shadowRoot={shadowRoot}
+      />
     </StyleSheetManager>
   )
 }
 
-export const init = ({ bailoutURL, brandColor, rootId }) => {
+export const init = ({
+  api,
+  bailoutURL,
+  brandColor,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+  returnURL,
+  rootId,
+}) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
     mode: 'open',
@@ -26,8 +54,14 @@ export const init = ({ bailoutURL, brandColor, rootId }) => {
 
   render(
     <StyledApp
+      api={api}
       bailoutURL={bailoutURL}
       brandColor={brandColor}
+      locationId={locationId}
+      patientId={patientId}
+      patientKey={patientKey}
+      providers={providers}
+      returnURL={returnURL}
       rootId={rootId}
     />,
     appRoot.shadowRoot
