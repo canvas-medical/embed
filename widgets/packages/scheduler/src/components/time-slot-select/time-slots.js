@@ -8,6 +8,7 @@ import {
   formatTime,
   IconButton,
   Legend,
+  ScreenReaderText,
   styles,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
@@ -16,15 +17,16 @@ import { TimeSlotButton, TimeSlotItem, TimeSlotList } from './styles'
 export const TimeSlots = ({ provider, slots, selectTimeSlot }) => {
   const { colors } = useAppContext()
   const [slotsIndex, setSlotsIndex] = useState(0)
-  const backDisabled = slotsIndex < 12
-  const forwardDisabled = slotsIndex + 12 > slots.length
+  const SLOT_DISPLAY_MAX = 12
+  const backDisabled = slotsIndex < SLOT_DISPLAY_MAX
+  const forwardDisabled = slotsIndex + SLOT_DISPLAY_MAX > slots.length
 
   const scrollForward = () => {
-    setSlotsIndex(slotsIndex + 12)
+    setSlotsIndex(slotsIndex + SLOT_DISPLAY_MAX)
   }
 
   const scrollBack = () => {
-    setSlotsIndex(slotsIndex - 12)
+    setSlotsIndex(slotsIndex - SLOT_DISPLAY_MAX)
   }
 
   return (
@@ -38,7 +40,11 @@ export const TimeSlots = ({ provider, slots, selectTimeSlot }) => {
         <Box
           style={{ '--ml': 'auto', '--mr': '8px', '--width': 'fit-content' }}
         >
-          <IconButton disabled={backDisabled} onClick={() => scrollBack()}>
+          <IconButton
+            aria-label="View Previous Time Slots"
+            disabled={backDisabled}
+            onClick={() => scrollBack()}
+          >
             <ArrowBack
               fill={
                 backDisabled ? null : colors.primary || styles.default.primary
@@ -46,6 +52,7 @@ export const TimeSlots = ({ provider, slots, selectTimeSlot }) => {
             />
           </IconButton>
           <IconButton
+            aria-label="View Next Time Slots"
             disabled={forwardDisabled}
             onClick={() => scrollForward()}
           >
@@ -62,7 +69,10 @@ export const TimeSlots = ({ provider, slots, selectTimeSlot }) => {
       {slots.length ? (
         <TimeSlotList>
           {slots.map(({ start, end }, index) => {
-            if (index < slotsIndex || index > slotsIndex + 11) {
+            if (
+              index < slotsIndex ||
+              index > slotsIndex + SLOT_DISPLAY_MAX - 1
+            ) {
               return null
             }
             return (
@@ -82,6 +92,7 @@ export const TimeSlots = ({ provider, slots, selectTimeSlot }) => {
                     })
                   }
                 >
+                  <ScreenReaderText>Select time slot for</ScreenReaderText>
                   {`${formatTime(start)} - ${formatTime(end)}`}
                 </TimeSlotButton>
               </TimeSlotItem>

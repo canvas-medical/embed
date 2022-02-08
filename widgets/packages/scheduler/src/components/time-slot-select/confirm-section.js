@@ -13,11 +13,13 @@ import {
   styles,
   formatDate,
   formatTime,
+  postAppointment,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
-import axios from 'axios'
+import { useState } from 'preact/hooks'
 
 export const ConfirmSection = ({ onCancel }) => {
+  const [loading, setLoading] = useState(false)
   const {
     timeSlot,
     setScreen,
@@ -32,54 +34,20 @@ export const ConfirmSection = ({ onCancel }) => {
     setError,
   } = useAppContext()
 
-  const data = {
-    resource: {
-      resourceType: 'Appointment',
-      status: 'booked',
-      appointmentType: {
-        coding: [
-          {
-            stystem: 'http://snomed.info/sct',
-            code: `${appointmentTypeCode}`,
-            display: treatment,
-          },
-        ],
-      },
-      description: `${reason}`,
-      supportingInformation: [
-        {
-          reference: `Location/${locationId}`,
-        },
-      ],
-      start: new Date(timeSlot.start).toISOString(),
-      end: new Date(timeSlot.end).toISOString(),
-      participant: [
-        {
-          actor: {
-            reference: `Practitioner/${timeSlot.provider.id}`,
-          },
-          status: 'accepted',
-        },
-        {
-          actor: {
-            reference: `Patient/${patientId}`,
-          },
-          status: 'accepted',
-        },
-      ],
-    },
-  }
-
   const handleConfirmation = () => {
-    axios
-      .post(`${api}/Appointment`, JSON.stringify(data), {
-        params: {
-          patient: patientId,
-          patient_key: patientKey,
-        },
-      })
-      .then(() => setScreen('CONFIRM'))
-      .catch(() => setError('Error Creatinug Appointment'))
+    postAppointment(
+      () => setScreen('CONFIRM'),
+      setError,
+      setLoading,
+      appointmentTypeCode,
+      treatment,
+      reason,
+      locationId,
+      timeSlot,
+      patientId,
+      patientKey,
+      api
+    )
   }
 
   return (
@@ -109,7 +77,8 @@ export const ConfirmSection = ({ onCancel }) => {
             '--hc': styles.buttons.primary.hover,
             '--mx': '16px',
           }}
-          onClick={() => handleConfirmation()}
+          onClick={handleConfirmation}
+          disabled={loading}
         >
           Confirm
         </Button>
