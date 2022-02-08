@@ -1,5 +1,11 @@
+import {
+  getScheduledAppointment,
+  getTimeSlots,
+  postAppointment,
+  putAppointment,
+} from '@canvas/common'
 import { h, createContext } from 'preact'
-import { useContext, useState, useMemo } from 'preact/hooks'
+import { useContext, useState, useMemo, useCallback } from 'preact/hooks'
 
 export const AppContext = createContext({
   api: null,
@@ -31,6 +37,79 @@ export const ContextWrapper = ({ children, values }) => {
     provider: null,
   })
 
+  const handleTimeSlots = useCallback(
+    (setLoading, setTimeSlots) => {
+      getTimeSlots(
+        setLoading,
+        setError,
+        values.providers,
+        values.api,
+        values.locationId,
+        values.patientId,
+        values.patientKey,
+        date,
+        values.duration,
+        setTimeSlots
+      )
+    },
+    [date, values]
+  )
+
+  const handleScheduledAppointment = useCallback(
+    (setLoading, setAppointmentId) => {
+      getScheduledAppointment(
+        setLoading,
+        setError,
+        setAppointmentId,
+        values.api,
+        values.patientId,
+        values.patientKey,
+        date,
+        timeSlot
+      )
+    },
+    [date, timeSlot, values]
+  )
+
+  const hanleCreateAppointment = useCallback(
+    setLoading => {
+      postAppointment(
+        () => setScreen('CONFIRM'),
+        setError,
+        setLoading,
+        values.appointmentTypeCode,
+        values.treatment,
+        values.reason,
+        values.locationId,
+        timeSlot,
+        values.patientId,
+        values.patientKey,
+        values.api
+      )
+    },
+    [timeSlot, values]
+  )
+
+  const handleCancelAppointment = useCallback(
+    (setLoading, appointmentId) => {
+      putAppointment(
+        values.returnURL,
+        setError,
+        setLoading,
+        values.appointmentTypeCode,
+        values.treatment,
+        values.reason,
+        values.locationId,
+        timeSlot,
+        values.patientId,
+        values.patientKey,
+        values.api,
+        appointmentId
+      )
+    },
+    [timeSlot, values]
+  )
+
   const contextValue = useMemo(() => {
     return {
       ...values,
@@ -42,8 +121,22 @@ export const ContextWrapper = ({ children, values }) => {
       setError,
       timeSlot,
       setTimeSlot,
+      handleTimeSlots,
+      hanleCreateAppointment,
+      handleScheduledAppointment,
+      handleCancelAppointment,
     }
-  }, [values, screen, date, error, timeSlot])
+  }, [
+    values,
+    screen,
+    date,
+    error,
+    timeSlot,
+    handleTimeSlots,
+    hanleCreateAppointment,
+    handleScheduledAppointment,
+    handleCancelAppointment,
+  ])
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

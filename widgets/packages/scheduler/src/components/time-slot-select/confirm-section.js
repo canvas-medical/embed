@@ -13,41 +13,16 @@ import {
   styles,
   formatDate,
   formatTime,
-  postAppointment,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 import { useState } from 'preact/hooks'
 
 export const ConfirmSection = ({ onCancel }) => {
   const [loading, setLoading] = useState(false)
-  const {
-    timeSlot,
-    setScreen,
-    treatment,
-    date,
-    api,
-    patientId,
-    locationId,
-    appointmentTypeCode,
-    reason,
-    patientKey,
-    setError,
-  } = useAppContext()
+  const { timeSlot, treatment, date, hanleCreateAppointment } = useAppContext()
 
   const handleConfirmation = () => {
-    postAppointment(
-      () => setScreen('CONFIRM'),
-      setError,
-      setLoading,
-      appointmentTypeCode,
-      treatment,
-      reason,
-      locationId,
-      timeSlot,
-      patientId,
-      patientKey,
-      api
-    )
+    hanleCreateAppointment(setLoading)
   }
 
   return (

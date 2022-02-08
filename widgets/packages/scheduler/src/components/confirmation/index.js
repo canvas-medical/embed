@@ -10,8 +10,7 @@ import {
   H3,
   Span,
   OutlineButton,
-  putAppointment,
-  getScheduledAppointment,
+  formatTime,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 
@@ -20,50 +19,27 @@ export const Confirmation = () => {
     colors,
     timeSlot,
     treatment,
-    date,
-    locationId,
-    patientId,
-    api,
-    patientKey,
     returnURL,
-    setError,
-    appointmentTypeCode,
-    reason,
+    handleCancelAppointment,
+    handleScheduledAppointment,
   } = useAppContext()
   const [appointmentId, setAppointmentId] = useState(null)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getScheduledAppointment(
-      setLoading,
-      setError,
-      setAppointmentId,
-      api,
-      patientId,
-      patientKey,
-      date,
-      timeSlot
-    )
-  }, [api, date, patientId, patientKey, setError, timeSlot])
+    handleScheduledAppointment(setLoading, setAppointmentId)
+  }, [handleScheduledAppointment])
 
   const handleCancel = () => {
     if (appointmentId) {
-      putAppointment(
-        returnURL,
-        setError,
-        setLoading,
-        appointmentTypeCode,
-        treatment,
-        reason,
-        locationId,
-        timeSlot,
-        patientId,
-        patientKey,
-        api,
-        appointmentId
-      )
+      handleCancelAppointment(setLoading, appointmentId)
     }
   }
+
+  const appointmentDate = new Date(timeSlot.start)
+  const dateString = `${formatDate(appointmentDate)} at ${formatTime(
+    appointmentDate
+  )}`
 
   return (
     <Box>
@@ -73,9 +49,7 @@ export const Confirmation = () => {
         <Box style={{ '--mb': '16px' }}>
           <BigCalendar />
         </Box>
-        <H3 style={{ '--mb': '8px' }}>
-          {`${formatDate(date)} at ${timeSlot.start}`}
-        </H3>
+        <H3 style={{ '--mb': '8px' }}>{dateString}</H3>
         <Span style={{ '--my': '8px' }}>
           {`${treatment} with ${timeSlot.provider.name}`}
         </Span>
