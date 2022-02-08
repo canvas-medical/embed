@@ -49,7 +49,11 @@ function authAndScheduler() {
     fetch(`${api}/Auth?key=${apiKey}&patient=${patientId}`)
       .then((response) => response.json())
       .then((data) => {
-        window.location = `./scheduler.html?api=${api}&appointmentTypeCode=${appointmentTypeCode}&bailoutURL=${bailoutURL}&duration=${duration}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&reason=${reason}&returnURL=${returnURL}&rootId=${rootId}`
+        if (data.patient_key) {
+          window.location = `./scheduler.html?api=${api}&appointmentTypeCode=${appointmentTypeCode}&bailoutURL=${bailoutURL}&duration=${duration}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&reason=${reason}&returnURL=${returnURL}&rootId=${rootId}`
+        } else {
+          console.error("Patient not found")
+        }
       })
   }
 }
