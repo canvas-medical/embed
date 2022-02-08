@@ -36,7 +36,7 @@ export const Confirmation = () => {
 
   const handleCancel = () => {
     if (appointmentId) {
-      handleCancelAppointment(setLoading, appointmentId)
+      handleCancelAppointment(setLoading, appointmentId, afterCancel)
     }
   }
 
