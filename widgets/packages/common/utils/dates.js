@@ -24,3 +24,11 @@ export const isToday = date => {
 export const userTimezone = new Date()
   .toLocaleTimeString('en-us', { timeZoneName: 'short' })
   .split(' ')[2]
+
+// Takes two Date objects and determines if they are the same day.
+export const isSameDay = (queryDate, currentDate) => {
+  return (
+    queryDate.toISOString().slice(0, 10) ===
+    currentDate.toISOString().slice(0, 10)
+  )
+}
