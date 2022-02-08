@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { formatDateForAPI } from '../utils'
+import { formatDateForAPI } from '../../utils'
 
 const findAppointment = (
   appointments,

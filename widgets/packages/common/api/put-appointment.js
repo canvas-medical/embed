@@ -3,7 +3,7 @@ import { STATUS } from '../utils'
 import { constructAppointmentBody } from './construct-appointment-body'
 
 export const putAppointment = (
-  returnURL,
+  onComplete,
   setError,
   setLoading,
   appointmentTypeCode,
@@ -34,6 +34,6 @@ export const putAppointment = (
         patient_key: patientKey,
       },
     })
-    .then(() => (window.location = returnURL))
+    .then(() => onComplete())
     .catch(() => setError('Error Cancelling Appointment'))
 }
