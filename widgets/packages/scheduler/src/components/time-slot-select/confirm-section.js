@@ -12,15 +12,17 @@ import {
   PopoverButtons,
   styles,
   formatDate,
+  formatTime,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
+import { useState } from 'preact/hooks'
 
 export const ConfirmSection = ({ onCancel }) => {
-  const { timeSlot, setScreen, treatment, date } = useAppContext()
+  const [loading, setLoading] = useState(false)
+  const { timeSlot, treatment, date, hanleCreateAppointment } = useAppContext()
 
   const handleConfirmation = () => {
-    // Do some API Call then
-    setScreen('CONFIRM')
+    hanleCreateAppointment(setLoading)
   }
 
   return (
@@ -35,9 +37,11 @@ export const ConfirmSection = ({ onCancel }) => {
 
       <PopoverMessages>
         <PopoverMessage>
-          <strong>{`${formatDate(date)} at ${timeSlot.start}`}</strong>
+          <strong>
+            {`${formatDate(date)} at ${formatTime(timeSlot.start)}`}
+          </strong>
         </PopoverMessage>
-        <PopoverMessage>{`${treatment} with ${timeSlot.provider}`}</PopoverMessage>
+        <PopoverMessage>{`${treatment} with ${timeSlot.provider.name}`}</PopoverMessage>
       </PopoverMessages>
 
       <PopoverButtons>
@@ -48,7 +52,8 @@ export const ConfirmSection = ({ onCancel }) => {
             '--hc': styles.buttons.primary.hover,
             '--mx': '16px',
           }}
-          onClick={() => handleConfirmation()}
+          onClick={handleConfirmation}
+          disabled={loading}
         >
           Confirm
         </Button>

@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { useEffect, useState } from 'preact/hooks'
 import {
   AccentBox,
   BigCalendar,
@@ -9,11 +10,36 @@ import {
   H3,
   Span,
   OutlineButton,
+  formatTime,
 } from '@canvas/common'
 import { useAppContext } from '../../hooks'
 
 export const Confirmation = () => {
-  const { colors, setScreen, timeSlot, treatment, date } = useAppContext()
+  const {
+    colors,
+    timeSlot,
+    treatment,
+    returnURL,
+    handleCancelAppointment,
+    handleScheduledAppointment,
+  } = useAppContext()
+  const [appointmentId, setAppointmentId] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    handleScheduledAppointment(setLoading, setAppointmentId)
+  }, [handleScheduledAppointment])
+
+  const handleCancel = () => {
+    if (appointmentId) {
+      handleCancelAppointment(setLoading, appointmentId)
+    }
+  }
+
+  const appointmentDate = new Date(timeSlot.start)
+  const dateString = `${formatDate(appointmentDate)} at ${formatTime(
+    appointmentDate
+  )}`
 
   return (
     <Box>
@@ -23,24 +49,22 @@ export const Confirmation = () => {
         <Box style={{ '--mb': '16px' }}>
           <BigCalendar />
         </Box>
-        <H3 style={{ '--mb': '8px' }}>
-          {`${formatDate(date)} at ${timeSlot.start}`}
-        </H3>
+        <H3 style={{ '--mb': '8px' }}>{dateString}</H3>
         <Span style={{ '--my': '8px' }}>
-          {`${treatment} with ${timeSlot.provider}`}
+          {`${treatment} with ${timeSlot.provider.name}`}
         </Span>
         <OutlineButton
+          disabled={loading}
           style={{ '--my': '8px' }}
-          onClick={() => setScreen('SELECT')}
+          onClick={() => handleCancel()}
         >
           Cancel
         </OutlineButton>
       </AccentBox>
 
-      {/* This will eventually be some callback function or redirect */}
       <Button
         style={{ '--bg': colors.primary, '--mt': '32px' }}
-        onClick={() => setScreen('SELECT')}
+        onClick={() => (window.location = returnURL)}
       >
         Finish
       </Button>

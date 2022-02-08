@@ -40,7 +40,7 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 3000,
+    port: 4000,
   },
   resolve: {
     alias: {

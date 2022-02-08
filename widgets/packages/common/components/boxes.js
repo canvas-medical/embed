@@ -4,7 +4,7 @@ import { accentBackgoundColor, margin } from '../utils/styles'
 export const Box = styled.div`
   ${margin}
 
-  align-items: center;
+  align-items: var(--ai, center);
   display: flex;
   flex-direction: var(--fd, column);
   text-align: center;
@@ -31,8 +31,8 @@ export const Legend = styled.legend`
   float: left;
   font-size: 1.125rem;
   font-weight: 700;
-  margin-bottom: 1rem;
   padding: 0;
+  width: fit-content;
 `
 
 export const TzMessage = styled.p`

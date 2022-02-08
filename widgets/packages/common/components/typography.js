@@ -21,3 +21,12 @@ export const Span = styled.span`
   color: var(--color, #000);
   font-size: 1rem;
 `
+
+export const ScreenReaderText = styled.span`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`

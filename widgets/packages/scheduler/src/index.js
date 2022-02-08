@@ -5,14 +5,17 @@ import { App } from './App'
 import { ContextWrapper } from './hooks'
 
 const StyledApp = ({
+  api,
   appointmentTypeCode,
   bailoutURL,
   brandColor,
   duration,
   locationId,
   patientId,
-  providerIds,
+  patientKey,
+  providers,
   reason,
+  returnURL,
   rootId,
 }) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
@@ -23,16 +26,19 @@ const StyledApp = ({
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
       <ContextWrapper
         values={{
-          bailoutURL,
-          shadowRoot,
-          colors,
-          patientId,
-          providerIds,
-          locationId,
+          api,
           appointmentTypeCode,
-          treatment,
-          reason,
+          bailoutURL,
+          colors,
           duration,
+          locationId,
+          patientId,
+          patientKey,
+          providers,
+          reason,
+          returnURL,
+          shadowRoot,
+          treatment,
         }}
       >
         <App brandColor={brandColor} shadowRoot={shadowRoot} />
@@ -42,15 +48,18 @@ const StyledApp = ({
 }
 
 export const init = ({
-  bailoutURL,
-  rootId,
-  patientId,
-  providerIds,
-  locationId,
   appointmentTypeCode,
-  reason,
-  duration,
+  api,
+  bailoutURL,
   brandColor,
+  duration,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+  reason,
+  returnURL,
+  rootId,
 }) => {
   const appRoot = document.querySelector(`#${rootId}`)
   appRoot.attachShadow({
@@ -63,15 +72,18 @@ export const init = ({
 
   render(
     <StyledApp
-      bailoutURL={bailoutURL}
-      rootId={rootId}
-      patientId={patientId}
-      providerIds={providerIds}
-      locationId={locationId}
+      api={api}
       appointmentTypeCode={appointmentTypeCode}
-      reason={reason}
-      duration={duration}
+      bailoutURL={bailoutURL}
       brandColor={brandColor}
+      duration={duration}
+      locationId={locationId}
+      patientId={patientId}
+      patientKey={patientKey}
+      providers={providers}
+      reason={reason}
+      returnURL={returnURL}
+      rootId={rootId}
     />,
     appRoot.shadowRoot
   )
