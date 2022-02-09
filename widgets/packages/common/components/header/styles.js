@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { primaryBackgoundColor, styles } from '../../utils/styles'
+import { backgroundColor, styles } from '../../utils/styles'
 
 /*
  * The "header" can extend past the max-width of the application
@@ -8,7 +8,7 @@ import { primaryBackgoundColor, styles } from '../../utils/styles'
  * the application width
  */
 export const StyledHeader = styled.div`
-  ${primaryBackgoundColor}
+  ${backgroundColor}
 
   display: flex;
   height: 3.75rem;
@@ -26,14 +26,14 @@ export const HeadingWrapper = styled.div`
   display: flex;
   height: 3.75rem;
   left: 0;
-  position: absolute;
+  position: relative;
   top: 0;
   width: 100%;
   z-index: 1;
 `
 
 export const Heading = styled.h1`
-  color: #fff;
+  color: var(--c);
   font-size: 1.125rem;
   font-weight: 700;
   margin: auto;

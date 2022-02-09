@@ -9,16 +9,17 @@ import {
 } from './styles'
 
 export const Header = ({ colors, bailoutURL, title }) => (
-  <StyledHeader style={{ '--bg': colors.primary }}>
+  <StyledHeader style={{ '--bg': colors.brand.main }}>
     <ContainedHeader>
-      <IconButtonLink
-        style={{ '--fc': colors.focus, '--hc': colors.hover }}
-        href={bailoutURL}
-      >
-        <ArrowBack />
+      <IconButtonLink href={bailoutURL}>
+        <ArrowBack
+          hoverOn
+          hoverFill={colors.accent.main}
+          fill={colors.brand.font}
+        />
       </IconButtonLink>
       <HeadingWrapper>
-        <Heading>{title}</Heading>
+        <Heading style={{ '--c': colors.brand.font }}>{title}</Heading>
       </HeadingWrapper>
     </ContainedHeader>
   </StyledHeader>

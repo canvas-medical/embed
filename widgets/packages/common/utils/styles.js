@@ -1,5 +1,24 @@
 import Color from 'color'
 
+const generateHover = color => {
+  return Color(color).darken(0.2)
+}
+
+const generateBackground = color => {
+  return Color(color).fade(0.9)
+}
+
+const determineFontColor = color => {
+  return Color(color).isLight() ? '#000000' : '#FFFFFF'
+}
+
+const COLOR_DEFAULTS = {
+  PRIMARY: '#29933C',
+  SECONDARY: '#E0E1E2',
+  DESTRUCTIVE: '#D02121',
+  BRAND: '#2185d0',
+}
+
 export const styles = {
   minWidth: '345px', // 375 - 16px
   maxWidth: '650px', // 768 - 59px
@@ -21,42 +40,54 @@ export const styles = {
       hover: '#470B0B',
     },
   },
+  positive: {
+    main: COLOR_DEFAULTS.PRIMARY,
+    hover: generateHover(COLOR_DEFAULTS.PRIMARY),
+  },
+  secondary: {
+    main: COLOR_DEFAULTS.SECONDARY,
+    hover: generateHover(COLOR_DEFAULTS.SECONDARY),
+  },
+  destructive: {
+    main: COLOR_DEFAULTS.DESTRUCTIVE,
+    hover: generateHover(COLOR_DEFAULTS.DESTRUCTIVE),
+  },
   font: {
     white: '#FFFFFF',
     grey25: '#C0C0C0',
     grey50: '#7F7F7F',
     grey75: '#262626',
+    black: '#000000',
   },
 }
 
-export const generateColors = brandColor => {
-  if (brandColor)
-    return {
-      primary: brandColor,
-      accent: Color(brandColor).lighten(0.99),
-      focus: Color(brandColor).darken(0.66),
-      hover: Color(brandColor).darken(0.66),
-    }
+export const generateColors = (brandColor, accentColor) => {
   return {
-    primary: null,
-    accent: null,
-    focus: null,
-    hover: null,
+    brand: {
+      main: brandColor || COLOR_DEFAULTS.BRAND,
+      hover: brandColor
+        ? generateHover(brandColor)
+        : generateHover(COLOR_DEFAULTS.BRAND),
+      font: brandColor ? determineFontColor(brandColor) : styles.font.white,
+    },
+    accent: {
+      main: accentColor || COLOR_DEFAULTS.BRAND,
+      hover: accentColor
+        ? generateHover(accentColor)
+        : generateHover(COLOR_DEFAULTS.BRAND),
+      font: accentColor ? determineFontColor(accentColor) : styles.font.white,
+    },
+    background: accentColor
+      ? generateBackground(accentColor)
+      : generateBackground(COLOR_DEFAULTS.BRAND),
   }
 }
 
-export const primaryBackgoundColor = `
-  background-color: var(--bg, ${styles.default.primary});
+export const backgroundColor = `
+  background-color: var(--bg);
 `
 
-export const accentBackgoundColor = `
-  background-color: var(--bg, ${styles.default.accent});
-`
-
-export const hoverAndFocusBackgroundColor = `
-  &:focus {
-    background-color: var(--fc, ${styles.default.focus});
-  }
+export const hoverColor = `
   &:hover {
     background-color: var(--hc, ${styles.default.hover});
   }

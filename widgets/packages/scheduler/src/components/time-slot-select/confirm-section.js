@@ -5,7 +5,6 @@ import {
   H2,
   IconBox,
   Button,
-  OutlineButton,
   PopoverIcon,
   PopoverMessages,
   PopoverMessage,
@@ -47,17 +46,28 @@ export const ConfirmSection = ({ onCancel }) => {
       <PopoverButtons>
         <Button
           style={{
-            '--bg': styles.buttons.primary.background,
-            '--fc': styles.buttons.primary.focus,
-            '--hc': styles.buttons.primary.hover,
+            '--bg': styles.positive.main,
+            '--hc': styles.positive.hover,
             '--mx': '16px',
+            '--fw': '700',
           }}
           onClick={handleConfirmation}
           disabled={loading}
         >
           Confirm
         </Button>
-        <OutlineButton onClick={onCancel}>Cancel</OutlineButton>
+        <Button
+          style={{
+            '--bg': styles.secondary.main,
+            '--hc': styles.secondary.hover,
+            '--c': styles.font.grey75,
+            '--mx': '16px',
+            '--fw': '700',
+          }}
+          onClick={onCancel}
+        >
+          Cancel
+        </Button>
       </PopoverButtons>
     </Box>
   )

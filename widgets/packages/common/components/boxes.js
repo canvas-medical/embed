@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { accentBackgoundColor, margin } from '../utils/styles'
+import { backgroundColor, margin } from '../utils/styles'
 
 export const Box = styled.div`
   ${margin}
@@ -12,14 +12,14 @@ export const Box = styled.div`
 `
 
 export const AccentBox = styled(Box)`
-  ${accentBackgoundColor}
+  ${backgroundColor}
 
   border-radius: 5px;
   padding: 1rem;
 `
 
 export const Fieldset = styled.fieldset`
-  ${accentBackgoundColor}
+  ${backgroundColor}
 
   border: none;
   border-radius: 5px;

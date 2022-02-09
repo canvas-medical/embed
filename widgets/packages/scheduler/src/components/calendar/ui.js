@@ -57,7 +57,7 @@ export const Ui = ({
             <CalendarHeading
               id="calendar_label"
               style={{
-                '--c': colors.primary,
+                '--c': colors.accent.main,
               }}
             >
               Calendar
@@ -66,10 +66,17 @@ export const Ui = ({
           <IconButton
             aria-label="Close Calendar"
             onClick={close}
-            style={{ '--mt': 0, '--mb': 0, '--mr': '8px', '--ml': 'auto' }}
+            style={{
+              '--mt': 0,
+              '--mb': 0,
+              '--mr': '8px',
+              '--ml': 'auto',
+              '--mc': colors.accent.main,
+              '--hc': colors.accent.hover,
+            }}
             tabIndex={-1}
           >
-            <Close fill={colors.primary || styles.default.primary} />
+            <Close />
           </IconButton>
         </Box>
 
@@ -96,18 +103,26 @@ export const Ui = ({
 
           <IconButton
             disabled={backDisabled}
-            style={{ '--ml': 'auto', '--mr': '8px' }}
+            style={{
+              '--ml': 'auto',
+              '--mr': '8px',
+              '--mc': colors.accent.main,
+              '--hc': colors.accent.hover,
+            }}
             onClick={navigateBack}
             aria-label="Previous Month"
           >
-            <ArrowBack
-              fill={backDisabled ? styles.font.grey25 : styles.font.grey50}
-            />
+            <ArrowBack />
           </IconButton>
 
           <IconButton
             disabled={forwardDisabled}
-            style={{ '--ml': '4px', '--mr': '24px' }}
+            style={{
+              '--ml': '4px',
+              '--mr': '24px',
+              '--mc': colors.accent.main,
+              '--hc': colors.accent.hover,
+            }}
             onClick={navigateForward}
             aria-label="Next Month"
           >
@@ -132,7 +147,10 @@ export const Ui = ({
               <CalendarListItem key={day.date}>
                 <CalendarDateButton
                   aria-label={day.dateString}
-                  style={{ '--bg': colors.primary }}
+                  style={{
+                    '--bg': colors.accent.main,
+                    '--fc': colors.accent.font,
+                  }}
                   disabled={day.disabled}
                   selected={day.date === date.getDate()}
                   onClick={() => handleDateChange(day.date)}

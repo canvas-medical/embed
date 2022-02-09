@@ -9,6 +9,7 @@ const StyledApp = ({
   appointmentTypeCode,
   bailoutURL,
   brandColor,
+  accentColor,
   duration,
   locationId,
   patientId,
@@ -19,8 +20,10 @@ const StyledApp = ({
   rootId,
 }) => {
   const shadowRoot = document.querySelector(`#${rootId}`).shadowRoot
-  const colors = generateColors(brandColor)
+  const colors = generateColors(brandColor, accentColor)
   const treatment = getAppointmentType(appointmentTypeCode).type
+
+  console.log(colors)
 
   return (
     <StyleSheetManager target={document.querySelector(`#${rootId}`).shadowRoot}>
@@ -41,7 +44,7 @@ const StyledApp = ({
           treatment,
         }}
       >
-        <App brandColor={brandColor} shadowRoot={shadowRoot} />
+        <App />
       </ContextWrapper>
     </StyleSheetManager>
   )
@@ -52,6 +55,7 @@ export const init = ({
   api,
   bailoutURL,
   brandColor,
+  accentColor,
   duration,
   locationId,
   patientId,
@@ -76,6 +80,7 @@ export const init = ({
       appointmentTypeCode={appointmentTypeCode}
       bailoutURL={bailoutURL}
       brandColor={brandColor}
+      accentColor={accentColor}
       duration={duration}
       locationId={locationId}
       patientId={patientId}

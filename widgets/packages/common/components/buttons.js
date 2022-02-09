@@ -1,22 +1,22 @@
 import styled from 'styled-components'
-import {
-  primaryBackgoundColor,
-  margin,
-  hoverAndFocusBackgroundColor,
-} from '../utils'
+import { backgroundColor, hoverColor, margin } from '../utils'
 
 export const Button = styled.button`
-  ${primaryBackgoundColor}
+  ${backgroundColor}
+  ${hoverColor}
   ${margin}
-  ${hoverAndFocusBackgroundColor}
 
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: var(--c, #fff);
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: var(--fw);
   height: 50px;
   width: 200px;
+
+  @media (max-width: 475px) {
+    width: 138px;
+  }
 `
 
 export const OutlineButton = styled(Button)`
@@ -24,7 +24,6 @@ export const OutlineButton = styled(Button)`
   border: 1px solid #595959;
   color: #595959;
 
-  &:focus,
   &:hover {
     background-color: #a8a8a8;
   }

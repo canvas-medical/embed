@@ -6,7 +6,6 @@ import {
   Calendar as CalendarIcon,
   isToday,
   formatDate,
-  styles,
   TzMessage,
   userTimezone,
 } from '@canvas/common'
@@ -53,30 +52,33 @@ export const DateSelect = () => {
   return (
     <Fragment>
       <Box style={{ '--mt': '16px' }}>
-        <DateViewContainer style={{ '--bg': colors.accent }}>
+        <DateViewContainer style={{ '--bg': colors.background }}>
           <DateScrollButton
+            style={{ '--mc': colors.accent.main, '--hc': colors.accent.hover }}
             disabled={backDisabled}
             onClick={() => navigateBack()}
           >
             <IconContainer>
-              <ArrowBack
-                fill={
-                  backDisabled ? null : colors.primary || styles.default.primary
-                }
-              />
+              <ArrowBack />
             </IconContainer>
           </DateScrollButton>
 
-          <DateSelectButton onClick={() => setCalendarOpen(true)}>
+          <DateSelectButton
+            style={{ '--mc': colors.accent.main, '--hc': colors.accent.hover }}
+            onClick={() => setCalendarOpen(true)}
+          >
             <IconContainer>
               <CalendarIcon />
             </IconContainer>
             <DateHeading>{formatDate(date)}</DateHeading>
           </DateSelectButton>
 
-          <DateScrollButton onClick={() => navigateForward()}>
+          <DateScrollButton
+            style={{ '--mc': colors.accent.main, '--hc': colors.accent.hover }}
+            onClick={() => navigateForward()}
+          >
             <IconContainer>
-              <ArrowForward fill={colors.primary || styles.default.primary} />
+              <ArrowForward />
             </IconContainer>
           </DateScrollButton>
         </DateViewContainer>

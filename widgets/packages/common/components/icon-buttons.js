@@ -1,10 +1,7 @@
 import styled from 'styled-components'
-import { hoverAndFocusBackgroundColor, margin } from '../utils/styles'
+import { margin, styles } from '../utils/styles'
 
-// TODO - determine hover / focus styles for links
 export const IconButtonLink = styled.a`
-  ${hoverAndFocusBackgroundColor}
-
   align-items: center;
   display: flex;
   padding: 0.5rem;
@@ -13,7 +10,6 @@ export const IconButtonLink = styled.a`
 `
 
 export const IconButton = styled.button`
-  ${hoverAndFocusBackgroundColor}
   ${margin}
 
   align-items: center;
@@ -23,4 +19,20 @@ export const IconButton = styled.button`
   padding: 0.5rem;
   position: relative;
   z-index: 2;
+
+  path {
+    stroke: var(--mc);
+  }
+
+  &:hover {
+    path {
+      stroke: var(--hc);
+    }
+  }
+
+  &:disabled {
+    path {
+      stroke: ${styles.font.grey25};
+    }
+  }
 `

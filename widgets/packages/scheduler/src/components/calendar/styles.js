@@ -42,14 +42,13 @@ export const CalendarDateButton = styled.button`
     p.selected ? `var(--bg, ${styles.default.primary})` : 'unset'};
   border: none;
   border-radius: 50%;
-  color: ${p =>
-    p.disabled
-      ? styles.font.grey25
-      : p.selected
-      ? styles.font.white
-      : styles.font.grey75};
+  color: ${p => (p.selected ? `var(--fc)` : styles.font.grey75)};
   height: 41px;
   width: 41px;
+
+  &:disabled {
+    color: ${styles.font.grey25};
+  }
 `
 
 export const MonthSelect = styled.select`
@@ -58,6 +57,11 @@ export const MonthSelect = styled.select`
   font-size: 1rem;
   font-weight: 700;
   margin-left: 1rem;
+
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+  }
 `
 
 export const CalendarHeading = styled.h2`

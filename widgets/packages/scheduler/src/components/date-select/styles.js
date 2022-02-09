@@ -1,12 +1,8 @@
-import {
-  accentBackgoundColor,
-  hoverAndFocusBackgroundColor,
-  styles,
-} from '@canvas/common'
+import { backgroundColor, styles } from '@canvas/common'
 import styled from 'styled-components'
 
 export const DateViewContainer = styled.div`
-  ${accentBackgoundColor}
+  ${backgroundColor}
   border-radius: 1.25rem;
   display: flex;
   height: 2.5rem;
@@ -16,8 +12,6 @@ export const DateViewContainer = styled.div`
 `
 
 export const DateSelectButton = styled.button`
-  ${hoverAndFocusBackgroundColor}
-
   align-items: center;
   background-color: unset;
   border: unset;
@@ -25,21 +19,18 @@ export const DateSelectButton = styled.button`
   flex-grow: 1;
   justify-content: center;
 
-  &:focus,
   &:hover {
     h2 {
-      color: #fff;
+      color: var(--hc);
     }
 
     path {
-      fill: #fff;
+      fill: var(--hc);
     }
   }
 `
 
 export const DateScrollButton = styled.button`
-  ${hoverAndFocusBackgroundColor}
-
   align-items: center;
   background-color: unset;
   border: unset;
@@ -47,6 +38,10 @@ export const DateScrollButton = styled.button`
   justify-content: center;
   padding: 0;
   width: 2.5rem;
+
+  path {
+    stroke: var(--mc);
+  }
 
   &:first-child {
     border-radius: 100% 0 0 100%;
@@ -56,15 +51,17 @@ export const DateScrollButton = styled.button`
     border-radius: 0 100% 100% 0;
   }
 
-  &:focus,
   &:hover {
     path {
-      stroke: #fff;
+      stroke: var(--hc);
     }
   }
 
   &:disabled {
     background-color: unset;
+    path {
+      stroke: ${styles.font.grey25};
+    }
   }
 `
 
