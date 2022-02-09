@@ -19,7 +19,8 @@ export const Span = styled.span`
   ${margin}
 
   color: var(--color, #000);
-  font-size: 1rem;
+  font-size: var(--fs, 1rem);
+  max-width: var(--mw);
 `
 
 export const ScreenReaderText = styled.span`
