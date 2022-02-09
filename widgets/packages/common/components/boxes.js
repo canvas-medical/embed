@@ -7,6 +7,7 @@ export const Box = styled.div`
   align-items: var(--ai, center);
   display: flex;
   flex-direction: var(--fd, column);
+  max-width: var(--mw);
   text-align: center;
   width: var(--width, 100%);
 `

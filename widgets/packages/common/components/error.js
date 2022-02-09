@@ -7,16 +7,16 @@ export const Error = ({ errorMessage }) => {
   return (
     <Box style={{ '--mt': '5rem' }}>
       <Warning />
-      <Span
-        style={{
-          '--color': '#D02121',
-          '--mt': '1rem',
-          '--mw': '180px',
-          '--fs': '0.875rem',
-        }}
-      >
-        {errorMessage}
-      </Span>
+      <Box style={{ '--mt': '1rem', '--mw': '180px' }}>
+        <Span
+          style={{
+            '--color': '#D02121',
+            '--fs': '0.875rem',
+          }}
+        >
+          {errorMessage}
+        </Span>
+      </Box>
     </Box>
   )
 }
