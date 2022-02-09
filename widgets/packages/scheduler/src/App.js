@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { AppContainer, Body, Header } from '@canvas/common'
+import { AppContainer, Body, Error, Header } from '@canvas/common'
 import { DateSelect, TimeSlotSelect, Confirmation } from './components'
 import { useAppContext } from './hooks'
 
@@ -8,8 +8,6 @@ export const App = () => {
 
   return (
     <AppContainer>
-      {/*TODO: Add an actual error state*/}
-      {error && <div>{error}</div>}
       <Header
         colors={colors}
         bailoutURL={bailoutURL}
@@ -18,12 +16,10 @@ export const App = () => {
       {screen === 'SELECT' ? (
         <Body>
           <DateSelect />
-          <TimeSlotSelect />
+          {error ? <Error errorMessage={error} /> : <TimeSlotSelect />}
         </Body>
       ) : (
-        <Body>
-          <Confirmation />
-        </Body>
+        <Body>{error ? <Error errorMessage={error} /> : <Confirmation />}</Body>
       )}
     </AppContainer>
   )
