@@ -46,7 +46,7 @@ class FhirClient
   # @param [String] body
   # @return [OAuth2::Response]
   def post(path, base_url = "", body = "")
-    @token.post(base_url + path, body: body, headers: { "Accept": "application/json" })
+    @token.post(base_url + path, body: body, headers: { "Accept": "application/json", "Content-Type": "application/json" })
   end
 
   # Creates a PUT request to the FHIR API and returns the response. The base_url
@@ -57,6 +57,6 @@ class FhirClient
   # @param [String] body
   # @return [OAuth2::Response]
   def put(path, base_url = "", body = "")
-    @token.put(base_url + path, body: body, headers: { "Accept": "application/json" })
+    @token.put(base_url + path, body: body, headers: { "Accept": "application/json", "Content-Type": "application/json" })
   end
 end
