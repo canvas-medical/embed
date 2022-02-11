@@ -91,9 +91,9 @@ export const ContextWrapper = ({ children, values }) => {
   )
 
   const handleCancelAppointment = useCallback(
-    (setLoading, appointmentId) => {
+    (setLoading, appointmentId, onComplete) => {
       putAppointment(
-        values.returnURL,
+        onComplete,
         setError,
         setLoading,
         values.appointmentTypeCode,

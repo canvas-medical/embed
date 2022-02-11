@@ -13,7 +13,7 @@
   <body>
     <div id="embed-root"></div>
     <script
-      src="https://d1avuomfq0werr.cloudfront.net/scheduler.js"
+      src="https://d2nowqpv63va0r.cloudfront.net/appointments.js"
       type="text/javascript"
     ></script>
     <script type="text/javascript">
@@ -39,17 +39,13 @@
         providers.push({ name: provider4Name, id: provider4Id })
       }
 
-      Scheduler.init({
+      Appointments.init({
         api: params.get("api"),
-        appointmentTypeCode: params.get("appointmentTypeCode"),
         bailoutURL: params.get("bailoutURL"),
-        duration: params.get("duration"),
         locationId: params.get("locationId"),
         patientId: params.get("patientId"),
         patientKey: params.get("patientKey"),
         providers,
-        reason: params.get("reason"),
-        returnURL: params.get("returnURL"),
         rootId: params.get("rootId"),
       })
     </script>

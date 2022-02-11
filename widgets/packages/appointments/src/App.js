@@ -2,7 +2,16 @@ import { h } from 'preact'
 import { AppContainer, Header } from '@canvas/common'
 import { AppointmentsView } from './components'
 
-export const App = ({ bailoutURL, colors, shadowRoot }) => {
+export const App = ({
+  api,
+  bailoutURL,
+  colors,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+  shadowRoot,
+}) => {
   return (
     <AppContainer>
       <Header
@@ -10,7 +19,15 @@ export const App = ({ bailoutURL, colors, shadowRoot }) => {
         bailoutURL={bailoutURL}
         title={'Your Appointments'}
       />
-      <AppointmentsView colors={colors} shadowRoot={shadowRoot} />
+      <AppointmentsView
+        api={api}
+        locationId={locationId}
+        patientId={patientId}
+        patientKey={patientKey}
+        providers={providers}
+        colors={colors}
+        shadowRoot={shadowRoot}
+      />
     </AppContainer>
   )
 }

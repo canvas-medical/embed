@@ -30,9 +30,13 @@ export const Confirmation = () => {
     handleScheduledAppointment(setLoading, setAppointmentId)
   }, [handleScheduledAppointment])
 
+  const afterCancel = () => {
+    window.location = returnURL
+  }
+
   const handleCancel = () => {
     if (appointmentId) {
-      handleCancelAppointment(setLoading, appointmentId)
+      handleCancelAppointment(setLoading, appointmentId, afterCancel)
     }
   }
 
