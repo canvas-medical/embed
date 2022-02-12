@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-family: Roboto, serif;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
