@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { ArrowBack } from '../../assets'
 import { GeneratedColorsType } from '../../utils'
 import { IconButtonLink } from '../iconography'
-import { Heading } from '../typograhpy'
+import { H1 } from '../typograhpy'
 import { ContainedHeader, HeadingWrapper, StyledHeader } from './styles'
 
 type HeaderPropsType = {
@@ -22,7 +22,7 @@ export const Header = ({ bailoutURL, colors, title }: HeaderPropsType) => (
         <ArrowBack />
       </IconButtonLink>
       <HeadingWrapper>
-        <Heading fc={colors.brand.font}>{title}</Heading>
+        <H1 fc={colors.brand.font}>{title}</H1>
       </HeadingWrapper>
     </ContainedHeader>
   </StyledHeader>

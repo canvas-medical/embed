@@ -1,3 +1,5 @@
+import Color from 'color'
+
 export type GeneratedColorsType = {
   brand: {
     main: string

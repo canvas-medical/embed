@@ -7,11 +7,11 @@ export const determineFontColor = (color: string): string => {
 }
 
 export const generateBackgroundColor = (color: string): string => {
-  return Color(color).fade(0.9).hex()
+  return Color(color).fade(0.9).hsl().toString()
 }
 
 export const generateHoverColor = (color: string): string => {
-  return Color(color).darken(0.2).hex()
+  return Color(color).darken(0.2).hsl().toString()
 }
 
 export const generateColors = (
