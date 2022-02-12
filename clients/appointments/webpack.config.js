@@ -39,7 +39,7 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 4000,
+    port: 4010,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.html'],

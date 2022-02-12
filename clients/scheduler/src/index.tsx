@@ -3,17 +3,17 @@ import { StyleSheetManager } from 'styled-components'
 import { css, generateColors, Header } from '@canvas/embed-common'
 import { ContextWrapper } from './hooks'
 
-type InitialProps = {
+type InitialPropsType = {
   bailoutURL: string
   brandColor: string
   accentColor: string
 }
 
-type InitializerProps = {
+type InitializerPropsType = {
   rootId: string
 }
 
-type SchedulerProps = {
+type SchedulerPropsType = {
   shadowRoot: ShadowRoot
 }
 
@@ -22,7 +22,7 @@ export const Scheduler = ({
   brandColor,
   accentColor,
   shadowRoot,
-}: InitialProps & SchedulerProps) => {
+}: InitialPropsType & SchedulerPropsType) => {
   const colors = generateColors(brandColor, accentColor)
 
   return (
@@ -51,7 +51,7 @@ export const init = ({
   brandColor,
   accentColor,
   rootId,
-}: InitialProps & InitializerProps) => {
+}: InitialPropsType & InitializerPropsType) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {

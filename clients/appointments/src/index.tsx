@@ -1,15 +1,48 @@
 import { h, render } from 'preact'
-import { example } from '@canvas/embed-common'
+import { StyleSheetManager } from 'styled-components'
+import { css, generateColors, Header } from '@canvas/embed-common'
 
-type InitialProps = {
+type InitialPropsType = {
+  bailoutURL: string
+  brandColor: string
+  accentColor: string
+}
+
+type InitializerPropsType = {
   rootId: string
 }
 
-export const Appointments = () => {
-  return <div>{example}</div>
+type AppointmentPropsType = {
+  shadowRoot: ShadowRoot
 }
 
-export const init = ({ rootId }: InitialProps) => {
+export const Appointments = ({
+  bailoutURL,
+  brandColor,
+  accentColor,
+  shadowRoot,
+}: InitialPropsType & AppointmentPropsType) => {
+  const colors = generateColors(brandColor, accentColor)
+
+  return (
+    // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
+    // @ts-ignore
+    <StyleSheetManager target={shadowRoot}>
+      <Header
+        bailoutURL={bailoutURL}
+        colors={colors}
+        title="Your Appointments"
+      />
+    </StyleSheetManager>
+  )
+}
+
+export const init = ({
+  bailoutURL,
+  brandColor,
+  accentColor,
+  rootId,
+}: InitialPropsType & InitializerPropsType) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {
@@ -26,5 +59,17 @@ export const init = ({ rootId }: InitialProps) => {
     return null
   }
 
-  render(<Appointments />, appRoot.shadowRoot)
+  const styleTag = document.createElement('style')
+  styleTag.innerHTML = css
+  appRoot.shadowRoot.appendChild(styleTag)
+
+  render(
+    <Appointments
+      bailoutURL={bailoutURL}
+      brandColor={brandColor}
+      accentColor={accentColor}
+      shadowRoot={appRoot.shadowRoot}
+    />,
+    appRoot.shadowRoot
+  )
 }
