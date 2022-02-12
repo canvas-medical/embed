@@ -1,10 +1,10 @@
 import { h, createContext, ComponentChildren, PreactContext } from 'preact'
-import { useState, useMemo } from 'preact/hooks'
-import { GeneratedColorsType } from '@canvas/embed-common'
+import { useState, useMemo, useContext } from 'preact/hooks'
+import { generateColors, GeneratedColorsType } from '@canvas/embed-common'
 
 type AppContextType = {
-  bailoutURL: string | null
-  colors: GeneratedColorsType | {}
+  bailoutURL: string
+  colors: GeneratedColorsType
   shadowRoot: ShadowRoot | null
 }
 
@@ -23,8 +23,8 @@ type TimeSlotType = {
 }
 
 export const AppContext = createContext<AppContextType>({
-  bailoutURL: null,
-  colors: {},
+  bailoutURL: '',
+  colors: generateColors(null, null),
   shadowRoot: null,
 })
 
@@ -59,3 +59,5 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   )
 }
+
+export const useAppContext = () => useContext(AppContext)

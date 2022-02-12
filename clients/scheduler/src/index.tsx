@@ -1,47 +1,37 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, generateColors, Header } from '@canvas/embed-common'
+import { css, Error, generateColors } from '@canvas/embed-common'
 import { ContextWrapper } from './hooks'
+import { App } from './App'
+import {
+  hasAllValues,
+  InitializerPropsType,
+  InitialPropsType,
+  SchedulerPropsType,
+} from './utils'
 
-type InitialPropsType = {
-  bailoutURL: string
-  brandColor: string
-  accentColor: string
-}
-
-type InitializerPropsType = {
-  rootId: string
-}
-
-type SchedulerPropsType = {
-  shadowRoot: ShadowRoot
-}
-
-export const Scheduler = ({
-  bailoutURL,
-  brandColor,
-  accentColor,
-  shadowRoot,
-}: InitialPropsType & SchedulerPropsType) => {
+export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
+  const { bailoutURL, brandColor, accentColor, shadowRoot } = props
   const colors = generateColors(brandColor, accentColor)
+  const allValuesProvided = hasAllValues(props)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
     // @ts-ignore
     <StyleSheetManager target={shadowRoot}>
-      <ContextWrapper
-        values={{
-          bailoutURL,
-          colors,
-          shadowRoot,
-        }}
-      >
-        <Header
-          bailoutURL={bailoutURL}
-          colors={colors}
-          title="Schedule an Appointment"
-        />
-      </ContextWrapper>
+      {!allValuesProvided.length ? (
+        <ContextWrapper
+          values={{
+            bailoutURL,
+            colors,
+            shadowRoot,
+          }}
+        >
+          <App />
+        </ContextWrapper>
+      ) : (
+        <Error errorMessage={allValuesProvided} />
+      )}
     </StyleSheetManager>
   )
 }
