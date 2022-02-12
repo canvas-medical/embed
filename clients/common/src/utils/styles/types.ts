@@ -23,7 +23,7 @@ export type HoverColorPropType = {
 }
 
 export type FontColorPropType = {
-  fc: string
+  fc?: string
 }
 
 export type MarginPropsType = {

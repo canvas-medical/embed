@@ -1,3 +1,5 @@
+export * from './boxes'
+export * from './error'
 export * from './header'
 export * from './iconography'
 export * from './typograhpy'

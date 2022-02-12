@@ -11,10 +11,10 @@ export const IconButtonLink = styled.a<
 >`
   align-items: center;
   display: flex;
-  mt: ${p => p.mt || p.my || p.m};
-  mr: ${p => p.mr || p.mx || p.m};
-  mb: ${p => p.mb || p.my || p.m};
-  ml: ${p => p.ml || p.ml || p.m};
+  margin-top: ${p => p.mt || p.my || p.m};
+  margin-right: ${p => p.mr || p.mx || p.m};
+  margin-bottom: ${p => p.mb || p.my || p.m};
+  margin-left: ${p => p.ml || p.ml || p.m};
   padding: 0.5rem;
   position: relative;
   z-index: 2;
