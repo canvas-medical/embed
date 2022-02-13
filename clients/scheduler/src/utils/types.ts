@@ -1,6 +1,11 @@
-import { ProvidersType } from '@canvas/embed-common'
+import {
+  GeneratedColorsType,
+  ProvidersType,
+  TimeSlotType,
+  TreatmentType,
+} from '@canvas/embed-common'
 
-export type InitialPropsType = {
+interface iMainAppProps {
   api: string
   bailoutURL: string
   duration: number
@@ -8,14 +13,36 @@ export type InitialPropsType = {
   patientId: string
   patientKey: string
   providers: ProvidersType[]
+  reason: string
+  returnURL: string
+}
+
+interface iInitializerOnlyProps {
+  appointmentTypeCode: string
   brandColor: string
   accentColor: string
 }
 
-export type InitializerPropsType = {
+export interface iInitializerProps
+  extends iMainAppProps,
+    iInitializerOnlyProps {
   rootId: string
 }
 
-export type SchedulerPropsType = {
-  shadowRoot: ShadowRoot
+export interface iSchedulerProps extends iMainAppProps, iInitializerOnlyProps {
+  shadowRoot: any
+}
+
+export interface iAppContext extends iMainAppProps {
+  colors: GeneratedColorsType
+  treatment: TreatmentType
+  shadowRoot: any
+  date: Date
+  setDate: Function
+  loading: boolean
+  timeSlot: TimeSlotType
+  setTimeSlot: Function
+  resetTimeSlot: Function
+  fetchTimeSlots: Function
+  handleCreateAppointment: Function
 }

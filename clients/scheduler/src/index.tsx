@@ -1,29 +1,33 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, Error, generateColors } from '@canvas/embed-common'
+import {
+  css,
+  Error,
+  generateColors,
+  getAppointmentType,
+} from '@canvas/embed-common'
 import { ContextWrapper } from './hooks'
 import { App } from './App'
-import {
-  hasAllValues,
-  InitializerPropsType,
-  InitialPropsType,
-  SchedulerPropsType,
-} from './utils'
+import { hasAllValues, iInitializerProps, iSchedulerProps } from './utils'
 
-export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
+export const Scheduler = (props: iSchedulerProps) => {
   const {
     api,
+    appointmentTypeCode,
     bailoutURL,
     duration,
     locationId,
     patientId,
     patientKey,
     providers,
+    reason,
+    returnURL,
     brandColor,
     accentColor,
     shadowRoot,
   } = props
   const colors = generateColors(brandColor, accentColor)
+  const treatment = getAppointmentType(appointmentTypeCode)
   const allValuesProvided = hasAllValues(props)
 
   return (
@@ -41,11 +45,25 @@ export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
             patientKey,
             providers,
             colors,
+            reason,
+            returnURL,
             shadowRoot,
+            treatment,
             loading: false,
-            timeSlot: null,
+            timeSlot: {
+              start: '',
+              end: '',
+              provider: {
+                id: '',
+                name: '',
+              },
+            },
             setTimeSlot: () => {},
+            resetTimeSlot: () => {},
+            date: new Date(),
+            setDate: () => {},
             fetchTimeSlots: () => {},
+            handleCreateAppointment: () => {},
           }}
         >
           <App />
@@ -59,16 +77,19 @@ export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
 
 export const init = ({
   api,
+  appointmentTypeCode,
   bailoutURL,
   duration,
   locationId,
   patientId,
   patientKey,
   providers,
+  reason,
+  returnURL,
   rootId,
   brandColor,
   accentColor,
-}: InitialPropsType & InitializerPropsType) => {
+}: iInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {
@@ -92,12 +113,15 @@ export const init = ({
   render(
     <Scheduler
       api={api}
+      appointmentTypeCode={appointmentTypeCode}
       bailoutURL={bailoutURL}
       duration={duration}
       locationId={locationId}
       patientId={patientId}
       patientKey={patientKey}
       providers={providers}
+      reason={reason}
+      returnURL={returnURL}
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
