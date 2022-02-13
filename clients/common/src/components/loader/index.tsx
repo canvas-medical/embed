@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import styled, { keyframes } from 'styled-components'
+import { Backdrop } from '..'
 import { GeneratedColorsType } from '../..'
 import { Box } from '../boxes'
 
@@ -36,7 +37,9 @@ const Spinner = styled.div<SpinnerPropsType>`
 `
 
 export const Loader = ({ colors }: LoaderPropsType) => (
-  <Box mt={'40%'}>
-    <Spinner borderColor={colors.background} bodyColor={colors.accent.main} />
-  </Box>
+  <Backdrop invisible>
+    <Box mt={'240px'}>
+      <Spinner borderColor={colors.background} bodyColor={colors.accent.main} />
+    </Box>
+  </Backdrop>
 )
