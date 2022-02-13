@@ -13,7 +13,24 @@ export const H1 = styled.h1<FontColorPropType>`
   position: relative;
 `
 
+export const Legend = styled.legend`
+  float: left;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 0;
+  width: fit-content;
+`
+
 export const Span = styled.span<FontColorPropType & SpanPropsType>`
   color: ${p => p.fc || colors.font.grey75};
   font-size: ${p => p.fontSize || '1rem'};
+`
+
+export const ScreenReaderText = styled.span`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 `

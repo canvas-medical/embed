@@ -3,7 +3,6 @@ import { BackgroundColorPropType } from '../../utils'
 
 export const StyledHeader = styled.div<BackgroundColorPropType>`
   background-color: ${p => p.bc};
-
   display: flex;
   height: 3.75rem;
   justify-content: center;

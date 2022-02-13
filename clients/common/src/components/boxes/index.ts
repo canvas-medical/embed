@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { MarginPropsType } from '../..'
+import { BackgroundColorPropType, MarginPropsType } from '../..'
 
 type BoxPropsType = {
   alignItems?: string
@@ -7,6 +7,23 @@ type BoxPropsType = {
   maxWidth?: string
   width?: string
 }
+
+export const AppContainer = styled.div`
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  overflow: auto;
+`
+
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  min-width: 345px;
+  max-width: 650px;
+  padding: 0 16px;
+  width: 100%;
+`
 
 export const Box = styled.div<MarginPropsType & BoxPropsType>`
   align-items: ${p => p.alignItems || 'center'};
@@ -19,4 +36,12 @@ export const Box = styled.div<MarginPropsType & BoxPropsType>`
   max-width: ${p => p.maxWidth};
   text-align: center;
   width: ${p => p.width || '100%'};
+`
+
+export const Fieldset = styled.fieldset<BackgroundColorPropType>`
+  background-color: ${p => p.bc};
+  border: none;
+  border-radius: 5px;
+  margin: 0 0 1rem;
+  padding: 1rem;
 `
