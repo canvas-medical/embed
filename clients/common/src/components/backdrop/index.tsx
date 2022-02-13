@@ -5,7 +5,7 @@ import FocusTrap from 'focus-trap-react'
 type BackdropPropsType = {
   open: boolean
   children: ComponentChildren
-  shadowRoot: ShadowRoot | null
+  shadowRoot: any
   zIndex?: number
 }
 

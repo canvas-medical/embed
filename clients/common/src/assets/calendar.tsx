@@ -1,13 +1,18 @@
 import { h } from 'preact'
 
-export const Calendar = () => (
+type CalendarPropsType = {
+  height?: number
+  width?: number
+}
+
+export const Calendar = ({ height, width }: CalendarPropsType) => (
   <svg
     clip-rule="evenodd"
     fill-rule="evenodd"
     stroke-linejoin="round"
     stroke-miterlimit="2"
-    width="20"
-    height="21"
+    width={width || 20}
+    height={height || 21}
     viewBox="0 0 34 36"
     xmlns="http://www.w3.org/2000/svg"
     fill="#000"
