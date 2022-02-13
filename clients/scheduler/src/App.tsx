@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { AppContainer, Body, Header } from '@canvas/embed-common'
 import { useAppContext } from './hooks'
-import { TimeSlotSelect } from './components/time-slot-select'
+import { DateSelect, TimeSlotSelect } from './components'
 
 export const App = () => {
   const { bailoutURL, colors } = useAppContext()
@@ -13,6 +13,7 @@ export const App = () => {
         title="Schedule an Appointment"
       />
       <Body>
+        <DateSelect />
         <TimeSlotSelect />
       </Body>
     </AppContainer>

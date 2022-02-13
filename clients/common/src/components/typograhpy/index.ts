@@ -13,6 +13,12 @@ export const H1 = styled.h1<FontColorPropType>`
   position: relative;
 `
 
+export const H2 = styled.h2<FontColorPropType>`
+  color: ${p => p.fc};
+  font-size: 1.125rem;
+  font-weight: 700;
+`
+
 export const Legend = styled.legend`
   float: left;
   font-size: 1.125rem;
@@ -24,6 +30,7 @@ export const Legend = styled.legend`
 export const Span = styled.span<FontColorPropType & SpanPropsType>`
   color: ${p => p.fc || colors.font.grey75};
   font-size: ${p => p.fontSize || '1rem'};
+  text-align: center;
 `
 
 export const ScreenReaderText = styled.span`

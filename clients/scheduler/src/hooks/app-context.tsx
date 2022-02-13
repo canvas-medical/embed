@@ -17,6 +17,8 @@ type AppContextType = {
   providers: ProvidersType[]
   colors: GeneratedColorsType
   shadowRoot: ShadowRoot | null
+  date: Date
+  setDate: Function
   loading: boolean
   timeSlot: TimeSlotType | null
   setTimeSlot: Function
@@ -47,6 +49,8 @@ export const AppContext = createContext<AppContextType>({
   providers: [],
   colors: generateColors(null, null),
   shadowRoot: null,
+  date: new Date(),
+  setDate: () => {},
   loading: false,
   timeSlot: null,
   setTimeSlot: () => {},

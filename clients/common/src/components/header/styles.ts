@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BackgroundColorPropType } from '../../utils'
+import { BackgroundColorPropType, maxWidth, minWidth } from '../../utils'
 
 export const StyledHeader = styled.div<BackgroundColorPropType>`
   background-color: ${p => p.bc};
@@ -10,8 +10,8 @@ export const StyledHeader = styled.div<BackgroundColorPropType>`
 `
 export const ContainedHeader = styled.div`
   display: flex;
-  min-width: 345px;
-  max-width: 650px;
+  min-width: ${minWidth};
+  max-width: ${maxWidth};
   width: 100%;
 `
 

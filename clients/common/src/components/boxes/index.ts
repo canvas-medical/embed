@@ -1,5 +1,10 @@
 import styled from 'styled-components'
-import { BackgroundColorPropType, MarginPropsType } from '../..'
+import {
+  BackgroundColorPropType,
+  MarginPropsType,
+  maxWidth,
+  minWidth,
+} from '../../utils'
 
 type BoxPropsType = {
   alignItems?: string
@@ -19,8 +24,8 @@ export const Body = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  min-width: 345px;
-  max-width: 650px;
+  min-width: ${minWidth};
+  max-width: ${maxWidth};
   padding: 0 16px;
   width: 100%;
 `
