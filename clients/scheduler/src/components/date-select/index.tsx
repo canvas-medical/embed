@@ -4,24 +4,25 @@ import {
   ArrowBack,
   ArrowForward,
   Box,
-  Calendar,
+  Calendar as CalendarIcon,
   formatDate,
   H2,
   Span,
 } from '@canvas/embed-common'
 import { useAppContext } from '../../hooks'
 import {
-  isToday,
+  isTodayOrBefore,
   scrollDateBack,
   scrollDateForward,
   userTimezone,
 } from '../../utils'
 import { DateViewContainer, DateScrollButton, DateSelectButton } from './styles'
+import { Calendar } from './calendar'
 
 export const DateSelect = () => {
   const { colors, date, setDate } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
-  const backDisabled = isToday(date)
+  const backDisabled = isTodayOrBefore(date)
 
   useEffect(() => {
     const handleEsc = (event: any) => {
@@ -53,7 +54,7 @@ export const DateSelect = () => {
             hc={colors.accent.hover}
             onClick={() => setCalendarOpen(true)}
           >
-            <Calendar />
+            <CalendarIcon />
             <Box ml="10px" maxWidth="fit-content">
               <H2>{formatDate(date)}</H2>
             </Box>
@@ -72,6 +73,7 @@ export const DateSelect = () => {
           <Span fontSize="0.875rem">{`Appointment times shown in ${userTimezone}`}</Span>
         </Box>
       </Box>
+      <Calendar open={calendarOpen} close={() => setCalendarOpen(false)} />
     </Fragment>
   )
 }

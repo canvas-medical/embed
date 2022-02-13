@@ -15,7 +15,7 @@ type SelectTimeSlotType = {
 }
 
 export const Ui = ({ timeSlots }: UiPropsType) => {
-  const { colors, setTimeSlot, loading } = useAppContext()
+  const { colors, setTimeSlot, loading, shadowRoot } = useAppContext()
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   const selectTimeSlot = ({ start, end, provider }: SelectTimeSlotType) => {
