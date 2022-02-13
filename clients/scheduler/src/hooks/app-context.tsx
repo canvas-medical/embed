@@ -1,11 +1,26 @@
-import { h, createContext, ComponentChildren, PreactContext } from 'preact'
-import { useState, useMemo, useContext } from 'preact/hooks'
-import { generateColors, GeneratedColorsType } from '@canvas/embed-common'
+import { h, createContext, ComponentChildren } from 'preact'
+import { useState, useMemo, useContext, useCallback } from 'preact/hooks'
+import {
+  generateColors,
+  GeneratedColorsType,
+  getTimeSlots,
+  ProvidersType,
+} from '@canvas/embed-common'
 
 type AppContextType = {
+  api: string
   bailoutURL: string
+  duration: number
+  locationId: string
+  patientId: string
+  patientKey: string
+  providers: ProvidersType[]
   colors: GeneratedColorsType
   shadowRoot: ShadowRoot | null
+  loading: boolean
+  timeSlot: TimeSlotType | null
+  setTimeSlot: Function
+  fetchTimeSlots: Function
 }
 
 type ContextWrapperProps = {
@@ -23,9 +38,19 @@ type TimeSlotType = {
 }
 
 export const AppContext = createContext<AppContextType>({
+  api: '',
   bailoutURL: '',
+  duration: 20,
+  locationId: '',
+  patientId: '',
+  patientKey: '',
+  providers: [],
   colors: generateColors(null, null),
   shadowRoot: null,
+  loading: false,
+  timeSlot: null,
+  setTimeSlot: () => {},
+  fetchTimeSlots: () => {},
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
@@ -38,6 +63,24 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     end: null,
     provider: null,
   })
+
+  const fetchTimeSlots = useCallback(
+    (setTimeSlots: Function) => {
+      getTimeSlots(
+        setLoading,
+        setError,
+        values.providers,
+        values.api,
+        values.locationId,
+        values.patientId,
+        values.patientKey,
+        date,
+        values.duration,
+        setTimeSlots
+      )
+    },
+    [date, values]
+  )
 
   const contextValue = useMemo(() => {
     return {
@@ -52,6 +95,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       setError,
       timeSlot,
       setTimeSlot,
+      fetchTimeSlots,
     }
   }, [screen, date, loading, error, timeSlot])
 

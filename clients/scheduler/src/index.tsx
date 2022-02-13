@@ -11,7 +11,18 @@ import {
 } from './utils'
 
 export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
-  const { bailoutURL, brandColor, accentColor, shadowRoot } = props
+  const {
+    api,
+    bailoutURL,
+    duration,
+    locationId,
+    patientId,
+    patientKey,
+    providers,
+    brandColor,
+    accentColor,
+    shadowRoot,
+  } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
 
@@ -22,9 +33,19 @@ export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
       {!allValuesProvided.length ? (
         <ContextWrapper
           values={{
+            api,
             bailoutURL,
+            duration,
+            locationId,
+            patientId,
+            patientKey,
+            providers,
             colors,
             shadowRoot,
+            loading: false,
+            timeSlot: null,
+            setTimeSlot: () => {},
+            fetchTimeSlots: () => {},
           }}
         >
           <App />
@@ -37,10 +58,16 @@ export const Scheduler = (props: InitialPropsType & SchedulerPropsType) => {
 }
 
 export const init = ({
+  api,
   bailoutURL,
+  duration,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+  rootId,
   brandColor,
   accentColor,
-  rootId,
 }: InitialPropsType & InitializerPropsType) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
@@ -64,7 +91,13 @@ export const init = ({
 
   render(
     <Scheduler
+      api={api}
       bailoutURL={bailoutURL}
+      duration={duration}
+      locationId={locationId}
+      patientId={patientId}
+      patientKey={patientKey}
+      providers={providers}
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
