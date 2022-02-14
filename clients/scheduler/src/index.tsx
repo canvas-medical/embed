@@ -63,6 +63,7 @@ export const Scheduler = (props: iSchedulerProps) => {
             resetTimeSlot: () => {},
             date: new Date(),
             setDate: () => {},
+            error: '',
             fetchTimeSlots: () => {},
             fetchScheduledAppointment: () => {},
             createAppointment: () => {},
@@ -72,7 +73,7 @@ export const Scheduler = (props: iSchedulerProps) => {
           <App />
         </ContextWrapper>
       ) : (
-        <Error errorMessage={allValuesProvided} />
+        <Error errorMessages={allValuesProvided} />
       )}
     </StyleSheetManager>
   )

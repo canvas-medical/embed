@@ -33,6 +33,7 @@ export const AppContext = createContext<iAppContext>({
   shadowRoot: null,
   date: new Date(),
   setDate: () => {},
+  error: '',
   loading: false,
   screen: 'SELECT',
   timeSlot: {
@@ -55,7 +56,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [screen, setScreen] = useState<string>('SELECT')
   const [date, setDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | string[]>('')
   const [timeSlot, setTimeSlot] = useState<TimeSlotType>({
     start: '',
     end: '',
