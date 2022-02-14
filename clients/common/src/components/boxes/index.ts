@@ -50,3 +50,9 @@ export const Fieldset = styled.fieldset<BackgroundColorPropType>`
   margin: 0 0 1rem;
   padding: 1rem;
 `
+
+export const AccentBox = styled(Box)<BackgroundColorPropType>`
+  background-color: ${p => p.bc};
+  border-radius: 5px;
+  padding: 1rem;
+`

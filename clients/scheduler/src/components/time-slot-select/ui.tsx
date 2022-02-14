@@ -1,8 +1,14 @@
 import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
-import { Loader, ParsedSlotsType, ProvidersType } from '@canvas/embed-common'
+import {
+  Loader,
+  ParsedSlotsType,
+  Popover,
+  ProvidersType,
+} from '@canvas/embed-common'
 import { useAppContext } from '../../hooks'
 import { TimeSlots } from './time-slots'
+import { ConfirmAppointment } from './confirm-appointment'
 
 type UiPropsType = {
   timeSlots: ParsedSlotsType[]
@@ -15,7 +21,8 @@ type SelectTimeSlotType = {
 }
 
 export const Ui = ({ timeSlots }: UiPropsType) => {
-  const { colors, setTimeSlot, loading, shadowRoot } = useAppContext()
+  const { colors, setTimeSlot, loading, shadowRoot, resetTimeSlot } =
+    useAppContext()
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   const selectTimeSlot = ({ start, end, provider }: SelectTimeSlotType) => {
@@ -25,6 +32,11 @@ export const Ui = ({ timeSlots }: UiPropsType) => {
       provider,
     })
     setPopoverOpen(true)
+  }
+
+  const cancelConfirmation = () => {
+    setPopoverOpen(false)
+    resetTimeSlot()
   }
 
   if (loading) {
@@ -43,6 +55,13 @@ export const Ui = ({ timeSlots }: UiPropsType) => {
           />
         )
       })}
+      <Popover
+        shadowRoot={shadowRoot}
+        open={popoverOpen}
+        titleId={'confirm-slot'}
+      >
+        <ConfirmAppointment onCancel={() => cancelConfirmation()} />
+      </Popover>
     </Fragment>
   )
 }

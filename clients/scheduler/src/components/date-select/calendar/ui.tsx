@@ -1,3 +1,4 @@
+import { h } from 'preact'
 import {
   ArrowBack,
   ArrowForward,
@@ -8,7 +9,6 @@ import {
   IconButton,
   ScreenReaderText,
 } from '@canvas/embed-common'
-import { h } from 'preact'
 import { useAppContext } from '../../../hooks'
 import {
   generateDays,

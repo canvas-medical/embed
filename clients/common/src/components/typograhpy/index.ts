@@ -19,6 +19,11 @@ export const H2 = styled.h2<FontColorPropType>`
   font-weight: 700;
 `
 
+export const H3 = styled.h3`
+  font-size: 1rem;
+  font-weight: 700;
+`
+
 export const Legend = styled.legend`
   float: left;
   font-size: 1.125rem;
