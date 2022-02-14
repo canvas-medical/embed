@@ -20,13 +20,3 @@ export const TimeSlotButton = styled(Button)`
   padding: 0 1.25rem;
   width: stretch;
 `
-
-export const ConfirmAppointmentButtons = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0 0;
-
-  * + * {
-    margin-left: 1rem;
-  }
-`

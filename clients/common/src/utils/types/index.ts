@@ -23,3 +23,12 @@ export type TimeSlotType = {
   end: string
   provider: ProvidersType
 }
+
+export type AppointmentType = {
+  id: string
+  type: string
+  reason: string
+  start: string
+  end: string
+  provider: ProvidersType
+}

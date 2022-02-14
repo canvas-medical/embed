@@ -7,21 +7,17 @@ import {
   Button,
   formatDate,
   formatTime,
+  ButtonGroup,
 } from '@canvas/embed-common'
 import { useAppContext } from '../../hooks'
-import { ConfirmAppointmentButtons } from './styles'
 
 type ConfirmAppointmentType = {
   onCancel: Function
 }
 
 export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
-  const { loading, timeSlot, treatment, date, handleCreateAppointment } =
+  const { loading, timeSlot, treatment, date, createAppointment } =
     useAppContext()
-
-  const handleConfirmation = () => {
-    handleCreateAppointment()
-  }
 
   return (
     <Box>
@@ -44,12 +40,12 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
         </Box>
       </ul>
 
-      <ConfirmAppointmentButtons>
+      <ButtonGroup>
         <Button
           bc={appColors.primary.main}
           hc={appColors.primary.hover}
           fc={appColors.primary.font}
-          onClick={handleConfirmation}
+          onClick={() => createAppointment()}
           disabled={loading}
         >
           Confirm
@@ -62,7 +58,7 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
         >
           Cancel
         </Button>
-      </ConfirmAppointmentButtons>
+      </ButtonGroup>
     </Box>
   )
 }

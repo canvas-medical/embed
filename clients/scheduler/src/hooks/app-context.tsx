@@ -2,8 +2,10 @@ import { h, createContext, ComponentChildren } from 'preact'
 import { useState, useMemo, useContext, useCallback } from 'preact/hooks'
 import {
   generateColors,
+  getScheduledAppointment,
   getTimeSlots,
   postAppointment,
+  putAppointment,
   TimeSlotType,
 } from '@canvas/embed-common'
 import { iAppContext } from '../utils'
@@ -31,7 +33,10 @@ export const AppContext = createContext<iAppContext>({
   shadowRoot: null,
   date: new Date(),
   setDate: () => {},
+  error: '',
   loading: false,
+  screen: 'SELECT',
+  setScreen: () => {},
   timeSlot: {
     start: '',
     end: '',
@@ -43,14 +48,16 @@ export const AppContext = createContext<iAppContext>({
   setTimeSlot: () => {},
   resetTimeSlot: () => {},
   fetchTimeSlots: () => {},
-  handleCreateAppointment: () => {},
+  fetchScheduledAppointment: () => {},
+  createAppointment: () => {},
+  cancelAppointment: () => {},
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [screen, setScreen] = useState<string>('SELECT')
   const [date, setDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | string[]>('')
   const [timeSlot, setTimeSlot] = useState<TimeSlotType>({
     start: '',
     end: '',
@@ -89,7 +96,23 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     [date, values]
   )
 
-  const handleCreateAppointment = useCallback(() => {
+  const fetchScheduledAppointment = useCallback(
+    (setAppointmentId: Function) => {
+      getScheduledAppointment(
+        setLoading,
+        setError,
+        setAppointmentId,
+        values.api,
+        values.patientId,
+        values.patientKey,
+        date,
+        timeSlot
+      )
+    },
+    [date, timeSlot, values]
+  )
+
+  const createAppointment = useCallback(() => {
     postAppointment(
       () => setScreen('CONFIRM'),
       setError,
@@ -104,6 +127,25 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     )
   }, [timeSlot, values])
 
+  const cancelAppointment = useCallback(
+    (appointmentId: string, onComplete: Function) => {
+      putAppointment(
+        onComplete,
+        setError,
+        setLoading,
+        values.treatment,
+        values.reason,
+        values.locationId,
+        timeSlot,
+        values.patientId,
+        values.patientKey,
+        values.api,
+        appointmentId
+      )
+    },
+    [timeSlot, values]
+  )
+
   const contextValue = useMemo(() => {
     return {
       ...values,
@@ -111,15 +153,15 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       setScreen,
       date,
       setDate,
-      loading,
-      setLoading,
       error,
-      setError,
+      loading,
       timeSlot,
       setTimeSlot,
       resetTimeSlot,
       fetchTimeSlots,
-      handleCreateAppointment,
+      fetchScheduledAppointment,
+      createAppointment,
+      cancelAppointment,
     }
   }, [screen, date, loading, error, timeSlot])
 

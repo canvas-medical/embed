@@ -34,3 +34,13 @@ export const Button = styled.button<
     background-color: ${p => p.hc};
   }
 `
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+
+  * + * {
+    margin-left: 1rem;
+  }
+`

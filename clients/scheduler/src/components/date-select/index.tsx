@@ -42,6 +42,7 @@ export const DateSelect = () => {
       <Box mt="16px">
         <DateViewContainer bc={colors.background}>
           <DateScrollButton
+            aria-label="Scroll Date Back"
             fc={colors.accent.main}
             hc={colors.accent.hover}
             disabled={backDisabled}
@@ -51,6 +52,7 @@ export const DateSelect = () => {
           </DateScrollButton>
 
           <DateSelectButton
+            aria-label="Open Date Picker"
             hc={colors.accent.hover}
             onClick={() => setCalendarOpen(true)}
           >
@@ -61,6 +63,7 @@ export const DateSelect = () => {
           </DateSelectButton>
 
           <DateScrollButton
+            aria-label="Scroll Date Forward"
             fc={colors.accent.main}
             hc={colors.accent.hover}
             onClick={() => scrollDateForward(date, setDate)}

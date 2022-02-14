@@ -39,10 +39,15 @@ export interface iAppContext extends iMainAppProps {
   shadowRoot: any
   date: Date
   setDate: Function
+  error: string | string[]
   loading: boolean
+  screen: string
+  setScreen: Function
   timeSlot: TimeSlotType
   setTimeSlot: Function
   resetTimeSlot: Function
   fetchTimeSlots: Function
-  handleCreateAppointment: Function
+  fetchScheduledAppointment: Function
+  createAppointment: Function
+  cancelAppointment: Function
 }

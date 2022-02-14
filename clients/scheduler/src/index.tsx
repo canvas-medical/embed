@@ -50,6 +50,8 @@ export const Scheduler = (props: iSchedulerProps) => {
             shadowRoot,
             treatment,
             loading: false,
+            screen: 'SELECT',
+            setScreen: () => {},
             timeSlot: {
               start: '',
               end: '',
@@ -62,14 +64,17 @@ export const Scheduler = (props: iSchedulerProps) => {
             resetTimeSlot: () => {},
             date: new Date(),
             setDate: () => {},
+            error: '',
             fetchTimeSlots: () => {},
-            handleCreateAppointment: () => {},
+            fetchScheduledAppointment: () => {},
+            createAppointment: () => {},
+            cancelAppointment: () => {},
           }}
         >
           <App />
         </ContextWrapper>
       ) : (
-        <Error errorMessage={allValuesProvided} />
+        <Error errorMessages={allValuesProvided} />
       )}
     </StyleSheetManager>
   )

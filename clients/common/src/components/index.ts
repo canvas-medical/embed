@@ -1,6 +1,7 @@
 export * from './backdrop'
 export * from './boxes'
 export * from './buttons'
+export * from './cancellation-display'
 export * from './error'
 export * from './header'
 export * from './iconography'
