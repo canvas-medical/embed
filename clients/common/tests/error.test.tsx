@@ -6,7 +6,7 @@ import { Error } from '../src'
 test('Renders Error with one error message', () => {
   const error = 'This is a single error'
 
-  const { queryByText } = render(<Error errorMessage={error} />)
+  const { queryByText } = render(<Error errorMessages={error} />)
 
   expect(queryByText(error)).toBeInTheDocument()
 })
@@ -18,7 +18,7 @@ test('Renders Error with multiple error messages', () => {
     'This is the third error',
   ]
 
-  const { queryByText } = render(<Error errorMessage={error} />)
+  const { queryByText } = render(<Error errorMessages={error} />)
 
   error.forEach(message => expect(queryByText(message)).toBeInTheDocument())
 })
