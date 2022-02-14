@@ -1,48 +1,57 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, generateColors, Header } from '@canvas/embed-common'
+import { css, Error, generateColors } from '@canvas/embed-common'
+import { App } from './App'
+import { iInitializerProps, iAppointmentProps, hasAllValues } from './utils'
 
-type InitialPropsType = {
-  bailoutURL: string
-  brandColor: string
-  accentColor: string
-}
-
-type InitializerPropsType = {
-  rootId: string
-}
-
-type AppointmentPropsType = {
-  shadowRoot: ShadowRoot
-}
-
-export const Appointments = ({
-  bailoutURL,
-  brandColor,
-  accentColor,
-  shadowRoot,
-}: InitialPropsType & AppointmentPropsType) => {
+export const Appointments = (props: iAppointmentProps) => {
+  const {
+    api,
+    bailoutURL,
+    locationId,
+    patientId,
+    patientKey,
+    providers,
+    brandColor,
+    accentColor,
+    shadowRoot,
+  } = props
   const colors = generateColors(brandColor, accentColor)
+  const allValuesProvided = hasAllValues(props)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
     // @ts-ignore
     <StyleSheetManager target={shadowRoot}>
-      <Header
-        bailoutURL={bailoutURL}
-        colors={colors}
-        title="Your Appointments"
-      />
+      {!allValuesProvided.length ? (
+        <App
+          api={api}
+          bailoutURL={bailoutURL}
+          colors={colors}
+          locationId={locationId}
+          patientId={patientId}
+          patientKey={patientKey}
+          providers={providers}
+          shadowRoot={shadowRoot}
+        />
+      ) : (
+        <Error errorMessages={allValuesProvided} />
+      )}
     </StyleSheetManager>
   )
 }
 
 export const init = ({
+  api,
   bailoutURL,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
   brandColor,
   accentColor,
   rootId,
-}: InitialPropsType & InitializerPropsType) => {
+}: iInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {
@@ -65,7 +74,12 @@ export const init = ({
 
   render(
     <Appointments
+      api={api}
       bailoutURL={bailoutURL}
+      locationId={locationId}
+      patientId={patientId}
+      patientKey={patientKey}
+      providers={providers}
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}

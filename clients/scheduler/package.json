@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "scripts": {
+    "build": "webpack build",
     "start": "webpack server --open",
     "test": "jest ./tests"
   },
