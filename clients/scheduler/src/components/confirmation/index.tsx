@@ -26,6 +26,7 @@ export const Confirmation = () => {
     cancelAppointment,
     fetchScheduledAppointment,
     shadowRoot,
+    setScreen,
   } = useAppContext()
   const [appointmentId, setAppointmentId] = useState(null)
   const [popoverOpen, setPopoverOpen] = useState(false)
@@ -34,13 +35,9 @@ export const Confirmation = () => {
     fetchScheduledAppointment(setAppointmentId)
   }, [fetchScheduledAppointment])
 
-  const afterCancel = () => {
-    window.location.href = returnURL
-  }
-
   const handleCancel = () => {
     if (appointmentId) {
-      cancelAppointment(appointmentId, afterCancel)
+      cancelAppointment(appointmentId, () => setScreen('SELECT'))
     }
   }
 

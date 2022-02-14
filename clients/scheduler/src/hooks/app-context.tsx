@@ -36,6 +36,7 @@ export const AppContext = createContext<iAppContext>({
   error: '',
   loading: false,
   screen: 'SELECT',
+  setScreen: () => {},
   timeSlot: {
     start: '',
     end: '',
@@ -149,6 +150,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     return {
       ...values,
       screen,
+      setScreen,
       date,
       setDate,
       error,

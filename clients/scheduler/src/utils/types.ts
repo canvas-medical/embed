@@ -42,6 +42,7 @@ export interface iAppContext extends iMainAppProps {
   error: string | string[]
   loading: boolean
   screen: string
+  setScreen: Function
   timeSlot: TimeSlotType
   setTimeSlot: Function
   resetTimeSlot: Function
