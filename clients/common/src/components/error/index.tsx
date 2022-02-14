@@ -5,20 +5,20 @@ import { Box } from '../boxes'
 import { Span } from '../typograhpy'
 
 type ErrorPropsType = {
-  errorMessage: string[] | string
+  errorMessages: string[] | string
 }
 
-export const Error = ({ errorMessage }: ErrorPropsType) => {
+export const Error = ({ errorMessages }: ErrorPropsType) => {
   return (
     <Box mt="5rem">
       <Warning />
       <Box mt="1rem" maxWidth="180px">
-        {typeof errorMessage === 'string' ? (
+        {typeof errorMessages === 'string' ? (
           <Span fc={colors.destructive.main} fontSize="0.875rem">
-            {errorMessage}
+            {errorMessages}
           </Span>
         ) : (
-          errorMessage.map(message => (
+          errorMessages.map(message => (
             <Span fc={colors.destructive.main} fontSize="0.875rem">
               {message}
             </Span>

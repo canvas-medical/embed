@@ -1,36 +1,42 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, generateColors } from '@canvas/embed-common'
+import { css, Error, generateColors } from '@canvas/embed-common'
 import { App } from './App'
-import { iInitializerProps, iAppointmentProps } from './types'
+import { iInitializerProps, iAppointmentProps, hasAllValues } from './utils'
 
-export const Appointments = ({
-  api,
-  bailoutURL,
-  locationId,
-  patientId,
-  patientKey,
-  providers,
-  brandColor,
-  accentColor,
-  shadowRoot,
-}: iAppointmentProps) => {
+export const Appointments = (props: iAppointmentProps) => {
+  const {
+    api,
+    bailoutURL,
+    locationId,
+    patientId,
+    patientKey,
+    providers,
+    brandColor,
+    accentColor,
+    shadowRoot,
+  } = props
   const colors = generateColors(brandColor, accentColor)
+  const allValuesProvided = hasAllValues(props)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
     // @ts-ignore
     <StyleSheetManager target={shadowRoot}>
-      <App
-        api={api}
-        bailoutURL={bailoutURL}
-        colors={colors}
-        locationId={locationId}
-        patientId={patientId}
-        patientKey={patientKey}
-        providers={providers}
-        shadowRoot={shadowRoot}
-      />
+      {!allValuesProvided.length ? (
+        <App
+          api={api}
+          bailoutURL={bailoutURL}
+          colors={colors}
+          locationId={locationId}
+          patientId={patientId}
+          patientKey={patientKey}
+          providers={providers}
+          shadowRoot={shadowRoot}
+        />
+      ) : (
+        <Error errorMessages={allValuesProvided} />
+      )}
     </StyleSheetManager>
   )
 }

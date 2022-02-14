@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { AppContainer, Header } from '@canvas/embed-common'
-import { iAppProps } from './types'
+import { iAppProps } from './utils'
 import { AppointmentsView } from './components'
 
 export const App = ({

@@ -1,10 +1,10 @@
 import { h } from 'preact'
-import { AppContainer, Body, Header } from '@canvas/embed-common'
+import { AppContainer, Body, Error, Header } from '@canvas/embed-common'
 import { useAppContext } from './hooks'
 import { Confirmation, DateSelect, TimeSlotSelect } from './components'
 
 export const App = () => {
-  const { bailoutURL, colors, screen } = useAppContext()
+  const { bailoutURL, colors, screen, error } = useAppContext()
   return (
     <AppContainer>
       <Header
@@ -12,7 +12,9 @@ export const App = () => {
         colors={colors}
         title="Schedule an Appointment"
       />
-      {screen !== 'CONFIRM' ? (
+      {error && error.length ? (
+        <Error errorMessages={error} />
+      ) : screen !== 'CONFIRM' ? (
         <Body>
           <DateSelect />
           <TimeSlotSelect />

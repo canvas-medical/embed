@@ -8,7 +8,7 @@ import {
   putAppointment,
   Error,
 } from '@canvas/embed-common'
-import { AppointmentsViewPropsType } from '../types'
+import { AppointmentsViewPropsType } from '../utils'
 import { Ui } from './ui'
 
 const defaultAppointment = {
@@ -101,7 +101,7 @@ export const AppointmentsView = ({
   }
 
   if (error && error.length) {
-    return <Error errorMessage={error} />
+    return <Error errorMessages={error} />
   }
 
   return (

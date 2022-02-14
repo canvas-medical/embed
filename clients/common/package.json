@@ -4,6 +4,7 @@
   "private": true,
   "main": "src/index.ts",
   "scripts": {
+    "build": "webpack build",
     "start": "echo 'No Start Provided'",
     "test": "jest ./tests"
   },
