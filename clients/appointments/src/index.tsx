@@ -1,48 +1,51 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, generateColors, Header } from '@canvas/embed-common'
-
-type InitialPropsType = {
-  bailoutURL: string
-  brandColor: string
-  accentColor: string
-}
-
-type InitializerPropsType = {
-  rootId: string
-}
-
-type AppointmentPropsType = {
-  shadowRoot: ShadowRoot
-}
+import { css, generateColors } from '@canvas/embed-common'
+import { App } from './App'
+import { iInitializerProps, iAppointmentProps } from './types'
 
 export const Appointments = ({
+  api,
   bailoutURL,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
   brandColor,
   accentColor,
   shadowRoot,
-}: InitialPropsType & AppointmentPropsType) => {
+}: iAppointmentProps) => {
   const colors = generateColors(brandColor, accentColor)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
     // @ts-ignore
     <StyleSheetManager target={shadowRoot}>
-      <Header
+      <App
+        api={api}
         bailoutURL={bailoutURL}
         colors={colors}
-        title="Your Appointments"
+        locationId={locationId}
+        patientId={patientId}
+        patientKey={patientKey}
+        providers={providers}
+        shadowRoot={shadowRoot}
       />
     </StyleSheetManager>
   )
 }
 
 export const init = ({
+  api,
   bailoutURL,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
   brandColor,
   accentColor,
   rootId,
-}: InitialPropsType & InitializerPropsType) => {
+}: iInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {
@@ -65,7 +68,12 @@ export const init = ({
 
   render(
     <Appointments
+      api={api}
       bailoutURL={bailoutURL}
+      locationId={locationId}
+      patientId={patientId}
+      patientKey={patientKey}
+      providers={providers}
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
