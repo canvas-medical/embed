@@ -51,6 +51,7 @@ export const Scheduler = (props: iSchedulerProps) => {
             treatment,
             loading: false,
             screen: 'SELECT',
+            setScreen: () => {},
             timeSlot: {
               start: '',
               end: '',
