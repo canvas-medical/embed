@@ -4,6 +4,7 @@
   "private": true,
   "main": "src/index.ts",
   "scripts": {
+    "build": "webpack build",
     "start": "echo 'No Start Provided'",
     "test": "jest ./tests"
   },
@@ -43,6 +44,7 @@
   "dependencies": {
     "axios": "^0.25.0",
     "color": "^4.2.1",
+    "focus-trap-react": "^8.9.2",
     "preact": "^10.6.5",
     "styled-components": "^5.3.3"
   },
