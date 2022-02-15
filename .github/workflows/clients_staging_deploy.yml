@@ -45,7 +45,7 @@ jobs:
         run: aws s3 sync ./dist s3://${{secrets.STAGING_S3_BUCKET}}
 
       - name: Copy Scheduler to S3 Bucket
-        working-directory: ./clients/appointments
+        working-directory: ./clients/scheduler
         run: aws s3 sync ./dist s3://${{secrets.STAGING_S3_BUCKET}}
 
       - name: Invalidate cache
