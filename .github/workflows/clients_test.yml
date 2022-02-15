@@ -1,7 +1,10 @@
 name: Clients - Jest Tests
-on: push
+on:
+  push:
+    paths:
+      - "clients/**"
 jobs:
-  build:
+  jest:
     runs-on: ubuntu-latest
 
     steps:
