@@ -36,7 +36,7 @@ export const hasAllValues = (values: IMainAppProps) => {
       }
     })
   } else {
-    errorMessages.push('No Proviers supplied.')
+    errorMessages.push('No Providers supplied.')
   }
 
   return errorMessages

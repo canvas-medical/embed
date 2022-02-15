@@ -5,7 +5,7 @@ import {
   TreatmentType,
 } from '@canvas/embed-common'
 
-interface iMainAppProps {
+export interface IMainAppProps {
   api: string
   bailoutURL: string
   duration: number
@@ -17,23 +17,23 @@ interface iMainAppProps {
   returnURL: string
 }
 
-interface iInitializerOnlyProps {
+interface IInitializerOnlyProps {
   appointmentTypeCode: string
   brandColor: string
   accentColor: string
 }
 
-export interface iInitializerProps
-  extends iMainAppProps,
-    iInitializerOnlyProps {
+export interface IInitializerProps
+  extends IMainAppProps,
+    IInitializerOnlyProps {
   rootId: string
 }
 
-export interface iSchedulerProps extends iMainAppProps, iInitializerOnlyProps {
+export interface ISchedulerProps extends IMainAppProps, IInitializerOnlyProps {
   shadowRoot: any
 }
 
-export interface iAppContext extends iMainAppProps {
+export interface IAppContext extends IMainAppProps {
   colors: GeneratedColorsType
   treatment: TreatmentType
   shadowRoot: any
