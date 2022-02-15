@@ -138,13 +138,12 @@ Available environments:
 | `staging`    | http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com/    |
 
 
-## Additional Information
+## Patient Authentication
 
 In order to retrieve the `patient_key` required for all FHIR API requests:
 
 - Call the `/Auth` endpoint with `key` and `patient` parameters
-
- - `key` is the API key stored as an environment variable on the proxy which is then provided to the customer.
- - `patient` is the patient's ID.
- - On staging, this would look like http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com/Auth?key=YOUR_API_KEY_HERE&patient=YOUR_PATIENT_ID_HERE, with `YOUR_API_KEY_HERE` and `YOUR_PATIENT_ID_HERE` replaced.
- - Assuming a valid API key, this endpoint will return a response with a body like `{"patient_key":"YOUR_PATIENT_KEY_HERE"}` where `YOUR_PATIENT_KEY_HERE` is what you will need for the `patient_key` parameter for all your other requests.
+  - `key` is the API key stored as an environment variable on the proxy which is then provided to the customer.
+  - `patient` is the patient's ID.
+  - On staging, this would look like http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com/Auth?key=YOUR_API_KEY_HERE&patient=YOUR_PATIENT_ID_HERE, with `YOUR_API_KEY_HERE` and `YOUR_PATIENT_ID_HERE` replaced.
+  - Assuming a valid API key, this endpoint will return a response with a body like `{"patient_key":"YOUR_PATIENT_KEY_HERE"}` where `YOUR_PATIENT_KEY_HERE` is what you will need for the `patient_key` parameter for all your other requests.
