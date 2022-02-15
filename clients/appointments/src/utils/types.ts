@@ -1,6 +1,6 @@
 import { GeneratedColorsType, ProvidersType } from '@canvas/embed-common'
 
-interface iMainAppProps {
+export interface IMainAppProps {
   api: string
   bailoutURL: string
   locationId: string
@@ -9,24 +9,24 @@ interface iMainAppProps {
   providers: ProvidersType[]
 }
 
-interface iInitializerOnlyProps {
+interface IInitializerOnlyProps {
   brandColor: string
   accentColor: string
 }
 
-export interface iInitializerProps
-  extends iMainAppProps,
-    iInitializerOnlyProps {
+export interface IInitializerProps
+  extends IMainAppProps,
+    IInitializerOnlyProps {
   rootId: string
 }
 
-export interface iAppointmentProps
-  extends iMainAppProps,
-    iInitializerOnlyProps {
+export interface IAppointmentProps
+  extends IMainAppProps,
+    IInitializerOnlyProps {
   shadowRoot: any
 }
 
-export interface iAppProps extends iMainAppProps {
+export interface IAppProps extends IMainAppProps {
   colors: GeneratedColorsType
   shadowRoot: any
 }

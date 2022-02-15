@@ -1,9 +1,9 @@
-import { iAppointmentProps } from './types'
+import { IMainAppProps } from './types'
 
 // This is a bit gross, but we want to print out specific error messages if the
 // embed is not configured.
 
-export const hasAllValues = (values: iAppointmentProps) => {
+export const hasAllValues = (values: IMainAppProps) => {
   const errorMessages = []
 
   if (!values.api) {
