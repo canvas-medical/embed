@@ -17,6 +17,8 @@ let provider4Id = ""
 let reason = ""
 let returnURL = ""
 let rootId = ""
+let brandColor = ""
+let accentColor = ""
 
 function getStuff() {
   api = document.getElementById("api")?.value || ""
@@ -38,6 +40,8 @@ function getStuff() {
   reason = document.getElementById("reason")?.value || ""
   returnURL = document.getElementById("returnURL")?.value || ""
   rootId = document.getElementById("rootId")?.value || ""
+  brandColor = document.getElementById("brandColor")?.value || ""
+  accentColor = document.getElementById("accentColor")?.value || ""
 }
 
 function authAndScheduler() {
@@ -50,7 +54,7 @@ function authAndScheduler() {
       .then((response) => response.json())
       .then((data) => {
         if (data.patient_key) {
-          window.location = `./scheduler.html?api=${api}&appointmentTypeCode=${appointmentTypeCode}&bailoutURL=${bailoutURL}&duration=${duration}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&reason=${reason}&returnURL=${returnURL}&rootId=${rootId}`
+          window.location = `./scheduler.html?api=${api}&appointmentTypeCode=${appointmentTypeCode}&bailoutURL=${bailoutURL}&duration=${duration}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&reason=${reason}&returnURL=${returnURL}&rootId=${rootId}&brandColor=${brandColor}&accentColor=${accentColor}`
         } else {
           console.error("Patient not found")
         }
@@ -68,7 +72,7 @@ function authAndAppointments() {
       .then((response) => response.json())
       .then((data) => {
         if (data.patient_key) {
-          window.location = `./appointments.html?api=${api}&bailoutURL=${bailoutURL}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&rootId=${rootId}`
+          window.location = `./appointments.html?api=${api}&bailoutURL=${bailoutURL}&locationId=${locationId}&patientId=${patientId}&patientKey=${data.patient_key}&provider1Name=${provider1Name}&provider1Id=${provider1Id}&provider2Name=${provider2Name}&provider2Id=${provider2Id}&provider3Name=${provider3Name}&provider3Id=${provider3Id}&provider4Name=${provider4Name}&provider4Id=${provider4Id}&rootId=${rootId}&brandColor=${brandColor}&accentColor=${accentColor}`
         } else {
           console.error("Patient not found")
         }
