@@ -1,13 +1,21 @@
-import { iSchedulerProps } from './types'
+import { IMainAppProps } from './types'
 
 // This is a bit gross, but we want to print out specific error messages if the
 // embed is not configured.
 
-export const hasAllValues = (values: iSchedulerProps) => {
+interface IHasAllValues extends IMainAppProps {
+  appointmentTypeCode: string
+}
+
+export const hasAllValues = (values: IHasAllValues) => {
   const errorMessages = []
 
   if (!values.api) {
     errorMessages.push('No API URL supplied.')
+  }
+
+  if (!values.appointmentTypeCode) {
+    errorMessages.push('No Appointment Type Code supplied.')
   }
 
   if (!values.bailoutURL) {
@@ -36,7 +44,7 @@ export const hasAllValues = (values: iSchedulerProps) => {
       }
     })
   } else {
-    errorMessages.push('No Proviers supplied.')
+    errorMessages.push('No Providers supplied.')
   }
 
   if (!values.reason) {

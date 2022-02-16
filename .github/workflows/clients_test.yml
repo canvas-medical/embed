@@ -1,0 +1,27 @@
+name: Clients - Jest Tests
+on:
+  push:
+    paths:
+      - "clients/**"
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        working-directory: ./clients
+        run: yarn
+
+      - name: Run Common tests
+        working-directory: ./clients/common
+        run: yarn test
+
+      - name: Run Appointments tests
+        working-directory: ./clients/appointments
+        run: yarn test
+
+      - name: Run Scheduler tests
+        working-directory: ./clients/scheduler
+        run: yarn test

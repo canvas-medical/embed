@@ -2,9 +2,9 @@ import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
 import { css, Error, generateColors } from '@canvas/embed-common'
 import { App } from './App'
-import { iInitializerProps, iAppointmentProps, hasAllValues } from './utils'
+import { IInitializerProps, IAppointmentProps, hasAllValues } from './utils'
 
-export const Appointments = (props: iAppointmentProps) => {
+export const Appointments = (props: IAppointmentProps) => {
   const {
     api,
     bailoutURL,
@@ -51,7 +51,7 @@ export const init = ({
   brandColor,
   accentColor,
   rootId,
-}: iInitializerProps) => {
+}: IInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {

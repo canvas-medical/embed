@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { AppContainer, Header } from '@canvas/embed-common'
-import { iAppProps } from './utils'
+import { IAppProps } from './utils'
 import { AppointmentsView } from './components'
 
 export const App = ({
@@ -12,7 +12,7 @@ export const App = ({
   providers,
   shadowRoot,
   colors,
-}: iAppProps) => {
+}: IAppProps) => {
   return (
     <AppContainer>
       <Header

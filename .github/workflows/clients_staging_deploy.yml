@@ -1,0 +1,53 @@
+name: Deploy to staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  staging-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Set Up Node
+        uses: actions/setup-node@v2.1.5
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Dependencies
+        working-directory: ./clients
+        run: yarn install
+
+      - name: Build Appointments
+        working-directory: ./clients/appointments
+        run: yarn build
+
+      - name: Build Scheduler
+        working-directory: ./clients/scheduler
+        run: yarn build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.STAGING_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.STAGING_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Copy Appointments to S3 Bucket
+        working-directory: ./clients/appointments
+        run: aws s3 sync ./dist s3://${{secrets.STAGING_S3_BUCKET}}
+
+      - name: Copy Scheduler to S3 Bucket
+        working-directory: ./clients/scheduler
+        run: aws s3 sync ./dist s3://${{secrets.STAGING_S3_BUCKET}}
+
+      - name: Invalidate cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_DISTRIBUTION_ID }}  --paths "/*"

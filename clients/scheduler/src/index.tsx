@@ -8,9 +8,9 @@ import {
 } from '@canvas/embed-common'
 import { ContextWrapper } from './hooks'
 import { App } from './App'
-import { hasAllValues, iInitializerProps, iSchedulerProps } from './utils'
+import { hasAllValues, IInitializerProps, ISchedulerProps } from './utils'
 
-export const Scheduler = (props: iSchedulerProps) => {
+export const Scheduler = (props: ISchedulerProps) => {
   const {
     api,
     appointmentTypeCode,
@@ -94,7 +94,7 @@ export const init = ({
   rootId,
   brandColor,
   accentColor,
-}: iInitializerProps) => {
+}: IInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
   if (!appRoot) {
