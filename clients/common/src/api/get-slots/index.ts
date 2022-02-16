@@ -1,9 +1,19 @@
 import axios from 'axios'
-import { isSameDay, ParsedSlotsType, ProvidersType, SlotType } from '../utils'
+import {
+  isSameDay,
+  ParsedSlotsType,
+  SetLoadingType,
+  SlotType,
+} from '../../utils'
+import {
+  GetSlotsParamsType,
+  GetSlotsResponseType,
+  ParseSlotsResponsesType,
+} from './types'
 
 const parseSlots = (
-  responses: any,
-  setLoading: Function,
+  responses: ParseSlotsResponsesType,
+  setLoading: SetLoadingType,
   date: Date,
   setTimeSlots: Function
 ): void => {
@@ -30,23 +40,24 @@ const parseSlots = (
   setLoading(false)
 }
 
-export const getTimeSlots = (
-  setLoading: Function,
-  setError: Function,
-  providers: ProvidersType[],
-  api: string,
-  locationId: string,
-  patientId: string,
-  patientKey: string,
-  date: Date,
-  duration: number,
-  setTimeSlots: Function
-): void => {
+export const getTimeSlots = ({
+  setLoading,
+  setError,
+  setTimeSlots,
+  api,
+  date,
+  duration,
+  locationId,
+  patientId,
+  patientKey,
+  providers,
+}: GetSlotsParamsType) => {
   setLoading(true)
+
   Promise.all(
     providers.map(provider => {
       return axios
-        .get(`${api}/Slot`, {
+        .get<GetSlotsResponseType>(`${api}/Slot`, {
           params: {
             schedule: `Schedule/Location.${locationId}-Staff.${provider.id}`,
             patient: patientId,
