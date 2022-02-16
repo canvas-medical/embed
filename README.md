@@ -1,5 +1,5 @@
 # Canvas Embed
 
-## [Clients](./cliens/README.md)
+## [Clients](./clients/README.md)
 
 ## [Proxy](./proxy/README.md)
