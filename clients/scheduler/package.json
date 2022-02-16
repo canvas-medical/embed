@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-scheduler",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "scripts": {
     "build": "webpack build",
@@ -55,7 +55,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "^0.0.5",
+    "@canvas-medical/embed-common": "^0.0.6",
     "preact": "^10.6.5"
   },
   "devDependencies": {
