@@ -1,8 +1,8 @@
 start-scheduler:
-	$(MAKE) -C widgets start-scheduler
+	$(MAKE) -C clients start-scheduler
 
 start-appointments:
-	$(MAKE) -C widgets start-appointments
+	$(MAKE) -C clients start-appointments
 
 build-proxy:
 	$(MAKE) -C proxy build-proxy
