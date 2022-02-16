@@ -3,7 +3,7 @@ import {
   ProvidersType,
   TimeSlotType,
   TreatmentType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 
 export interface IMainAppProps {
   api: string

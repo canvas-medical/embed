@@ -5,7 +5,7 @@ import {
   Error,
   generateColors,
   getAppointmentType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { ContextWrapper } from './hooks'
 import { App } from './App'
 import { hasAllValues, IInitializerProps, ISchedulerProps } from './utils'

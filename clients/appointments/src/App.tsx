@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { AppContainer, Header } from '@canvas/embed-common'
+import { AppContainer, Header } from '@canvas-medical/embed-common'
 import { IAppProps } from './utils'
 import { AppointmentsView } from './components'
 

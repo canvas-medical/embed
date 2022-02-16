@@ -13,7 +13,7 @@ import {
   Loader,
   CancellationDisplay,
   Popover,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 
 export const Confirmation = () => {

@@ -1,6 +1,6 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import { css, Error, generateColors } from '@canvas/embed-common'
+import { css, Error, generateColors } from '@canvas-medical/embed-common'
 import { App } from './App'
 import { IInitializerProps, IAppointmentProps, hasAllValues } from './utils'
 

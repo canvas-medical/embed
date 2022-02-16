@@ -7,7 +7,7 @@ import {
   ProvidersType,
   ScreenReaderText,
   SlotType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import { TimeSlotButton, TimeSlotList } from './styles'
 

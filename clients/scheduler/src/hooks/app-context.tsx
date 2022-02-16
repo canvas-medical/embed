@@ -7,7 +7,7 @@ import {
   postAppointment,
   putAppointment,
   TimeSlotType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { iAppContext } from '../utils'
 
 type ContextWrapperProps = {

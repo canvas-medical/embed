@@ -1,4 +1,7 @@
-import { GeneratedColorsType, ProvidersType } from '@canvas/embed-common'
+import {
+  GeneratedColorsType,
+  ProvidersType,
+} from '@canvas-medical/embed-common'
 
 export interface IMainAppProps {
   api: string

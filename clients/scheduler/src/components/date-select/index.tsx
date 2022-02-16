@@ -8,7 +8,7 @@ import {
   formatDate,
   H2,
   Span,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import {
   isTodayOrBefore,
