@@ -7,7 +7,7 @@ import {
   Loader,
   putAppointment,
   Error,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { AppointmentsViewPropsType } from '../utils'
 import { Ui } from './ui'
 

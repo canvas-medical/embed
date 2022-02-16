@@ -1,6 +1,6 @@
 {
-  "name": "@canvas/embed-appointments",
-  "version": "0.0.1",
+  "name": "@canvas-medical/embed-appointments",
+  "version": "0.0.7",
   "private": false,
   "scripts": {
     "build": "webpack build",
@@ -39,7 +39,15 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 10,
+        "lines": 25,
+        "statements": 25
+      }
+    }
   },
   "prettier": {
     "semi": false,
@@ -47,7 +55,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas/embed-common": "^0.0.1",
+    "@canvas-medical/embed-common": "^0.0.7",
     "preact": "^10.6.5",
     "styled-components": "^5.3.3"
   },

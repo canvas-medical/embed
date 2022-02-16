@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { Calendar, colors, Box, Span } from '@canvas/embed-common'
+import { Calendar, colors, Box, Span } from '@canvas-medical/embed-common'
 
 export const NoAppointments = () => {
   return (

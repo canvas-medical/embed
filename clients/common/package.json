@@ -1,7 +1,7 @@
 {
-  "name": "@canvas/embed-common",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@canvas-medical/embed-common",
+  "version": "0.0.7",
+  "private": false,
   "main": "src/index.ts",
   "scripts": {
     "build": "webpack build",
@@ -34,7 +34,15 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 35,
+        "functions": 25,
+        "lines": 45,
+        "statements": 45
+      }
+    }
   },
   "prettier": {
     "semi": false,

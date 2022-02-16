@@ -5,7 +5,7 @@ import {
   ParsedSlotsType,
   Popover,
   ProvidersType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import { TimeSlots } from './time-slots'
 import { ConfirmAppointment } from './confirm-appointment'

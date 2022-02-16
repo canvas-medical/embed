@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { AppContainer, Body, Error, Header } from '@canvas/embed-common'
+import { AppContainer, Body, Error, Header } from '@canvas-medical/embed-common'
 import { useAppContext } from './hooks'
 import { Confirmation, DateSelect, TimeSlotSelect } from './components'
 

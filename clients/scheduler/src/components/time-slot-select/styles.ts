@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button } from '@canvas/embed-common'
+import { Button } from '@canvas-medical/embed-common'
 
 export const TimeSlotList = styled.ul`
   clear: both;

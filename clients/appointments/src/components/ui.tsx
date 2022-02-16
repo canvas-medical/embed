@@ -14,7 +14,7 @@ import {
   CancellationDisplay,
   AppointmentType,
   GeneratedColorsType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { NoAppointments } from './no-appointments'
 
 type UiPropsType = {

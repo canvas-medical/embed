@@ -2,7 +2,7 @@ import {
   BackgroundColorPropType,
   colors,
   FontColorPropType,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import styled from 'styled-components'
 
 export const CalendarContainer = styled.div`

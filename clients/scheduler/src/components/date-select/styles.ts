@@ -5,7 +5,7 @@ import {
   FontColorPropType,
   HoverColorPropType,
   minWidth,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 
 export const DateViewContainer = styled.div<BackgroundColorPropType>`
   background-color: ${p => p.bc};

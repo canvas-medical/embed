@@ -8,7 +8,7 @@ import {
   H2,
   IconButton,
   ScreenReaderText,
-} from '@canvas/embed-common'
+} from '@canvas-medical/embed-common'
 import { useAppContext } from '../../../hooks'
 import {
   generateDays,
