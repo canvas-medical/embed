@@ -1,27 +1,27 @@
-import { TimeSlotType, TreatmentType } from '../utils'
+import { ConstructBodyParamsType } from './types'
 
-export const constructAppointmentBody = (
-  status: string,
-  treatment: TreatmentType,
-  reason: string,
-  locationId: string,
-  timeSlot: TimeSlotType,
-  patientId: string
-) => {
-  return {
+export const constructBody = ({
+  status,
+  appointmentCoding,
+  description,
+  locationId,
+  timeSlot,
+  patientId,
+}: ConstructBodyParamsType) => {
+  const body = {
     resource: {
       resourceType: 'Appointment',
       status,
       appointmentType: {
         coding: [
           {
-            stystem: 'http://snomed.info/sct',
-            code: `${treatment.code}`,
-            display: treatment.type,
+            stystem: appointmentCoding.system || 'http://snomed.info/sct',
+            code: appointmentCoding.code || '',
+            display: appointmentCoding.display,
           },
         ],
       },
-      description: `${reason}`,
+      description,
       supportingInformation: [
         {
           reference: `Location/${locationId}`,
@@ -45,4 +45,6 @@ export const constructAppointmentBody = (
       ],
     },
   }
+
+  return JSON.stringify(body)
 }
