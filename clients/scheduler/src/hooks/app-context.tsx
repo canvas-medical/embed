@@ -8,14 +8,14 @@ import {
   putAppointment,
   TimeSlotType,
 } from '@canvas-medical/embed-common'
-import { iAppContext } from '../utils'
+import { IAppContext } from '../utils'
 
 type ContextWrapperProps = {
   children: ComponentChildren
-  values: iAppContext
+  values: IAppContext
 }
 
-export const AppContext = createContext<iAppContext>({
+export const AppContext = createContext<IAppContext>({
   api: '',
   bailoutURL: '',
   duration: 20,

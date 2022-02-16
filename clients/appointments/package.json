@@ -2,11 +2,17 @@
   "name": "@canvas-medical/embed-appointments",
   "version": "0.0.7",
   "private": false,
+  "main": "dist/appointments.js",
+  "license": "MIT",
   "scripts": {
-    "build": "webpack build",
+    "build": "webpack build --env prod",
+    "build:esm": "webpack build --env prod --env esm",
     "start": "webpack server --open",
     "test": "jest ./tests"
   },
+  "files": [
+    "/dist"
+  ],
   "babel": {
     "plugins": [
       [
