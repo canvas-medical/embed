@@ -5,10 +5,13 @@ import {
   getScheduledAppointment,
   getTimeSlots,
   postAppointment,
+  ProvidersType,
   putAppointment,
+  SetTimeSlotsType,
   TimeSlotType,
 } from '@canvas-medical/embed-common'
 import { IAppContext } from '../utils'
+import { getPractitioners } from '@canvas-medical/embed-common/src/api/get-practitioners'
 
 type ContextWrapperProps = {
   children: ComponentChildren
@@ -17,19 +20,16 @@ type ContextWrapperProps = {
 
 export const AppContext = createContext<IAppContext>({
   api: '',
+  appointmentCoding: {},
   bailoutURL: '',
   duration: 20,
   locationId: '',
   patientId: '',
   patientKey: '',
-  providers: [],
-  reason: '',
+  providerIds: [],
+  description: '',
   returnURL: '',
   colors: generateColors(null, null),
-  treatment: {
-    type: '',
-    code: '',
-  },
   shadowRoot: null,
   date: new Date(),
   setDate: () => {},
@@ -37,6 +37,8 @@ export const AppContext = createContext<IAppContext>({
   loading: false,
   screen: 'SELECT',
   setScreen: () => {},
+  providers: [],
+  setProviders: () => {},
   timeSlot: {
     start: '',
     end: '',
@@ -47,6 +49,7 @@ export const AppContext = createContext<IAppContext>({
   },
   setTimeSlot: () => {},
   resetTimeSlot: () => {},
+  fetchProviders: () => {},
   fetchTimeSlots: () => {},
   fetchScheduledAppointment: () => {},
   createAppointment: () => {},
@@ -58,6 +61,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [date, setDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | string[]>('')
+  const [providers, setProviders] = useState<ProvidersType[]>([])
   const [timeSlot, setTimeSlot] = useState<TimeSlotType>({
     start: '',
     end: '',
@@ -78,70 +82,82 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     })
   }
 
+  const fetchProviders = useCallback(() => {
+    getPractitioners({
+      setLoading,
+      setError,
+      setProviders,
+      api: values.api,
+      providerIds: values.providerIds,
+      patientId: values.patientId,
+      patientKey: values.patientKey,
+    })
+  }, [values])
+
   const fetchTimeSlots = useCallback(
-    (setTimeSlots: Function) => {
-      getTimeSlots(
+    (setTimeSlots: SetTimeSlotsType) => {
+      getTimeSlots({
         setLoading,
         setError,
-        values.providers,
-        values.api,
-        values.locationId,
-        values.patientId,
-        values.patientKey,
+        providerIds: values.providerIds,
+        api: values.api,
+        locationId: values.locationId,
+        patientId: values.patientId,
+        patientKey: values.patientKey,
         date,
-        values.duration,
-        setTimeSlots
-      )
+        duration: values.duration,
+        setTimeSlots,
+      })
     },
     [date, values]
   )
 
   const fetchScheduledAppointment = useCallback(
-    (setAppointmentId: Function) => {
-      getScheduledAppointment(
+    (setAppointmentId: (appointmentId: string) => void) => {
+      getScheduledAppointment({
         setLoading,
         setError,
         setAppointmentId,
-        values.api,
-        values.patientId,
-        values.patientKey,
+        api: values.api,
+        patientId: values.patientId,
+        patientKey: values.patientKey,
         date,
-        timeSlot
-      )
+        timeSlot,
+      })
     },
     [date, timeSlot, values]
   )
 
   const createAppointment = useCallback(() => {
-    postAppointment(
-      () => setScreen('CONFIRM'),
+    postAppointment({
+      setScreen: () => setScreen('CONFIRM'),
       setError,
       setLoading,
-      values.treatment,
-      values.reason,
-      values.locationId,
+      appointmentCoding: values.appointmentCoding,
+      description: values.description,
+      locationId: values.locationId,
       timeSlot,
-      values.patientId,
-      values.patientKey,
-      values.api
-    )
+      patientId: values.patientId,
+      patientKey: values.patientKey,
+      api: values.api,
+    })
   }, [timeSlot, values])
 
   const cancelAppointment = useCallback(
-    (appointmentId: string, onComplete: Function) => {
-      putAppointment(
+    (appointmentId: string, onComplete: () => void) => {
+      putAppointment({
         onComplete,
         setError,
         setLoading,
-        values.treatment,
-        values.reason,
-        values.locationId,
+        appointmentCoding: values.appointmentCoding,
+        description: values.description,
+        locationId: values.locationId,
         timeSlot,
-        values.patientId,
-        values.patientKey,
-        values.api,
-        appointmentId
-      )
+        patientId: values.patientId,
+        patientKey: values.patientKey,
+        api: values.api,
+        appointmentId,
+      })
     },
     [timeSlot, values]
   )
@@ -155,9 +171,11 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       setDate,
       error,
       loading,
+      providers,
       timeSlot,
       setTimeSlot,
       resetTimeSlot,
+      fetchProviders,
       fetchTimeSlots,
       fetchScheduledAppointment,
       createAppointment,

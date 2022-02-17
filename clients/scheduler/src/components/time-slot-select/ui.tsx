@@ -2,9 +2,10 @@ import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
 import {
   Loader,
-  ParsedSlotsType,
+  TimeSlotsType,
   Popover,
   ProvidersType,
+  ParsedSlotsType,
 } from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import { TimeSlots } from './time-slots'
@@ -21,8 +22,15 @@ type SelectTimeSlotType = {
 }
 
 export const Ui = ({ timeSlots }: UiPropsType) => {
-  const { colors, setTimeSlot, loading, shadowRoot, resetTimeSlot } =
-    useAppContext()
+  const {
+    error,
+    colors,
+    setTimeSlot,
+    loading,
+    shadowRoot,
+    resetTimeSlot,
+    providers,
+  } = useAppContext()
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   const selectTimeSlot = ({ start, end, provider }: SelectTimeSlotType) => {
@@ -39,17 +47,26 @@ export const Ui = ({ timeSlots }: UiPropsType) => {
     resetTimeSlot()
   }
 
-  if (loading) {
+  const findProvider = (providerId: string) => {
+    return (
+      providers.find(({ id }) => id === providerId) || {
+        id: providerId,
+        name: '',
+      }
+    )
+  }
+
+  if (loading || !(timeSlots.length || providers.length || error)) {
     return <Loader colors={colors} />
   }
 
   return (
     <Fragment>
-      {timeSlots.map(({ provider, providerSlots }) => {
+      {timeSlots.map(({ providerId, providerSlots }) => {
         return (
           <TimeSlots
-            key={provider.id}
-            provider={provider}
+            key={providerId}
+            provider={findProvider(providerId)}
             slots={providerSlots}
             selectTimeSlot={selectTimeSlot}
           />

@@ -13,21 +13,20 @@ import { hasAllValues, IInitializerProps, ISchedulerProps } from './utils'
 export const Scheduler = (props: ISchedulerProps) => {
   const {
     api,
-    appointmentTypeCode,
+    appointmentCoding,
     bailoutURL,
     duration,
     locationId,
     patientId,
     patientKey,
-    providers,
-    reason,
+    providerIds,
+    description,
     returnURL,
     brandColor,
     accentColor,
     shadowRoot,
   } = props
   const colors = generateColors(brandColor, accentColor)
-  const treatment = getAppointmentType(appointmentTypeCode)
   const allValuesProvided = hasAllValues(props)
 
   return (
@@ -38,18 +37,20 @@ export const Scheduler = (props: ISchedulerProps) => {
         <ContextWrapper
           values={{
             api,
+            appointmentCoding,
             bailoutURL,
             duration,
             locationId,
             patientId,
             patientKey,
-            providers,
+            providerIds,
             colors,
-            reason,
+            description,
             returnURL,
             shadowRoot,
-            treatment,
             loading: false,
+            providers: [],
+            setProviders: () => {},
             screen: 'SELECT',
             setScreen: () => {},
             timeSlot: {
@@ -65,6 +66,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             date: new Date(),
             setDate: () => {},
             error: '',
+            fetchProviders: () => {},
             fetchTimeSlots: () => {},
             fetchScheduledAppointment: () => {},
             createAppointment: () => {},
@@ -82,14 +84,14 @@ export const Scheduler = (props: ISchedulerProps) => {
 
 export const init = ({
   api,
-  appointmentTypeCode,
+  appointmentCoding,
   bailoutURL,
   duration,
   locationId,
   patientId,
   patientKey,
-  providers,
-  reason,
+  providerIds,
+  description,
   returnURL,
   rootId,
   brandColor,
@@ -118,14 +120,14 @@ export const init = ({
   render(
     <Scheduler
       api={api}
-      appointmentTypeCode={appointmentTypeCode}
+      appointmentCoding={appointmentCoding}
       bailoutURL={bailoutURL}
       duration={duration}
       locationId={locationId}
       patientId={patientId}
       patientKey={patientKey}
-      providers={providers}
-      reason={reason}
+      providerIds={providerIds}
+      description={description}
       returnURL={returnURL}
       brandColor={brandColor}
       accentColor={accentColor}

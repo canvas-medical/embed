@@ -10,7 +10,7 @@ export type PutAppointmentParamsType = {
   setError: SetErrorType
   setLoading: SetLoadingType
   appointmentCoding: AppointmentCodingType
-  description: string | null
+  description?: string
   locationId: string
   timeSlot: TimeSlotType
   patientId: string

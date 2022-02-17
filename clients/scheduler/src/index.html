@@ -17,18 +17,17 @@
     <script type="text/javascript">
       Scheduler.init({
         api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
-        appointmentTypeCode: '439708006',
+        appointmentCoding: {
+          code: '439708006',
+        },
         bailoutURL: 'https://viget.com',
         duration: '30',
         locationId: '1',
         patientId: 'f3d750f5d77d403c96baef6a6055c6e7',
         patientKey: '5481fd48-95cf-4255-90ed-acd8cf810c13',
-        providers: [
-          { name: 'Saharsh Patel, MD', id: 'c2ff4546548e46ab8959af887b563eab' },
-          {
-            name: 'Michael Zimmerman, MD',
-            id: 'fc87cbb2525f4c5eb50294f620c7a15e',
-          },
+        providerIds: [
+          'c2ff4546548e46ab8959af887b563eab',
+          'fc87cbb2525f4c5eb50294f620c7a15e',
         ],
         reason: 'high fever, cough, leeches',
         returnURL: 'https://viget.com',

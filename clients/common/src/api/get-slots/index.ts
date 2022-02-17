@@ -34,7 +34,7 @@ const parseSlots = (
         i = totalSlots
       }
     }
-    slots.push({ provider: response.provider, providerSlots })
+    slots.push({ providerId: response.providerId, providerSlots })
   })
   setTimeSlots(slots)
   setLoading(false)
@@ -50,16 +50,16 @@ export const getTimeSlots = ({
   locationId,
   patientId,
   patientKey,
-  providers,
+  providerIds,
 }: GetSlotsParamsType) => {
   setLoading(true)
 
   Promise.all(
-    providers.map(provider => {
+    providerIds.map(providerId => {
       return axios
         .get<GetSlotsResponseType>(`${api}/Slot`, {
           params: {
-            schedule: `Schedule/Location.${locationId}-Staff.${provider.id}`,
+            schedule: `Schedule/Location.${locationId}-Staff.${providerId}`,
             patient: patientId,
             patient_key: patientKey,
             start: date.toISOString(),
@@ -67,7 +67,7 @@ export const getTimeSlots = ({
           },
         })
         .then(response => {
-          return { provider, slots: response.data || [] }
+          return { providerId, slots: response.data || [] }
         })
     })
   )

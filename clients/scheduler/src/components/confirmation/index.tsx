@@ -13,6 +13,7 @@ import {
   Loader,
   CancellationDisplay,
   Popover,
+  getAppointmentType,
 } from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 
@@ -21,7 +22,7 @@ export const Confirmation = () => {
     colors,
     loading,
     timeSlot,
-    treatment,
+    appointmentCoding,
     returnURL,
     cancelAppointment,
     fetchScheduledAppointment,
@@ -45,6 +46,8 @@ export const Confirmation = () => {
   const dateString = `${formatDate(appointmentDate)} at ${formatTime(
     appointmentDate
   )}`
+  const display =
+    appointmentCoding.display || getAppointmentType(appointmentCoding.code)
 
   return (
     <Fragment>
@@ -61,7 +64,7 @@ export const Confirmation = () => {
             <H3>{dateString}</H3>
           </Box>
           <Box my="8px">
-            <Span>{`${treatment.type} with ${timeSlot.provider.name}`}</Span>
+            <Span>{`${display} with ${timeSlot.provider.name}`}</Span>
           </Box>
           <Box my="8px">
             <Button

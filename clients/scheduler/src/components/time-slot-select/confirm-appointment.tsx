@@ -8,6 +8,7 @@ import {
   formatDate,
   formatTime,
   ButtonGroup,
+  getAppointmentType,
 } from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 
@@ -16,8 +17,12 @@ type ConfirmAppointmentType = {
 }
 
 export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
-  const { loading, timeSlot, treatment, date, createAppointment } =
+  const { loading, timeSlot, appointmentCoding, date, createAppointment } =
     useAppContext()
+
+  const display =
+    appointmentCoding.display ||
+    getAppointmentType(appointmentCoding.code || '')
 
   return (
     <Box>
@@ -36,7 +41,7 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
           </li>
         </Box>
         <Box mt="1rem">
-          <li>{`${treatment.type} with ${timeSlot.provider.name}`}</li>
+          <li>{`${display} with ${timeSlot.provider.name}`}</li>
         </Box>
       </ul>
 

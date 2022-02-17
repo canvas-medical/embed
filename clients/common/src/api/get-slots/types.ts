@@ -15,7 +15,7 @@ export type GetSlotsParamsType = {
   locationId: string
   patientId: string
   patientKey: string
-  providers: ProvidersType[]
+  providerIds: string[]
 }
 
 type SlotResourceType = {
@@ -38,6 +38,6 @@ export type GetSlotsResponseType = {
 }
 
 export type ParseSlotsResponsesType = {
-  provider: ProvidersType
+  providerId: string
   slots: GetSlotsResponseType
 }[]

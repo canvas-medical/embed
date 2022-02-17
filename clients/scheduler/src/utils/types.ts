@@ -1,24 +1,25 @@
 import {
+  AppointmentCodingType,
   GeneratedColorsType,
   ProvidersType,
+  SetTimeSlotsType,
   TimeSlotType,
-  TreatmentType,
 } from '@canvas-medical/embed-common'
 
 export interface IMainAppProps {
   api: string
+  appointmentCoding: AppointmentCodingType
   bailoutURL: string
   duration: number
   locationId: string
   patientId: string
   patientKey: string
-  providers: ProvidersType[]
-  reason: string
+  providerIds: string[]
+  description: string
   returnURL: string
 }
 
 interface IInitializerOnlyProps {
-  appointmentTypeCode: string
   brandColor: string
   accentColor: string
 }
@@ -35,19 +36,23 @@ export interface ISchedulerProps extends IMainAppProps, IInitializerOnlyProps {
 
 export interface IAppContext extends IMainAppProps {
   colors: GeneratedColorsType
-  treatment: TreatmentType
   shadowRoot: any
   date: Date
-  setDate: Function
+  setDate: (date: Date) => void
   error: string | string[]
   loading: boolean
   screen: string
-  setScreen: Function
+  setScreen: (screen: string) => void
+  providers: ProvidersType[]
+  setProviders: (providers: ProvidersType[]) => void
   timeSlot: TimeSlotType
-  setTimeSlot: Function
-  resetTimeSlot: Function
-  fetchTimeSlots: Function
-  fetchScheduledAppointment: Function
-  createAppointment: Function
-  cancelAppointment: Function
+  setTimeSlot: (timeSlot: TimeSlotType) => void
+  resetTimeSlot: () => void
+  fetchProviders: () => void
+  fetchTimeSlots: (setTimeSlots: SetTimeSlotsType) => void
+  fetchScheduledAppointment: (
+    setAppointmentId: (appointmentId: string) => void
+  ) => void
+  createAppointment: () => void
+  cancelAppointment: (appointmentId: string, onComplete: () => void) => void
 }

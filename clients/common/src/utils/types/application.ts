@@ -12,10 +12,12 @@ export type ErrorType = string | string[] | null
 
 export type SetErrorType = (errors: string | string[]) => void
 
-export type SetTimeSlotsType = (
-  provider: ProvidersType,
+export type TimeSlotsType = {
+  providerId: string
   providerSlots: TimeSlotType[]
-) => void
+}
+
+export type SetTimeSlotsType = (timeSlots: TimeSlotsType[]) => void
 
 export type SetAppointmentsParamsType = {
   appointments: AppointmentType[]

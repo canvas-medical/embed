@@ -11,7 +11,7 @@ export type SlotType = {
 }
 
 export type ParsedSlotsType = {
-  provider: ProvidersType
+  providerId: string
   providerSlots: SlotType[]
 }
 
