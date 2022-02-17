@@ -1,10 +1,7 @@
 import axios from 'axios'
 import { formatDateForAPI, checkDateTimeMatch } from '../../utils'
-import {
-  FindAppointmentParamsType,
-  GetAppointmentParamsType,
-  IGetAppointmentResponseType,
-} from './types'
+import { IGetAppointmentResponseType } from '../types'
+import { FindAppointmentParamsType, GetAppointmentParamsType } from './types'
 
 const findAppointment = ({
   setLoading,

@@ -11,3 +11,11 @@ export const formatDate = (date: Date) => {
 export const formatDateForAPI = (date: Date) => {
   return date.toISOString().slice(0, 10)
 }
+
+export const toISOString = (datestring: string) => {
+  return new Date(datestring).toISOString()
+}
+
+export const checkDateTimeMatch = (a: string, b: string) => {
+  return toISOString(a) === toISOString(b)
+}

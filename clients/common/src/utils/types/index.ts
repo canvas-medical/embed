@@ -1,5 +1,7 @@
+export * from './application'
+
 export type ProvidersType = {
-  name: string
+  name?: string
   id: string
 }
 
@@ -26,9 +28,15 @@ export type TimeSlotType = {
 
 export type AppointmentType = {
   id: string
-  type: string
-  reason: string
+  code: string
+  display: string
+  providerId: string
   start: string
   end: string
-  provider: ProvidersType
+}
+
+export type AppointmentCodingType = {
+  system: string | null
+  code: string | null
+  display: string | null
 }
