@@ -20,7 +20,6 @@ export const putAppointment = ({
   const data = constructBody({
     status: statuses.cancelled,
     appointmentCoding,
-    description,
     locationId,
     timeSlot,
     patientId,

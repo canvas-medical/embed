@@ -30,13 +30,14 @@ export type AppointmentType = {
   id: string
   code: string
   display: string
+  locationId?: string
   providerId: string
   start: string
   end: string
 }
 
 export type AppointmentCodingType = {
-  system: string | null
-  code: string | null
-  display: string | null
+  system?: string
+  code?: string
+  display?: string
 }

@@ -28,11 +28,13 @@ const parseAppointments = ({
           if (resource.status !== statuses.cancelled) {
             parsedAppointments.push({
               id: resource.id,
+              code: resource.appointmentType.coding[0].code || '',
+              display: resource.appointmentType.coding[0].display || '',
+              locationId:
+                resource.supportingInformation[0].reference.split('/')[1] || '',
               providerId: response.providerId,
               start: resource.start,
               end: resource.end,
-              code: resource.appointmentType.coding[0].code || '',
-              display: resource.appointmentType.coding[0].display || '',
             })
           }
         })
@@ -48,11 +50,13 @@ const parseAppointments = ({
 
         parsedAppointments.push({
           id: resource.id,
+          code: resource.appointmentType.coding[0].code || '',
+          display: resource.appointmentType.coding[0].display || '',
+          locationId:
+            resource.supportingInformation[0].reference.split('/')[1] || '',
           providerId,
           start: resource.start,
           end: resource.end,
-          code: resource.appointmentType.coding[0].code || '',
-          display: resource.appointmentType.coding[0].display || '',
         })
 
         parsedProviders.push(providerId)

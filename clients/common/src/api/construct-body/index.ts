@@ -1,3 +1,4 @@
+import { toISOString } from '../../utils'
 import { ConstructBodyParamsType } from './types'
 
 export const constructBody = ({
@@ -15,7 +16,7 @@ export const constructBody = ({
       appointmentType: {
         coding: [
           {
-            stystem: appointmentCoding.system || 'http://snomed.info/sct',
+            system: appointmentCoding.system || 'http://snomed.info/sct',
             code: appointmentCoding.code || '',
             display: appointmentCoding.display,
           },
@@ -27,8 +28,8 @@ export const constructBody = ({
           reference: `Location/${locationId}`,
         },
       ],
-      start: new Date(timeSlot.start).toISOString(),
-      end: new Date(timeSlot.end).toISOString(),
+      start: toISOString(timeSlot.start),
+      end: toISOString(timeSlot.end),
       participant: [
         {
           actor: {

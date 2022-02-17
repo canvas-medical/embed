@@ -5,7 +5,7 @@ export type PostAppointmentParamsType = {
   setError: (args: string) => void
   setLoading: (args: boolean) => void
   appointmentCoding: AppointmentCodingType
-  description: string | null
+  description?: string
   locationId: string
   timeSlot: TimeSlotType
   patientId: string
