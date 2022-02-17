@@ -33,6 +33,9 @@ export const putAppointment = ({
         patient_key: patientKey,
       },
     })
-    .then(() => onComplete())
+    .then(() => {
+      setLoading(false)
+      onComplete()
+    })
     .catch(() => setError('Error Cancelling Appointment'))
 }
