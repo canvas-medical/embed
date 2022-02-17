@@ -7,20 +7,20 @@ import {
   Loader,
   putAppointment,
   Error,
+  ErrorType,
+  ProvidersType,
 } from '@canvas-medical/embed-common'
-import { AppointmentsViewPropsType } from '../utils'
+import { IAppProps } from '../utils'
 import { Ui } from './ui'
 
-const defaultAppointment = {
+const defaultAppointment: AppointmentType = {
   id: '',
-  type: '',
-  reason: '',
+  code: '',
+  display: '',
+  locationId: '',
+  providerId: '',
   start: '',
   end: '',
-  provider: {
-    name: '',
-    id: '',
-  },
 }
 
 export const AppointmentsView = ({
@@ -29,33 +29,35 @@ export const AppointmentsView = ({
   locationId,
   patientId,
   patientKey,
-  providers,
+  providerIds,
   shadowRoot,
-}: AppointmentsViewPropsType) => {
+}: IAppProps) => {
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | string[]>('')
+  const [error, setError] = useState<ErrorType>()
   const [appointmentCancellation, setAppointmentCancellation] = useState({
     popoverOpen: false,
     appointment: defaultAppointment,
   })
 
   const [appointments, setAppointments] = useState<AppointmentType[]>([])
+  const [providers, setProviders] = useState<ProvidersType[]>([])
 
   const handleCancel = (appointment: AppointmentType) => {
     setAppointmentCancellation({ popoverOpen: true, appointment })
   }
 
   const fetchAppointments = useCallback(() => {
-    getAppointmentsList(
+    getAppointmentsList({
       setLoading,
       setError,
       setAppointments,
-      providers,
+      setProviders,
+      providerIds,
       api,
       patientId,
-      patientKey
-    )
-  }, [api, patientId, patientKey, providers])
+      patientKey,
+    })
+  }, [api, patientId, patientKey, providerIds])
 
   const afterCancel = () => {
     setAppointmentCancellation({
@@ -66,23 +68,26 @@ export const AppointmentsView = ({
   }
 
   const onCancel = () => {
-    putAppointment(
-      afterCancel,
+    putAppointment({
+      onComplete: afterCancel,
       setError,
       setLoading,
-      getAppointmentType(appointmentCancellation.appointment.type),
-      appointmentCancellation.appointment.reason,
-      locationId,
-      {
+      appointmentCoding: {
+        code: getAppointmentType(appointmentCancellation.appointment.code),
+      },
+      locationId: appointmentCancellation.appointment.locationId || locationId,
+      timeSlot: {
         start: appointmentCancellation.appointment.start,
         end: appointmentCancellation.appointment.end,
-        provider: appointmentCancellation.appointment.provider,
+        provider: {
+          id: appointmentCancellation.appointment.providerId,
+        },
       },
       patientId,
       patientKey,
       api,
-      appointmentCancellation.appointment.id
-    )
+      appointmentId: appointmentCancellation.appointment.id,
+    })
   }
 
   const onKeep = () => {
@@ -107,6 +112,7 @@ export const AppointmentsView = ({
   return (
     <Ui
       appointments={appointments}
+      providers={providers}
       colors={colors}
       onCancel={onCancel}
       onKeep={onKeep}

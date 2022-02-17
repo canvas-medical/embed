@@ -9,7 +9,7 @@ export interface IMainAppProps {
   locationId: string
   patientId: string
   patientKey: string
-  providers: ProvidersType[]
+  providerIds?: string[]
 }
 
 interface IInitializerOnlyProps {
@@ -31,15 +31,5 @@ export interface IAppointmentProps
 
 export interface IAppProps extends IMainAppProps {
   colors: GeneratedColorsType
-  shadowRoot: any
-}
-
-export type AppointmentsViewPropsType = {
-  api: string
-  colors: GeneratedColorsType
-  locationId: string
-  patientId: string
-  patientKey: string
-  providers: ProvidersType[]
   shadowRoot: any
 }

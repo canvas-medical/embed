@@ -11,7 +11,7 @@ export const Appointments = (props: IAppointmentProps) => {
     locationId,
     patientId,
     patientKey,
-    providers,
+    providerIds,
     brandColor,
     accentColor,
     shadowRoot,
@@ -31,7 +31,7 @@ export const Appointments = (props: IAppointmentProps) => {
           locationId={locationId}
           patientId={patientId}
           patientKey={patientKey}
-          providers={providers}
+          providerIds={providerIds}
           shadowRoot={shadowRoot}
         />
       ) : (
@@ -47,7 +47,7 @@ export const init = ({
   locationId,
   patientId,
   patientKey,
-  providers,
+  providerIds,
   brandColor,
   accentColor,
   rootId,
@@ -79,7 +79,7 @@ export const init = ({
       locationId={locationId}
       patientId={patientId}
       patientKey={patientKey}
-      providers={providers}
+      providerIds={providerIds}
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
