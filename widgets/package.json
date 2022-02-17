@@ -1,7 +1,0 @@
-{
-  "name": "embed-widgets",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
-}
