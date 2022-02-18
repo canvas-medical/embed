@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Calendar } from '../../../src'
+import { Calendar } from '../../src'
 
 describe('Calendar', () => {
   it('renders without props', () => {

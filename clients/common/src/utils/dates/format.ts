@@ -15,7 +15,3 @@ export const formatDateForAPI = (date: Date) => {
 export const toISOString = (datestring: string) => {
   return new Date(datestring).toISOString()
 }
-
-export const checkDateTimeMatch = (a: string, b: string) => {
-  return toISOString(a) === toISOString(b)
-}

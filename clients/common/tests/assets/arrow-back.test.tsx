@@ -1,9 +1,9 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Close } from '../../../src'
+import { ArrowBack } from '../../src'
 
-describe('Close', () => {
+describe('Arrow Back', () => {
   it('renders without props', () => {
-    expect(render(<Close />)).toMatchSnapshot()
+    expect(render(<ArrowBack />)).toMatchSnapshot()
   })
 })

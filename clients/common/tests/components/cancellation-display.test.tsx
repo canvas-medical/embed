@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
 import { render as testingRender, fireEvent } from '@testing-library/preact'
-import { CancellationDisplay } from '../../../src'
+import { CancellationDisplay } from '../../src'
 
 describe('CancellationDisplay', () => {
   it('renders ', () => {

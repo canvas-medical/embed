@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { H1, H2, H3, Legend, ScreenReaderText, Span } from '../../../src'
+import { H1, H2, H3, Legend, ScreenReaderText, Span } from '../../src'
 
 describe('H1', () => {
   it('renders without props', () => {

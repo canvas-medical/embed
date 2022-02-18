@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { IconButtonLink, IconButton, ArrowBack } from '../../../src'
+import { IconButtonLink, IconButton, ArrowBack } from '../../src'
 
 describe('IconButtonLink', () => {
   it('renders with minimal props', () => {

@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Error } from '../../../src'
+import { Error } from '../../src'
 
 describe('Error', () => {
   it('renders with a single error message', () => {

@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Backdrop, FocusTrapBackdrop } from '../../../src'
+import { Backdrop, FocusTrapBackdrop } from '../../src'
 
 describe('Backdrop', () => {
   it('renders without props', () => {

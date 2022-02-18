@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Button, ButtonGroup } from '../../../src'
+import { Button, ButtonGroup } from '../../src'
 
 describe('Button', () => {
   it('renders with minimal props', () => {

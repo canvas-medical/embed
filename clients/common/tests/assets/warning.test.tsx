@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { Warning } from '../../../src'
+import { Warning } from '../../src'
 
 describe('Warning', () => {
   it('renders without props', () => {

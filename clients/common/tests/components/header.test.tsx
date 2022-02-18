@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { colorDefaults, generateColors, Header } from '../../../src'
+import { colorDefaults, generateColors, Header } from '../../src'
 
 describe('Header', () => {
   it('renders', () => {

@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { render } from 'preact-render-to-string'
-import { AppContainer, Body, Box, Fieldset, AccentBox } from '../../../src'
+import { AppContainer, Body, Box, Fieldset, AccentBox } from '../../src'
 
 describe('AppContainer', () => {
   it('renders', () => {
