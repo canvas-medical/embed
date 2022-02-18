@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+.Login {
+  border-radius: 4px;
+  background-color: #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 350px;
+  padding: 16px;
+}
+
+.Login input {
+  border: none;
+  margin: 4px;
+  height: 30px;
+}
+
+.Login button {
+  border: none;
+  background-color: #0f5096;
+  color: white;
+  height: 30px;
+  margin: 4px;
+}
+
+.Brand {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: white;
+}
+
+.Brand h1 {
+  margin: 0;
+}

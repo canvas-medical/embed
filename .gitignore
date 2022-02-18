@@ -2,6 +2,7 @@
 **/dist/
 **/coverage/
 **/stats.json
+**/build/
 
 yarn-error.log*
 

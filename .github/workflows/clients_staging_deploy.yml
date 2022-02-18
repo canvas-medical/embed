@@ -33,6 +33,10 @@ jobs:
         working-directory: ./clients/scheduler
         run: yarn build
 
+      - name: Build Example React
+        working-directory: ./example-apps/react
+        run: yarn build
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -50,7 +54,11 @@ jobs:
 
       - name: Copy example apps to S3 Bucket
         working-directory: ./example-apps
-        run: aws s3 sync . s3://${{secrets.STAGING_S3_BUCKET}}
+        run: aws s3 sync . s3://${{secrets.STAGING_S3_BUCKET}}/static
+
+      - name: Copy example react to S3 Bucket
+        working-directory: ./example-apps
+        run: aws s3 sync ./react/build s3://${{secrets.STAGING_S3_BUCKET}}/react
 
       - name: Invalidate cache
         run: |

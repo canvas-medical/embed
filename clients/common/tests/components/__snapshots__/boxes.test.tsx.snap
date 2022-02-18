@@ -2,7 +2,7 @@
 
 exports[`AccentBox renders 1`] = `"<div class=\\"sc-hKwDye sc-jRQBWg xxBnT kbOEBQ\\"><div>I'm a child</div></div>"`;
 
-exports[`AppContainer renders 1`] = `"<div class=\\"sc-gsDKAQ kdUqs\\"><div>I'm a child</div></div>"`;
+exports[`AppContainer renders 1`] = `"<div class=\\"sc-gsDKAQ hcJErS\\"><div>I'm a child</div></div>"`;
 
 exports[`Body renders 1`] = `"<div class=\\"sc-dkPtRN cFfYed\\"><div>I'm a child</div></div>"`;
 
