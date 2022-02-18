@@ -3,7 +3,7 @@ import { h } from 'preact'
 import { render } from 'preact-render-to-string'
 import { App } from '../src/App'
 
-describe('Backdrop', () => {
+describe('App', () => {
   it('renders', () => {
     const colors = generateColors(null, null)
 
