@@ -13,18 +13,38 @@
   <body>
     <div id="embed-root"></div>
     <script
-      src="http://dobifzkofpux2.cloudfront.net/appointments.js"
+      src="http://dobifzkofpux2.cloudfront.net/scheduler.js"
       type="text/javascript"
     ></script>
     <script type="text/javascript">
       const params = new URLSearchParams(window.location.search)
+      const providerIds = [params.get("provider1Id")]
 
-      Appointments.init({
+      const provider2Id = params.get("provider2Id")
+      const provider3Id = params.get("provider3Id")
+      const provider4Id = params.get("provider3Id")
+
+      if (provider2Id) {
+        providerIds.push(provider2Id)
+      }
+      if (provider3Id) {
+        providerIds.push(provider3Id)
+      }
+      if (provider4Id) {
+        providerIds.push(provider4Id)
+      }
+
+      Scheduler.init({
         api: params.get("api"),
+        appointmentTypeCode: params.get("appointmentTypeCode"),
         bailoutURL: params.get("bailoutURL"),
+        duration: params.get("duration"),
         locationId: params.get("locationId"),
         patientId: params.get("patientId"),
         patientKey: params.get("patientKey"),
+        providerIds,
+        description: params.get("description"),
+        returnURL: params.get("returnURL"),
         rootId: params.get("rootId"),
         brandColor: `#${params.get("brandColor")}`,
         accentColor: `#${params.get("accentColor")}`,
