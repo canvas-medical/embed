@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import { Scheduler } from './scheduler';
+import { Appointments } from './appointments';
 
 function App() {
   const [patientKey, setPatientKey] = useState('');
@@ -8,7 +10,7 @@ function App() {
 
   const config = {
     api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
-    appointmnetCoding: {
+    appointmentCoding: {
       code: '439708006',
     },
     bailoutURL: 'https://viget.com',
@@ -61,9 +63,9 @@ function App() {
               </button>
             </div>
           ) : screen === 'SCHEDULER' ? (
-            <div>Scheduler</div>
+            <Scheduler config={config} patientKey={patientKey} />
           ) : (
-            <div>Appointments</div>
+            <Appointments config={config} patientKey={patientKey} />
           )}
         </>
       )}

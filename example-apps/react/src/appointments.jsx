@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { init } from '@canvas-medical/embed-scheduler';
+import { init } from '@canvas-medical/embed-appointments';
 
-export const Scheduler = ({ config, patientKey }) => {
+export const Appointments = ({ config, patientKey }) => {
   useEffect(() => {
     init({
       ...config,

@@ -14,6 +14,7 @@ type BoxPropsType = {
 }
 
 export const AppContainer = styled.div`
+  background-color: white;
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   overflow: auto;
