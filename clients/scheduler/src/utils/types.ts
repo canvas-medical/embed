@@ -48,7 +48,6 @@ export interface IAppContext extends IMainAppProps {
   timeSlot: TimeSlotType
   setTimeSlot: (timeSlot: TimeSlotType) => void
   resetTimeSlot: () => void
-  fetchProviders: () => void
   fetchTimeSlots: (setTimeSlots: SetTimeSlotsType) => void
   fetchScheduledAppointment: (
     setAppointmentId: (appointmentId: string) => void

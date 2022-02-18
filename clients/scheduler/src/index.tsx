@@ -66,7 +66,6 @@ export const Scheduler = (props: ISchedulerProps) => {
             date: new Date(),
             setDate: () => {},
             error: '',
-            fetchProviders: () => {},
             fetchTimeSlots: () => {},
             fetchScheduledAppointment: () => {},
             createAppointment: () => {},
