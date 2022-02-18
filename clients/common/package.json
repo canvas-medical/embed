@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack build",
     "start": "echo 'No Start Provided'",
-    "test": "TZ=UTC jest ./tests"
+    "test": "TZ=UTC jest ./tests",
+    "test:update": "test --updateSnapshot"
   },
   "babel": {
     "plugins": [

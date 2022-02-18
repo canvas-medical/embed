@@ -53,7 +53,10 @@
         "lines": 25,
         "statements": 25
       }
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./tests/setup.ts"
+    ]
   },
   "prettier": {
     "semi": false,
