@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-common",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "main": "src/index.ts",
   "scripts": {

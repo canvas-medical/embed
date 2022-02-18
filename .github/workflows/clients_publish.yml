@@ -23,6 +23,14 @@ jobs:
         working-directory: ./clients
         run: yarn
 
+      - name: Build Appointments
+        working-directory: ./clients/appointments
+        run: yarn build:esm
+
+      - name: Build Scheduler
+        working-directory: ./clients/scheduler
+        run: yarn build:esm
+
       - name: Publish Common
         working-directory: ./clients/common
         run: yarn publish --access public

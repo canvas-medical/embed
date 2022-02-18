@@ -1,12 +1,18 @@
 {
   "name": "@canvas-medical/embed-scheduler",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
+  "main": "dist/scheduler.js",
+  "license": "MIT",
   "scripts": {
-    "build": "webpack build",
+    "build": "webpack build --env prod",
+    "build:esm": "webpack build --env prod --env esm",
     "start": "webpack server --open",
     "test": "jest ./tests"
   },
+  "files": [
+    "/dist"
+  ],
   "babel": {
     "plugins": [
       [
@@ -55,7 +61,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "^0.0.7",
+    "@canvas-medical/embed-common": "^0.0.8",
     "preact": "^10.6.5"
   },
   "devDependencies": {
