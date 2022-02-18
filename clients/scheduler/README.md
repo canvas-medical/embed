@@ -20,24 +20,22 @@
 <script type="text/javascript">
   Scheduler.init({
     api: https://your.api.url,
-    appointmentTypeCode: '8675309',
-    bailoutURL: https://your.host.site,  // Return user here if they exit early
+    appointmentCoding: {
+      system: 'https://coding.system',
+      code: '8675309',
+      display: 'Some display'
+    }
+    bailoutURL: 'https://your.host.site',  // Return user here if they exit early
     duration: 20,
     locationId: 'someID',
     patientId: 'someID',
     patientKey: 'someKey',
-    providers: [
-      {
-        id: 'someID',
-        name: 'Some Provider, MD.'
-      },
-      {
-        id: 'someID',
-        name: 'Some Provider, MD.'
-      }
+    providerIds: [
+      'someID',
+      'someOtherID',
     ],
-    reason: 'some reason for appointment,
-    returnURL: https://your.host.site/done, // Send user here when they finish
+    description: 'some description for appointment,
+    returnURL: 'https://your.host.site/done', // Send user here when they finish
     rootId: 'embed-root',  // The id of your host container
     brandColor: '#000000',  // Your custom brand color in hex code
     accentColor: '#000000,  // Your custom accent color in hex code
@@ -47,4 +45,95 @@
 
 ## NPM Installation
 
-> Coming soon
+### Install with prefered package manager
+
+```
+  npm i @canvas-medical/embed-scheduler --save
+```
+
+```
+  yarn add @canvas-medical/embed-scheduler
+```
+
+### Initialize embeds
+
+- Add a host container
+
+```
+<div id="embed-root"></div>
+```
+
+- Import the initializer
+
+```
+
+import { init } from '@canvas-medical/embed-scheduler'
+
+```
+
+- Call the initializer and supply it some config
+
+```
+  init({
+    api: https://your.api.url,
+    appointmentCoding: {
+      system: 'https://coding.system',
+      code: '8675309',
+      display: 'Some display'
+    }
+    bailoutURL: 'https://your.host.site',  // Return user here if they exit early
+    duration: 20,
+    locationId: 'someID',
+    patientId: 'someID',
+    patientKey: 'someKey',
+    providerIds: [
+      'someID',
+      'someOtherID',
+    ],
+    description: 'some description for appointment,
+    returnURL: 'https://your.host.site/done', // Send user here when they finish
+    rootId: 'embed-root',  // The id of your host container
+    brandColor: '#000000',  // Your custom brand color in hex code
+    accentColor: '#000000,  // Your custom accent color in hex code
+  })
+```
+
+### React Example
+
+`Scheduler.jsx`
+
+```
+import React, { useEffect } from 'react'
+import { init } from '@canvas-medical/embed-scheduler'
+
+export const Scheduler = (props) => {
+  useEffect(() => {
+    init({
+      api: https://your.api.url,
+      appointmentCoding: {
+        system: 'https://coding.system',
+        code: '8675309',
+        display: 'Some display'
+      }
+      bailoutURL: 'https://your.host.site',  // Return user here if they exit early
+      duration: 20,
+      locationId: 'someID',
+      patientId: 'someID',
+      patientKey: 'someKey',
+      providerIds: [
+        'someID',
+        'someOtherID',
+      ],
+      description: 'some description for appointment,
+      returnURL: 'https://your.host.site/done', // Send user here when they finish
+      rootId: 'embed-root',  // The id of your host container
+      brandColor: '#000000',  // Your custom brand color in hex code
+      accentColor: '#000000,  // Your custom accent color in hex code
+    })
+  }, [])
+
+  return (
+    <div id="embed-root" />
+  )
+}
+```
