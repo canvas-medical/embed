@@ -48,6 +48,10 @@ jobs:
         working-directory: ./clients/scheduler
         run: aws s3 sync ./dist s3://${{secrets.STAGING_S3_BUCKET}}
 
+      - name: Copy example apps to S3 Bucket
+        working-directory: ./example-apps
+        run: aws s3 sync . s3://${{secrets.STAGING_S3_BUCKET}}
+
       - name: Invalidate cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_DISTRIBUTION_ID }}  --paths "/*"

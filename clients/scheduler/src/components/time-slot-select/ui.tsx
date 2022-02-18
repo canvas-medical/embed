@@ -56,9 +56,7 @@ export const Ui = ({ timeSlots }: UiPropsType) => {
     )
   }
 
-  const stillLoading = !(timeSlots.length && providers.length)
-
-  if (loading || stillLoading) {
+  if (loading) {
     return <Loader colors={colors} />
   }
 

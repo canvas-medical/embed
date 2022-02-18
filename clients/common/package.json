@@ -7,7 +7,7 @@
     "build": "webpack build",
     "start": "echo 'No Start Provided'",
     "test": "TZ=UTC jest ./tests",
-    "test:update": "test --updateSnapshot"
+    "test:update": "yarn test --updateSnapshot"
   },
   "babel": {
     "plugins": [
