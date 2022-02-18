@@ -69,6 +69,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/preact": "^2.0.1",
     "@types/color": "^3.0.3",
+    "@types/jest": "^27.4.0",
     "@types/styled-components": "^5.1.22",
     "babel-plugin-styled-components": "^2.0.2",
     "babel-preset-preact": "^2.0.0",
