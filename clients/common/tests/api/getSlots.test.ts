@@ -26,6 +26,7 @@ describe('getSlots', () => {
       duration: 20,
       locationId: '1234',
       providerIds: ['1234567', '12345678'],
+      setProviders: () => {},
     })
 
     expect(mockedAxios.get).toHaveBeenCalledTimes(2)
@@ -45,9 +46,10 @@ describe('getSlots', () => {
       duration: 20,
       locationId: '1234',
       providerIds: ['1234567', '12345678'],
+      setProviders: () => {},
     })
 
-    expect(mockedAxios.get).toHaveBeenCalledTimes(4)
+    expect(mockedAxios.get).toHaveBeenCalledTimes(5)
   })
 
   it('Returns slots', () => {
@@ -69,6 +71,12 @@ describe('getSlots', () => {
       responses,
       date: new Date('2022-03-28T10:00:00.000Z'),
       setTimeSlots,
+      api: 'arbitraryString',
+      patientId: 'fab73482a',
+      patientKey: 'arbitraryString',
+      providerIds: ['1234567', '12345678'],
+      setProviders: () => {},
+      setError: () => {},
     })
 
     expect(parsedSlots.length).toBe(1)

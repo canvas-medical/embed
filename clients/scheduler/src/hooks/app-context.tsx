@@ -49,7 +49,6 @@ export const AppContext = createContext<IAppContext>({
   },
   setTimeSlot: () => {},
   resetTimeSlot: () => {},
-  fetchProviders: () => {},
   fetchTimeSlots: () => {},
   fetchScheduledAppointment: () => {},
   createAppointment: () => {},
@@ -82,18 +81,6 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     })
   }
 
-  const fetchProviders = useCallback(() => {
-    getPractitioners({
-      setLoading,
-      setError,
-      setProviders,
-      api: values.api,
-      providerIds: values.providerIds,
-      patientId: values.patientId,
-      patientKey: values.patientKey,
-    })
-  }, [values])
-
   const fetchTimeSlots = useCallback(
     (setTimeSlots: SetTimeSlotsType) => {
       getTimeSlots({
@@ -107,6 +94,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         date,
         duration: values.duration,
         setTimeSlots,
+        setProviders,
       })
     },
     [date, values]
@@ -175,7 +163,6 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       timeSlot,
       setTimeSlot,
       resetTimeSlot,
-      fetchProviders,
       fetchTimeSlots,
       fetchScheduledAppointment,
       createAppointment,

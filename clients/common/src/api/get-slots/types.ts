@@ -3,6 +3,7 @@ import {
   SetErrorType,
   SetLoadingType,
   SetTimeSlotsType,
+  ProvidersType,
 } from '../../utils'
 
 export type GetSlotsParamsType = {
@@ -16,6 +17,7 @@ export type GetSlotsParamsType = {
   patientId: string
   patientKey: string
   providerIds: string[]
+  setProviders: (providers: ProvidersType[]) => void
 }
 
 type SlotResourceType = {
@@ -44,4 +46,10 @@ export type ParseSlotsParamsType = {
   responses: ParseSlotsResponsesType
   date: Date
   setTimeSlots: SetTimeSlotsType
+  setError: SetErrorType
+  api: string
+  patientId: string
+  patientKey: string
+  providerIds: string[]
+  setProviders: (providers: ProvidersType[]) => void
 }
