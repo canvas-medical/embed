@@ -36,7 +36,11 @@
 
       Scheduler.init({
         api: params.get("api"),
-        appointmentTypeCode: params.get("appointmentTypeCode"),
+        appointmentCoding: {
+          system: params.get("appointmentCodingSystem"),
+          code: params.get("appointmentCodingCode"),
+          display: params.get("appointmentCodingDisplay"),
+        },
         bailoutURL: params.get("bailoutURL"),
         duration: params.get("duration"),
         locationId: params.get("locationId"),
