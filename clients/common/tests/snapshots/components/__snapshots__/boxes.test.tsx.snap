@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccentBox renders 1`] = `"<div class=\\"sc-hKwDye sc-jRQBWg xxBnT kbOEBQ\\"><div>I'm a child</div></div>"`;
+
+exports[`AppContainer renders 1`] = `"<div class=\\"sc-gsDKAQ kdUqs\\"><div>I'm a child</div></div>"`;
+
+exports[`Body renders 1`] = `"<div class=\\"sc-dkPtRN cFfYed\\"><div>I'm a child</div></div>"`;
+
+exports[`Box renders with props 1`] = `"<div width=\\"50%\\" class=\\"sc-hKwDye hbZXyr\\"><div>I'm a child</div></div>"`;
+
+exports[`Box renders without props 1`] = `"<div class=\\"sc-hKwDye xxBnT\\"><div>I'm a child</div></div>"`;
+
+exports[`Fieldset renders 1`] = `"<fieldset class=\\"sc-eCImPb hfUXPA\\"><div>I'm a child</div></fieldset>"`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backdrop renders with props 1`] = `"<div class=\\"sc-bdvvtL biKJMq\\"><div>I'm a child</div></div>"`;
+
+exports[`Backdrop renders without props 1`] = `"<div class=\\"sc-bdvvtL fHABNB\\"></div>"`;
+
+exports[`FocusTrapBackdrop renders with props 1`] = `"<div class=\\"sc-bdvvtL fHAOnW\\"><div>I'm a child</div></div>"`;
+
+exports[`FocusTrapBackdrop returns null 1`] = `""`;
