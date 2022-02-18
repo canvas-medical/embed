@@ -1,5 +1,5 @@
 import {
-  ProvidersType,
+  IFHIRResponse,
   SetErrorType,
   SetLoadingType,
   SetTimeSlotsType,
@@ -30,14 +30,18 @@ type SlotResourceType = {
   }
 }
 
-export type GetSlotsResponseType = {
-  resourceType: string
-  type: string
-  total: number
+export interface IGetSlotsResponse extends IFHIRResponse {
   entry?: SlotResourceType[]
 }
 
 export type ParseSlotsResponsesType = {
   providerId: string
-  slots: GetSlotsResponseType
+  slots: IGetSlotsResponse
 }[]
+
+export type ParseSlotsParamsType = {
+  setLoading: SetLoadingType
+  responses: ParseSlotsResponsesType
+  date: Date
+  setTimeSlots: SetTimeSlotsType
+}

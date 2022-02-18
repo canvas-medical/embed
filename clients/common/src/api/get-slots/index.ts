@@ -1,22 +1,17 @@
 import axios from 'axios'
-import {
-  isSameDay,
-  ParsedSlotsType,
-  SetLoadingType,
-  SlotType,
-} from '../../utils'
+import { isSameDay, ParsedSlotsType, SlotType } from '../../utils'
 import {
   GetSlotsParamsType,
-  GetSlotsResponseType,
-  ParseSlotsResponsesType,
+  IGetSlotsResponse,
+  ParseSlotsParamsType,
 } from './types'
 
-const parseSlots = (
-  responses: ParseSlotsResponsesType,
-  setLoading: SetLoadingType,
-  date: Date,
-  setTimeSlots: Function
-): void => {
+export const parseSlots = ({
+  setLoading,
+  responses,
+  date,
+  setTimeSlots,
+}: ParseSlotsParamsType): void => {
   const slots: ParsedSlotsType[] = []
   responses.forEach((response: any) => {
     const providerSlots: SlotType[] = []
@@ -31,7 +26,7 @@ const parseSlots = (
           end: response.slots.entry[i].resource.end,
         })
       } else {
-        i = totalSlots
+        break
       }
     }
     slots.push({ providerId: response.providerId, providerSlots })
@@ -57,7 +52,7 @@ export const getTimeSlots = ({
   Promise.all(
     providerIds.map(providerId => {
       return axios
-        .get<GetSlotsResponseType>(`${api}/Slot`, {
+        .get<IGetSlotsResponse>(`${api}/Slot`, {
           params: {
             schedule: `Schedule/Location.${locationId}-Staff.${providerId}`,
             patient: patientId,
@@ -71,6 +66,8 @@ export const getTimeSlots = ({
         })
     })
   )
-    .then(responses => parseSlots(responses, setLoading, date, setTimeSlots))
+    .then(responses =>
+      parseSlots({ setLoading, responses, date, setTimeSlots })
+    )
     .catch(() => setError('Error Fetching Appointments'))
 }

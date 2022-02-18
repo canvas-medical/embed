@@ -5,29 +5,23 @@ import {
   SetErrorType,
 } from '../../utils'
 
-export interface IGetPractitionersResposne extends IFHIRResponse {
-  entry: [
-    {
-      resource: {
-        resourceType: string
-        id: string
-        identifier: [
-          {
-            system: string
-            value: string
-          }
-        ]
-        name: [
-          {
-            use: string
-            text: string
-            family: string
-            given: string[]
-          }
-        ]
-      }
+export interface IGetPractitionersResponse extends IFHIRResponse {
+  entry: {
+    resource: {
+      resourceType: string
+      id: string
+      identifier: {
+        system: string
+        value: string
+      }[]
+      name: {
+        use: string
+        text: string
+        family: string
+        given: string[]
+      }[]
     }
-  ]
+  }[]
 }
 
 export type GetPractitionersParamsType = {
@@ -44,5 +38,5 @@ export type ParsePractitionersParmsType = {
   setLoading: SetLoadingType
   setProviders: (providers: ProvidersType[]) => void
   providerIds: string[]
-  providers: IGetPractitionersResposne
+  providers: IGetPractitionersResponse
 }

@@ -8,7 +8,6 @@ export const putAppointment = ({
   setError,
   setLoading,
   appointmentCoding,
-  description,
   locationId,
   timeSlot,
   patientId,

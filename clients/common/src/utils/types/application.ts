@@ -1,4 +1,9 @@
-import { AppointmentType, ProvidersType, TimeSlotType } from '.'
+import {
+  AppointmentType,
+  ParsedSlotsType,
+  ProvidersType,
+  TimeSlotType,
+} from '.'
 
 export interface IFHIRResponse {
   resourceType: string
@@ -17,7 +22,7 @@ export type TimeSlotsType = {
   providerSlots: TimeSlotType[]
 }
 
-export type SetTimeSlotsType = (timeSlots: TimeSlotsType[]) => void
+export type SetTimeSlotsType = (timeSlots: ParsedSlotsType[]) => void
 
 export type SetAppointmentsParamsType = {
   appointments: AppointmentType[]

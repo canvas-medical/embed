@@ -3,7 +3,7 @@ import { formatDateForAPI, checkDateTimeMatch } from '../../utils'
 import { IGetAppointmentResponseType } from '../types'
 import { FindAppointmentParamsType, GetAppointmentParamsType } from './types'
 
-const findAppointment = ({
+export const findAppointment = ({
   setLoading,
   setError,
   setAppointmentId,

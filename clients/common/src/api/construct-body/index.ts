@@ -17,7 +17,7 @@ export const constructBody = ({
         coding: [
           {
             system: appointmentCoding.system || 'http://snomed.info/sct',
-            code: appointmentCoding.code || '',
+            code: appointmentCoding.code,
             display: appointmentCoding.display,
           },
         ],

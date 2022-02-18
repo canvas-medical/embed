@@ -7,7 +7,7 @@ import {
   ParseAppointmentsParamsType,
 } from './types'
 
-const parseAppointments = ({
+export const parseAppointments = ({
   setLoading,
   setError,
   setAppointments,
@@ -87,8 +87,6 @@ export const getAppointmentsList = ({
   patientKey,
   providerIds,
 }: GetAppointmentsListParamsType) => {
-  const queryDate = formatDateForAPI(date || new Date())
-
   setLoading(true)
 
   if (providerIds) {

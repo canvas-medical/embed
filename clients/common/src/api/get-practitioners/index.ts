@@ -2,11 +2,11 @@ import axios from 'axios'
 import { ProvidersType } from '../../utils'
 import {
   GetPractitionersParamsType,
-  IGetPractitionersResposne,
+  IGetPractitionersResponse,
   ParsePractitionersParmsType,
 } from './types'
 
-const parsePractitioners = ({
+export const parsePractitioners = ({
   setLoading,
   setProviders,
   providerIds,
@@ -42,7 +42,7 @@ export const getPractitioners = ({
   setLoading(true)
 
   axios
-    .get<IGetPractitionersResposne>(`${api}/Practitioner`, {
+    .get<IGetPractitionersResponse>(`${api}/Practitioner`, {
       params: {
         patient: patientId,
         patient_key: patientKey,
