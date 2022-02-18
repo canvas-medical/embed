@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CancellationDisplay renders  1`] = `"<div class=\\"sc-hKwDye xxBnT\\"><h2 class=\\"sc-pVTFL jWPgjN\\">Cancel Your Appointment</h2><div class=\\"sc-iCfMLu foUVEQ\\"><button class=\\"sc-gKclnd hSCSWO\\">Yes, cancel it</button><button class=\\"sc-gKclnd lhRJaN\\">No, keep it</button></div></div>"`;

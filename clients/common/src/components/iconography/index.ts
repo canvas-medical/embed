@@ -28,12 +28,6 @@ export const IconButtonLink = styled.a<
       stroke: ${p => p.hc};
     }
   }
-
-  $:disabled {
-    path {
-      stroke: ${colors.font.grey25};
-    }
-  }
 `
 
 export const IconButton = styled.button<

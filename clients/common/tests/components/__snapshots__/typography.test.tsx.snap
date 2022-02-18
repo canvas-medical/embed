@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`H1 renders with props 1`] = `"<h1 class=\\"sc-furwcr hmEoze\\">I'm text</h1>"`;
+
+exports[`H1 renders without props 1`] = `"<h1 class=\\"sc-furwcr bZPKEG\\">I'm text</h1>"`;
+
+exports[`H2 renders with props 1`] = `"<h2 class=\\"sc-pVTFL jEEpkd\\">I'm text</h2>"`;
+
+exports[`H2 renders without props 1`] = `"<h2 class=\\"sc-pVTFL jWPgjN\\">I'm text</h2>"`;
+
+exports[`H3 renders 1`] = `"<h3 class=\\"sc-jrQzAO jrrRgl\\">I'm text</h3>"`;
+
+exports[`Legend renders 1`] = `"<legend class=\\"sc-kDTinF cTSYvq\\">I'm text</legend>"`;
+
+exports[`ScreenReaderText renders 1`] = `"<span class=\\"sc-crHmcD huScTk\\">I'm text</span>"`;
+
+exports[`Span renders with props 1`] = `"<span font-size=\\"2rem\\" class=\\"sc-iqseJM kEgKBn\\">I'm text</span>"`;
+
+exports[`Span renders without props 1`] = `"<span class=\\"sc-iqseJM dTEfIv\\">I'm text</span>"`;

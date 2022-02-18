@@ -11,3 +11,7 @@ export const formatDate = (date: Date) => {
 export const formatDateForAPI = (date: Date) => {
   return date.toISOString().slice(0, 10)
 }
+
+export const toISOString = (datestring: string) => {
+  return new Date(datestring).toISOString()
+}

@@ -26,18 +26,5 @@ export const hasAllValues = (values: IMainAppProps) => {
     errorMessages.push('No Patient Key supplied.')
   }
 
-  if (values.providers) {
-    values.providers.forEach((provider, index) => {
-      if (!provider.id) {
-        errorMessages.push(`Provider ${index + 1} is missing a Provider ID`)
-      }
-      if (!provider.name) {
-        errorMessages.push(`Provider ${index + 1} is missing a Provider Name`)
-      }
-    })
-  } else {
-    errorMessages.push('No Providers supplied.')
-  }
-
   return errorMessages
 }

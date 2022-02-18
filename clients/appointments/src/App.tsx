@@ -9,7 +9,7 @@ export const App = ({
   locationId,
   patientId,
   patientKey,
-  providers,
+  providerIds,
   shadowRoot,
   colors,
 }: IAppProps) => {
@@ -22,11 +22,12 @@ export const App = ({
       />
       <AppointmentsView
         api={api}
+        bailoutURL={bailoutURL}
         colors={colors}
         locationId={locationId}
         patientId={patientId}
         patientKey={patientKey}
-        providers={providers}
+        providerIds={providerIds}
         shadowRoot={shadowRoot}
       />
     </AppContainer>

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover renders 1`] = `"<div class=\\"sc-bdvvtL fHABNB\\"><div aria-labelledby=\\"id\\" class=\\"sc-bkkeKt kjgYkK\\"><div>I'm children</div></div></div>"`;

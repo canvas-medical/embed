@@ -1,7 +1,4 @@
-import {
-  GeneratedColorsType,
-  ProvidersType,
-} from '@canvas-medical/embed-common'
+import { GeneratedColorsType } from '@canvas-medical/embed-common'
 
 export interface IMainAppProps {
   api: string
@@ -9,7 +6,7 @@ export interface IMainAppProps {
   locationId: string
   patientId: string
   patientKey: string
-  providers: ProvidersType[]
+  providerIds?: string[]
 }
 
 interface IInitializerOnlyProps {
@@ -31,15 +28,5 @@ export interface IAppointmentProps
 
 export interface IAppProps extends IMainAppProps {
   colors: GeneratedColorsType
-  shadowRoot: any
-}
-
-export type AppointmentsViewPropsType = {
-  api: string
-  colors: GeneratedColorsType
-  locationId: string
-  patientId: string
-  patientKey: string
-  providers: ProvidersType[]
   shadowRoot: any
 }

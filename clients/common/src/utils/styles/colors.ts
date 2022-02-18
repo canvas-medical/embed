@@ -4,7 +4,7 @@ export const colorDefaults = {
   primary: '#29933C',
   secondary: '#E0E1E2',
   destructive: '#D02121',
-  brand: '#2185d0',
+  brand: '#2185D0',
 }
 
 export const colors = {

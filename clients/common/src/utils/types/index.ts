@@ -1,5 +1,7 @@
+export * from './application'
+
 export type ProvidersType = {
-  name: string
+  name?: string
   id: string
 }
 
@@ -9,7 +11,7 @@ export type SlotType = {
 }
 
 export type ParsedSlotsType = {
-  provider: ProvidersType
+  providerId: string
   providerSlots: SlotType[]
 }
 
@@ -26,9 +28,16 @@ export type TimeSlotType = {
 
 export type AppointmentType = {
   id: string
-  type: string
-  reason: string
+  code: string
+  display: string
+  locationId?: string
+  providerId: string
   start: string
   end: string
-  provider: ProvidersType
+}
+
+export type AppointmentCodingType = {
+  system?: string
+  code?: string
+  display?: string
 }

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders with minimal props 1`] = `"<button class=\\"sc-gKclnd jwiLHW\\">I'm some text</button>"`;
+
+exports[`Button renders with props 1`] = `"<button class=\\"sc-gKclnd ewwOwS\\">I'm some text</button>"`;
+
+exports[`ButtonGroup renders 1`] = `"<div class=\\"sc-iCfMLu foUVEQ\\"><button class=\\"sc-gKclnd jwiLHW\\">I'm some text</button><button class=\\"sc-gKclnd jwiLHW\\">I'm othertext</button></div>"`;

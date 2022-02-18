@@ -8,7 +8,8 @@
     "build": "webpack build --env prod",
     "build:esm": "webpack build --env prod --env esm",
     "start": "webpack server --open",
-    "test": "jest ./tests"
+    "test": "TZ=UTC jest ./tests",
+    "test:update": "yarn test --updateSnapshot"
   },
   "files": [
     "/dist"
@@ -48,12 +49,15 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 50,
+        "branches": 0,
         "functions": 10,
         "lines": 25,
         "statements": 25
       }
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./tests/setup.ts"
+    ]
   },
   "prettier": {
     "semi": false,

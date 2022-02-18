@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader renders 1`] = `"<div class=\\"sc-bdvvtL biLwMd\\"><div class=\\"sc-hKwDye cQHjzB\\"><div class=\\"sc-fFeiMQ jjjCFF\\"></div></div></div>"`;

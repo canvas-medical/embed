@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton is disabled 1`] = `"<button disabled class=\\"sc-bqiRlB dCFWuK\\"><svg height=\\"16\\" viewBox=\\"0 0 10 16\\" width=\\"10\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"m401.034779 24.5989021v10h10\\" fill=\\"none\\" stroke=\\"#fff\\" stroke-width=\\"2\\" transform=\\"matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)\\"></path></svg></button>"`;
+
+exports[`IconButton renders with minimal props 1`] = `"<button class=\\"sc-bqiRlB hzIswT\\"><svg height=\\"16\\" viewBox=\\"0 0 10 16\\" width=\\"10\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"m401.034779 24.5989021v10h10\\" fill=\\"none\\" stroke=\\"#fff\\" stroke-width=\\"2\\" transform=\\"matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)\\"></path></svg></button>"`;
+
+exports[`IconButton renders with props 1`] = `"<button class=\\"sc-bqiRlB dCFWuK\\"><svg height=\\"16\\" viewBox=\\"0 0 10 16\\" width=\\"10\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"m401.034779 24.5989021v10h10\\" fill=\\"none\\" stroke=\\"#fff\\" stroke-width=\\"2\\" transform=\\"matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)\\"></path></svg></button>"`;
+
+exports[`IconButtonLink renders with minimal props 1`] = `"<a class=\\"sc-egiyK gdWPXD\\"><svg height=\\"16\\" viewBox=\\"0 0 10 16\\" width=\\"10\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"m401.034779 24.5989021v10h10\\" fill=\\"none\\" stroke=\\"#fff\\" stroke-width=\\"2\\" transform=\\"matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)\\"></path></svg></a>"`;
+
+exports[`IconButtonLink renders with props 1`] = `"<a class=\\"sc-egiyK keKCYi\\"><svg height=\\"16\\" viewBox=\\"0 0 10 16\\" width=\\"10\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"m401.034779 24.5989021v10h10\\" fill=\\"none\\" stroke=\\"#fff\\" stroke-width=\\"2\\" transform=\\"matrix(.70710678 .70710678 -.70710678 .70710678 -257.145582 -299.440628)\\"></path></svg></a>"`;
