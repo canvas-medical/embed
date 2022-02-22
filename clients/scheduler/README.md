@@ -105,12 +105,14 @@ These embeds rely on the shadow DOM to encapsulate their styles from the host ap
 
 To add your font, either link it in your document head or add an `@import` statement to your document's CSS or a style tag.
 
+The embed uses 400 and 700 weights, so make sure your font important includes at least both of those.
+
 Link Example
 
 ```
   <head>
     <meta charset="utf-8" />
-    <title>Scheduler</title>
+    <title>My Application</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
       body {

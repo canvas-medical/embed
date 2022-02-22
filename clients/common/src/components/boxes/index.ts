@@ -20,9 +20,7 @@ type BoxPropsType = {
 export const AppContainer = styled.div<AppContainerPropsType>`
   background-color: white;
   font-family: ${p =>
-    p.customFont
-      ? `'${p.customFont}', sans-serif !important`
-      : "'Roboto', sans-serif"};
+    p.customFont ? `'${p.customFont}', sans-serif` : "'Roboto', sans-serif"};
   height: 100vh;
   overflow: auto;
 `

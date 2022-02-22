@@ -12,9 +12,10 @@ export const App = ({
   providerIds,
   shadowRoot,
   colors,
+  customFont,
 }: IAppProps) => {
   return (
-    <AppContainer>
+    <AppContainer customFont={customFont}>
       <Header
         bailoutURL={bailoutURL}
         colors={colors}
