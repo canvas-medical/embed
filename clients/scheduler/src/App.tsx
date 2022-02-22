@@ -4,9 +4,10 @@ import { useAppContext } from './hooks'
 import { Confirmation, DateSelect, TimeSlotSelect } from './components'
 
 export const App = () => {
-  const { bailoutURL, colors, screen, error } = useAppContext()
+  const { bailoutURL, colors, screen, error, fontFamily } = useAppContext()
+
   return (
-    <AppContainer>
+    <AppContainer fontFamily={fontFamily}>
       <Header
         bailoutURL={bailoutURL}
         colors={colors}

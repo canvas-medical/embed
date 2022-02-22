@@ -17,6 +17,7 @@ export interface IMainAppProps {
   providerIds: string[]
   description: string
   returnURL: string
+  fontFamily?: string
 }
 
 interface IInitializerOnlyProps {

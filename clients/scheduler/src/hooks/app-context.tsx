@@ -11,7 +11,6 @@ import {
   TimeSlotType,
 } from '@canvas-medical/embed-common'
 import { IAppContext } from '../utils'
-import { getPractitioners } from '@canvas-medical/embed-common/src/api/get-practitioners'
 
 type ContextWrapperProps = {
   children: ComponentChildren
