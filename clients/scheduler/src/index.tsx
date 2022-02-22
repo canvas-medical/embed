@@ -25,6 +25,7 @@ export const Scheduler = (props: ISchedulerProps) => {
     brandColor,
     accentColor,
     shadowRoot,
+    customFont,
   } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
@@ -48,6 +49,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             description,
             returnURL,
             shadowRoot,
+            customFont,
             loading: false,
             providers: [],
             setProviders: () => {},
@@ -95,6 +97,7 @@ export const init = ({
   rootId,
   brandColor,
   accentColor,
+  customFont,
 }: IInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
@@ -131,6 +134,7 @@ export const init = ({
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
+      customFont={customFont}
     />,
     appRoot.shadowRoot
   )

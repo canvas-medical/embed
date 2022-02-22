@@ -4,9 +4,11 @@ import { useAppContext } from './hooks'
 import { Confirmation, DateSelect, TimeSlotSelect } from './components'
 
 export const App = () => {
-  const { bailoutURL, colors, screen, error } = useAppContext()
+  const { bailoutURL, colors, screen, error, customFont } = useAppContext()
+
+  console.log(customFont)
   return (
-    <AppContainer>
+    <AppContainer customFont={customFont}>
       <Header
         bailoutURL={bailoutURL}
         colors={colors}

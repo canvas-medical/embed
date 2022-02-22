@@ -6,6 +6,10 @@ import {
   minWidth,
 } from '../../utils'
 
+type AppContainerPropsType = {
+  customFont?: string
+}
+
 type BoxPropsType = {
   alignItems?: string
   flexDirection?: string
@@ -13,9 +17,12 @@ type BoxPropsType = {
   width?: string
 }
 
-export const AppContainer = styled.div`
+export const AppContainer = styled.div<AppContainerPropsType>`
   background-color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${p =>
+    p.customFont
+      ? `'${p.customFont}', sans-serif !important`
+      : "'Roboto', sans-serif"};
   height: 100vh;
   overflow: auto;
 `
