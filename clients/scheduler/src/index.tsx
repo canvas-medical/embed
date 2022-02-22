@@ -1,11 +1,6 @@
 import { h, render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
-import {
-  css,
-  Error,
-  generateColors,
-  getAppointmentType,
-} from '@canvas-medical/embed-common'
+import { css, Error, generateColors } from '@canvas-medical/embed-common'
 import { ContextWrapper } from './hooks'
 import { App } from './App'
 import { hasAllValues, IInitializerProps, ISchedulerProps } from './utils'
@@ -25,7 +20,7 @@ export const Scheduler = (props: ISchedulerProps) => {
     brandColor,
     accentColor,
     shadowRoot,
-    customFont,
+    fontFamily,
   } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
@@ -49,7 +44,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             description,
             returnURL,
             shadowRoot,
-            customFont,
+            fontFamily,
             loading: false,
             providers: [],
             setProviders: () => {},
@@ -97,7 +92,7 @@ export const init = ({
   rootId,
   brandColor,
   accentColor,
-  customFont,
+  fontFamily,
 }: IInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
@@ -134,7 +129,7 @@ export const init = ({
       brandColor={brandColor}
       accentColor={accentColor}
       shadowRoot={appRoot.shadowRoot}
-      customFont={customFont}
+      fontFamily={fontFamily}
     />,
     appRoot.shadowRoot
   )

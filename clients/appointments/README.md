@@ -27,6 +27,7 @@
     rootId: 'embed-root',  // The id of your host container
     brandColor: '#000000',  // Your custom brand color in hex code
     accentColor: '#000000,  // Your custom accent color in hex code
+    fontFamily: "'my font', serif",  // Your custom font. See below.
   })
 </script>
 ```
@@ -71,6 +72,7 @@ import { init } from '@canvas-medical/embed-appointments'
     rootId: 'embed-root',  // The id of your host container
     brandColor: '#000000',  // Your custom brand color in hex code
     accentColor: '#000000,  // Your custom accent color in hex code
+    fontFamily: "'my font', serif",  // Your custom font. See below.
   })
 ```
 
@@ -80,7 +82,7 @@ These embeds rely on the shadow DOM to encapsulate their styles from the host ap
 
 To add your font, either link it in your document head or add an `@import` statement to your document's CSS or a style tag.
 
-The embed uses 400 and 700 weights, so make sure your font important includes at least both of those.
+The embed uses 400 and 700 weights, so make sure your font import includes at least both of those.
 
 Link Example
 

@@ -7,7 +7,7 @@ export interface IMainAppProps {
   patientId: string
   patientKey: string
   providerIds?: string[]
-  customFont?: string
+  fontFamily?: string
 }
 
 interface IInitializerOnlyProps {
