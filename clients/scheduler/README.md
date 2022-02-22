@@ -92,13 +92,61 @@ import { init } from '@canvas-medical/embed-scheduler'
     ],
     description: 'some description for appointment,
     returnURL: 'https://your.host.site/done', // Send user here when they finish
-    rootId: 'embed-root',  // The id of your host container
+    rootId: 'embed-root',   // The id of your host container
     brandColor: '#000000',  // Your custom brand color in hex code
     accentColor: '#000000,  // Your custom accent color in hex code
+    customFont: 'my font',  // Your custom font. See below.
   })
 ```
 
-### React Example
+# Important Note About Fonts
+
+These embeds rely on the shadow DOM to encapsulate their styles from the host application's styles. As a result, you need to do a bit of extra work to get custom fonts working.
+
+To add your font, either link it in your document head or add an `@import` statement to your document's CSS or a style tag.
+
+Link Example
+
+```
+  <head>
+    <meta charset="utf-8" />
+    <title>Scheduler</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+```
+
+Import Example
+
+```
+  <head>
+    <meta charset="utf-8" />
+    <title>My Application</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+```
+
+Once you have imported your font, you can provide its name to the `customFont` parameter in the initializer.
+
+We recommend using [Roboto](https://fonts.google.com/specimen/Roboto) as your default font. If you use Roboto, you don't need to provide a `customFont` parameter to the initializer.
+
+## React Example
 
 `Scheduler.jsx`
 
