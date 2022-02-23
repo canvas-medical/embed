@@ -29,6 +29,6 @@ _You do not need to deploy `clients/common` to a CDN - the build process for the
    `yarn workspace @canvas-medical/embed-scheduler build:esm`
 4. Run `yarn publish --access public` for each package you are publishing. **If you are publishing a new version of `clients/common` it must be first.**
    `yarn workspace @canvas-medical/embed-common publish --access public`
-   `yarn workspace @canvas-medical/embed-appointments --access public`
-   `yarn workspace @canvas-medical/embed-scheduler --access public`
+   `yarn workspace @canvas-medical/embed-appointments publish --access public`
+   `yarn workspace @canvas-medical/embed-scheduler publish --access public`
 5. Verify your new versions are available on NPM!
