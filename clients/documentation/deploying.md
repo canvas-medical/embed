@@ -21,6 +21,8 @@ _You do not need to deploy `clients/common` to a CDN - the build process for the
 
 ## Publishing to NPM
 
+_You will need an NPM Access Token or login credentials to publish this to NPM._
+
 1. Update the version number in the `package.json` of `clients/appointments`, `clients/common`, and `clients/scheduler`. (You only need to update the ones you're publishing)
 2. (If publishing a new version of `clients/common`) In the `package.json` of `clients/appointments` and `clients/scheduler`, update the version number of `@canvas-medical/embed-common` to match the new version in `clients/common`.
 3. Run `yarn build:esm` for each package you are publishing. From the `clients` directory, you would run:  
