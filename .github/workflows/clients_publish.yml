@@ -23,6 +23,10 @@ jobs:
         working-directory: ./clients
         run: yarn
 
+      - name: Build Common
+        working-directory: ./clients/common
+        run: yarn build:esm
+
       - name: Build Appointments
         working-directory: ./clients/appointments
         run: yarn build:esm
