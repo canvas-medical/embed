@@ -31,15 +31,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-  ],
   devtool: 'source-map',
   devServer: {
     static: path.join(__dirname, 'dist'),
     port: 4000,
+  },
+  experiments: {
+    outputModule: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.html'],
