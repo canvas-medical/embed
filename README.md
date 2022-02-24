@@ -1,15 +1,21 @@
 # Canvas Embed
 
-## [Clients](./clients/README.md)
+This repository provides a quick add on to allow patients to manage their scheduling and appointments.
 
-## [Proxy](./proxy/README.md)
+It is comprised of the following two main sections:
 
-### Fetching a Patient Key
-*The proxy is a temporary measure to be used until a patient-scoped OAuth token is implemented on the FHIR API.*
+### [Clients](./clients/README.md)
 
-To fetch a patient key, make a GET request to the Auth endpoint of your proxy API.
+### [Proxy](./proxy/README.md)
+
+:construction: _The proxy is a temporary measure to be used until a patient-scoped OAuth token is implemented on the Canvas Medical FHIR API._ :construction:
+
+Its primary purpose is to handle the OAuth authentication for the JS embedded widgets (aka the embeds) when communicating with the FHIR API. This authentication process should contain a `patient_key` in its response. This `patient_key` is required to interact with [the embeds](https://github.com/canvas-medical/embed/tree/main/clients).
+
+The following is an example of how to fetch a `patient_key` by making a `GET` request to the Auth endpoint of your proxy API.
 
 _Javascript Example_
+
 ```
 fetch(`${apiURL}/Auth?key=${apiKey}&patient=${patientId}`)
   .then((response) => response.json())
@@ -21,3 +27,13 @@ fetch(`${apiURL}/Auth?key=${apiKey}&patient=${patientId}`)
     }
   })
 ```
+
+This fetch example is found in both the [example-apps/react](https://github.com/canvas-medical/embed/blob/26021a090dd6181e376ad47823b046e708274909/example-apps/react/src/App.jsx#L31-L41) and the [example-apps/static](https://github.com/canvas-medical/embed/blob/26021a090dd6181e376ad47823b046e708274909/example-apps/static/script.js#L51-L59)
+
+## Getting Started
+
+Fork this repo & `git clone git@github.com:canvas-medical/embed.git`
+
+Start by navigating to `/example-apps/`, installing the selected app dependencies, and running the app. Running an example app will give you a better understanding of how the embeds can run in your custom application.
+
+Then head over to the [Getting Started](https://github.com/canvas-medical/embed/blob/main/clients/documentation/getting-started.md) documentation for more instructions
