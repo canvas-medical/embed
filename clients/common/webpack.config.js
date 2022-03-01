@@ -2,14 +2,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.join(__dirname, 'src'),
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'common.js',
-    library: 'Common',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+    library: {
+      type: 'module',
+    },
   },
   module: {
     rules: [
@@ -31,15 +31,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-  ],
   devtool: 'source-map',
   devServer: {
     static: path.join(__dirname, 'dist'),
     port: 4000,
+  },
+  experiments: {
+    outputModule: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.html'],
