@@ -32,7 +32,7 @@ This fetch example is found in both the [example-apps/react](https://github.com/
 
 ## Getting Started
 
-Fork this repo & clone it
+Fork this repo & `git clone git@github.com:canvas-medical/embed.git`
 
 Start by navigating to `/example-apps/`, installing the selected app dependencies, and running the app. Running an example app will give you a better understanding of how the embeds can run in your custom application.
 
