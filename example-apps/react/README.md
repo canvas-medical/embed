@@ -10,22 +10,24 @@ _A note about proxy_ - the scheduler and appointment packages require a `patient
 
 This is what you should expect when running this example app.
 
-#### Authentication & Scheduling
+#### Authentication
 
-Enter any username and password, this will pass a default patient_key over to scheduling and appointments.
+Enter any username and password, this will pass a default `patient_key` over to scheduling and appointments.
+
+#### Scheduling
 
 - Find available provider appointment slots by date
 - Select a time and schedule default visit with a selected provider
 - On appointment confirmation, redirect to any page (default set to canvasmedical.com)
 
-![](static/example_content/scheduler.gif)
+![](static/example_content/scheduler.png)
 
 #### Appointments
 
 - View current appointments
 - Cancel selected appointment
 
-![](static/example_content/appointments.gif)
+![](static/example_content/appointments.png)
 
 ## Available Scripts
 
