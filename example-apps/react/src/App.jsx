@@ -13,7 +13,7 @@ function App() {
     appointmentCoding: {
       code: '439708006',
     },
-    bailoutURL: 'https://viget.com',
+    bailoutURL: 'https://canvasmedical.com',
     duration: 30,
     locationId: 1,
     patientId: 'd7370b4c04f142abb594b634a8126a91',
@@ -22,7 +22,7 @@ function App() {
       'fc87cbb2525f4c5eb50294f620c7a15e',
     ],
     description: 'high fever, cough',
-    returnURL: 'https://viget.com',
+    returnURL: 'https://canvasmedical.com',
     rootId: 'embed-root',
     brandColor: '#8BC541',
     accentColor: '#0F5096',

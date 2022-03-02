@@ -32,8 +32,8 @@ This fetch example is found in both the [example-apps/react](https://github.com/
 
 ## Getting Started
 
-Fork this repo & `git clone git@github.com:canvas-medical/embed.git`
+Fork this repo clone it
 
-Start by navigating to `/example-apps/`, installing the selected app dependencies, and running the app. Running an example app will give you a better understanding of how the embeds can run in your custom application.
+Start by navigating to `/example-apps/`, installing the selected app dependencies, and running the app. Running an example app will give you a better understanding of how the embeds can run in your custom application. The [React app](https://github.com/canvas-medical/embed/blob/main/example-apps/react/README.md) has helpful documentation on how to make use of embeds.
 
-Then head over to the [Getting Started](https://github.com/canvas-medical/embed/blob/main/clients/documentation/getting-started.md) documentation for more instructions
+If you would like to contribute, make sure to read our [Contributing Guidelines](https://github.com/canvas-medical/embed/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/canvas-medical/embed/blob/main/CODE_OF_CONDUCT.md). Then head over to the [Getting Started](https://github.com/canvas-medical/embed/blob/main/clients/documentation/getting-started.md) documentation for more instructions

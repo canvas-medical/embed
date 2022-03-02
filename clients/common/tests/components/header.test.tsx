@@ -4,7 +4,7 @@ import { colorDefaults, generateColors, Header } from '../../src'
 
 describe('Header', () => {
   it('renders', () => {
-    const bailoutURL = 'https://viget.com'
+    const bailoutURL = 'https://canvasmedical.com'
     const colors = generateColors(colorDefaults.brand, colorDefaults.brand)
     const title = 'Header Test'
 

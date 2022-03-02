@@ -10,7 +10,7 @@ There are three packages within the `clients` directory - `appointments`, `commo
 
 These three packages are managed with [yarn workspaces](https://yarnpkg.com/features/workspaces). While developing and building, yarn will use the live code from `common` in `appointments` and `scheduler` so long as the version number of `common` matches the version required in the other packages.
 
-This leads to a seemless developer experience, allowing you to easily edit any files in any package and see the results immediately.
+This leads to a seamlessly developer experience, allowing you to easily edit any files in any package and see the results immediately.
 
 ## [Getting Started](./documentation/getting-started.md)
 

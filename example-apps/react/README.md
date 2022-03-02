@@ -1,6 +1,31 @@
-# New Project
+# Sample Patient Scheduling App in React
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
+
+Need a little help getting started? Take a look at the structure of this app to see how the embeds can help speed up your patient app development time.
+
+This react app provides a simple demonstration on how the [@canvas-medical/embed-scheduler](https://www.npmjs.com/package/@canvas-medical/embed-scheduler) and the [@canvas-medical/embed-appointments](https://www.npmjs.com/package/@canvas-medical/embed-appointments) can be used independently in any application.
+
+_A note about proxy_ - the scheduler and appointment packages require a `patient_key` on `init`. This repo uses a temporary proxy, that is used to return a `patient_key` from a staging API. This is demonstrated in [App.jsx](https://github.com/canvas-medical/embed/blob/dedbd366831a40fee9df235cbfe474bd87410ef8/example-apps/react/src/App.jsx#L33-L40). You may find that making returning a `patient_key` in your application will be structured differently.
+
+This is what you should expect when running this example app.
+
+#### Authentication & Scheduling
+
+Enter any username and password, this will pass a default patient_key over to scheduling and appointments.
+
+- Find available provider appointment slots by date
+- Select a time and schedule default visit with a selected provider
+- On appointment confirmation, redirect to any page (default set to canvasmedical.com)
+
+![](static/example_content/scheduler.gif)
+
+#### Appointments
+
+- View current appointments
+- Cancel selected appointment
+
+![](static/example_content/appointments.gif)
 
 ## Available Scripts
 
