@@ -6,8 +6,8 @@ Need a little help getting started? Take a look at the structure of this app to 
 
 This react app provides a simple demonstration on how the [@canvas-medical/embed-scheduler](https://www.npmjs.com/package/@canvas-medical/embed-scheduler) and the [@canvas-medical/embed-appointments](https://www.npmjs.com/package/@canvas-medical/embed-appointments) can be used independently in any application.
 
-_A note about proxy_ - the scheduler and appointment packages require a `patient_key` on `init`. This repo uses a temporary proxy, that is used to return a `patient_key` from a staging API. This is demonstrated in [App.jsx](https://github.com/canvas-medical/embed/blob/dedbd366831a40fee9df235cbfe474bd87410ef8/example-apps/react/src/App.jsx#L33-L40). You may find that making returning a `patient_key` in your application will be structured differently.
-We are working on a long-term solution that will involve patient-scoped OAuth tokens.
+_A note about proxy_ - the scheduler and appointment packages require a `patient_key` on `init`. This repo uses a temporary proxy that is used to return a `patient_key` from the Canvas Medical API. This is demonstrated in [App.jsx](https://github.com/canvas-medical/embed/blob/dedbd366831a40fee9df235cbfe474bd87410ef8/example-apps/react/src/App.jsx#L33-L40) (using a demo proxy url).
+We are working on a long-term solution that will involve patient-scoped OAuth tokens rather than a proxy app.
 
 This is what you should expect when running this example app.
 

@@ -36,4 +36,6 @@ Fork this repo and then clone the fork
 
 Start by navigating to `/example-apps/`, installing the selected app dependencies, and running the app. Running an example app will give you a better understanding of how the embeds can run in your custom application. The [React app](https://github.com/canvas-medical/embed/blob/main/example-apps/react/README.md) has helpful documentation on how to make use of embeds.
 
+Make sure to read through the [Proxy](./proxy/README.md) documentation to deploy your own proxy app.
+
 If you would like to contribute, make sure to read our [Contributing Guidelines](https://github.com/canvas-medical/embed/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/canvas-medical/embed/blob/main/CODE_OF_CONDUCT.md). Then head over to the [Getting Started](https://github.com/canvas-medical/embed/blob/main/clients/documentation/getting-started.md) documentation for more instructions
