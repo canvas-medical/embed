@@ -99,10 +99,12 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-  # to record your test suite HTTP request uncomment the VCR config
   # VCR config
-  # VCR.configure do |c|
-  #   c.cassette_library_dir = "spec/vcr_cassettes"
-  #   c.hook_into :webmock
-  # end
+  VCR.configure do |c|
+    c.cassette_library_dir = "spec/vcr_cassettes"
+    c.hook_into :webmock
+    c.filter_sensitive_data('<CLIENT_ID>') { 'ENV["CLIENT_ID"]' }
+    c.filter_sensitive_data('<CLIENT_SECRET>') { 'ENV["CLIENT_SECRET"]' }
+    c.filter_sensitive_data('<API_KEY>') { 'ENV["CLIENT_ID"]'}
+  end
 end
