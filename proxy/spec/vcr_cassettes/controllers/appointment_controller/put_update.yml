@@ -5,7 +5,7 @@ http_interactions:
     uri: https://training.canvasmedical.com/auth/token
     body:
       encoding: UTF-8
-      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+      string: client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.9.3
@@ -21,7 +21,7 @@ http_interactions:
       message: Moved Permanently
     headers:
       Date:
-      - Tue, 25 Jan 2022 19:23:27 GMT
+      - Fri, 04 Mar 2022 23:50:34 GMT
       Content-Type:
       - text/html; charset=utf-8
       Content-Length:
@@ -41,39 +41,39 @@ http_interactions:
       Vary:
       - Origin
       Content-Security-Policy-Report-Only:
-      - 'font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
-        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
-        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
-        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; connect-src
-        http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
-        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
-        https://esp.aptrinsic.com; block-all-mixed-content; script-src ''self'' ''unsafe-eval''
-        https://cdnjs.cloudflare.com https://checkout.stripe.com https://js.stripe.com
-        https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
-        ''self'' https://canvas-client-media.s3.amazonaws.com; frame-ancestors ''none'';
-        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
-        https://js.stripe.com; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
-        https://d31eck28xxyyiu.cloudfront.net; img-src ''self'' data: https://*.canvasmedical.com
+      - 'block-all-mixed-content; img-src ''self'' data: https://*.canvasmedical.com
         https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
         https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
         https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://q.stripe.com https://s3-us-west-2.amazonaws.com; upgrade-insecure-requests;
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; frame-src self https://*.canvasmedical.com
+        https://canvas-client-media.s3.amazonaws.com https://js.stripe.com; frame-ancestors
+        ''none''; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; object-src ''self'' https://canvas-client-media.s3.amazonaws.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; script-src
+        ''self'' ''unsafe-eval'' https://cdnjs.cloudflare.com https://checkout.stripe.com
+        https://js.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com;
+        connect-src http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; font-src ''self'' data: https://cdnjs.cloudflare.com
+        https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests;
         report-uri https://canvas.report-uri.com/r/d/csp/enforce'
       Strict-Transport-Security:
       - max-age=31536000
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Tue, 25 Jan 2022 19:23:27 GMT
+  recorded_at: Fri, 04 Mar 2022 23:50:34 GMT
 - request:
     method: post
     uri: https://training.canvasmedical.com/auth/token/
     body:
       encoding: UTF-8
-      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+      string: client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.9.3
@@ -89,7 +89,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 25 Jan 2022 19:23:27 GMT
+      - Fri, 04 Mar 2022 23:50:34 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -114,32 +114,32 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       Content-Security-Policy-Report-Only:
-      - 'img-src ''self'' data: https://*.canvasmedical.com https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com
-        https://canvas-medical.s3-us-west-2.amazonaws.com https://canvas-medical.s3.us-west-2.amazonaws.com
-        https://canvasmedical.com https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://q.stripe.com https://s3-us-west-2.amazonaws.com;
-        font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
-        upgrade-insecure-requests; script-src ''self'' ''unsafe-eval'' https://cdnjs.cloudflare.com
-        https://checkout.stripe.com https://js.stripe.com https://code.jquery.com
+      - 'block-all-mixed-content; img-src ''self'' data: https://*.canvasmedical.com
+        https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
+        https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
+        https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; frame-src self https://*.canvasmedical.com
+        https://canvas-client-media.s3.amazonaws.com https://js.stripe.com; frame-ancestors
+        ''none''; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; object-src ''self'' https://canvas-client-media.s3.amazonaws.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; script-src
+        ''self'' ''unsafe-eval'' https://cdnjs.cloudflare.com https://checkout.stripe.com
+        https://js.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com;
+        connect-src http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; font-src ''self'' data: https://cdnjs.cloudflare.com
         https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
-        ''self'' https://canvas-client-media.s3.amazonaws.com; block-all-mixed-content;
-        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
-        https://js.stripe.com; style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
-        https://cdnjs.cloudflare.com https://checkout.stripe.com https://code.jquery.com
-        https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com https://s3-us-west-2.amazonaws.com
-        https://web-sdk.aptrinsic.com; connect-src http://127.0.0.1:* https://*.canvasmedical.com
-        https://sentry.canvasmedical.com wss://*.canvasmedical.com wss://127.0.0.1:*
-        https://d31eck28xxyyiu.cloudfront.net https://esp.aptrinsic.com; default-src
-        ''self'' https://*.canvasmedical.com https://canvasmedical.com https://d31eck28xxyyiu.cloudfront.net;
-        frame-ancestors ''none''; report-uri https://canvas.report-uri.com/r/d/csp/enforce'
+        https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests;
+        report-uri https://canvas.report-uri.com/r/d/csp/enforce'
       Strict-Transport-Security:
       - max-age=31536000
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token": "qxNbykHKa2L8NJaC65RN9t7mJVitWo", "expires_in": 36000,
+      string: '{"access_token": "J7kvDW3rPhkNC6SFDfW1n3o2eElpcz", "expires_in": 36000,
         "token_type": "Bearer", "scope": "launch launch/patient offline_access openid
         fhirUser user/*.read user/*.write user/*.* user/AllergyIntolerance.read user/AllergyIntolerance.write
         user/AllergyIntolerance.* user/CarePlan.read user/CarePlan.write user/CarePlan.*
@@ -162,7 +162,7 @@ http_interactions:
         patient/MedicationRequest.read patient/Observation.read patient/Organization.read
         patient/Patient.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read",
         "smart_style_url": "https://canvas-storages.s3.us-west-2.amazonaws.com/fhir-static-resources/smart-style.json"}'
-  recorded_at: Tue, 25 Jan 2022 19:23:27 GMT
+  recorded_at: Fri, 04 Mar 2022 23:50:34 GMT
 - request:
     method: put
     uri: https://fhir-training.canvasmedical.com/Appointment/e79835ff-4261-4e39-a399-9861272cfd89
@@ -211,10 +211,10 @@ http_interactions:
       - Faraday v1.9.3
       Accept:
       - application/json
-      Authorization:
-      - Bearer qxNbykHKa2L8NJaC65RN9t7mJVitWo
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
+      Authorization:
+      - Bearer J7kvDW3rPhkNC6SFDfW1n3o2eElpcz
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -223,7 +223,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 25 Jan 2022 19:23:27 GMT
+      - Fri, 04 Mar 2022 23:50:35 GMT
       Transfer-Encoding:
       - chunked
       Connection:
@@ -237,7 +237,7 @@ http_interactions:
       Access-Control-Expose-Headers:
       - Content-Location, Location
       Last-Modified:
-      - Tue, 25 Jan 2022 19:23:27 GMT
+      - Fri, 04 Mar 2022 23:50:35 GMT
       Etag:
       - W/"1"
       Location:
@@ -247,5 +247,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Tue, 25 Jan 2022 19:23:27 GMT
+  recorded_at: Fri, 04 Mar 2022 23:50:35 GMT
 recorded_with: VCR 6.0.0

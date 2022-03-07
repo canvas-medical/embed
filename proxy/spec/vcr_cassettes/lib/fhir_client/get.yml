@@ -5,7 +5,7 @@ http_interactions:
     uri: https://training.canvasmedical.com/auth/token
     body:
       encoding: UTF-8
-      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+      string: client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.9.3
@@ -21,7 +21,7 @@ http_interactions:
       message: Moved Permanently
     headers:
       Date:
-      - Tue, 25 Jan 2022 15:49:01 GMT
+      - Fri, 04 Mar 2022 23:50:42 GMT
       Content-Type:
       - text/html; charset=utf-8
       Content-Length:
@@ -41,39 +41,39 @@ http_interactions:
       Vary:
       - Origin
       Content-Security-Policy-Report-Only:
-      - 'font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
-        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
-        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
-        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; connect-src
-        http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
-        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
-        https://esp.aptrinsic.com; block-all-mixed-content; script-src ''self'' ''unsafe-eval''
-        https://cdnjs.cloudflare.com https://checkout.stripe.com https://js.stripe.com
-        https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
-        ''self'' https://canvas-client-media.s3.amazonaws.com; frame-ancestors ''none'';
-        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
-        https://js.stripe.com; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
-        https://d31eck28xxyyiu.cloudfront.net; img-src ''self'' data: https://*.canvasmedical.com
+      - 'block-all-mixed-content; img-src ''self'' data: https://*.canvasmedical.com
         https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
         https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
         https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://q.stripe.com https://s3-us-west-2.amazonaws.com; upgrade-insecure-requests;
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; frame-src self https://*.canvasmedical.com
+        https://canvas-client-media.s3.amazonaws.com https://js.stripe.com; frame-ancestors
+        ''none''; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; object-src ''self'' https://canvas-client-media.s3.amazonaws.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; script-src
+        ''self'' ''unsafe-eval'' https://cdnjs.cloudflare.com https://checkout.stripe.com
+        https://js.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com;
+        connect-src http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; font-src ''self'' data: https://cdnjs.cloudflare.com
+        https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests;
         report-uri https://canvas.report-uri.com/r/d/csp/enforce'
       Strict-Transport-Security:
       - max-age=31536000
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Tue, 25 Jan 2022 15:49:01 GMT
+  recorded_at: Fri, 04 Mar 2022 23:50:42 GMT
 - request:
     method: post
     uri: https://training.canvasmedical.com/auth/token/
     body:
       encoding: UTF-8
-      string: client_id=UUanxS96psdoNBbqeERZ7zNHq3I8vSkwErSHRfVK&client_secret=mgbariVQAJNnoyu8hSX2skSwZwzZ6KraQQOCu0x3muNk6jsqNEOwp7lVJSzneCBfqSQF6qhv0kP66JjBMlrXxeifdPPhO8hbviOa1htSbNm4BMQPfmfmJMRyrrxS83mh&grant_type=client_credentials
+      string: client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.9.3
@@ -89,7 +89,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 25 Jan 2022 15:49:01 GMT
+      - Fri, 04 Mar 2022 23:50:42 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -114,32 +114,32 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       Content-Security-Policy-Report-Only:
-      - 'font-src ''self'' data: https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://fonts.gstatic.com;
-        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
-        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
-        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
-        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; connect-src
-        http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
-        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
-        https://esp.aptrinsic.com; block-all-mixed-content; script-src ''self'' ''unsafe-eval''
-        https://cdnjs.cloudflare.com https://checkout.stripe.com https://js.stripe.com
-        https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com; object-src
-        ''self'' https://canvas-client-media.s3.amazonaws.com; frame-ancestors ''none'';
-        frame-src self https://*.canvasmedical.com https://canvas-client-media.s3.amazonaws.com
-        https://js.stripe.com; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
-        https://d31eck28xxyyiu.cloudfront.net; img-src ''self'' data: https://*.canvasmedical.com
+      - 'block-all-mixed-content; img-src ''self'' data: https://*.canvasmedical.com
         https://127.0.0.1:* https://canvas-client-media.s3.amazonaws.com https://canvas-medical.s3-us-west-2.amazonaws.com
         https://canvas-medical.s3.us-west-2.amazonaws.com https://canvasmedical.com
         https://cdnjs.cloudflare.com https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
-        https://q.stripe.com https://s3-us-west-2.amazonaws.com; upgrade-insecure-requests;
+        https://q.stripe.com https://s3-us-west-2.amazonaws.com; frame-src self https://*.canvasmedical.com
+        https://canvas-client-media.s3.amazonaws.com https://js.stripe.com; frame-ancestors
+        ''none''; default-src ''self'' https://*.canvasmedical.com https://canvasmedical.com
+        https://d31eck28xxyyiu.cloudfront.net; object-src ''self'' https://canvas-client-media.s3.amazonaws.com;
+        style-src ''self'' https://*.canvasmedical.com https://canvasmedical.com https://cdnjs.cloudflare.com
+        https://checkout.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com
+        https://s3-us-west-2.amazonaws.com https://web-sdk.aptrinsic.com; script-src
+        ''self'' ''unsafe-eval'' https://cdnjs.cloudflare.com https://checkout.stripe.com
+        https://js.stripe.com https://code.jquery.com https://d31eck28xxyyiu.cloudfront.net
+        https://d3hn0m4rbsz438.cloudfront.net https://maxcdn.bootstrapcdn.com https://web-sdk.aptrinsic.com;
+        connect-src http://127.0.0.1:* https://*.canvasmedical.com https://sentry.canvasmedical.com
+        wss://*.canvasmedical.com wss://127.0.0.1:* https://d31eck28xxyyiu.cloudfront.net
+        https://esp.aptrinsic.com; font-src ''self'' data: https://cdnjs.cloudflare.com
+        https://d31eck28xxyyiu.cloudfront.net https://d3hn0m4rbsz438.cloudfront.net
+        https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests;
         report-uri https://canvas.report-uri.com/r/d/csp/enforce'
       Strict-Transport-Security:
       - max-age=31536000
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token": "G3GQ3edpNbmozEDy7qi03AuXH9fQrE", "expires_in": 36000,
+      string: '{"access_token": "IuzFt5MFkG5Ujw24BMSLFufNLZR4ha", "expires_in": 36000,
         "token_type": "Bearer", "scope": "launch launch/patient offline_access openid
         fhirUser user/*.read user/*.write user/*.* user/AllergyIntolerance.read user/AllergyIntolerance.write
         user/AllergyIntolerance.* user/CarePlan.read user/CarePlan.write user/CarePlan.*
@@ -162,7 +162,7 @@ http_interactions:
         patient/MedicationRequest.read patient/Observation.read patient/Organization.read
         patient/Patient.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read",
         "smart_style_url": "https://canvas-storages.s3.us-west-2.amazonaws.com/fhir-static-resources/smart-style.json"}'
-  recorded_at: Tue, 25 Jan 2022 15:49:01 GMT
+  recorded_at: Fri, 04 Mar 2022 23:50:42 GMT
 - request:
     method: get
     uri: https://fhir-training.canvasmedical.com/Schedule
@@ -175,7 +175,7 @@ http_interactions:
       Accept:
       - application/json
       Authorization:
-      - Bearer G3GQ3edpNbmozEDy7qi03AuXH9fQrE
+      - Bearer IuzFt5MFkG5Ujw24BMSLFufNLZR4ha
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -184,11 +184,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 25 Jan 2022 15:49:02 GMT
+      - Fri, 04 Mar 2022 23:50:43 GMT
       Content-Type:
       - application/fhir+json; charset=UTF-8
       Content-Length:
-      - '588'
+      - '653'
       Connection:
       - keep-alive
       Server:
@@ -203,7 +203,7 @@ http_interactions:
       - max-age=31536000
     body:
       encoding: ASCII-8BIT
-      string: '{"resourceType":"Bundle","type":"searchset","total":12,"entry":[{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.c2ff4546548e46ab8959af887b563eab","text":{"div":"<div
+      string: '{"resourceType":"Bundle","type":"searchset","total":18,"entry":[{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.c2ff4546548e46ab8959af887b563eab","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Saharsh Patel MD at Training
         Clinic</div>"},"actor":[{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"}],"comment":"Schedule
         for Saharsh Patel MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.fc87cbb2525f4c5eb50294f620c7a15e","text":{"div":"<div
@@ -215,13 +215,13 @@ http_interactions:
         for Annalies Hines NP at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.883f7147517e444fb746cdac3860b0dc","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Sean Connolly MD at Training
         Clinic</div>"},"actor":[{"reference":"Practitioner/883f7147517e444fb746cdac3860b0dc"}],"comment":"Schedule
-        for Sean Connolly MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.0f0d694324914fb2ad5a1c03428a43ec","text":{"div":"<div
-        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Cecilia Orta MD at Training
-        Clinic</div>"},"actor":[{"reference":"Practitioner/0f0d694324914fb2ad5a1c03428a43ec"}],"comment":"Schedule
-        for Cecilia Orta MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.67483652de9a4547b3db81e20e811940","text":{"div":"<div
+        for Sean Connolly MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.67483652de9a4547b3db81e20e811940","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Deepti Koranne MD at Training
         Clinic</div>"},"actor":[{"reference":"Practitioner/67483652de9a4547b3db81e20e811940"}],"comment":"Schedule
-        for Deepti Koranne MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.c2ff4546548e46ab8959af887b563eab","text":{"div":"<div
+        for Deepti Koranne MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.1-Staff.ec51485ccb1e4ecbb22bab731e23eda2","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Nneka Cruz MD at Training
+        Clinic</div>"},"actor":[{"reference":"Practitioner/ec51485ccb1e4ecbb22bab731e23eda2"}],"comment":"Schedule
+        for Nneka Cruz MD at Training Clinic"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.c2ff4546548e46ab8959af887b563eab","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Saharsh Patel MD at Training
         Clinic 2</div>"},"actor":[{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"}],"comment":"Schedule
         for Saharsh Patel MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.fc87cbb2525f4c5eb50294f620c7a15e","text":{"div":"<div
@@ -233,12 +233,25 @@ http_interactions:
         for Annalies Hines NP at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.883f7147517e444fb746cdac3860b0dc","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Sean Connolly MD at Training
         Clinic 2</div>"},"actor":[{"reference":"Practitioner/883f7147517e444fb746cdac3860b0dc"}],"comment":"Schedule
-        for Sean Connolly MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.0f0d694324914fb2ad5a1c03428a43ec","text":{"div":"<div
-        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Cecilia Orta MD at Training
-        Clinic 2</div>"},"actor":[{"reference":"Practitioner/0f0d694324914fb2ad5a1c03428a43ec"}],"comment":"Schedule
-        for Cecilia Orta MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.67483652de9a4547b3db81e20e811940","text":{"div":"<div
+        for Sean Connolly MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.67483652de9a4547b3db81e20e811940","text":{"div":"<div
         xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Deepti Koranne MD at Training
         Clinic 2</div>"},"actor":[{"reference":"Practitioner/67483652de9a4547b3db81e20e811940"}],"comment":"Schedule
-        for Deepti Koranne MD at Training Clinic 2"}}]}'
-  recorded_at: Tue, 25 Jan 2022 15:49:02 GMT
+        for Deepti Koranne MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.4-Staff.ec51485ccb1e4ecbb22bab731e23eda2","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Nneka Cruz MD at Training
+        Clinic 2</div>"},"actor":[{"reference":"Practitioner/ec51485ccb1e4ecbb22bab731e23eda2"}],"comment":"Schedule
+        for Nneka Cruz MD at Training Clinic 2"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.c2ff4546548e46ab8959af887b563eab","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Saharsh Patel MD at Test</div>"},"actor":[{"reference":"Practitioner/c2ff4546548e46ab8959af887b563eab"}],"comment":"Schedule
+        for Saharsh Patel MD at Test"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.fc87cbb2525f4c5eb50294f620c7a15e","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Michael Zimmerman MD at
+        Test</div>"},"actor":[{"reference":"Practitioner/fc87cbb2525f4c5eb50294f620c7a15e"}],"comment":"Schedule
+        for Michael Zimmerman MD at Test"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.6c20b7152cf7421791c5ab4113060b3f","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Annalies Hines NP at Test</div>"},"actor":[{"reference":"Practitioner/6c20b7152cf7421791c5ab4113060b3f"}],"comment":"Schedule
+        for Annalies Hines NP at Test"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.883f7147517e444fb746cdac3860b0dc","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Sean Connolly MD at Test</div>"},"actor":[{"reference":"Practitioner/883f7147517e444fb746cdac3860b0dc"}],"comment":"Schedule
+        for Sean Connolly MD at Test"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.67483652de9a4547b3db81e20e811940","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Deepti Koranne MD at Test</div>"},"actor":[{"reference":"Practitioner/67483652de9a4547b3db81e20e811940"}],"comment":"Schedule
+        for Deepti Koranne MD at Test"}},{"resource":{"resourceType":"Schedule","id":"Location.6-Staff.ec51485ccb1e4ecbb22bab731e23eda2","text":{"div":"<div
+        xmlns=\"http://www.w3.org/1999/xhtml\">Schedule for Nneka Cruz MD at Test</div>"},"actor":[{"reference":"Practitioner/ec51485ccb1e4ecbb22bab731e23eda2"}],"comment":"Schedule
+        for Nneka Cruz MD at Test"}}]}'
+  recorded_at: Fri, 04 Mar 2022 23:50:43 GMT
 recorded_with: VCR 6.0.0
