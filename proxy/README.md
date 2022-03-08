@@ -2,11 +2,6 @@
 
 This proxy handles the OAuth authentication for the JS embedded widgets when they communicate with the FHIR API.
 
-## Local Development
-
-<details>
-  <summary>With Docker</summary>
-
 ### Environment Variables
 
 ```bash
@@ -15,6 +10,11 @@ cp .env.example .env
 
 Once you have copied the example, go into `.env` and replace the environment variables with valid values from your Canvas instance.
 Note that you should register your patient app as a third-party app associated with your canvas instance. The `CLIENT_ID` and `CLIENT_SECRET` needed in your `.env` file is from your created third-party app. Here are [instructions](https://docs.canvasmedical.com/reference/authentication#registering-a-third-party-application-on-canvas) on how to register a new app.
+
+## Local Development
+
+<details>
+  <summary>With Docker</summary>
 
 ### Build / Run
 
