@@ -9,17 +9,16 @@ function App() {
   const [screen, setScreen] = useState('NONE');
 
   const config = {
-    api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
+    api: 'http://localhost:3000/',
     appointmentCoding: {
       code: '439708006',
     },
     bailoutURL: 'https://canvasmedical.com',
     duration: 30,
     locationId: 1,
-    patientId: 'd7370b4c04f142abb594b634a8126a91',
+    patientId: 'PATIENT_ID',
     providerIds: [
-      'c2ff4546548e46ab8959af887b563eab',
-      'fc87cbb2525f4c5eb50294f620c7a15e',
+      'PROVIDER_KEY'
     ],
     description: 'high fever, cough',
     returnURL: 'https://canvasmedical.com',
@@ -32,7 +31,7 @@ function App() {
     axios
       .get(`${config.api}/Auth`, {
         params: {
-          key: '8fed9df6-2a51-4570-84bb-42d8b134e37a',
+          key: 'API_KEY',
           patient: config.patientId,
         },
       })
