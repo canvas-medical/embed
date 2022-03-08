@@ -6,8 +6,18 @@ Need a little help getting started? Take a look at the structure of this app to 
 
 This react app provides a simple demonstration on how the [@canvas-medical/embed-scheduler](https://www.npmjs.com/package/@canvas-medical/embed-scheduler) and the [@canvas-medical/embed-appointments](https://www.npmjs.com/package/@canvas-medical/embed-appointments) can be used independently in any application.
 
-_A note about proxy_ - the scheduler and appointment packages require a `patient_key` on `init`. This repo uses a temporary proxy that is used to return a `patient_key` from the Canvas Medical API. This is demonstrated in [App.jsx](https://github.com/canvas-medical/embed/blob/dedbd366831a40fee9df235cbfe474bd87410ef8/example-apps/react/src/App.jsx#L33-L40) (using a demo proxy url).
+_A note about proxy_ - the scheduler and appointment packages require a `patient_key` on `init`. This repo uses a temporary proxy that is used to return a `patient_key` from the Canvas Medical API. This is demonstrated in [App.jsx](https://github.com/canvas-medical/embed/blob/dedbd366831a40fee9df235cbfe474bd87410ef8/example-apps/react/src/App.jsx#L33-L40).
 We are working on a long-term solution that will involve patient-scoped OAuth tokens rather than a proxy app.
+
+Get your [proxy up and running locally](https://github.com/canvas-medical/embed/blob/main/proxy/README.md#local-development) to test out this example app against `http://localhost:3000/`
+
+#### Config Set Up
+
+Edit the [App.jsx config](https://github.com/canvas-medical/embed/blob/fce05737573b308edfc732204990e0ef8ac226c7/example-apps/react/src/App.jsx#L11) to contain `patientId` and `providerIds` from your instance.
+The easiest way to get a `patientId` to test is to navigate to a patient and copy the id in the url
+![](static/example_content/patient_id_example.png)
+
+You can get `provider_ids` by scheduling a few appointments with a provider (through the 'New note' button seen above). Then navigate to `https://{yourInstance}.canvasmedical.com/api/PatientProtocolInput/{patientId}/`. Search for `upcomingAppointmentNotes` and grab the `key` in `providerDisplay`.
 
 This is what you should expect when running this example app.
 
