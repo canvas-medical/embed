@@ -1,2 +1,3 @@
 before_release:
-  - bundle exec rake db:migrate
+  # not required for redis db
+  # - bundle exec rake db:migrate
