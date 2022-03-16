@@ -142,11 +142,12 @@ We recommend using Aptible to deploy your proxy app. Aptible uses the resulting 
 Everything you need to deploy this proxy to Aptible is in this /proxy directory.
 All you need to do is:
 
-1. from `/proxy` run `git init`
-2. `git commit -m "init commit"`
-3. Follow the steps in this Aptible [Ruby quick start guide](https://deploy-docs.aptible.com/docs/ruby-quickstart) to create a new app within an existing Aptible environment.
-4. Make sure to set the app config in [this step](https://deploy-docs.aptible.com/docs/ruby-quickstart#bring-it-all-together) with your environmental variables in .env.
-5. Once you deploy, you can add an endpoint with a specific CNAME.
+1. From `/proxy` run `git init`
+2. In `proxy/config/environments/development.rb` uncomment `config.hosts << "yourproxyurl.com"` and add the url for your proxy.
+3. `git commit -m "init commit"`
+4. Follow the steps in this Aptible [Ruby quick start guide](https://deploy-docs.aptible.com/docs/ruby-quickstart) to create a new app within an existing Aptible environment.
+5. Make sure to set the app config in [this step](https://deploy-docs.aptible.com/docs/ruby-quickstart#bring-it-all-together) with your environmental variables in .env.
+6. Once you deploy, you can add an endpoint with a specific CNAME.
 
 Your proxy will then be available using the url endpoint you just created.
 
