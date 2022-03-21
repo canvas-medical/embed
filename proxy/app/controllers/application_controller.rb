@@ -78,10 +78,13 @@ class ApplicationController < ActionController::API
     # origin_whitelist = ["http://localhost:8000", "http://localhost:3000"]
     # origin_header = request.headers['origin']
     # request_in_whitelist = origin_whitelist.include? origin_header
-    # origin = request_in_whitelist ? origin_header : "request not from approved origins: #{origin_whitelist}"
+    # origin = request_in_whitelist
+    #           ? origin_header
+    #           : "request not from approved origins: #{origin_whitelist}"
     remove_old_headers
     response.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-    response.set_header("Access-Control-Allow-Origin", "*") # to allow multiple origins change to origin
+    # to allow multiple origins change to ("Access-Control-Allow-Origin", origin)
+    response.set_header("Access-Control-Allow-Origin", "*")
     response.set_header("Access-Control-Expose-Headers", "Content-Location, Location")
     response.set_header("Last-Modified", Time.now.httpdate)
   end
