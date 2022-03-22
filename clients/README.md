@@ -19,3 +19,8 @@ See requirements and basic commands to get started working on these embeds.
 ## [Dependencies](./documentation/dependencies.md)
 
 See a list of dependencies used in the embeds.
+
+## Installing
+
+[Scheduler](./scheduler/README.md)
+[Appointments](./appointments/README.md)

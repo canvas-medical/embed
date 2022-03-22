@@ -1,6 +1,7 @@
 # Canvas - Embed Appointments
 
-## CDN Installation
+<details>
+<summary> <b> CDN Installation </b> </summary>
 
 - Add a host container
 
@@ -11,7 +12,7 @@
 - Add CDN Link to your application
 
 ```
-<script src="https://d2nowqpv63va0r.cloudfront.net/appointments.js" type="text/javascript"></script>
+<script src="https://d16rsv1d4y8ohr.cloudfront.net/appointments.js" type="text/javascript"></script>
 ```
 
 - Add a script tag to initialize application
@@ -32,7 +33,13 @@
 </script>
 ```
 
-## NPM Installation
+### Available CDN Versions
+
+V1: https://d16rsv1d4y8ohr.cloudfront.net/appointments.js
+
+</details>
+<details>
+<summary> <b> NPM Installation </b> </summary>
 
 ### Install with prefered package manager
 
@@ -76,6 +83,7 @@ import { init } from '@canvas-medical/embed-appointments'
   })
 ```
 
+</details>
 # Important Note About Fonts
 
 These embeds rely on the shadow DOM to encapsulate their styles from the host application's styles. As a result, you need to do a bit of extra work to get custom fonts working.
