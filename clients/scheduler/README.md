@@ -1,6 +1,7 @@
 # Canvas - Embed Scheduler
 
-## CDN Installation
+<details>
+<summary><b>CDN Installation</b></summary>
 
 - Add a host container
 
@@ -11,7 +12,7 @@
 - Add CDN Link to your application
 
 ```
-<script src="https://d1avuomfq0werr.cloudfront.net/scheduler.js" type="text/javascript"></script>
+<script src="https://d1a32bn8n735rs.cloudfront.net/scheduler.js" type="text/javascript"></script>
 ```
 
 - Add a script tag to initialize application
@@ -44,9 +45,16 @@
 </script>
 ```
 
-## NPM Installation
+### Available CDN Versions
 
-### Install with prefered package manager
+V1: https://d1a32bn8n735rs.cloudfront.net/scheduler.js
+
+</details>
+
+<details>
+<summary><b>NPM Installation</b></summary>
+
+### Install with preferred package manager
 
 ```
   npm i @canvas-medical/embed-scheduler --save
@@ -79,8 +87,8 @@ import { init } from '@canvas-medical/embed-scheduler'
     api: https://your.api.url,
     appointmentCoding: {
       system: 'https://coding.system',
-      code: '8675309',
-      display: 'Some display'
+      code: 'some code',
+      display: 'corresponding display text'
     }
     bailoutURL: 'https://your.host.site',  // Return user here if they exit early
     duration: 20,
@@ -99,6 +107,8 @@ import { init } from '@canvas-medical/embed-scheduler'
     fontFamily: "'my font', serif",  // Your custom font. See below.
   })
 ```
+
+</details>
 
 # Important Note About Fonts
 
