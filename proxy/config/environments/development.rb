@@ -18,7 +18,7 @@ Rails.application.configure do
   config.server_timing = true
 
   # Allow proxy hostname
-  # config.hosts << "yourproxyurl.com"
+  config.hosts << "https://modern-age-proxy-prod.canvasmedical.com"
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
