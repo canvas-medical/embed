@@ -44,7 +44,6 @@ export type ParseSlotsResponsesType = {
 export type ParseSlotsParamsType = {
   setLoading: SetLoadingType
   responses: ParseSlotsResponsesType
-  date: Date
   setTimeSlots: SetTimeSlotsType
   setError: SetErrorType
   api: string

@@ -10,7 +10,6 @@ import {
 export const parseSlots = ({
   setLoading,
   responses,
-  date,
   setTimeSlots,
   setError,
   setProviders,
@@ -24,10 +23,7 @@ export const parseSlots = ({
     const providerSlots: SlotType[] = []
     const totalSlots = response.slots.total || -1
     for (let i = 0; i < totalSlots; i++) {
-      if (
-        response.slots.entry &&
-        isSameDay(new Date(response.slots.entry[i].resource.start), date)
-      ) {
+      if (response.slots.entry) {
         providerSlots.push({
           start: response.slots.entry[i].resource.start,
           end: response.slots.entry[i].resource.end,
@@ -51,7 +47,7 @@ export const parseSlots = ({
   })
 }
 
-export const getTimeSlots = ({
+export const getTimeSlots = async ({
   setLoading,
   setError,
   setTimeSlots,
@@ -66,36 +62,37 @@ export const getTimeSlots = ({
 }: GetSlotsParamsType) => {
   setLoading(true)
 
-  Promise.all(
-    providerIds.map(providerId => {
-      return axios
-        .get<IGetSlotsResponse>(`${api}/Slot`, {
+  try {
+    const responses = await Promise.all(
+      providerIds.map(async providerId => {
+        const oneWeekLater = new Date(date.getTime() + 7 * 86400000)
+        const response = await axios.get<IGetSlotsResponse>(`${api}/Slot`, {
           params: {
             schedule: `Schedule/Location.${locationId}-Staff.${providerId}`,
             patient: patientId,
             patient_key: patientKey,
             start: date.toISOString(),
+            end: oneWeekLater.toISOString(),
             duration,
           },
         })
-        .then(response => {
-          return { providerId, slots: response.data || [] }
-        })
-    })
-  )
-    .then(responses =>
-      parseSlots({
-        setLoading,
-        responses,
-        date,
-        setTimeSlots,
-        setError,
-        setProviders,
-        api,
-        providerIds,
-        patientId,
-        patientKey,
+
+        return { providerId, slots: response.data || [] }
       })
     )
-    .catch(() => setError('Error Fetching Appointments'))
+
+    parseSlots({
+      setLoading,
+      responses,
+      setTimeSlots,
+      setError,
+      setProviders,
+      api,
+      providerIds,
+      patientId,
+      patientKey,
+    })
+  } catch (error) {
+    setError('Error Fetching Appointments')
+  }
 }
