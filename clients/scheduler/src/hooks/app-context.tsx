@@ -21,6 +21,7 @@ export const AppContext = createContext<IAppContext>({
   api: '',
   appointmentCoding: {},
   bailoutURL: '',
+  daysToFetch: 7,
   duration: 20,
   locationId: '',
   patientId: '',
@@ -94,6 +95,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         duration: values.duration,
         setTimeSlots,
         setProviders,
+        daysToFetch: values.daysToFetch,
       })
     },
     [date, values]

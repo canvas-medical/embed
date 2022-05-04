@@ -18,6 +18,7 @@ export type GetSlotsParamsType = {
   patientKey: string
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
+  daysToFetch: number
 }
 
 type SlotResourceType = {

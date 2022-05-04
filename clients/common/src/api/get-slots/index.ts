@@ -53,6 +53,7 @@ export const getTimeSlots = async ({
   setTimeSlots,
   api,
   date,
+  daysToFetch,
   duration,
   locationId,
   patientId,
@@ -62,37 +63,37 @@ export const getTimeSlots = async ({
 }: GetSlotsParamsType) => {
   setLoading(true)
 
-  try {
-    const responses = await Promise.all(
-      providerIds.map(async providerId => {
-        const oneWeekLater = new Date(date.getTime() + 7 * 86400000)
-        const response = await axios.get<IGetSlotsResponse>(`${api}/Slot`, {
+  Promise.all(
+    providerIds.map(providerId => {
+      const end = new Date(date.getTime() + daysToFetch * 86400000)
+      return axios
+        .get<IGetSlotsResponse>(`${api}/Slot`, {
           params: {
             schedule: `Schedule/Location.${locationId}-Staff.${providerId}`,
             patient: patientId,
             patient_key: patientKey,
             start: date.toISOString(),
-            end: oneWeekLater.toISOString(),
+            end: end.toISOString(),
             duration,
           },
         })
-
-        return { providerId, slots: response.data || [] }
+        .then(response => {
+          return { providerId, slots: response.data || [] }
+        })
+    })
+  )
+    .then(responses =>
+      parseSlots({
+        setLoading,
+        responses,
+        setTimeSlots,
+        setError,
+        setProviders,
+        api,
+        providerIds,
+        patientId,
+        patientKey,
       })
     )
-
-    parseSlots({
-      setLoading,
-      responses,
-      setTimeSlots,
-      setError,
-      setProviders,
-      api,
-      providerIds,
-      patientId,
-      patientKey,
-    })
-  } catch (error) {
-    setError('Error Fetching Appointments')
-  }
+    .catch(() => setError('Error Fetching Appointments'))
 }
