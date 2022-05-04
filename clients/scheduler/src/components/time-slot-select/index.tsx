@@ -34,16 +34,26 @@ export const TimeSlotSelect = () => {
     }
 
     const providersMaxDates = timeSlots.map((provider) => {
+      if (provider.providerSlots.length === 0) {
+        return undefined
+      }
+
       return provider.providerSlots.reduce((a, b) => {
         return new Date(a.start) > new Date(b.start) ? a : b;
       })
     })
 
     const maxDateSlot = providersMaxDates.reduce((a, b) => {
+      if (!a || !b) {
+        return undefined
+      }
+
       return new Date(a.start) > new Date(b.start) ? a : b;
     })
 
-    setMaxDate(new Date(maxDateSlot.start))
+    if (maxDateSlot) {
+      setMaxDate(new Date(maxDateSlot.start))
+    }
   }, [timeSlots])
 
 
