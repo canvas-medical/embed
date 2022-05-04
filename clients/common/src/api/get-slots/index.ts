@@ -47,7 +47,7 @@ export const parseSlots = ({
   })
 }
 
-export const getTimeSlots = async ({
+export const getTimeSlots = ({
   setLoading,
   setError,
   setTimeSlots,
