@@ -10,9 +10,18 @@ export const TimeSlotSelect = () => {
   const [dayOfTimeSlots, setDayOfTimeSlots] = useState<ParsedSlotsType[]>([])
   const [maxDate, setMaxDate] = useState<Date>(date)
 
+  const addTimeSlots = (newSlots: ParsedSlotsType[]) => {
+    const udpatedSlots = newSlots.map((newSlot) => {
+      const existingProvider = timeSlots.find((timeSlot) => timeSlot.providerId === newSlot.providerId)
+      const mergedSlots = existingProvider ? [...existingProvider.providerSlots, ...newSlot.providerSlots] : newSlot.providerSlots
+      return {providerId: newSlot.providerId, providerSlots: mergedSlots}
+    })
+    setTimeSlots(udpatedSlots)
+  }
+
   useEffect(() => {
     if (date >= maxDate) {
-      fetchTimeSlots(setTimeSlots)
+      fetchTimeSlots(addTimeSlots)
     }
   }, [date])
 
