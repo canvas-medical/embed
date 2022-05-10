@@ -7,10 +7,11 @@ import {
   ParseSlotsParamsType,
 } from './types'
 
+const DAYS_IN_MILLISECONDS = 86400000
+
 export const parseSlots = ({
   setLoading,
   responses,
-  date,
   setTimeSlots,
   setError,
   setProviders,
@@ -24,10 +25,7 @@ export const parseSlots = ({
     const providerSlots: SlotType[] = []
     const totalSlots = response.slots.total || -1
     for (let i = 0; i < totalSlots; i++) {
-      if (
-        response.slots.entry &&
-        isSameDay(new Date(response.slots.entry[i].resource.start), date)
-      ) {
+      if (response.slots.entry) {
         providerSlots.push({
           start: response.slots.entry[i].resource.start,
           end: response.slots.entry[i].resource.end,
@@ -57,6 +55,7 @@ export const getTimeSlots = ({
   setTimeSlots,
   api,
   date,
+  daysToFetch,
   duration,
   locationId,
   patientId,
@@ -68,6 +67,7 @@ export const getTimeSlots = ({
 
   Promise.all(
     providerIds.map(providerId => {
+      const end = new Date(date.getTime() + daysToFetch * DAYS_IN_MILLISECONDS)
       return axios
         .get<IGetSlotsResponse>(`${api}/Slot`, {
           params: {
@@ -75,6 +75,7 @@ export const getTimeSlots = ({
             patient: patientId,
             patient_key: patientKey,
             start: date.toISOString(),
+            end: end.toISOString(),
             duration,
           },
         })
@@ -87,7 +88,6 @@ export const getTimeSlots = ({
       parseSlots({
         setLoading,
         responses,
-        date,
         setTimeSlots,
         setError,
         setProviders,

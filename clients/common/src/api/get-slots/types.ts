@@ -18,6 +18,7 @@ export type GetSlotsParamsType = {
   patientKey: string
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
+  daysToFetch: number
 }
 
 type SlotResourceType = {
@@ -44,7 +45,6 @@ export type ParseSlotsResponsesType = {
 export type ParseSlotsParamsType = {
   setLoading: SetLoadingType
   responses: ParseSlotsResponsesType
-  date: Date
   setTimeSlots: SetTimeSlotsType
   setError: SetErrorType
   api: string

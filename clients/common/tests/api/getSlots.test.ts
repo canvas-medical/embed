@@ -23,6 +23,7 @@ describe('getSlots', () => {
       patientId: 'fab73482a',
       patientKey: 'arbitraryString',
       date: new Date('2022-02-28T02:20:00.000Z'),
+      daysToFetch: 7,
       duration: 20,
       locationId: '1234',
       providerIds: ['1234567', '12345678'],
@@ -47,6 +48,7 @@ describe('getSlots', () => {
       locationId: '1234',
       providerIds: ['1234567', '12345678'],
       setProviders: () => {},
+      daysToFetch: 7,
     })
 
     expect(mockedAxios.get).toHaveBeenCalledTimes(5)
@@ -69,7 +71,6 @@ describe('getSlots', () => {
     parseSlots({
       setLoading: () => {},
       responses,
-      date: new Date('2022-03-28T10:00:00.000Z'),
       setTimeSlots,
       api: 'arbitraryString',
       patientId: 'fab73482a',
