@@ -10,6 +10,7 @@ export const Scheduler = (props: ISchedulerProps) => {
     api,
     appointmentCoding,
     bailoutURL,
+    daysToFetch,
     duration,
     locationId,
     patientId,
@@ -41,6 +42,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             patientKey,
             providerIds,
             colors,
+            daysToFetch,
             description,
             returnURL,
             shadowRoot,
@@ -87,6 +89,7 @@ export const init = ({
   patientId,
   patientKey,
   providerIds,
+  daysToFetch = 7,
   description,
   returnURL,
   rootId,
@@ -119,6 +122,7 @@ export const init = ({
       api={api}
       appointmentCoding={appointmentCoding}
       bailoutURL={bailoutURL}
+      daysToFetch={daysToFetch}
       duration={duration}
       locationId={locationId}
       patientId={patientId}

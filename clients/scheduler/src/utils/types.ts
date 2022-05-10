@@ -10,6 +10,7 @@ export interface IMainAppProps {
   api: string
   appointmentCoding: AppointmentCodingType
   bailoutURL: string
+  daysToFetch: number
   duration: number
   locationId: string
   patientId: string
