@@ -7,6 +7,8 @@ import {
   ParseSlotsParamsType,
 } from './types'
 
+const DAYS_IN_MILLISECONDS = 86400000
+
 export const parseSlots = ({
   setLoading,
   responses,
@@ -65,7 +67,7 @@ export const getTimeSlots = ({
 
   Promise.all(
     providerIds.map(providerId => {
-      const end = new Date(date.getTime() + daysToFetch * 86400000)
+      const end = new Date(date.getTime() + daysToFetch * DAYS_IN_MILLISECONDS)
       return axios
         .get<IGetSlotsResponse>(`${api}/Slot`, {
           params: {
