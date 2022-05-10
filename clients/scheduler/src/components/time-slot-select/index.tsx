@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { isSameDay, ParsedSlotsType } from '@canvas-medical/embed-common'
-import { useState, useEffect, useMemo } from 'preact/hooks'
+import { useState, useEffect, useMemo, useCallback } from 'preact/hooks'
 import { useAppContext } from '../../hooks'
 import { Ui } from './ui'
 
@@ -8,7 +8,7 @@ export const TimeSlotSelect = () => {
   const { fetchTimeSlots, date } = useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>([])
 
-  const addTimeSlots = (newProviderTimeSlots: ParsedSlotsType[]) => {
+  const addTimeSlots = useCallback((newProviderTimeSlots: ParsedSlotsType[]) => {
     const mergedProviderAvailability = newProviderTimeSlots.map((newProvider) => {
       const provider = providerTimeSlots.find((entry) => entry.providerId === newProvider.providerId)
       const mergedSlots = provider ? [...provider.providerSlots, ...newProvider.providerSlots] : newProvider.providerSlots
@@ -16,7 +16,7 @@ export const TimeSlotSelect = () => {
     })
 
     setProviderTimeSlots(mergedProviderAvailability)
-  }
+  }, [providerTimeSlots])
 
   // Determine max date available for all providers
   const maxDate = useMemo(() => {
