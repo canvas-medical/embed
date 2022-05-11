@@ -64,7 +64,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "^0.0.10",
+    "@canvas-medical/embed-common": "modern-age/canvas-embed#canvas-medical-embed-common-v0.0.10-gitpkg",
     "preact": "^10.6.5"
   },
   "devDependencies": {
