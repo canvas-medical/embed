@@ -67,7 +67,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "^0.0.9",
+    "@canvas-medical/embed-common": "^0.0.10",
     "preact": "^10.6.5",
     "styled-components": "^5.3.3"
   },
