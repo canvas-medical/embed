@@ -8,6 +8,7 @@
     "build": "webpack build --env prod",
     "build:esm": "webpack build --env prod --env esm",
     "gitpkg": "gitpkg publish --registry git@github.com:modern-age/canvas-embed.git",
+    "prepack": "npm run build",
     "start": "webpack server --open",
     "test": "TZ=UTC jest ./tests",
     "test:update": "yarn test --updateSnapshot"
