@@ -1,10 +1,11 @@
 {
   "name": "@canvas-medical/embed-common",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": false,
   "main": "src/index.ts",
   "scripts": {
     "build:esm": "webpack build",
+    "gitpkg": "gitpkg publish --registry git@github.com:modern-age/canvas-embed.git",
     "start": "echo 'No Start Provided'",
     "test": "TZ=UTC jest ./tests",
     "test:update": "yarn test --updateSnapshot"
