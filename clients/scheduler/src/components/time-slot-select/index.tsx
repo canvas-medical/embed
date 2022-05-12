@@ -35,8 +35,12 @@ export const TimeSlotSelect = () => {
     })
 
     const maxDateSlot = providersMaxDates.reduce((a, b) => {
-      if (!a || !b) {
+      if (!a && !b) {
         return undefined
+      } else if (!a) {
+        return b
+      } else if (!b) {
+        return a
       }
 
       return new Date(a.start) > new Date(b.start) ? a : b;
