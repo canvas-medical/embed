@@ -1,11 +1,11 @@
 import { h } from 'preact'
-import { isSameDay, ParsedSlotsType } from '@canvas-medical/embed-common'
+import { isSameDay, ParsedSlotsType, SlotType } from '@canvas-medical/embed-common'
 import { useState, useEffect, useMemo, useCallback } from 'preact/hooks'
 import { useAppContext } from '../../hooks'
 import { Ui } from './ui'
 
 export const TimeSlotSelect = () => {
-  const { fetchTimeSlots, date } = useAppContext()
+  const { fetchTimeSlots, date, setDate } = useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>([])
 
   const addTimeSlots = useCallback((newProviderTimeSlots: ParsedSlotsType[]) => {
@@ -18,37 +18,35 @@ export const TimeSlotSelect = () => {
     setProviderTimeSlots(mergedProviderAvailability)
   }, [providerTimeSlots])
 
-  // Determine max date available for all providers
-  const maxDate = useMemo(() => {
-    if (providerTimeSlots.length === 0) {
-      return
-    }
-
-    const providersMaxDates = providerTimeSlots.map((provider) => {
-      if (provider.providerSlots.length === 0) {
-        return undefined
-      }
-
-      return provider.providerSlots.reduce((a, b) => {
-        return new Date(a.start) > new Date(b.start) ? a : b;
-      })
+  const {minDate, maxDate} = useMemo(() => {
+    const slots: SlotType[] = []
+    providerTimeSlots.forEach((providerTimeSlot) => {
+      slots.push(...providerTimeSlot.providerSlots)
     })
 
-    const maxDateSlot = providersMaxDates.reduce((a, b) => {
-      if (!a && !b) {
-        return undefined
-      } else if (!a) {
-        return b
-      } else if (!b) {
-        return a
-      }
-
-      return new Date(a.start) > new Date(b.start) ? a : b;
-    })
-
-    if (maxDateSlot) {
-      return new Date(maxDateSlot.start)
+    if (slots.length === 0) {
+      return {minDate: undefined, maxDate: undefined}
     }
+
+slots.sort((slot1, slot2) => {
+  const slot1Start = new Date(slot1.start)
+  const slot2Start = new Date(slot2.start)
+
+  if (slot1Start > slot2Start) {
+    return 1
+  }
+
+  if (slot1Start < slot2Start) {
+    return -1
+  }
+
+  return 0
+})
+
+    const minDate = new Date(slots[0].start)
+    const maxDate = new Date(slots[slots.length - 1].start)
+
+    return {minDate, maxDate}
   }, [providerTimeSlots])
 
   useEffect(() => {
@@ -67,6 +65,12 @@ export const TimeSlotSelect = () => {
       }
     })
   }, [date, providerTimeSlots])
+
+  useEffect(() => {
+    if (typeof minDate !== "undefined" && date < minDate) {
+      setDate(minDate)
+    }
+  }, [minDate, setDate])
 
   return <Ui timeSlots={dayOfTimeSlots} />
 }
