@@ -28,12 +28,20 @@ export const TimeSlotSelect = () => {
       return {minDate: undefined, maxDate: undefined}
     }
 
-    slots.sort((a, b) => {
-      const startA = new Date(a.start)
-      const startB = new Date(b.start)
+slots.sort((slot1, slot2) => {
+  const slot1Start = new Date(slot1.start)
+  const slot2Start = new Date(slot2.start)
 
-      return startA > startB ? 1 : startA < startB ? -1 : 0;
-    })
+  if (slot1Start > slot2Start) {
+    return 1
+  }
+
+  if (slot1Start < slot2Start) {
+    return -1
+  }
+
+  return 0
+})
 
     const minDate = new Date(slots[0].start)
     const maxDate = new Date(slots[slots.length - 1].start)
