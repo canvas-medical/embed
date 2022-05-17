@@ -16,3 +16,9 @@
 ### Fixed
 
 - Fixed a bug that prevented `maxDate` from being stored when 1 or more providers has no time slots
+
+## [0.0.12] - 2022-05-17
+
+### Added
+
+- On initial scheduler load, set (skip) date to the date of the first available time slot
