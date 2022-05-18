@@ -4,7 +4,6 @@ import {
   ArrowBack,
   ArrowForward,
   Box,
-  Calendar as CalendarIcon,
   formatDate,
   H2,
   Span,
@@ -16,6 +15,7 @@ import {
   scrollDateForward,
   userTimezone,
 } from '../../utils'
+import { ArrowDown } from './arrow-down'
 import { DateViewContainer, DateScrollButton, DateSelectButton } from './styles'
 import { Calendar } from './calendar'
 
@@ -56,10 +56,10 @@ export const DateSelect = () => {
             hc={colors.accent.hover}
             onClick={() => setCalendarOpen(true)}
           >
-            <CalendarIcon />
             <Box ml="10px" maxWidth="fit-content">
               <H2>{formatDate(date)}</H2>
             </Box>
+            <ArrowDown />
           </DateSelectButton>
 
           <DateScrollButton

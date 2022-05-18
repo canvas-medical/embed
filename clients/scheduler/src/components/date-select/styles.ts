@@ -61,13 +61,16 @@ export const DateSelectButton = styled.button<HoverColorPropType>`
   display: flex;
   flex-grow: 1;
   justify-content: center;
+  stroke: #000;
+
+  div {
+    margin-right: .5rem;
+  }
 
   &:hover {
+    stroke: ${p => p.hc};
     h2 {
       color: ${p => p.hc};
-    }
-    path {
-      fill: ${p => p.hc};
     }
   }
 `
