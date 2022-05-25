@@ -56,11 +56,16 @@ slots.sort((slot1, slot2) => {
   }, [date])
 
   const dayOfTimeSlots = useMemo(() => {
+    const earliestAvailable = new Date();
+    //appointments within one hour can not be booked
+    earliestAvailable.setTime(earliestAvailable.getTime() + (60*60*1000));
+
     return providerTimeSlots.map((provider) => {
       return {
         providerId: provider.providerId,
         providerSlots: provider.providerSlots.filter((slot) => {
-          return isSameDay(new Date(slot.start), date)
+          const startDate = new Date(slot.start);
+          return isSameDay(startDate, date) && startDate > earliestAvailable
         })
       }
     })
