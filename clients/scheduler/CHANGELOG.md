@@ -22,3 +22,10 @@
 ### Added
 
 - On initial scheduler load, set (skip) date to the date of the first available time slot
+
+## [0.0.13] - 2022-05-25
+
+### Added
+
+- Past appointments and appointments within an hour cannot be booked
+- Removed Calendar Icon in favor of Dropdown Icon
