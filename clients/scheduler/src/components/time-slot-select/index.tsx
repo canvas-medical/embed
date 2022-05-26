@@ -4,18 +4,19 @@ import { useState, useEffect, useMemo, useCallback } from 'preact/hooks'
 import { useAppContext } from '../../hooks'
 import { Ui } from './ui'
 
+const ONE_MINUTE_IN_MILLISECONDS = 60*1000
+
 export const TimeSlotSelect = () => {
-  const { fetchTimeSlots, date, setDate } = useAppContext()
+  const { fetchTimeSlots, date, setDate, appointmentBufferInMintues } = useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>([])
 
   const addTimeSlots = useCallback((newProviderTimeSlots: ParsedSlotsType[]) => {
     const earliestAvailable = new Date();
-    //appointments within one hour can not be booked
-    earliestAvailable.setTime(earliestAvailable.getTime() + (60*60*1000));
+    earliestAvailable.setTime(earliestAvailable.getTime() + (appointmentBufferInMintues*ONE_MINUTE_IN_MILLISECONDS));
 
     const mergedProviderAvailability = newProviderTimeSlots.map((newProvider) => {
       const provider = providerTimeSlots.find((entry) => entry.providerId === newProvider.providerId)
-      const availableSlots = newProvider.providerSlots.filter(slot => new Date(slot.start) > earliestAvailable)
+      const availableSlots = newProvider.providerSlots.filter(slot => new Date(slot.start) >= earliestAvailable)
       const mergedSlots = provider ? [...provider.providerSlots, ...availableSlots] : availableSlots
       return {providerId: newProvider.providerId, providerSlots: mergedSlots}
     })
