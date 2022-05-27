@@ -8,6 +8,7 @@ import {
 
 export interface IMainAppProps {
   api: string
+  appointmentBufferInMintues: number
   appointmentCoding: AppointmentCodingType
   bailoutURL: string
   daysToFetch: number

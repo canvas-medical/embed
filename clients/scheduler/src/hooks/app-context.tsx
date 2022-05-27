@@ -19,6 +19,7 @@ type ContextWrapperProps = {
 
 export const AppContext = createContext<IAppContext>({
   api: '',
+  appointmentBufferInMintues: 60,
   appointmentCoding: {},
   bailoutURL: '',
   daysToFetch: 7,

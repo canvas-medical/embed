@@ -8,6 +8,7 @@ import { hasAllValues, IInitializerProps, ISchedulerProps } from './utils'
 export const Scheduler = (props: ISchedulerProps) => {
   const {
     api,
+    appointmentBufferInMintues,
     appointmentCoding,
     bailoutURL,
     daysToFetch,
@@ -34,6 +35,7 @@ export const Scheduler = (props: ISchedulerProps) => {
         <ContextWrapper
           values={{
             api,
+            appointmentBufferInMintues,
             appointmentCoding,
             bailoutURL,
             duration,
@@ -82,6 +84,7 @@ export const Scheduler = (props: ISchedulerProps) => {
 
 export const init = ({
   api,
+  appointmentBufferInMintues = 60,
   appointmentCoding,
   bailoutURL,
   duration,
@@ -120,6 +123,7 @@ export const init = ({
   render(
     <Scheduler
       api={api}
+      appointmentBufferInMintues={appointmentBufferInMintues}
       appointmentCoding={appointmentCoding}
       bailoutURL={bailoutURL}
       daysToFetch={daysToFetch}
