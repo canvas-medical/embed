@@ -109,7 +109,7 @@ const getDaysInMonth = (date: Date) => {
   }
 }
 
-export const generateDays = (date: Date) => {
+export const generateDays = (date: Date, enabledDates: Set<string>, maxDate?: Date) => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const daysInMonth = getDaysInMonth(date)
@@ -128,9 +128,10 @@ export const generateDays = (date: Date) => {
         dateString: getDateString(year, month, i),
       })
     } else {
+      const day = new Date(year, month, i)
       days.push({
         date: i,
-        disabled: false,
+        disabled: (maxDate && maxDate < day) || enabledDates.has(day.toLocaleDateString()) ? false: true,
         dateString: getDateString(year, month, i),
       })
     }

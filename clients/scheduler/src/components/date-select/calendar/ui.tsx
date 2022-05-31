@@ -31,7 +31,9 @@ type CalendarUiPropsType = {
   open: boolean
   close: Function
   backDisabled: boolean
+  enabledDates: Set<string>
   forwardDisabled: boolean
+  maxDate?: Date
   navigateForward: Function
   navigateBack: Function
   handleDateChange: Function
@@ -42,14 +44,16 @@ export const Ui = ({
   open,
   close,
   backDisabled,
+  enabledDates,
   forwardDisabled,
+  maxDate,
   navigateForward,
   navigateBack,
   handleDateChange,
   monthsAndYears,
 }: CalendarUiPropsType) => {
   const { colors, date, setDate, shadowRoot } = useAppContext()
-  const days = generateDays(date)
+  const days = generateDays(date, enabledDates, maxDate)
   const skipppedDays = getSkipDays(date)
   const dayMarkers = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 

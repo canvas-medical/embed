@@ -19,7 +19,12 @@ import { ArrowDown } from './arrow-down'
 import { DateViewContainer, DateScrollButton, DateSelectButton } from './styles'
 import { Calendar } from './calendar'
 
-export const DateSelect = () => {
+type DateSelectPropsType = {
+  enabledDates: Set<string>
+  maxDate?: Date
+}
+
+export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
   const { colors, date, setDate } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const backDisabled = isTodayOrBefore(date)
@@ -76,7 +81,7 @@ export const DateSelect = () => {
           <Span fontSize="0.875rem">{`Appointment times shown in ${userTimezone}`}</Span>
         </Box>
       </Box>
-      <Calendar open={calendarOpen} close={() => setCalendarOpen(false)} />
+      <Calendar open={calendarOpen} close={() => setCalendarOpen(false)} enabledDates={enabledDates} maxDate={maxDate} />
     </Fragment>
   )
 }
