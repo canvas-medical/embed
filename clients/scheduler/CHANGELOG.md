@@ -29,3 +29,17 @@
 
 - Past appointments and appointments within an hour cannot be booked
 - Removed Calendar Icon in favor of Dropdown Icon
+
+## [0.0.14] - 2022-05-31
+
+### Added
+
+- Calendar dates with no available slots are disabled
+
+### Changed
+
+- Appointments within `appointmentBufferInMintues` cannot be booked instead of previously fixed 1 hour
+
+### Fixed
+
+- Fixed a bug that allowed first available time slot to be in the past
