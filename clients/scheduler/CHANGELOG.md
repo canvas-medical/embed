@@ -43,3 +43,16 @@
 ### Fixed
 
 - Fixed a bug that allowed first available time slot to be in the past
+
+## [0.0.15] - 2022-06-13
+
+### Added
+
+- Added additional callbacks to Scheduler interface
+- Called callbacks across time-select, date-select, confirm-appointment components
+- Added auth & callbacks to `src/index.html` to make future setup easier 
+
+### Changed
+
+- Called error callbacks in `app-context`
+
