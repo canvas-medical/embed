@@ -17,12 +17,22 @@ type ConfirmAppointmentType = {
 }
 
 export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
-  const { loading, timeSlot, appointmentCoding, date, createAppointment } =
+  const { callbacks, loading, timeSlot, appointmentCoding, date, createAppointment } =
     useAppContext()
+  const { onBookingCanceled, onBookingConfirmed } = callbacks
 
   const display =
     appointmentCoding.display ||
     getAppointmentType(appointmentCoding.code || '')
+
+  const onClickConfirm = () => {
+    createAppointment()
+    onBookingConfirmed(timeSlot)
+  }
+  const onClickCancel = () => {
+    onCancel()
+    onBookingCanceled(timeSlot)
+  }
 
   return (
     <Box>
@@ -50,7 +60,7 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
           bc={appColors.primary.main}
           hc={appColors.primary.hover}
           fc={appColors.primary.font}
-          onClick={() => createAppointment()}
+          onClick={() => onClickConfirm()}
           disabled={loading}
         >
           Confirm
@@ -59,7 +69,7 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
           bc={appColors.secondary.main}
           hc={appColors.secondary.hover}
           fc={appColors.secondary.font}
-          onClick={() => onCancel()}
+          onClick={() => onClickCancel()}
         >
           Cancel
         </Button>

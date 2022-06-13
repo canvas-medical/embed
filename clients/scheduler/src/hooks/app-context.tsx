@@ -22,6 +22,13 @@ export const AppContext = createContext<IAppContext>({
   appointmentBufferInMintues: 60,
   appointmentCoding: {},
   bailoutURL: '',
+  callbacks: {
+    onBookingConfirmed: () => {},
+    onBookingError: () => {},
+    onBookingTimeSlotSelected: () => {},
+    onBookingCanceled: () => {},
+    onBookingDateChange: () => {},
+  },
   daysToFetch: 7,
   duration: 20,
   locationId: '',
@@ -121,7 +128,10 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const createAppointment = useCallback(() => {
     postAppointment({
       setScreen: () => setScreen('CONFIRM'),
-      setError,
+      setError: (msg) => { 
+        values.callbacks.onBookingError(msg) 
+        setError(msg) 
+      },
       setLoading,
       appointmentCoding: values.appointmentCoding,
       description: values.description,
