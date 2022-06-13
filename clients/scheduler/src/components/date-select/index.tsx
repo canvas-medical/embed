@@ -45,11 +45,10 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
   const onClick = (direction) => {
     if (direction === "back") {
       scrollDateBack(date, setDate)
-      onBookingDateChange({ direction, date, providerIds })
     } else {
       scrollDateForward(date, setDate)
-      onBookingDateChange({ direction, date, providerIds })
     }
+    onBookingDateChange({ direction, date, providerIds })
   }
 
   return (

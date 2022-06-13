@@ -130,7 +130,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       setScreen: () => setScreen('CONFIRM'),
       setError: (msg) => { 
         values.callbacks.onBookingError(msg); 
-        return setError(msg) 
+        setError(msg) 
       },
       setLoading,
       appointmentCoding: values.appointmentCoding,
