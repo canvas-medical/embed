@@ -25,7 +25,7 @@ type DateSelectPropsType = {
 }
 
 export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
-  const { colors, date, setDate } = useAppContext()
+  const { callbacks: { onBookingDateChange }, colors, date, providerIds, setDate } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const backDisabled = isTodayOrBefore(date)
 
@@ -42,6 +42,16 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
     }
   }, [])
 
+  const onClick = (direction) => {
+    if (direction === "back") {
+      scrollDateBack(date, setDate)
+      onBookingDateChange({ direction, date, providerIds })
+    } else {
+      scrollDateForward(date, setDate)
+      onBookingDateChange({ direction, date, providerIds })
+    }
+  }
+
   return (
     <Fragment>
       <Box mt="16px">
@@ -51,7 +61,7 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
             fc={colors.accent.main}
             hc={colors.accent.hover}
             disabled={backDisabled}
-            onClick={() => scrollDateBack(date, setDate)}
+            onClick={() => onClick("back")}
           >
             <ArrowBack />
           </DateScrollButton>
@@ -71,7 +81,7 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
             aria-label="Scroll Date Forward"
             fc={colors.accent.main}
             hc={colors.accent.hover}
-            onClick={() => scrollDateForward(date, setDate)}
+            onClick={() => onClick("forward")}
           >
             <ArrowForward />
           </DateScrollButton>
