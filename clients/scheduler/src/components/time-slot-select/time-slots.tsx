@@ -24,7 +24,7 @@ export const TimeSlots = ({
 }: TimeSlotsType) => {
   const { colors, callbacks: { onBookingTimeSlotSelected }, setTimeSlot } = useAppContext()
 
-  const onClick = () => {
+  const onClick = ({ start, end }) => {
     selectTimeSlot({ end, provider, start })
     onBookingTimeSlotSelected({ end, provider, start })
   }
@@ -36,16 +36,16 @@ export const TimeSlots = ({
       </Box>
       {slots.length ? (
         <TimeSlotList>
-          {slots.map(({ start, end }) => (
+          {slots.map((slot) => (
             <TimeSlotButton
-              id={start}
+              id={slot.start}
               bc={colors.accent.main}
               hc={colors.accent.hover}
               fc={colors.accent.font}
-              onClick={onClick}
+              onClick={() => onClick(slot)}
             >
               <ScreenReaderText>Select time slot for</ScreenReaderText>
-              {`${formatTime(start)} - ${formatTime(end)}`}
+              {`${formatTime(slot.start)} - ${formatTime(slot.end)}`}
             </TimeSlotButton>
           ))}
         </TimeSlotList>

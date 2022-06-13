@@ -17,7 +17,7 @@ type CalendarPropsType = {
 }
 
 export const Calendar = ({ open, close, enabledDates, maxDate }: CalendarPropsType) => {
-  const { date, setDate } = useAppContext()
+  const { callbacks: { onBookingDateChange }, date, providerIds, setDate } = useAppContext()
   const monthsAndYears = getMonthAndYearOptions()
 
   const backDisabled = sameMonthAndYear(date, monthsAndYears[0].date)
@@ -38,13 +38,14 @@ export const Calendar = ({ open, close, enabledDates, maxDate }: CalendarPropsTy
     const month = date.getMonth()
     const year = date.getFullYear()
 
-    const newDate = new Date(year, month, day)
+    let newDate = new Date(year, month, day)
 
     if (isTodayOrBefore(newDate)) {
-      setDate(new Date())
-    } else {
-      setDate(new Date(year, month, day))
+      newDate = new Date()
     }
+
+    setDate(newDate)
+    onBookingDateChange({ direction: "", date: newDate, providerIds })
 
     close()
   }
