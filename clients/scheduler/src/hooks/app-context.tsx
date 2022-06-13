@@ -128,7 +128,10 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const createAppointment = useCallback(() => {
     postAppointment({
       setScreen: () => setScreen('CONFIRM'),
-      setError,
+      setError: (msg) => { 
+        values.callbacks.onBookingError(msg); 
+        return setError(msg) 
+      },
       setLoading,
       appointmentCoding: values.appointmentCoding,
       description: values.description,
@@ -158,12 +161,6 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     },
     [timeSlot, values]
   )
-
-  const reportError = useCallback(() => {
-    if (err) {
-      values.callbacks.onBookingError(err)
-    }
-  }, [error])
 
   const contextValue = useMemo(() => {
     return {
