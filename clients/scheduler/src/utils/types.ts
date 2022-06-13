@@ -1,5 +1,6 @@
 import {
   AppointmentCodingType,
+  CallbackType,
   GeneratedColorsType,
   ProvidersType,
   SetTimeSlotsType,
@@ -11,6 +12,7 @@ export interface IMainAppProps {
   appointmentBufferInMintues: number
   appointmentCoding: AppointmentCodingType
   bailoutURL: string
+  callbacks: Record<string, CallbackType>
   daysToFetch: number
   duration: number
   locationId: string
@@ -38,6 +40,7 @@ export interface ISchedulerProps extends IMainAppProps, IInitializerOnlyProps {
 }
 
 export interface IAppContext extends IMainAppProps {
+  callbacks: Record<string, CallbackType>
   colors: GeneratedColorsType
   shadowRoot: any
   date: Date
