@@ -11,6 +11,7 @@ export const Scheduler = (props: ISchedulerProps) => {
     appointmentBufferInMintues,
     appointmentCoding,
     bailoutURL,
+    callbacks,
     daysToFetch,
     duration,
     locationId,
@@ -38,6 +39,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             appointmentBufferInMintues,
             appointmentCoding,
             bailoutURL,
+            callbacks,
             duration,
             locationId,
             patientId,
@@ -87,6 +89,7 @@ export const init = ({
   appointmentBufferInMintues = 60,
   appointmentCoding,
   bailoutURL,
+  callbacks,
   duration,
   locationId,
   patientId,
@@ -126,6 +129,7 @@ export const init = ({
       appointmentBufferInMintues={appointmentBufferInMintues}
       appointmentCoding={appointmentCoding}
       bailoutURL={bailoutURL}
+      callbacks={callbacks}
       daysToFetch={daysToFetch}
       duration={duration}
       locationId={locationId}
