@@ -28,6 +28,7 @@ export const Confirmation = () => {
     fetchScheduledAppointment,
     shadowRoot,
     setScreen,
+    callbacks: { onClick },
   } = useAppContext()
   const [appointmentId, setAppointmentId] = useState(null)
   const [popoverOpen, setPopoverOpen] = useState(false)
@@ -36,10 +37,26 @@ export const Confirmation = () => {
     fetchScheduledAppointment(setAppointmentId)
   }, [fetchScheduledAppointment])
 
-  const handleCancel = () => {
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (appointmentId) {
       cancelAppointment(appointmentId, () => setScreen('SELECT'))
     }
+    onClick(e)
+  }
+
+  const handleKeep = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setPopoverOpen(false)
+    onClick(e)
+  }
+
+  const handleCancelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setPopoverOpen(true)
+    onClick(e)
+  }
+
+  const handleFinishClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick(e)
+    window.location.href = returnURL
   }
 
   const appointmentDate = new Date(timeSlot.start)
@@ -71,7 +88,8 @@ export const Confirmation = () => {
               bc={colors.accent.main}
               hc={colors.accent.hover}
               fc={colors.accent.font}
-              onClick={() => setPopoverOpen(true)}
+              data-analytics-id="appointment-confirmation-cancel"
+              onClick={e => handleCancelClick(e)}
             >
               Cancel
             </Button>
@@ -83,7 +101,8 @@ export const Confirmation = () => {
             bc={colors.accent.main}
             hc={colors.accent.hover}
             fc={colors.accent.font}
-            onClick={() => (window.location.href = returnURL)}
+            data-analytics-id="appointment-confirmation-finish"
+            onClick={e => handleFinishClick(e)}
           >
             Finish
           </Button>
@@ -95,10 +114,7 @@ export const Confirmation = () => {
         open={popoverOpen}
         titleId={'cancel-appointment'}
       >
-        <CancellationDisplay
-          onCancel={handleCancel}
-          onKeep={() => setPopoverOpen(false)}
-        />
+        <CancellationDisplay onCancel={handleCancel} onKeep={handleKeep} />
       </Popover>
     </Fragment>
   )

@@ -1,38 +1,63 @@
 import { h } from 'preact'
-import { Body, isSameDay, ParsedSlotsType, SlotType } from '@canvas-medical/embed-common'
+import {
+  Body,
+  isSameDay,
+  ParsedSlotsType,
+  SlotType,
+} from '@canvas-medical/embed-common'
 import { useState, useEffect, useMemo, useCallback } from 'preact/hooks'
 import { useAppContext } from '../../hooks'
 import { TimeSlotUi } from './ui'
 import { DateSelect } from '../date-select'
 
-const ONE_MINUTE_IN_MILLISECONDS = 60*1000
+const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000
 
 export const TimeSlotSelect = () => {
-  const { fetchTimeSlots, date, setDate, daysToFetch, appointmentBufferInMintues } = useAppContext()
-  const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>([])
+  const { fetchTimeSlots, date, setDate, appointmentBufferInMintues } =
+    useAppContext()
+  const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>(
+    []
+  )
 
-  const addTimeSlots = useCallback((newProviderTimeSlots: ParsedSlotsType[]) => {
-    const earliestAvailable = new Date();
-    earliestAvailable.setTime(earliestAvailable.getTime() + (appointmentBufferInMintues*ONE_MINUTE_IN_MILLISECONDS));
+  const addTimeSlots = useCallback(
+    (newProviderTimeSlots: ParsedSlotsType[]) => {
+      const earliestAvailable = new Date()
+      earliestAvailable.setTime(
+        earliestAvailable.getTime() +
+          appointmentBufferInMintues * ONE_MINUTE_IN_MILLISECONDS
+      )
 
-    const mergedProviderAvailability = newProviderTimeSlots.map((newProvider) => {
-      const provider = providerTimeSlots.find((entry) => entry.providerId === newProvider.providerId)
-      const availableSlots = newProvider.providerSlots.filter(slot => new Date(slot.start) >= earliestAvailable)
-      const mergedSlots = provider ? [...provider.providerSlots, ...availableSlots] : availableSlots
-      return {providerId: newProvider.providerId, providerSlots: mergedSlots}
-    })
+      const mergedProviderAvailability = newProviderTimeSlots.map(
+        newProvider => {
+          const provider = providerTimeSlots.find(
+            entry => entry.providerId === newProvider.providerId
+          )
+          const availableSlots = newProvider.providerSlots.filter(
+            slot => new Date(slot.start) >= earliestAvailable
+          )
+          const mergedSlots = provider
+            ? [...provider.providerSlots, ...availableSlots]
+            : availableSlots
+          return {
+            providerId: newProvider.providerId,
+            providerSlots: mergedSlots,
+          }
+        }
+      )
 
-    setProviderTimeSlots(mergedProviderAvailability)
-  }, [providerTimeSlots])
+      setProviderTimeSlots(mergedProviderAvailability)
+    },
+    [providerTimeSlots]
+  )
 
-  const {minDate, maxDate} = useMemo(() => {
+  const { minDate, maxDate } = useMemo(() => {
     const slots: SlotType[] = []
-    providerTimeSlots.forEach((providerTimeSlot) => {
+    providerTimeSlots.forEach(providerTimeSlot => {
       slots.push(...providerTimeSlot.providerSlots)
     })
 
     if (slots.length === 0) {
-      return {minDate: undefined, maxDate: undefined}
+      return { minDate: undefined, maxDate: undefined }
     }
 
     slots.sort((slot1, slot2) => {
@@ -53,28 +78,28 @@ export const TimeSlotSelect = () => {
     const minDate = new Date(slots[0].start)
     const maxDate = new Date(slots[slots.length - 1].start)
 
-    return {minDate, maxDate}
+    return { minDate, maxDate }
   }, [providerTimeSlots])
 
   useEffect(() => {
-    if (typeof maxDate === "undefined" || date >= maxDate) {
+    if (typeof maxDate === 'undefined' || date >= maxDate) {
       fetchTimeSlots(addTimeSlots)
     }
   }, [date])
 
   const dayOfTimeSlots = useMemo(() => {
-    return providerTimeSlots.map((provider) => {
+    return providerTimeSlots.map(provider => {
       return {
         providerId: provider.providerId,
-        providerSlots: provider.providerSlots.filter((slot) => {
+        providerSlots: provider.providerSlots.filter(slot => {
           return isSameDay(new Date(slot.start), date)
-        })
+        }),
       }
     })
   }, [date, providerTimeSlots])
 
   useEffect(() => {
-    if (typeof minDate !== "undefined" && date < minDate) {
+    if (typeof minDate !== 'undefined' && date < minDate) {
       setDate(minDate)
     }
   }, [minDate, setDate])
@@ -82,13 +107,13 @@ export const TimeSlotSelect = () => {
   const enabledDates = useMemo(() => {
     const dateIsDisabled = new Set<string>()
 
-    providerTimeSlots.forEach((provider) => {
+    providerTimeSlots.forEach(provider => {
       provider.providerSlots.forEach(slot => {
         const slotDate = new Date(slot.start).toLocaleDateString()
         dateIsDisabled.add(slotDate)
       })
     })
-    return dateIsDisabled;
+    return dateIsDisabled
   }, [providerTimeSlots])
 
   return (
@@ -96,5 +121,5 @@ export const TimeSlotSelect = () => {
       <DateSelect enabledDates={enabledDates} maxDate={maxDate} />
       <TimeSlotUi timeSlots={dayOfTimeSlots} />
     </Body>
-    )
+  )
 }

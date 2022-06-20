@@ -17,21 +17,26 @@ type ConfirmAppointmentType = {
 }
 
 export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
-  const { callbacks, loading, timeSlot, appointmentCoding, date, createAppointment } =
-    useAppContext()
-  const { onBookingCanceled, onBookingConfirmed } = callbacks
+  const {
+    loading,
+    timeSlot,
+    appointmentCoding,
+    date,
+    createAppointment,
+    callbacks: { onClick },
+  } = useAppContext()
 
   const display =
     appointmentCoding.display ||
     getAppointmentType(appointmentCoding.code || '')
 
-  const onClickConfirm = () => {
+  const onClickConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     createAppointment()
-    onBookingConfirmed(timeSlot)
+    onClick(e)
   }
-  const onClickCancel = () => {
+  const onClickCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     onCancel()
-    onBookingCanceled(timeSlot)
+    onClick(e)
   }
 
   return (
@@ -60,7 +65,8 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
           bc={appColors.primary.main}
           hc={appColors.primary.hover}
           fc={appColors.primary.font}
-          onClick={() => onClickConfirm()}
+          data-analytics-id="confirm-appointmet"
+          onClick={e => onClickConfirm(e)}
           disabled={loading}
         >
           Confirm
@@ -69,7 +75,8 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
           bc={appColors.secondary.main}
           hc={appColors.secondary.hover}
           fc={appColors.secondary.font}
-          onClick={() => onClickCancel()}
+          data-analytics-id="cancel-confirm-appointmet"
+          onClick={e => onClickCancel(e)}
         >
           Cancel
         </Button>

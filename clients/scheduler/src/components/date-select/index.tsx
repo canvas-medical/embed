@@ -24,8 +24,13 @@ type DateSelectPropsType = {
   maxDate?: Date
 }
 
-export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
-  const { callbacks: { onBookingDateChange }, colors, date, providerIds, setDate } = useAppContext()
+export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType) => {
+  const {
+    callbacks: { onClick },
+    colors,
+    date,
+    setDate,
+  } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const backDisabled = isTodayOrBefore(date)
 
@@ -42,13 +47,27 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
     }
   }, [])
 
-  const onClick = (direction) => {
-    if (direction === "back") {
-      scrollDateBack(date, setDate)
-    } else {
-      scrollDateForward(date, setDate)
+  const handleDateScrollClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    direction: string
+  ) => {
+    const callback = (newDate: Date) => {
+      setDate(newDate)
+      onClick(e, { direction, date: newDate })
     }
-    onBookingDateChange({ direction, date, providerIds })
+    if (direction === 'back') {
+      scrollDateBack(date, callback)
+    } else {
+      scrollDateForward(date, callback)
+    }
+  }
+
+  const handleCalendarToggle = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    isCalendarOpen: boolean
+  ) => {
+    setCalendarOpen(isCalendarOpen)
+    onClick(e, { open: isCalendarOpen })
   }
 
   return (
@@ -60,7 +79,8 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
             fc={colors.accent.main}
             hc={colors.accent.hover}
             disabled={backDisabled}
-            onClick={() => onClick("back")}
+            data-analytics-id="scroll-date-back"
+            onClick={e => handleDateScrollClick(e, 'back')}
           >
             <ArrowBack />
           </DateScrollButton>
@@ -68,7 +88,8 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
           <DateSelectButton
             aria-label="Open Date Picker"
             hc={colors.accent.hover}
-            onClick={() => setCalendarOpen(true)}
+            data-analytics-id="scroll-date-calendar-toggle"
+            onClick={e => handleCalendarToggle(e, true)}
           >
             <Box ml="10px" maxWidth="fit-content">
               <H2>{formatDate(date)}</H2>
@@ -80,7 +101,8 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
             aria-label="Scroll Date Forward"
             fc={colors.accent.main}
             hc={colors.accent.hover}
-            onClick={() => onClick("forward")}
+            data-analytics-id="scroll-date-forward"
+            onClick={e => handleDateScrollClick(e, 'forward')}
           >
             <ArrowForward />
           </DateScrollButton>
@@ -90,7 +112,12 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType)=> {
           <Span fontSize="0.875rem">{`Appointment times shown in ${userTimezone}`}</Span>
         </Box>
       </Box>
-      <Calendar open={calendarOpen} close={() => setCalendarOpen(false)} enabledDates={enabledDates} maxDate={maxDate} />
+      <Calendar
+        open={calendarOpen}
+        close={() => setCalendarOpen(false)}
+        enabledDates={enabledDates}
+        maxDate={maxDate}
+      />
     </Fragment>
   )
 }

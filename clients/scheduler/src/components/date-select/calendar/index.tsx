@@ -16,8 +16,17 @@ type CalendarPropsType = {
   maxDate?: Date
 }
 
-export const Calendar = ({ open, close, enabledDates, maxDate }: CalendarPropsType) => {
-  const { callbacks: { onBookingDateChange }, date, providerIds, setDate } = useAppContext()
+export const Calendar = ({
+  open,
+  close,
+  enabledDates,
+  maxDate,
+}: CalendarPropsType) => {
+  const {
+    callbacks: { onClick },
+    date,
+    setDate,
+  } = useAppContext()
   const monthsAndYears = getMonthAndYearOptions()
 
   const backDisabled = sameMonthAndYear(date, monthsAndYears[0].date)
@@ -26,15 +35,22 @@ export const Calendar = ({ open, close, enabledDates, maxDate }: CalendarPropsTy
     monthsAndYears[monthsAndYears.length - 1].date
   )
 
-  const navigateForward = () => {
-    setDate(getNextMonth(date))
+  const navigateForward = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const newDate = getNextMonth(date)
+    setDate(newDate)
+    onClick(e, { date: newDate })
   }
 
-  const navigateBack = () => {
-    setDate(getPreviousMonth(date))
+  const navigateBack = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const newDate = getPreviousMonth(date)
+    setDate(newDate)
+    onClick(e, { date: newDate })
   }
 
-  const handleDateChange = (day: number) => {
+  const handleDateChange = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    day: number
+  ) => {
     const month = date.getMonth()
     const year = date.getFullYear()
 
@@ -45,8 +61,7 @@ export const Calendar = ({ open, close, enabledDates, maxDate }: CalendarPropsTy
     }
 
     setDate(newDate)
-    onBookingDateChange({ direction: "", date: newDate, providerIds })
-
+    onClick(e, { date: newDate })
     close()
   }
 
