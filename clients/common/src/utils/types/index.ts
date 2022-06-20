@@ -41,8 +41,3 @@ export type AppointmentCodingType = {
   code?: string
   display?: string
 }
-
-export type CallbackType = {
-  eventName: string
-  callback: () => void
-}

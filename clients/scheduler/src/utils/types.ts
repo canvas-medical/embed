@@ -1,6 +1,5 @@
 import {
   AppointmentCodingType,
-  CallbackType,
   GeneratedColorsType,
   ProvidersType,
   SetTimeSlotsType,
@@ -12,7 +11,17 @@ export interface IMainAppProps {
   appointmentBufferInMintues: number
   appointmentCoding: AppointmentCodingType
   bailoutURL: string
-  callbacks: Record<string, CallbackType>
+  callbacks: {
+    onClick: (
+      e: React.MouseEvent<HTMLButtonElement>,
+      config?: Record<string, any>
+    ) => void
+    onChange: (
+      e: React.MouseEvent<HTMLButtonElement>,
+      config?: Record<string, any>
+    ) => void
+    onError: () => void
+  }
   daysToFetch: number
   duration: number
   locationId: string
@@ -40,7 +49,6 @@ export interface ISchedulerProps extends IMainAppProps, IInitializerOnlyProps {
 }
 
 export interface IAppContext extends IMainAppProps {
-  callbacks: Record<string, CallbackType>
   colors: GeneratedColorsType
   shadowRoot: any
   date: Date
