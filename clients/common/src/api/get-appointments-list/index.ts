@@ -29,6 +29,7 @@ export const parseAppointments = ({
             parsedAppointments.push({
               id: resource.id,
               code: resource.appointmentType.coding[0].code || '',
+              description: resource.description || '',
               display: resource.appointmentType.coding[0].display || '',
               locationId:
                 resource.supportingInformation[0].reference.split('/')[1] || '',
@@ -51,6 +52,7 @@ export const parseAppointments = ({
         parsedAppointments.push({
           id: resource.id,
           code: resource.appointmentType.coding[0].code || '',
+          description: resource.description || '',
           display: resource.appointmentType.coding[0].display || '',
           locationId:
             resource.supportingInformation[0].reference.split('/')[1] || '',

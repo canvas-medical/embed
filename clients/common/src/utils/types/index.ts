@@ -29,6 +29,7 @@ export type TimeSlotType = {
 export type AppointmentType = {
   id: string
   code: string
+  description: string
   display: string
   locationId?: string
   providerId: string
