@@ -22,7 +22,8 @@ export const CancellationDisplay = ({
           bc={colors.destructive.main}
           hc={colors.destructive.hover}
           fc={colors.destructive.font}
-          onClick={() => onCancel()}
+          data-analytics-id="cancellation-display-close"
+          onClick={e => onCancel(e)}
         >
           Yes, cancel it
         </Button>
@@ -30,7 +31,8 @@ export const CancellationDisplay = ({
           bc={colors.secondary.main}
           hc={colors.secondary.hover}
           fc={colors.secondary.font}
-          onClick={() => onKeep()}
+          data-analytics-id="cancellation-display-keep"
+          onClick={e => onKeep(e)}
         >
           No, keep it
         </Button>

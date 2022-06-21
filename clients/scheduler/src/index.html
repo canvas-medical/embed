@@ -21,68 +21,78 @@
     <div id="embed-root"></div>
     <script src="./scheduler.js" type="text/javascript"></script>
     <script type="text/javascript">
-
       const callbacks = {
-        onBookingConfirmed: (e) => {
-          console.log("onBookingConfirmed", e)
+        onClick: (e, config) => {
+          if (e && e.target) {
+            // Prescribed method for getting the element clicked
+            // const closestTarget = e.target.closest('[data-analytics-id]')
+            // console.log(
+            //   closestTarget.dataset,
+            //   'e.target.dataset',
+            //   config,
+            //   'config'
+            // )
+          }
         },
-        onBookingError: (e) => {
-          console.log("onBookingError", e)
+        onChange: (e, config) => {
+          if (e && e.target) {
+            // const closestTarget = e.target.closest('[data-analytics-id]')
+            // console.log(
+            //   closestTarget.dataset,
+            //   'e.target.dataset',
+            //   config,
+            //   'config'
+            // )
+          }
         },
-        onBookingTimeSlotSelected: (e) => {
-          console.log("onBookingTimeSlotSelected", e)
-        },
-        onBookingCanceled: (e) => {
-          console.log("onBookingCanceled", e)
-        },
-        onBookingDateChange: (e) => {  
-          console.log("onBookingDateChange", e)
-        }
+        onError: config => {},
       }
 
       const config = {
-        apiKey: "API_KEY",
-        patientId: "PATIENT_ID",
-        providerIds: [
-          'PROVIDER_ID',
-        ]
+        apiKey: 'API_KEY',
+        patientId: 'PATIENT_ID',
+        providerIds: ['PROVIDER_ID'],
       }
 
       // This is the URL of the running proxy container
-      const apiBaseUrl = "http://localhost:3000"
+      const apiBaseUrl = 'http://localhost:3000'
 
-      fetch(`${apiBaseUrl}/Auth?` + new URLSearchParams({
-        key: config.apiKey,
-        patient: config.patientId
-      }))
-      .then(res => res.json())
-      .then(data => {
-        const patientKey = data.patient_key
+      fetch(
+        `${apiBaseUrl}/Auth?` +
+          new URLSearchParams({
+            key: config.apiKey,
+            patient: config.patientId,
+          })
+      )
+        .then(res => res.json())
+        .then(data => {
+          const patientKey = data.patient_key
 
-        Scheduler.init({
-          api: apiBaseUrl,
-          appointmentCoding: {
-            code: 'CODE',
-            system: "http://snomed.info/sct"
-          },
-          bailoutURL: 'https://canvasmedical.com',
-          callbacks: callbacks,
-          daysToFetch: '7',
-          duration: '60',
-          locationId: '1',
-          patientId: config.patientId,
-          patientKey: patientKey,
-          providerIds: config.providerIds,
-          reason: 'high fever, cough, leeches',
-          returnURL: 'https://canvasmedical.com',
-          rootId: 'embed-root',
-          // brandColor: '',
-          // accentColor: '',
-          // customFont: 'Nunito',
+          Scheduler.init({
+            api: apiBaseUrl,
+            appointmentCoding: {
+              code: 'CODE',
+              system: 'http://snomed.info/sct',
+            },
+            bailoutURL: 'https://canvasmedical.com',
+            callbacks: callbacks,
+            daysToFetch: '7',
+            duration: '60',
+            locationId: '1',
+            patientId: config.patientId,
+            patientKey: patientKey,
+            providerIds: config.providerIds,
+            reason: 'high fever, cough, leeches',
+            returnURL: 'https://canvasmedical.com',
+            rootId: 'embed-root',
+            // brandColor: '',
+            // accentColor: '',
+            // customFont: 'Nunito',
+          })
         })
-      }).catch(e => {
-        console.error(e)
-      })
+        .catch(e => {
+          console.error(e)
+        })
     </script>
   </body>
 </html>

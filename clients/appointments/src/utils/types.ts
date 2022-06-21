@@ -1,9 +1,8 @@
-import { CallbackType, GeneratedColorsType } from '@canvas-medical/embed-common'
+import { GeneratedColorsType } from '@canvas-medical/embed-common'
 
 export interface IMainAppProps {
   api: string
   bailoutURL: string
-  callbacks: Record<string, CallbackType>
   locationId: string
   patientId: string
   patientKey: string

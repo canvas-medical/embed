@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import {
   ArrowBack,
   ArrowForward,
@@ -52,10 +51,25 @@ export const Ui = ({
   handleDateChange,
   monthsAndYears,
 }: CalendarUiPropsType) => {
-  const { colors, date, setDate, shadowRoot } = useAppContext()
+  const {
+    colors,
+    date,
+    setDate,
+    shadowRoot,
+    callbacks: { onChange, onClick },
+  } = useAppContext()
   const days = generateDays(date, enabledDates, maxDate)
   const skipppedDays = getSkipDays(date)
   const dayMarkers = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+  const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newDate = new Date(e.target.value)
+    setDate(newDate)
+    onChange(e, { date: newDate })
+  }
+  const handleCalendarClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick(e)
+    close()
+  }
 
   return (
     <FocusTrapBackdrop open={open} shadowRoot={shadowRoot} zIndex={2000}>
@@ -73,7 +87,8 @@ export const Ui = ({
           </CalendarHeaderBox>
           <IconButton
             aria-label="Close Calendar"
-            onClick={() => close()}
+            onClick={e => handleCalendarClose(e)}
+            data-analytics-id="calendar-close"
             tabIndex={-1}
             mr="8px"
             ml="auto"
@@ -91,8 +106,9 @@ export const Ui = ({
         <MonthBox>
           <MonthSelect
             // value={getMonthAndYearString(date)}
-            onChange={e => setDate(new Date(e.target.value))}
             autoFocus
+            data-analytics-id="calendar-month-select"
+            onChange={handleMonthChange}
           >
             {monthsAndYears.map(monthAndYear => (
               <option
@@ -109,7 +125,8 @@ export const Ui = ({
             disabled={backDisabled}
             ml="auto"
             mr="8px"
-            onClick={() => navigateBack()}
+            onClick={e => navigateBack(e)}
+            data-analytics-id="calendar-month-back"
             aria-label="Previous Month"
             fc={colors.brand.main}
             hc={colors.brand.hover}
@@ -121,7 +138,8 @@ export const Ui = ({
             disabled={forwardDisabled}
             ml="4px"
             mr="24px"
-            onClick={() => navigateForward()}
+            onClick={e => navigateForward(e)}
+            data-analytics-id="calendar-month-forward"
             aria-label="Next Month"
             fc={colors.brand.main}
             hc={colors.brand.hover}
@@ -149,7 +167,8 @@ export const Ui = ({
                   fc={colors.accent.font}
                   disabled={day.disabled}
                   selected={day.date === date.getDate()}
-                  onClick={() => handleDateChange(day.date)}
+                  data-analytics-id="calendar-date-select"
+                  onClick={e => handleDateChange(e, day.date)}
                 >
                   {day.date}
                 </CalendarDateButton>
