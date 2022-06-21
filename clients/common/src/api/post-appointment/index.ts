@@ -5,7 +5,7 @@ import { PostAppointmentParamsType } from './types'
 
 export const postAppointment = ({
   setScreen,
-  setError,
+  onError,
   setLoading,
   appointmentCoding,
   description,
@@ -36,5 +36,5 @@ export const postAppointment = ({
       setScreen()
       setLoading(false)
     })
-    .catch(() => setError('Error Creating Appointment'))
+    .catch(e => onError(e, 'Error Creating Appointment'))
 }

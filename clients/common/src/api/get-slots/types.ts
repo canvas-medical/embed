@@ -1,6 +1,6 @@
 import {
   IFHIRResponse,
-  SetErrorType,
+  HandleErrorType,
   SetLoadingType,
   SetTimeSlotsType,
   ProvidersType,
@@ -8,7 +8,7 @@ import {
 
 export type GetSlotsParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setTimeSlots: SetTimeSlotsType
   api: string
   date: Date
@@ -46,7 +46,7 @@ export type ParseSlotsParamsType = {
   setLoading: SetLoadingType
   responses: ParseSlotsResponsesType
   setTimeSlots: SetTimeSlotsType
-  setError: SetErrorType
+  onError: HandleErrorType
   api: string
   patientId: string
   patientKey: string

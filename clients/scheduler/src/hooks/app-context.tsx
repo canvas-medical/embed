@@ -8,6 +8,7 @@ import {
   ProvidersType,
   putAppointment,
   SetTimeSlotsType,
+  HandleErrorType,
   TimeSlotType,
 } from '@canvas-medical/embed-common'
 import { IAppContext } from '../utils'
@@ -26,7 +27,6 @@ export const AppContext = createContext<IAppContext>({
     onClick: () => {},
     onChange: () => {},
     onError: () => {},
-    onBookingError: () => {},
   },
   daysToFetch: 7,
   duration: 20,
@@ -77,6 +77,11 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     },
   })
 
+  const handleError: HandleErrorType = (error, msg) => {
+    values.callbacks?.onError(error, msg)
+    if (msg && typeof msg === 'string') setError(msg)
+  }
+
   const resetTimeSlot = () => {
     setTimeSlot({
       start: '',
@@ -92,7 +97,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     (setTimeSlots: SetTimeSlotsType) => {
       getTimeSlots({
         setLoading,
-        setError,
+        onError: handleError,
         providerIds: values.providerIds,
         api: values.api,
         locationId: values.locationId,
@@ -112,7 +117,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     (setAppointmentId: (appointmentId: string) => void) => {
       getScheduledAppointment({
         setLoading,
-        setError,
+        onError: handleError,
         setAppointmentId,
         api: values.api,
         patientId: values.patientId,
@@ -127,10 +132,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const createAppointment = useCallback(() => {
     postAppointment({
       setScreen: () => setScreen('CONFIRM'),
-      setError: msg => {
-        values.callbacks.onBookingError(msg)
-        setError(msg)
-      },
+      onError: handleError,
       setLoading,
       appointmentCoding: values.appointmentCoding,
       description: values.description,
@@ -146,7 +148,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     (appointmentId: string, onComplete: () => void) => {
       putAppointment({
         onComplete,
-        setError,
+        onError: handleError,
         setLoading,
         appointmentCoding: values.appointmentCoding,
         description: values.description,

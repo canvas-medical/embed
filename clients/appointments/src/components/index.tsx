@@ -8,6 +8,7 @@ import {
   putAppointment,
   Error,
   ErrorType,
+  HandleErrorType,
   ProvidersType,
 } from '@canvas-medical/embed-common'
 import { IAppProps } from '../utils'
@@ -26,6 +27,7 @@ const defaultAppointment: AppointmentType = {
 export const AppointmentsView = ({
   api,
   colors,
+  callbacks,
   locationId,
   patientId,
   patientKey,
@@ -46,10 +48,15 @@ export const AppointmentsView = ({
     setAppointmentCancellation({ popoverOpen: true, appointment })
   }
 
+  const handleError: HandleErrorType = (error, msg) => {
+    callbacks.onError(error, msg)
+    setError(msg)
+  }
+
   const fetchAppointments = useCallback(() => {
     getAppointmentsList({
       setLoading,
-      setError,
+      onError: handleError,
       setAppointments,
       setProviders,
       providerIds,
@@ -70,7 +77,7 @@ export const AppointmentsView = ({
   const onCancel = () => {
     putAppointment({
       onComplete: afterCancel,
-      setError,
+      onError: handleError,
       setLoading,
       appointmentCoding: {
         code: getAppointmentType(appointmentCancellation.appointment.code),

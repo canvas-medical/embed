@@ -13,7 +13,7 @@ describe('getAppointment', () => {
 
     await getScheduledAppointment({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointmentId: () => {},
       api: 'arbitraryString',
       patientId: 'fab73482a',
@@ -40,7 +40,7 @@ describe('getAppointment', () => {
 
     findAppointment({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointmentId,
       appointments: AppointmentResponse,
       timeSlot: {
@@ -58,13 +58,13 @@ describe('getAppointment', () => {
   it('Returns an error', () => {
     let error: string | string[] = ''
 
-    const setError = (errorString: string | string[]) => {
+    const onError = (error: any, errorString: string | string[]) => {
       error = errorString
     }
 
     findAppointment({
       setLoading: () => {},
-      setError,
+      onError,
       setAppointmentId: () => {},
       appointments: AppointmentResponse,
       timeSlot: {

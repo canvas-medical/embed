@@ -1,9 +1,9 @@
-import { SetErrorType, SetLoadingType, TimeSlotType } from '../../utils'
+import { HandleErrorType, SetLoadingType, TimeSlotType } from '../../utils'
 import { IGetAppointmentResponseType } from '../types'
 
 export type GetAppointmentParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setAppointmentId: (args: string) => void
   api: string
   patientId: string
@@ -14,7 +14,7 @@ export type GetAppointmentParamsType = {
 
 export type FindAppointmentParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setAppointmentId: (args: string) => void
   appointments: IGetAppointmentResponseType
   timeSlot: TimeSlotType

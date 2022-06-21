@@ -20,7 +20,7 @@ describe('getPractitioners', () => {
 
     await getPractitioners({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setProviders: () => {},
       api: 'arbitraryString',
       patientId: 'fab73482a',

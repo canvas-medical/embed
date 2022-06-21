@@ -5,7 +5,7 @@ import { FindAppointmentParamsType, GetAppointmentParamsType } from './types'
 
 export const findAppointment = ({
   setLoading,
-  setError,
+  onError,
   setAppointmentId,
   appointments,
   timeSlot,
@@ -21,14 +21,14 @@ export const findAppointment = ({
     setAppointmentId(appointment)
     setLoading(false)
   } else {
-    setError('Error Fetching Appointment')
+    onError(null, 'Error Fetching Appointment')
     setLoading(false)
   }
 }
 
 export const getScheduledAppointment = ({
   setLoading,
-  setError,
+  onError,
   setAppointmentId,
   api,
   patientId,
@@ -49,11 +49,11 @@ export const getScheduledAppointment = ({
     .then(response =>
       findAppointment({
         setLoading,
-        setError,
+        onError,
         setAppointmentId,
         appointments: response.data,
         timeSlot,
       })
     )
-    .catch(() => setError('Error Fetching Appointment'))
+    .catch(e => onError(e, 'Error Fetching Appointment'))
 }

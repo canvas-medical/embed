@@ -1,12 +1,5 @@
 import axios from 'axios'
-import {
-  getTimeSlots,
-  ParsedSlotsType,
-  parseSlots,
-  postAppointment,
-} from '../../src'
-import { ParseSlotsResponsesType } from '../../src/api/get-slots/types'
-import { SlotsResponse } from './mocks/getSlots'
+import { postAppointment } from '../../src'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -17,7 +10,7 @@ describe('getSlots', () => {
 
     await postAppointment({
       setScreen: () => {},
-      setError: () => {},
+      onError: () => {},
       setLoading: () => {},
       api: 'arbitraryString',
       appointmentCoding: {
@@ -46,7 +39,7 @@ describe('getSlots', () => {
 
     await postAppointment({
       setScreen: () => {},
-      setError: () => {},
+      onError: () => {},
       setLoading: () => {},
       api: 'arbitraryString',
       appointmentCoding: {

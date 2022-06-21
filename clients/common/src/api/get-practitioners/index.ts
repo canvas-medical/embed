@@ -32,7 +32,7 @@ export const parsePractitioners = ({
 
 export const getPractitioners = ({
   setLoading,
-  setError,
+  onError,
   setProviders,
   api,
   providerIds,
@@ -56,5 +56,5 @@ export const getPractitioners = ({
         providers: response.data,
       })
     })
-    .catch(() => setError('Error Fetching Providers'))
+    .catch(e => onError(e, 'Error Fetching Providers'))
 }

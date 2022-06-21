@@ -1,9 +1,5 @@
-import {
-  AppointmentType,
-  ParsedSlotsType,
-  ProvidersType,
-  TimeSlotType,
-} from '.'
+import { AppointmentType, ParsedSlotsType, TimeSlotType } from '.'
+import type { AxiosError } from 'axios'
 
 export interface IFHIRResponse {
   resourceType: string
@@ -15,7 +11,10 @@ export type SetLoadingType = (loading: boolean) => void
 
 export type ErrorType = string | string[] | null
 
-export type SetErrorType = (errors: string | string[]) => void
+export type HandleErrorType = (
+  error: AxiosError | Error | null,
+  errors?: ErrorType
+) => void
 
 export type TimeSlotsType = {
   providerId: string

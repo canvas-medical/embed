@@ -2,7 +2,7 @@ import {
   IFHIRResponse,
   ProvidersType,
   SetLoadingType,
-  SetErrorType,
+  HandleErrorType,
 } from '../../utils'
 
 export interface IGetPractitionersResponse extends IFHIRResponse {
@@ -26,7 +26,7 @@ export interface IGetPractitionersResponse extends IFHIRResponse {
 
 export type GetPractitionersParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setProviders: (providers: ProvidersType[]) => void
   api: string
   providerIds: string[]

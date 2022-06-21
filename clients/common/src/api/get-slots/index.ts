@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { isSameDay, ParsedSlotsType, SlotType } from '../../utils'
+import { ParsedSlotsType, SlotType } from '../../utils'
 import { getPractitioners } from '../get-practitioners'
 import {
   GetSlotsParamsType,
@@ -13,7 +13,7 @@ export const parseSlots = ({
   setLoading,
   responses,
   setTimeSlots,
-  setError,
+  onError,
   setProviders,
   api,
   providerIds,
@@ -40,7 +40,7 @@ export const parseSlots = ({
 
   getPractitioners({
     setLoading,
-    setError,
+    onError,
     setProviders,
     api,
     providerIds,
@@ -51,7 +51,7 @@ export const parseSlots = ({
 
 export const getTimeSlots = ({
   setLoading,
-  setError,
+  onError,
   setTimeSlots,
   api,
   date,
@@ -89,7 +89,7 @@ export const getTimeSlots = ({
         setLoading,
         responses,
         setTimeSlots,
-        setError,
+        onError,
         setProviders,
         api,
         providerIds,
@@ -97,5 +97,5 @@ export const getTimeSlots = ({
         patientKey,
       })
     )
-    .catch(() => setError('Error Fetching Appointments'))
+    .catch(e => onError(e, 'Error Fetching Appointments'))
 }

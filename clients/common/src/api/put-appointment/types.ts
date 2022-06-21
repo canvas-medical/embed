@@ -1,13 +1,13 @@
 import {
   AppointmentCodingType,
-  SetErrorType,
+  HandleErrorType,
   SetLoadingType,
   TimeSlotType,
 } from '../../utils'
 
 export type PutAppointmentParamsType = {
   onComplete: () => void
-  setError: SetErrorType
+  onError: HandleErrorType
   setLoading: SetLoadingType
   appointmentCoding: AppointmentCodingType
   description?: string
