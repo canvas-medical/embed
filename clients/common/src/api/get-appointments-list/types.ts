@@ -1,7 +1,7 @@
 import {
   AppointmentType,
   ProvidersType,
-  SetErrorType,
+  HandleErrorType,
   SetLoadingType,
 } from '../../utils'
 import { IGetAppointmentResponseType } from '../types'
@@ -13,7 +13,7 @@ export type ProviderAppointmentsType = {
 
 export type GetAppointmentsListParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void
   api: string
@@ -25,7 +25,7 @@ export type GetAppointmentsListParamsType = {
 
 export type ParseAppointmentsParamsType = {
   setLoading: SetLoadingType
-  setError: SetErrorType
+  onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void
   api: string

@@ -9,7 +9,7 @@ import {
 
 export const parseAppointments = ({
   setLoading,
-  setError,
+  onError,
   setAppointments,
   setProviders,
   api,
@@ -67,7 +67,7 @@ export const parseAppointments = ({
   setAppointments(parsedAppointments)
   getPractitioners({
     setLoading,
-    setError,
+    onError,
     setProviders,
     api,
     providerIds: parsedProviders,
@@ -78,7 +78,7 @@ export const parseAppointments = ({
 
 export const getAppointmentsList = ({
   setLoading,
-  setError,
+  onError,
   setAppointments,
   setProviders,
   api,
@@ -109,7 +109,7 @@ export const getAppointmentsList = ({
       .then(responses =>
         parseAppointments({
           setLoading,
-          setError,
+          onError,
           setAppointments,
           setProviders,
           api,
@@ -118,7 +118,7 @@ export const getAppointmentsList = ({
           patientKey,
         })
       )
-      .catch(() => setError('Error Fetching Appointments'))
+      .catch(e => onError(e, 'Error Fetching Appointments'))
   } else {
     return axios
       .get(`${api}/Appointment`, {
@@ -131,7 +131,7 @@ export const getAppointmentsList = ({
       .then(response => {
         parseAppointments({
           setLoading,
-          setError,
+          onError,
           setAppointments,
           setProviders,
           api,
@@ -140,6 +140,6 @@ export const getAppointmentsList = ({
           patientKey,
         })
       })
-      .catch(() => setError('Error Fetching Appointments'))
+      .catch(e => onError(e, 'Error Fetching Appointments'))
   }
 }

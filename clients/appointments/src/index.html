@@ -16,17 +16,67 @@
     <div id="embed-root"></div>
     <script src="./appointments.js" type="text/javascript"></script>
     <script type="text/javascript">
-      Appointments.init({
-        api: 'http://proxyapplication-env.eba-8mfhdmgm.us-east-1.elasticbeanstalk.com',
-        bailoutURL: 'https://canvasmedical.com',
-        locationId: '1',
-        patientId: 'f3d750f5d77d403c96baef6a6055c6e7',
-        patientKey: 'a362600a-217d-4227-a76a-cf01791d41ca',
-        rootId: 'embed-root',
-        // brandColor: '',
-        // accentColor: '',
-        // fontFamily: 'Arial, serif',
-      })
+      const callbacks = {
+        onClick: (e, config) => {
+          if (e && e.target) {
+            // Prescribed method for getting the element clicked
+            // const closestTarget = e.target.closest('[data-analytics-id]')
+            // console.log(
+            //   closestTarget.dataset,
+            //   'e.target.dataset',
+            //   config,
+            //   'config'
+            // )
+          }
+        },
+        onChange: (e, config) => {
+          if (e && e.target) {
+            // const closestTarget = e.target.closest('[data-analytics-id]')
+            // console.log(
+            //   closestTarget.dataset,
+            //   'e.target.dataset',
+            //   config,
+            //   'config'
+            // )
+          }
+        },
+        onError: (error, msg) => {
+          // console.error('error', error, msg)
+        },
+      }
+
+      const config = {
+        apiKey: 'API_KEY',
+        patientId: 'PATIENT_ID',
+        providerIds: ['PROVIDER_ID'],
+      }
+
+      const apiBaseUrl = 'http://localhost:3000'
+
+      fetch(
+        `${apiBaseUrl}/Auth?` +
+          new URLSearchParams({
+            key: config.apiKey,
+            patient: config.patientId,
+          })
+      )
+        .then(res => res.json())
+        .then(data => {
+          const patientKey = data.patient_key
+
+          Appointments.init({
+            api: apiBaseUrl,
+            bailoutURL: 'https://canvasmedical.com',
+            locationId: '1',
+            patientId: config.patientId,
+            patientKey: patientKey,
+            rootId: 'embed-root',
+            callbacks,
+            // brandColor: '',
+            // accentColor: '',
+            // fontFamily: 'Arial, serif',
+          })
+        })
     </script>
   </body>
 </html>

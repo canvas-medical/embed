@@ -1,8 +1,12 @@
-import { AppointmentCodingType, TimeSlotType } from '../../utils'
+import {
+  AppointmentCodingType,
+  TimeSlotType,
+  HandleErrorType,
+} from '../../utils'
 
 export type PostAppointmentParamsType = {
   setScreen: () => void
-  setError: (args: string) => void
+  onError: HandleErrorType
   setLoading: (args: boolean) => void
   appointmentCoding: AppointmentCodingType
   description?: string

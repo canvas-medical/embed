@@ -5,7 +5,7 @@ import { PutAppointmentParamsType } from './types'
 
 export const putAppointment = ({
   onComplete,
-  setError,
+  onError,
   setLoading,
   appointmentCoding,
   locationId,
@@ -35,5 +35,5 @@ export const putAppointment = ({
       setLoading(false)
       onComplete()
     })
-    .catch(() => setError('Error Cancelling Appointment'))
+    .catch(e => onError(e, 'Error Cancelling Appointment'))
 }

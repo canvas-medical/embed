@@ -1,8 +1,21 @@
-import { GeneratedColorsType } from '@canvas-medical/embed-common'
-
+import {
+  GeneratedColorsType,
+  HandleErrorType,
+} from '@canvas-medical/embed-common'
 export interface IMainAppProps {
   api: string
   bailoutURL: string
+  callbacks: {
+    onClick: (
+      e: React.MouseEvent<HTMLButtonElement>,
+      config?: Record<string, any>
+    ) => void
+    onChange: (
+      e: React.ChangeEvent<HTMLSelectElement>,
+      config?: Record<string, any>
+    ) => void
+    onError: HandleErrorType
+  }
   locationId: string
   patientId: string
   patientKey: string

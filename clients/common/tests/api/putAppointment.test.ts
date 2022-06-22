@@ -10,7 +10,7 @@ describe('putAppointment', () => {
 
     putAppointment({
       onComplete: () => {},
-      setError: () => {},
+      onError: () => {},
       setLoading: () => {},
       api: 'arbitraryString',
       appointmentCoding: {
@@ -39,7 +39,7 @@ describe('putAppointment', () => {
 
     putAppointment({
       onComplete: () => {},
-      setError: () => {},
+      onError: () => {},
       setLoading: () => {},
       api: 'arbitraryString',
       appointmentCoding: {

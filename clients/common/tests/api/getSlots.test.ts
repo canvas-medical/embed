@@ -17,7 +17,7 @@ describe('getSlots', () => {
 
     await getTimeSlots({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setTimeSlots: () => {},
       api: 'arbitraryString',
       patientId: 'fab73482a',
@@ -38,7 +38,7 @@ describe('getSlots', () => {
 
     getTimeSlots({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setTimeSlots: () => {},
       api: 'arbitraryString',
       patientId: 'fab73482a',
@@ -77,7 +77,7 @@ describe('getSlots', () => {
       patientKey: 'arbitraryString',
       providerIds: ['1234567', '12345678'],
       setProviders: () => {},
-      setError: () => {},
+      onError: () => {},
     })
 
     expect(parsedSlots.length).toBe(1)

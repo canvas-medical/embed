@@ -20,7 +20,7 @@ describe('getAppointment', () => {
 
     await getAppointmentsList({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointments: () => {},
       setProviders: () => {},
       api: 'arbitraryString',
@@ -39,7 +39,7 @@ describe('getAppointment', () => {
 
     await getAppointmentsList({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointments: () => {},
       setProviders: () => {},
       api: 'arbitraryString',
@@ -62,7 +62,7 @@ describe('getAppointment', () => {
 
     parseAppointments({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointments,
       setProviders: () => {},
       api: 'arbitraryString',
@@ -83,7 +83,7 @@ describe('getAppointment', () => {
 
     parseAppointments({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointments,
       setProviders: () => {},
       api: 'arbitraryString',
@@ -109,7 +109,7 @@ describe('getAppointment', () => {
 
     parseAppointments({
       setLoading: () => {},
-      setError: () => {},
+      onError: () => {},
       setAppointments,
       setProviders: () => {},
       api: 'arbitraryString',

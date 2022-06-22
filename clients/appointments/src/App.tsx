@@ -3,6 +3,12 @@ import { AppContainer, Header } from '@canvas-medical/embed-common'
 import { IAppProps } from './utils'
 import { AppointmentsView } from './components'
 
+const defaultCallbacks = {
+  onClick: () => {},
+  onChange: () => {},
+  onError: () => {},
+}
+
 export const App = ({
   api,
   bailoutURL,
@@ -13,7 +19,13 @@ export const App = ({
   shadowRoot,
   colors,
   fontFamily,
+  callbacks,
 }: IAppProps) => {
+  const finalCallbacks = {
+    ...defaultCallbacks,
+    ...(callbacks || {}),
+  }
+
   return (
     <AppContainer fontFamily={fontFamily}>
       <Header
@@ -24,6 +36,7 @@ export const App = ({
       <AppointmentsView
         api={api}
         bailoutURL={bailoutURL}
+        callbacks={finalCallbacks}
         colors={colors}
         locationId={locationId}
         patientId={patientId}

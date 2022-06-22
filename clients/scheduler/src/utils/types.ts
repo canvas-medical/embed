@@ -1,6 +1,7 @@
 import {
   AppointmentCodingType,
   GeneratedColorsType,
+  HandleErrorType,
   ProvidersType,
   SetTimeSlotsType,
   TimeSlotType,
@@ -20,7 +21,7 @@ export interface IMainAppProps {
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
-    onError: () => void
+    onError: HandleErrorType
   }
   daysToFetch: number
   duration: number

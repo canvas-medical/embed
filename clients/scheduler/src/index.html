@@ -45,7 +45,9 @@
             // )
           }
         },
-        onError: config => {},
+        onError: (error, msg) => {
+          // console.error('error', error, msg)
+        },
       }
 
       const config = {
