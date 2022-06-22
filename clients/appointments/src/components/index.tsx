@@ -17,6 +17,7 @@ import { Ui } from './ui'
 const defaultAppointment: AppointmentType = {
   id: '',
   code: '',
+  description: '',
   display: '',
   locationId: '',
   providerId: '',

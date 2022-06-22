@@ -46,6 +46,10 @@ export const Ui = ({
     <Body>
       {appointments.length ? (
         appointments.map(appointment => {
+          const validDescription =
+            appointment.description &&
+            appointment.description.length > 0 &&
+            appointment.description !== 'No description given'
           const appointmentDate = new Date(appointment.start)
           const dateString = `${formatDate(appointmentDate)} at ${formatTime(
             appointmentDate
@@ -63,7 +67,11 @@ export const Ui = ({
                 <H3>{dateString}</H3>
               </Box>
               <Box my="8px">
-                <Span>{`${appointment.display} with ${provider}`}</Span>
+                <Span>{`${
+                  validDescription
+                    ? appointment.description
+                    : appointment.display
+                } with ${provider}`}</Span>
               </Box>
               <Box>
                 <Button
