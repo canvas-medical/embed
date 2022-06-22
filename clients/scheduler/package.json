@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-scheduler",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "private": false,
   "main": "dist/scheduler.js",
   "license": "MIT",
@@ -64,7 +64,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "modern-age/canvas-embed#canvas-medical-embed-common-v0.0.10-gitpkg",
+    "@canvas-medical/embed-common": "modern-age/canvas-embed#canvas-medical-embed-common-v0.1.1-gitpkg",
     "preact": "^10.6.5"
   },
   "devDependencies": {

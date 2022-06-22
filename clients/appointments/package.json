@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-appointments",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "private": false,
   "main": "dist/appointments.js",
   "license": "MIT",
@@ -67,7 +67,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@canvas-medical/embed-common": "modern-age/canvas-embed#canvas-medical-embed-common-v0.0.10-gitpkg",
+    "@canvas-medical/embed-common": "modern-age/canvas-embed#canvas-medical-embed-common-v0.1.1-gitpkg",
     "preact": "^10.6.5",
     "styled-components": "^5.3.3"
   },
