@@ -18,6 +18,9 @@ export const Scheduler = (props: ISchedulerProps) => {
     patientId,
     patientKey,
     providerIds,
+    preloadBookingDate,
+    preloadBookingDuration,
+    preloadProviderId,
     description,
     returnURL,
     brandColor,
@@ -27,6 +30,8 @@ export const Scheduler = (props: ISchedulerProps) => {
   } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
+
+  console.log("preloadBookingDate", preloadBookingDate)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
@@ -57,11 +62,11 @@ export const Scheduler = (props: ISchedulerProps) => {
             screen: 'SELECT',
             setScreen: () => {},
             timeSlot: {
-              start: '',
-              end: '',
+              start: preloadBookingDate.start,
+              end: preloadBookingDate.end,
               provider: {
-                id: '',
-                name: '',
+                id: preloadProviderId,
+                name: 'Space Aliens',
               },
             },
             setTimeSlot: () => {},
@@ -95,6 +100,9 @@ export const init = ({
   patientId,
   patientKey,
   providerIds,
+  preloadBookingDate = { start: '', end: '' },
+  preloadBookingDuration = '',
+  preloadProviderId = '',
   daysToFetch = 7,
   description,
   returnURL,
@@ -136,6 +144,9 @@ export const init = ({
       patientId={patientId}
       patientKey={patientKey}
       providerIds={providerIds}
+      preloadBookingDate={preloadBookingDate}
+      preloadBookingDuration={preloadBookingDuration}
+      preloadProviderId={preloadProviderId}
       description={description}
       returnURL={returnURL}
       brandColor={brandColor}
