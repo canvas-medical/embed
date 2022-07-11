@@ -20,7 +20,7 @@ export const Scheduler = (props: ISchedulerProps) => {
     providerIds,
     preloadBookingDate,
     preloadBookingDuration,
-    preloadProviderId,
+    preloadProvider,
     description,
     returnURL,
     brandColor,
@@ -30,8 +30,6 @@ export const Scheduler = (props: ISchedulerProps) => {
   } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
-
-  console.log("preloadBookingDate", preloadBookingDate)
 
   return (
     // Ignoring type mismatch error on target - ShadowRoot is an acceptable type
@@ -53,10 +51,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             preloadBooking: {
               start: preloadBookingDate.start,
               end: preloadBookingDate.end,
-              provider: {
-                id: preloadProviderId,
-                name: "preloadProviderName",
-              },
+              provider: preloadProvider,
             },
             colors,
             daysToFetch,
@@ -110,7 +105,7 @@ export const init = ({
   providerIds,
   preloadBookingDate = { start: '', end: '' },
   preloadBookingDuration = '',
-  preloadProviderId = '',
+  preloadProvider = '',
   daysToFetch = 7,
   description,
   returnURL,
@@ -154,7 +149,7 @@ export const init = ({
       providerIds={providerIds}
       preloadBookingDate={preloadBookingDate}
       preloadBookingDuration={preloadBookingDuration}
-      preloadProviderId={preloadProviderId}
+      preloadProvider={preloadProvider}
       description={description}
       returnURL={returnURL}
       brandColor={brandColor}

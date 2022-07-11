@@ -31,7 +31,7 @@ export interface IMainAppProps {
   providerIds: string[]
   preloadBookingDate: { start: string, end: string }
   preloadBookingDuration: string
-  preloadProviderId: string
+  preloadProvider: ProvidersType
   description: string
   returnURL: string
   fontFamily?: string
