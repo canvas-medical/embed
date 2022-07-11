@@ -13,7 +13,7 @@ import { DateSelect } from '../date-select'
 const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000
 
 export const TimeSlotSelect = () => {
-  const { fetchTimeSlots, date, setDate, appointmentBufferInMintues } =
+  const { fetchTimeSlots, date, setDate, appointmentBufferInMintues, preloadBooking } =
     useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>(
     []
@@ -103,6 +103,16 @@ export const TimeSlotSelect = () => {
       setDate(minDate)
     }
   }, [minDate, setDate])
+
+  useEffect(() => {
+    if (preloadBooking && preloadBooking.start && preloadBooking.end && preloadBooking.provider.id) {
+      const bookDate = new Date(preloadBooking.start)
+      // If there's pre-booking data that hasn't been set yet
+      if (bookDate.getTime() !== date.getTime()) {
+        setDate(bookDate)
+      }
+    }
+  }, [preloadBooking])
 
   const enabledDates = useMemo(() => {
     const dateIsDisabled = new Set<string>()

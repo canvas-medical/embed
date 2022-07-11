@@ -1,5 +1,5 @@
 import { h, Fragment } from 'preact'
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import {
   Loader,
   TimeSlotsType,
@@ -22,9 +22,19 @@ type SelectTimeSlotType = {
 }
 
 export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
-  const { colors, setTimeSlot, loading, shadowRoot, resetTimeSlot, providers } =
+  const { colors, date, timeSlot, setTimeSlot, preloadBooking, loading, shadowRoot, resetTimeSlot, providers } =
     useAppContext()
   const [popoverOpen, setPopoverOpen] = useState(false)
+
+  useEffect(() => {
+    if (preloadBooking && preloadBooking.start && preloadBooking.end) {
+      const bookDate = new Date(preloadBooking.start)
+      // If there's pre-booking data that hasn't been set yet
+       if (preloadBooking.start !== timeSlot.start && bookDate.getTime() === date.getTime()) {
+        selectTimeSlot(preloadBooking)
+      }
+    }
+  }, [date])
 
   const selectTimeSlot = ({ start, end, provider }: SelectTimeSlotType) => {
     setTimeSlot({
