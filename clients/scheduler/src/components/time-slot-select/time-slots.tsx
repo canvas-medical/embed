@@ -31,8 +31,8 @@ export const TimeSlots = ({
     e: React.MouseEvent<HTMLButtonElement>,
     { start, end }: { start: string; end: string }
   ) => {
-    selectTimeSlot({ end, provider, start })
     onClick(e, { end, provider, start })
+    selectTimeSlot({ end, provider, start })
   }
 
   return (

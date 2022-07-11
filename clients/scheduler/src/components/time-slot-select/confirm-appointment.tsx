@@ -31,12 +31,14 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
     getAppointmentType(appointmentCoding.code || '')
 
   const onClickConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
-    createAppointment()
+    // run the passed in onClick first
+    // Enables the wrapping page to e.preventDefault() or otherwise interrupt booking
     onClick(e)
+    createAppointment()
   }
   const onClickCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onCancel()
     onClick(e)
+    onCancel()
   }
 
   return (
