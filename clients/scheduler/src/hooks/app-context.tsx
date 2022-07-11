@@ -34,6 +34,14 @@ export const AppContext = createContext<IAppContext>({
   patientId: '',
   patientKey: '',
   providerIds: [],
+  preloadBooking: {
+    start: '',
+    end: '',
+    provider: {
+      id: '',
+      name: ''
+    }
+  },
   description: '',
   returnURL: '',
   colors: generateColors(null, null),

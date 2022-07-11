@@ -63,6 +63,7 @@ export interface IAppContext extends IMainAppProps {
   setScreen: (screen: string) => void
   providers: ProvidersType[]
   setProviders: (providers: ProvidersType[]) => void
+  preloadBooking: TimeSlotType
   timeSlot: TimeSlotType
   setTimeSlot: (timeSlot: TimeSlotType) => void
   resetTimeSlot: () => void

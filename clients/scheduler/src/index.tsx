@@ -50,6 +50,14 @@ export const Scheduler = (props: ISchedulerProps) => {
             patientId,
             patientKey,
             providerIds,
+            preloadBooking: {
+              start: preloadBookingDate.start,
+              end: preloadBookingDate.end,
+              provider: {
+                id: preloadProviderId,
+                name: "preloadProviderName",
+              },
+            },
             colors,
             daysToFetch,
             description,
@@ -62,11 +70,11 @@ export const Scheduler = (props: ISchedulerProps) => {
             screen: 'SELECT',
             setScreen: () => {},
             timeSlot: {
-              start: preloadBookingDate.start,
-              end: preloadBookingDate.end,
+              start: '',
+              end: '',
               provider: {
-                id: preloadProviderId,
-                name: 'Space Aliens',
+                id: '',
+                name: '',
               },
             },
             setTimeSlot: () => {},
