@@ -22,7 +22,7 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onError: HandleErrorType
-    overideTimeSlotSelect: (
+    overrideTimeSlotSelect?: (
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
