@@ -56,3 +56,7 @@
 
 - Called error callbacks in `app-context`
 
+## [0.1.1] - 2022-07-13
+
+### Added
+- Version num to test installing tags from main vs branches
