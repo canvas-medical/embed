@@ -27,6 +27,7 @@ export const AppContext = createContext<IAppContext>({
     onClick: () => {},
     onChange: () => {},
     onError: () => {},
+    overideTimeSlotSelect: () => {},
   },
   daysToFetch: 7,
   duration: 20,

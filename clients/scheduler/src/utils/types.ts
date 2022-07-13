@@ -22,6 +22,10 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onError: HandleErrorType
+    overideTimeSlotSelect: (
+      e: React.ChangeEvent<HTMLSelectElement>,
+      config?: Record<string, any>
+    ) => void
   }
   daysToFetch: number
   duration: number

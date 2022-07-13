@@ -24,7 +24,7 @@ export const TimeSlots = ({
 }: TimeSlotsType) => {
   const {
     colors,
-    callbacks: { onClick },
+    callbacks: { onClick, overideTimeSlotSelect },
   } = useAppContext()
 
   const handleTimeSlotClick = (
@@ -32,7 +32,12 @@ export const TimeSlots = ({
     { start, end }: { start: string; end: string }
   ) => {
     onClick(e, { end, provider, start })
-    selectTimeSlot({ end, provider, start })
+
+    if (overideTimeSlotSelect) {
+      overideTimeSlotSelect(e, { end, provider, start })
+    } else {
+      selectTimeSlot({ end, provider, start })
+    }
   }
 
   return (
