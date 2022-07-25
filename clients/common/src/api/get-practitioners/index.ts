@@ -11,6 +11,7 @@ export const parsePractitioners = ({
   setProviders,
   providerIds,
   providers,
+  onTimeslotLoad,
 }: ParsePractitionersParmsType) => {
   const parsedProviders: ProvidersType[] = []
 
@@ -26,6 +27,7 @@ export const parsePractitioners = ({
     })
   }
 
+  onTimeslotLoad()
   setProviders(parsedProviders)
   setLoading(false)
 }
@@ -38,6 +40,7 @@ export const getPractitioners = ({
   providerIds,
   patientId,
   patientKey,
+  onTimeslotLoad,
 }: GetPractitionersParamsType) => {
   setLoading(true)
 
@@ -54,6 +57,7 @@ export const getPractitioners = ({
         setProviders,
         providerIds,
         providers: response.data,
+        onTimeslotLoad,
       })
     })
     .catch(e => onError(e, 'Error Fetching Providers'))

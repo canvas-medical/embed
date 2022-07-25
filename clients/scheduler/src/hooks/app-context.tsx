@@ -18,15 +18,18 @@ type ContextWrapperProps = {
   values: IAppContext
 }
 
+const noOp = () => {}
+
 export const AppContext = createContext<IAppContext>({
   api: '',
   appointmentBufferInMintues: 60,
   appointmentCoding: {},
   bailoutURL: '',
   callbacks: {
-    onClick: () => {},
-    onChange: () => {},
-    onError: () => {},
+    onClick: noOp,
+    onChange: noOp,
+    onError: noOp,
+    onTimeslotLoad: noOp,
   },
   daysToFetch: 7,
   duration: 20,
@@ -39,13 +42,13 @@ export const AppContext = createContext<IAppContext>({
   colors: generateColors(null, null),
   shadowRoot: null,
   date: new Date(),
-  setDate: () => {},
+  setDate: noOp,
   error: '',
   loading: false,
   screen: 'SELECT',
-  setScreen: () => {},
+  setScreen: noOp,
   providers: [],
-  setProviders: () => {},
+  setProviders: noOp,
   timeSlot: {
     start: '',
     end: '',
@@ -54,12 +57,12 @@ export const AppContext = createContext<IAppContext>({
       id: '',
     },
   },
-  setTimeSlot: () => {},
-  resetTimeSlot: () => {},
-  fetchTimeSlots: () => {},
-  fetchScheduledAppointment: () => {},
-  createAppointment: () => {},
-  cancelAppointment: () => {},
+  setTimeSlot: noOp,
+  resetTimeSlot: noOp,
+  fetchTimeSlots: noOp,
+  fetchScheduledAppointment: noOp,
+  createAppointment: noOp,
+  cancelAppointment: noOp,
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
@@ -108,6 +111,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         setTimeSlots,
         setProviders,
         daysToFetch: values.daysToFetch,
+        onTimeslotLoad: values.callbacks?.onTimeslotLoad || noOp,
       })
     },
     [date, values]
