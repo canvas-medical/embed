@@ -32,6 +32,7 @@ export type GetPractitionersParamsType = {
   providerIds: string[]
   patientId: string
   patientKey: string
+  onTimeslotLoad: () => void
 }
 
 export type ParsePractitionersParmsType = {
@@ -39,4 +40,5 @@ export type ParsePractitionersParmsType = {
   setProviders: (providers: ProvidersType[]) => void
   providerIds: string[]
   providers: IGetPractitionersResponse
+  onTimeslotLoad: () => void
 }

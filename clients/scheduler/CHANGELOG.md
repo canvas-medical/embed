@@ -50,7 +50,7 @@
 
 - Added additional callbacks to Scheduler interface
 - Called callbacks across time-select, date-select, confirm-appointment components
-- Added auth & callbacks to `src/index.html` to make future setup easier 
+- Added auth & callbacks to `src/index.html` to make future setup easier
 
 ### Changed
 
@@ -59,4 +59,11 @@
 ## [0.1.1] - 2022-07-13
 
 ### Added
+
 - Version num to test installing tags from main vs branches
+
+## [0.1.2] - 2022-07-25
+
+### Added
+
+- Added callback for when the scheduler timeslots load
