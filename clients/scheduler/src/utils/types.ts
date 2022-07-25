@@ -26,6 +26,7 @@ export interface IMainAppProps {
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
+    onTimeslotLoad: () => void
   }
   daysToFetch: number
   duration: number

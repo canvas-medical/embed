@@ -19,6 +19,7 @@ export type GetSlotsParamsType = {
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
   daysToFetch: number
+  onTimeslotLoad: () => void
 }
 
 type SlotResourceType = {
@@ -52,4 +53,5 @@ export type ParseSlotsParamsType = {
   patientKey: string
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
+  onTimeslotLoad: () => void
 }
