@@ -22,6 +22,10 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onError: HandleErrorType
+    overrideTimeSlotSelect?: (
+      e: React.ChangeEvent<HTMLSelectElement>,
+      config?: Record<string, any>
+    ) => void
     onTimeslotLoad: () => void
   }
   daysToFetch: number
@@ -30,6 +34,9 @@ export interface IMainAppProps {
   patientId: string
   patientKey: string
   providerIds: string[]
+  preloadBookingDate: { start: string, end: string }
+  preloadBookingDuration: string
+  preloadProvider: ProvidersType
   description: string
   returnURL: string
   fontFamily?: string
@@ -61,6 +68,7 @@ export interface IAppContext extends IMainAppProps {
   setScreen: (screen: string) => void
   providers: ProvidersType[]
   setProviders: (providers: ProvidersType[]) => void
+  preloadBooking: TimeSlotType
   timeSlot: TimeSlotType
   setTimeSlot: (timeSlot: TimeSlotType) => void
   resetTimeSlot: () => void

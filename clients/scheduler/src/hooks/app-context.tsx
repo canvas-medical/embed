@@ -30,6 +30,7 @@ export const AppContext = createContext<IAppContext>({
     onChange: noOp,
     onError: noOp,
     onTimeslotLoad: noOp,
+    overrideTimeSlotSelect: undefined,
   },
   daysToFetch: 7,
   duration: 20,
@@ -37,6 +38,14 @@ export const AppContext = createContext<IAppContext>({
   patientId: '',
   patientKey: '',
   providerIds: [],
+  preloadBooking: {
+    start: '',
+    end: '',
+    provider: {
+      id: '',
+      name: ''
+    }
+  },
   description: '',
   returnURL: '',
   colors: generateColors(null, null),

@@ -24,15 +24,20 @@ export const TimeSlots = ({
 }: TimeSlotsType) => {
   const {
     colors,
-    callbacks: { onClick },
+    callbacks: { onClick, overrideTimeSlotSelect },
   } = useAppContext()
 
   const handleTimeSlotClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     { start, end }: { start: string; end: string }
   ) => {
-    selectTimeSlot({ end, provider, start })
     onClick(e, { end, provider, start })
+
+    if (overrideTimeSlotSelect) {
+      overrideTimeSlotSelect(e, { end, provider, start })
+    } else {
+      selectTimeSlot({ end, provider, start })
+    }
   }
 
   return (

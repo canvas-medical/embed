@@ -18,6 +18,9 @@ export const Scheduler = (props: ISchedulerProps) => {
     patientId,
     patientKey,
     providerIds,
+    preloadBookingDate,
+    preloadBookingDuration,
+    preloadProvider,
     description,
     returnURL,
     brandColor,
@@ -45,6 +48,11 @@ export const Scheduler = (props: ISchedulerProps) => {
             patientId,
             patientKey,
             providerIds,
+            preloadBooking: {
+              start: preloadBookingDate.start,
+              end: preloadBookingDate.end,
+              provider: preloadProvider,
+            },
             colors,
             daysToFetch,
             description,
@@ -95,6 +103,9 @@ export const init = ({
   patientId,
   patientKey,
   providerIds,
+  preloadBookingDate = { start: '', end: '' },
+  preloadBookingDuration = '',
+  preloadProvider = '',
   daysToFetch = 7,
   description,
   returnURL,
@@ -136,6 +147,9 @@ export const init = ({
       patientId={patientId}
       patientKey={patientKey}
       providerIds={providerIds}
+      preloadBookingDate={preloadBookingDate}
+      preloadBookingDuration={preloadBookingDuration}
+      preloadProvider={preloadProvider}
       description={description}
       returnURL={returnURL}
       brandColor={brandColor}
