@@ -26,7 +26,7 @@ export interface IMainAppProps {
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
-    onTimeslotLoad: () => void
+    onLoad: () => void
   }
   daysToFetch: number
   duration: number
@@ -34,7 +34,7 @@ export interface IMainAppProps {
   patientId: string
   patientKey: string
   providerIds: string[]
-  preloadBookingDate: { start: string, end: string }
+  preloadBookingDate: { start: string; end: string }
   preloadBookingDuration: string
   preloadProvider: ProvidersType
   description: string

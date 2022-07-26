@@ -19,7 +19,9 @@ export type GetSlotsParamsType = {
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
   daysToFetch: number
-  onTimeslotLoad: () => void
+  onLoad: () => void
+  initialized: boolean
+  setInitialized: (isInitialized: boolean) => void
 }
 
 type SlotResourceType = {
@@ -53,5 +55,7 @@ export type ParseSlotsParamsType = {
   patientKey: string
   providerIds: string[]
   setProviders: (providers: ProvidersType[]) => void
-  onTimeslotLoad: () => void
+  onLoad: () => void
+  initialized: boolean
+  setInitialized: (isInitialized: boolean) => void
 }

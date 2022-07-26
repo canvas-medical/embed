@@ -29,7 +29,7 @@ export const AppContext = createContext<IAppContext>({
     onClick: noOp,
     onChange: noOp,
     onError: noOp,
-    onTimeslotLoad: noOp,
+    onLoad: noOp,
     overrideTimeSlotSelect: undefined,
   },
   daysToFetch: 7,
@@ -43,8 +43,8 @@ export const AppContext = createContext<IAppContext>({
     end: '',
     provider: {
       id: '',
-      name: ''
-    }
+      name: '',
+    },
   },
   description: '',
   returnURL: '',
@@ -88,6 +88,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       id: '',
     },
   })
+  const [initialized, setInitialized] = useState<boolean>(false)
 
   const handleError: HandleErrorType = (error, msg) => {
     values.callbacks?.onError(error, msg)
@@ -120,7 +121,9 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         setTimeSlots,
         setProviders,
         daysToFetch: values.daysToFetch,
-        onTimeslotLoad: values.callbacks?.onTimeslotLoad || noOp,
+        onLoad: values.callbacks?.onLoad || noOp,
+        initialized,
+        setInitialized,
       })
     },
     [date, values]
