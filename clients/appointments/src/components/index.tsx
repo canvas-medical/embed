@@ -71,7 +71,7 @@ export const AppointmentsView = ({
       setInitialized,
       onLoad: callbacks?.onLoad || noOp,
     })
-  }, [api, patientId, patientKey, providerIds])
+  }, [api, patientId, patientKey, providerIds, initialized])
 
   const afterCancel = () => {
     setAppointmentCancellation({

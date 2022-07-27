@@ -126,7 +126,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         setInitialized,
       })
     },
-    [date, values]
+    [date, values, initialized]
   )
 
   const fetchScheduledAppointment = useCallback(
