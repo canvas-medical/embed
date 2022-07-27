@@ -17,6 +17,9 @@ export const parseAppointments = ({
   providerAppointments,
   patientId,
   patientKey,
+  initialized,
+  setInitialized,
+  onLoad,
 }: ParseAppointmentsParamsType) => {
   const parsedAppointments: AppointmentType[] = []
   const parsedProviders: string[] = []
@@ -75,6 +78,9 @@ export const parseAppointments = ({
     providerIds: parsedProviders,
     patientId,
     patientKey,
+    initialized,
+    setInitialized,
+    onLoad,
   })
 }
 
@@ -88,6 +94,9 @@ export const getAppointmentsList = ({
   patientId,
   patientKey,
   providerIds,
+  initialized,
+  setInitialized,
+  onLoad,
 }: GetAppointmentsListParamsType) => {
   setLoading(true)
 
@@ -118,6 +127,9 @@ export const getAppointmentsList = ({
           providerAppointments: responses,
           patientId,
           patientKey,
+          initialized,
+          setInitialized,
+          onLoad,
         })
       )
       .catch(e => onError(e, 'Error Fetching Appointments'))
@@ -140,6 +152,9 @@ export const getAppointmentsList = ({
           appointments: response.data,
           patientId,
           patientKey,
+          initialized,
+          setInitialized,
+          onLoad,
         })
       })
       .catch(e => onError(e, 'Error Fetching Appointments'))

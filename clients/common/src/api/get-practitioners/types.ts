@@ -32,7 +32,9 @@ export type GetPractitionersParamsType = {
   providerIds: string[]
   patientId: string
   patientKey: string
-  onTimeslotLoad: () => void
+  onLoad: () => void
+  initialized: boolean
+  setInitialized: (isInitialized: boolean) => void
 }
 
 export type ParsePractitionersParmsType = {
@@ -40,5 +42,7 @@ export type ParsePractitionersParmsType = {
   setProviders: (providers: ProvidersType[]) => void
   providerIds: string[]
   providers: IGetPractitionersResponse
-  onTimeslotLoad: () => void
+  onLoad: () => void
+  initialized: boolean
+  setInitialized: (isInitialized: boolean) => void
 }

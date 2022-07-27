@@ -14,6 +14,8 @@ import {
 import { IAppProps } from '../utils'
 import { Ui } from './ui'
 
+const noOp = () => {}
+
 const defaultAppointment: AppointmentType = {
   id: '',
   code: '',
@@ -44,13 +46,14 @@ export const AppointmentsView = ({
 
   const [appointments, setAppointments] = useState<AppointmentType[]>([])
   const [providers, setProviders] = useState<ProvidersType[]>([])
+  const [initialized, setInitialized] = useState<boolean>(false)
 
   const handleCancel = (appointment: AppointmentType) => {
     setAppointmentCancellation({ popoverOpen: true, appointment })
   }
 
   const handleError: HandleErrorType = (error, msg) => {
-    callbacks.onError(error, msg)
+    callbacks?.onError(error, msg)
     setError(msg)
   }
 
@@ -64,6 +67,9 @@ export const AppointmentsView = ({
       api,
       patientId,
       patientKey,
+      initialized,
+      setInitialized,
+      onLoad: callbacks?.onLoad || noOp,
     })
   }, [api, patientId, patientKey, providerIds])
 

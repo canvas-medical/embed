@@ -19,7 +19,9 @@ export const parseSlots = ({
   providerIds,
   patientId,
   patientKey,
-  onTimeslotLoad,
+  onLoad,
+  initialized,
+  setInitialized,
 }: ParseSlotsParamsType): void => {
   const slots: ParsedSlotsType[] = []
   responses.forEach((response: any) => {
@@ -47,7 +49,9 @@ export const parseSlots = ({
     providerIds,
     patientId,
     patientKey,
-    onTimeslotLoad,
+    onLoad,
+    initialized,
+    setInitialized,
   })
 }
 
@@ -64,7 +68,9 @@ export const getTimeSlots = ({
   patientKey,
   providerIds,
   setProviders,
-  onTimeslotLoad,
+  onLoad,
+  initialized,
+  setInitialized,
 }: GetSlotsParamsType) => {
   setLoading(true)
 
@@ -98,7 +104,9 @@ export const getTimeSlots = ({
         providerIds,
         patientId,
         patientKey,
-        onTimeslotLoad,
+        onLoad,
+        initialized,
+        setInitialized,
       })
     )
     .catch(e => onError(e, 'Error Fetching Appointments'))
