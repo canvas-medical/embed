@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import {
   Body,
   isSameDay,
@@ -6,15 +5,24 @@ import {
   SlotType,
 } from '@canvas-medical/embed-common'
 import { useState, useEffect, useMemo, useCallback } from 'preact/hooks'
-import { useAppContext } from '../../hooks'
+import { useAppContext, usePreviousValue } from '../../hooks'
 import { TimeSlotUi } from './ui'
 import { DateSelect } from '../date-select'
+import { findProvider } from '../../utils/functions'
 
 const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000
 
 export const TimeSlotSelect = () => {
-  const { fetchTimeSlots, date, setDate, appointmentBufferInMintues, preloadBooking } =
-    useAppContext()
+  const {
+    fetchTimeSlots,
+    date,
+    setDate,
+    appointmentBufferInMintues,
+    preloadBooking,
+    initialized,
+    providers,
+    callbacks,
+  } = useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>(
     []
   )
@@ -98,6 +106,22 @@ export const TimeSlotSelect = () => {
     })
   }, [date, providerTimeSlots])
 
+  const previousInitializedValue = usePreviousValue(initialized)
+
+  useEffect(() => {
+    if (initialized) {
+      callbacks?.onDateChange?.({
+        dayOfTimeSlots: dayOfTimeSlots.map(({ providerId, ...rest }) => ({
+          ...rest,
+          provider: findProvider(providerId, providers),
+        })),
+        isFirstDateViewed:
+          previousInitializedValue === false && initialized === true,
+        date,
+      })
+    }
+  }, [date, initialized])
+
   useEffect(() => {
     if (typeof minDate !== 'undefined' && date < minDate) {
       setDate(minDate)
@@ -105,7 +129,12 @@ export const TimeSlotSelect = () => {
   }, [minDate, setDate])
 
   useEffect(() => {
-    if (preloadBooking && preloadBooking.start && preloadBooking.end && preloadBooking.provider.id) {
+    if (
+      preloadBooking &&
+      preloadBooking.start &&
+      preloadBooking.end &&
+      preloadBooking.provider.id
+    ) {
       const bookDate = new Date(preloadBooking.start)
       // If there's pre-booking data that hasn't been set yet
       if (bookDate.getTime() !== date.getTime()) {

@@ -37,3 +37,15 @@ export const hasAllValues = (values: IMainAppProps) => {
 
   return errorMessages
 }
+
+export const findProvider = (
+  providerId: string,
+  providers: ProvidersType[]
+) => {
+  return (
+    providers.find(({ id }) => id === providerId) || {
+      id: providerId,
+      name: '',
+    }
+  )
+}

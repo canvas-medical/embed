@@ -5,7 +5,14 @@ import {
   ProvidersType,
   SetTimeSlotsType,
   TimeSlotType,
+  SlotType,
 } from '@canvas-medical/embed-common'
+
+type OnDateChangeParam = {
+  dayOfTimeSlots: { provider: ProvidersType; providerSlots: SlotType[] }[]
+  isFirstDateViewed: boolean
+  date: Date
+}
 
 export interface IMainAppProps {
   api: string
@@ -27,6 +34,7 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onLoad: () => void
+    onDateChange: (config: OnDateChangeParam) => void
   }
   daysToFetch: number
   duration: number
@@ -78,4 +86,5 @@ export interface IAppContext extends IMainAppProps {
   ) => void
   createAppointment: () => void
   cancelAppointment: (appointmentId: string, onComplete: () => void) => void
+  initialized: boolean
 }
