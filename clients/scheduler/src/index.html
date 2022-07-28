@@ -49,6 +49,9 @@
           // console.error('error', error, msg)
         },
         onLoad: () => {},
+        onDateChange: config => {
+          // console.log(config, 'config')
+        },
       }
 
       const config = {
@@ -79,7 +82,7 @@
             },
             bailoutURL: 'https://canvasmedical.com',
             callbacks: callbacks,
-            daysToFetch: '7',
+            daysToFetch: '30',
             duration: '60',
             locationId: '1',
             patientId: config.patientId,

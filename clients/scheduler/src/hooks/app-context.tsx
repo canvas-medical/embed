@@ -30,6 +30,7 @@ export const AppContext = createContext<IAppContext>({
     onChange: noOp,
     onError: noOp,
     onLoad: noOp,
+    onDateChange: noOp,
     overrideTimeSlotSelect: undefined,
   },
   daysToFetch: 7,
@@ -72,6 +73,7 @@ export const AppContext = createContext<IAppContext>({
   fetchScheduledAppointment: noOp,
   createAppointment: noOp,
   cancelAppointment: noOp,
+  initialized: false,
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
@@ -196,8 +198,9 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       fetchScheduledAppointment,
       createAppointment,
       cancelAppointment,
+      initialized,
     }
-  }, [screen, date, loading, error, timeSlot])
+  }, [screen, date, loading, error, timeSlot, initialized])
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

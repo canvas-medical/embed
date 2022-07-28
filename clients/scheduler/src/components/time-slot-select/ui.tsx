@@ -1,8 +1,7 @@
-import { h, Fragment } from 'preact'
+import { Fragment } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import {
   Loader,
-  TimeSlotsType,
   Popover,
   ProvidersType,
   ParsedSlotsType,
@@ -10,6 +9,7 @@ import {
 import { useAppContext } from '../../hooks'
 import { TimeSlots } from './time-slots'
 import { ConfirmAppointment } from './confirm-appointment'
+import { findProvider } from '../../utils/functions'
 
 type UiPropsType = {
   timeSlots: ParsedSlotsType[]
@@ -22,15 +22,24 @@ type SelectTimeSlotType = {
 }
 
 export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
-  const { colors, date, timeSlot, setTimeSlot, preloadBooking, loading, shadowRoot, resetTimeSlot, providers } =
-    useAppContext()
+  const {
+    colors,
+    date,
+    timeSlot,
+    setTimeSlot,
+    preloadBooking,
+    loading,
+    shadowRoot,
+    resetTimeSlot,
+    providers,
+  } = useAppContext()
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   useEffect(() => {
     if (preloadBooking && preloadBooking.start !== timeSlot.start) {
       const bookDate = new Date(preloadBooking.start)
       // If there's pre-booking data that hasn't been set yet
-       if (bookDate.getTime() === date.getTime()) {
+      if (bookDate.getTime() === date.getTime()) {
         selectTimeSlot(preloadBooking)
       }
     }
@@ -50,15 +59,6 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
     resetTimeSlot()
   }
 
-  const findProvider = (providerId: string) => {
-    return (
-      providers.find(({ id }) => id === providerId) || {
-        id: providerId,
-        name: '',
-      }
-    )
-  }
-
   if (!providers.length || loading) {
     return <Loader colors={colors} />
   }
@@ -69,7 +69,7 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
         return (
           <TimeSlots
             key={providerId}
-            provider={findProvider(providerId)}
+            provider={findProvider(providerId, providers)}
             slots={providerSlots}
             selectTimeSlot={selectTimeSlot}
           />
