@@ -76,20 +76,24 @@ export const AppContext = createContext<IAppContext>({
   initialized: false,
 })
 
+const blankTimeSlot = () => ({
+  start: '',
+  end: '',
+  provider: {
+    name: '',
+    id: '',
+  },
+})
+
+
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [screen, setScreen] = useState<string>('SELECT')
   const [date, setDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | string[]>('')
   const [providers, setProviders] = useState<ProvidersType[]>([])
-  const [timeSlot, setTimeSlot] = useState<TimeSlotType>({
-    start: '',
-    end: '',
-    provider: {
-      name: '',
-      id: '',
-    },
-  })
+  const [preloadTimeSlot, setPreloadTimeSlot] = useState<TimeSlotType>(values.preloadBooking)
+  const [timeSlot, setTimeSlot] = useState<TimeSlotType>(blankTimeSlot())
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const handleError: HandleErrorType = (error, msg) => {
@@ -98,14 +102,8 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   }
 
   const resetTimeSlot = () => {
-    setTimeSlot({
-      start: '',
-      end: '',
-      provider: {
-        name: '',
-        id: '',
-      },
-    })
+    setTimeSlot(blankTimeSlot())
+    setPreloadTimeSlot(blankTimeSlot())
   }
 
   const fetchTimeSlots = useCallback(
