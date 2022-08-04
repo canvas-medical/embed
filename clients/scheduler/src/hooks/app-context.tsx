@@ -190,6 +190,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       loading,
       providers,
       timeSlot,
+      preloadBooking: preloadTimeSlot,
       setTimeSlot,
       resetTimeSlot,
       fetchTimeSlots,
