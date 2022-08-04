@@ -36,7 +36,7 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   useEffect(() => {
-    if (preloadBooking && preloadBooking.start !== timeSlot.start) {
+    if (preloadBooking && preloadBooking.start && preloadBooking.start !== timeSlot.start) {
       const bookDate = new Date(preloadBooking.start)
       // If there's pre-booking data that hasn't been set yet
       if (bookDate.getTime() === date.getTime()) {
