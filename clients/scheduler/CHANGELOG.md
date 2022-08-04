@@ -67,3 +67,9 @@
 ### Added
 
 - Added callback for when the scheduler timeslots load
+
+## [0.1.7] - 2022-08-04
+
+### Added
+
+- Updated the `resetTimeslot` function to reset preload booking data too
