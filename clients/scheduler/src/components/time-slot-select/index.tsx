@@ -20,6 +20,7 @@ export const TimeSlotSelect = () => {
     appointmentBufferInMintues,
     preloadBooking,
     initialized,
+    setInitialized,
     providers,
     callbacks,
   } = useAppContext()
@@ -92,6 +93,9 @@ export const TimeSlotSelect = () => {
   useEffect(() => {
     if (typeof maxDate === 'undefined' || date >= maxDate) {
       fetchTimeSlots(addTimeSlots)
+      if (!initialized) {
+        setInitialized(true)
+      }
     }
   }, [date])
 

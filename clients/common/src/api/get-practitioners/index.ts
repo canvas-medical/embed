@@ -7,13 +7,9 @@ import {
 } from './types'
 
 export const parsePractitioners = ({
-  setLoading,
   setProviders,
   providerIds,
   providers,
-  onLoad,
-  initialized,
-  setInitialized,
 }: ParsePractitionersParmsType) => {
   const parsedProviders: ProvidersType[] = []
 
@@ -29,29 +25,17 @@ export const parsePractitioners = ({
     })
   }
 
-  if (!initialized) {
-    onLoad()
-    setInitialized(true)
-  }
-
   setProviders(parsedProviders)
-  setLoading(false)
 }
 
 export const getPractitioners = ({
-  setLoading,
   onError,
   setProviders,
   api,
   providerIds,
   patientId,
   patientKey,
-  onLoad,
-  initialized,
-  setInitialized,
 }: GetPractitionersParamsType) => {
-  setLoading(true)
-
   axios
     .get<IGetPractitionersResponse>(`${api}/Practitioner`, {
       params: {
@@ -61,13 +45,9 @@ export const getPractitioners = ({
     })
     .then(response => {
       parsePractitioners({
-        setLoading,
         setProviders,
         providerIds,
         providers: response.data,
-        onLoad,
-        initialized,
-        setInitialized,
       })
     })
     .catch(e => onError(e, 'Error Fetching Providers'))

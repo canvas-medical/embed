@@ -25,24 +25,16 @@ export interface IGetPractitionersResponse extends IFHIRResponse {
 }
 
 export type GetPractitionersParamsType = {
-  setLoading: SetLoadingType
   onError: HandleErrorType
   setProviders: (providers: ProvidersType[]) => void
   api: string
   providerIds: string[]
   patientId: string
   patientKey: string
-  onLoad: () => void
-  initialized: boolean
-  setInitialized: (isInitialized: boolean) => void
 }
 
 export type ParsePractitionersParmsType = {
-  setLoading: SetLoadingType
   setProviders: (providers: ProvidersType[]) => void
   providerIds: string[]
   providers: IGetPractitionersResponse
-  onLoad: () => void
-  initialized: boolean
-  setInitialized: (isInitialized: boolean) => void
 }

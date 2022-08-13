@@ -84,7 +84,9 @@ export interface IAppContext extends IMainAppProps {
   fetchScheduledAppointment: (
     setAppointmentId: (appointmentId: string) => void
   ) => void
+  fetchProviders: () => void
   createAppointment: () => void
   cancelAppointment: (appointmentId: string, onComplete: () => void) => void
   initialized: boolean
+  setInitialized: (initialized: boolean) => void
 }

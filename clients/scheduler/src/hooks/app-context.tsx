@@ -12,6 +12,7 @@ import {
   TimeSlotType,
 } from '@canvas-medical/embed-common'
 import { IAppContext } from '../utils'
+import { getPractitioners } from '@canvas-medical/embed-common/src/api/get-practitioners'
 
 type ContextWrapperProps = {
   children: ComponentChildren
@@ -71,6 +72,7 @@ export const AppContext = createContext<IAppContext>({
   resetTimeSlot: noOp,
   fetchTimeSlots: noOp,
   fetchScheduledAppointment: noOp,
+  fetchProviders: noOp,
   createAppointment: noOp,
   cancelAppointment: noOp,
   initialized: false,
@@ -84,7 +86,6 @@ const blankTimeSlot = () => ({
     id: '',
   },
 })
-
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [screen, setScreen] = useState<string>('SELECT')
@@ -179,6 +180,17 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
     [timeSlot, values]
   )
 
+  const fetchProviders = useCallback(() => {
+    getPractitioners({
+      onError: handleError,
+      setProviders,
+      api: values.api,
+      patientId: values.patientId,
+      patientKey: values.patientKey,
+      providerIds: values.providerIds,
+    })
+  }, [values])
+
   const contextValue = useMemo(() => {
     return {
       ...values,
@@ -195,9 +207,11 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       resetTimeSlot,
       fetchTimeSlots,
       fetchScheduledAppointment,
+      fetchProviders,
       createAppointment,
       cancelAppointment,
       initialized,
+      setInitialized,
     }
   }, [screen, date, loading, error, timeSlot, initialized])
 
