@@ -33,7 +33,7 @@ export interface IMainAppProps {
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
-    onLoad: () => void
+    onLoad: (loadTime: number) => void
     onDateChange: (config: OnDateChangeParam) => void
   }
   daysToFetch: number
@@ -89,4 +89,5 @@ export interface IAppContext extends IMainAppProps {
   cancelAppointment: (appointmentId: string, onComplete: () => void) => void
   initialized: boolean
   setInitialized: (initialized: boolean) => void
+  onLoad: (loadTime: number) => void
 }

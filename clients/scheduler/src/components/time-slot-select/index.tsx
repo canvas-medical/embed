@@ -55,8 +55,12 @@ export const TimeSlotSelect = () => {
       )
 
       setProviderTimeSlots(mergedProviderAvailability)
+
+      if (!initialized) {
+        setInitialized(true)
+      }
     },
-    [providerTimeSlots]
+    [providerTimeSlots, initialized]
   )
 
   const { minDate, maxDate } = useMemo(() => {
@@ -93,9 +97,6 @@ export const TimeSlotSelect = () => {
   useEffect(() => {
     if (typeof maxDate === 'undefined' || date >= maxDate) {
       fetchTimeSlots(addTimeSlots)
-      if (!initialized) {
-        setInitialized(true)
-      }
     }
   }, [date])
 

@@ -12,9 +12,6 @@ export const parseSlots = ({
   setLoading,
   responses,
   setTimeSlots,
-  onLoad,
-  initialized,
-  setInitialized,
 }: ParseSlotsParamsType): void => {
   const slots: ParsedSlotsType[] = []
   responses.forEach((response: any) => {
@@ -35,11 +32,6 @@ export const parseSlots = ({
 
   setTimeSlots(slots)
   setLoading(false)
-
-  if (!initialized) {
-    setInitialized(true)
-    onLoad()
-  }
 }
 
 export const getTimeSlots = ({

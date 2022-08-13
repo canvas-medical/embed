@@ -76,6 +76,8 @@ export const AppContext = createContext<IAppContext>({
   createAppointment: noOp,
   cancelAppointment: noOp,
   initialized: false,
+  setInitialized: noOp,
+  onLoad: noOp
 })
 
 const blankTimeSlot = () => ({
@@ -122,9 +124,6 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         setTimeSlots,
         setProviders,
         daysToFetch: values.daysToFetch,
-        onLoad: values.callbacks?.onLoad || noOp,
-        initialized,
-        setInitialized,
       })
     },
     [date, values, initialized]
@@ -212,6 +211,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       cancelAppointment,
       initialized,
       setInitialized,
+      onLoad: values.callbacks?.onLoad || noOp,
     }
   }, [screen, date, loading, error, timeSlot, initialized])
 
