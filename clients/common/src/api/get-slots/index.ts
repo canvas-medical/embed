@@ -47,9 +47,6 @@ export const getTimeSlots = ({
   patientKey,
   providerIds,
   setProviders,
-  onLoad,
-  initialized,
-  setInitialized,
 }: GetSlotsParamsType) => {
   setLoading(true)
 
@@ -83,9 +80,6 @@ export const getTimeSlots = ({
         providerIds,
         patientId,
         patientKey,
-        onLoad,
-        initialized,
-        setInitialized,
       })
     )
     .catch(e => onError(e, 'Error Fetching Appointments'))
