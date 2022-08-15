@@ -52,7 +52,7 @@ export const AppointmentsView = ({
   }
 
   const handleError: HandleErrorType = (error, msg) => {
-    callbacks?.onError(error, msg)
+    callbacks?.onError?.(error, msg)
     setError(msg)
   }
 
@@ -81,26 +81,31 @@ export const AppointmentsView = ({
   }
 
   const onCancel = () => {
-    putAppointment({
-      onComplete: afterCancel,
-      onError: handleError,
-      setLoading,
-      appointmentCoding: {
-        code: appointmentCancellation.appointment.code,
-      },
-      locationId: appointmentCancellation.appointment.locationId || locationId,
-      timeSlot: {
-        start: appointmentCancellation.appointment.start,
-        end: appointmentCancellation.appointment.end,
-        provider: {
-          id: appointmentCancellation.appointment.providerId,
+    try {
+      putAppointment({
+        onComplete: afterCancel,
+        onError: handleError,
+        setLoading,
+        appointmentCoding: {
+          code: appointmentCancellation.appointment.code,
         },
-      },
-      patientId,
-      patientKey,
-      api,
-      appointmentId: appointmentCancellation.appointment.id,
-    })
+        locationId:
+          appointmentCancellation.appointment.locationId || locationId,
+        timeSlot: {
+          start: appointmentCancellation.appointment.start,
+          end: appointmentCancellation.appointment.end,
+          provider: {
+            id: appointmentCancellation.appointment.providerId,
+          },
+        },
+        patientId,
+        patientKey,
+        api,
+        appointmentId: appointmentCancellation.appointment.id,
+      })
+    } catch (e) {
+      handleError(e as Error, 'Error Cancelling Appointment')
+    }
   }
 
   const onKeep = () => {
