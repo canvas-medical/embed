@@ -54,6 +54,7 @@ export const AppointmentsView = ({
   const handleError: HandleErrorType = (error, msg) => {
     callbacks?.onError?.(error, msg)
     setError(msg)
+    setLoading(false)
   }
 
   const fetchAppointments = useCallback(() => {
