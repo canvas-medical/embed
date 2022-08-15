@@ -48,7 +48,9 @@
         onError: (error, msg) => {
           // console.error('error', error, msg)
         },
-        onLoad: () => {},
+        onLoad: (loadTime) => {
+          // console.log(`Scheduler Load Time: ${loadTime}`)
+        },
         onDateChange: config => {
           // console.log(config, 'config')
         },

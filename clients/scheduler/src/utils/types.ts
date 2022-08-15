@@ -33,7 +33,7 @@ export interface IMainAppProps {
       e: React.ChangeEvent<HTMLSelectElement>,
       config?: Record<string, any>
     ) => void
-    onLoad: (loadTime: number) => void
+    onLoad: (loadTime: string) => void
     onDateChange: (config: OnDateChangeParam) => void
   }
   daysToFetch: number
