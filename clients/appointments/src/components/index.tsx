@@ -2,6 +2,7 @@ import { h } from 'preact'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import {
   AppointmentType,
+  defaultAppointmentType,
   getAppointmentsList,
   Loader,
   putAppointment,
@@ -11,6 +12,7 @@ import {
   ProvidersType,
 } from '@canvas-medical/embed-common'
 import { IAppProps } from '../utils'
+
 import { Ui } from './ui'
 
 const noOp = () => {}
@@ -88,7 +90,9 @@ export const AppointmentsView = ({
         onError: handleError,
         setLoading,
         appointmentCoding: {
-          code: appointmentCancellation.appointment.code,
+          code:
+            appointmentCancellation?.appointment?.code ||
+            defaultAppointmentType.code,
         },
         locationId:
           appointmentCancellation.appointment.locationId || locationId,
