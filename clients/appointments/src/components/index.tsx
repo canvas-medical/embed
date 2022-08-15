@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'preact/hooks'
 import {
   AppointmentType,
   getAppointmentsList,
-  getAppointmentType,
   Loader,
   putAppointment,
   Error,
@@ -87,7 +86,7 @@ export const AppointmentsView = ({
       onError: handleError,
       setLoading,
       appointmentCoding: {
-        code: getAppointmentType(appointmentCancellation.appointment.code),
+        code: appointmentCancellation.appointment.code,
       },
       locationId: appointmentCancellation.appointment.locationId || locationId,
       timeSlot: {
