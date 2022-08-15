@@ -12,7 +12,6 @@ export type ProviderAppointmentsType = {
 }[]
 
 export type GetAppointmentsListParamsType = {
-  setLoading: SetLoadingType
   onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void
@@ -21,13 +20,9 @@ export type GetAppointmentsListParamsType = {
   patientId: string
   patientKey: string
   providerIds?: string[]
-  initialized: boolean
-  setInitialized: (isInitialized: boolean) => void
-  onLoad: () => void
 }
 
 export type ParseAppointmentsParamsType = {
-  setLoading: SetLoadingType
   onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void
@@ -36,7 +31,4 @@ export type ParseAppointmentsParamsType = {
   providerAppointments?: ProviderAppointmentsType
   patientId: string
   patientKey: string
-  initialized: boolean
-  setInitialized: (isInitialized: boolean) => void
-  onLoad: () => void
 }
