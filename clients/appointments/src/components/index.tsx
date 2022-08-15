@@ -2,8 +2,8 @@ import { h } from 'preact'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import {
   AppointmentType,
+  defaultAppointmentType,
   getAppointmentsList,
-  getAppointmentType,
   Loader,
   putAppointment,
   Error,
@@ -12,6 +12,7 @@ import {
   ProvidersType,
 } from '@canvas-medical/embed-common'
 import { IAppProps } from '../utils'
+
 import { Ui } from './ui'
 
 const noOp = () => {}
@@ -53,8 +54,9 @@ export const AppointmentsView = ({
   }
 
   const handleError: HandleErrorType = (error, msg) => {
-    callbacks?.onError(error, msg)
+    callbacks?.onError?.(error, msg)
     setError(msg)
+    setLoading(false)
   }
 
   const fetchAppointments = useCallback(() => {
@@ -82,26 +84,33 @@ export const AppointmentsView = ({
   }
 
   const onCancel = () => {
-    putAppointment({
-      onComplete: afterCancel,
-      onError: handleError,
-      setLoading,
-      appointmentCoding: {
-        code: getAppointmentType(appointmentCancellation.appointment.code),
-      },
-      locationId: appointmentCancellation.appointment.locationId || locationId,
-      timeSlot: {
-        start: appointmentCancellation.appointment.start,
-        end: appointmentCancellation.appointment.end,
-        provider: {
-          id: appointmentCancellation.appointment.providerId,
+    try {
+      putAppointment({
+        onComplete: afterCancel,
+        onError: handleError,
+        setLoading,
+        appointmentCoding: {
+          code:
+            appointmentCancellation?.appointment?.code ||
+            defaultAppointmentType.code,
         },
-      },
-      patientId,
-      patientKey,
-      api,
-      appointmentId: appointmentCancellation.appointment.id,
-    })
+        locationId:
+          appointmentCancellation.appointment.locationId || locationId,
+        timeSlot: {
+          start: appointmentCancellation.appointment.start,
+          end: appointmentCancellation.appointment.end,
+          provider: {
+            id: appointmentCancellation.appointment.providerId,
+          },
+        },
+        patientId,
+        patientKey,
+        api,
+        appointmentId: appointmentCancellation.appointment.id,
+      })
+    } catch (e) {
+      handleError(e as Error, 'Error Cancelling Appointment')
+    }
   }
 
   const onKeep = () => {
