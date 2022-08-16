@@ -63,7 +63,7 @@ export const AppointmentsView = ({
   useEffect(() => {
     if (!loading && !initialized) {
       setInitialized(true)
-      callbacks?.onLoad?.((new Date().getTime() - loadStartTime.getTime()) / 1000)
+      callbacks?.onLoad?.((new Date().getTime() - loadStartTime.getTime()))
     }
   }, [loading, initialized])
 

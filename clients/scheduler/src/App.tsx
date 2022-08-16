@@ -15,7 +15,7 @@ export const App = () => {
 
   useEffect(() => {
     if (initialized) {
-      onLoad((new Date().getTime() - loadStartTime.getTime()) / 1000)
+      onLoad((new Date().getTime() - loadStartTime.getTime()))
     }
   }, [initialized, loadStartTime])
 
