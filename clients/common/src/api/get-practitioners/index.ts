@@ -28,7 +28,7 @@ export const parsePractitioners = ({
   setProviders(parsedProviders)
 }
 
-export const getPractitioners = ({
+export const getPractitioners = async ({
   onError,
   setProviders,
   api,
@@ -36,7 +36,7 @@ export const getPractitioners = ({
   patientId,
   patientKey,
 }: GetPractitionersParamsType) => {
-  axios
+  return axios
     .get<IGetPractitionersResponse>(`${api}/Practitioner`, {
       params: {
         patient: patientId,

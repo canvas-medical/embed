@@ -12,6 +12,7 @@ export type ProviderAppointmentsType = {
 }[]
 
 export type GetAppointmentsListParamsType = {
+  setLoading: SetLoadingType
   onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void
@@ -23,6 +24,7 @@ export type GetAppointmentsListParamsType = {
 }
 
 export type ParseAppointmentsParamsType = {
+  setLoading: SetLoadingType
   onError: HandleErrorType
   setAppointments: (appointments: AppointmentType[]) => void
   setProviders: (providers: ProvidersType[]) => void

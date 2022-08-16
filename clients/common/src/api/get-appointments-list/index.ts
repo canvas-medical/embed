@@ -8,6 +8,7 @@ import {
 } from './types'
 
 export const parseAppointments = ({
+  setLoading,
   onError,
   setAppointments,
   setProviders,
@@ -73,10 +74,13 @@ export const parseAppointments = ({
     providerIds: parsedProviders,
     patientId,
     patientKey,
+  }).then(() => {
+    setLoading(false)
   })
 }
 
 export const getAppointmentsList = ({
+  setLoading,
   onError,
   setAppointments,
   setProviders,
@@ -86,36 +90,9 @@ export const getAppointmentsList = ({
   patientKey,
   providerIds,
 }: GetAppointmentsListParamsType) => {
-  if (providerIds) {
-    Promise.all(
-      providerIds.map(providerId => {
-        return axios
-          .get<IGetAppointmentResponseType>(`${api}/Appointment`, {
-            params: {
-              practitioner: providerId,
-              patient: patientId,
-              patient_key: patientKey,
-              date: `ge${formatDateForAPI(new Date())}`,
-            },
-          })
-          .then(response => {
-            return { providerId, appointments: response.data }
-          })
-      })
-    )
-      .then(responses =>
-        parseAppointments({
-          onError,
-          setAppointments,
-          setProviders,
-          api,
-          providerAppointments: responses,
-          patientId,
-          patientKey,
-        })
-      )
-      .catch(e => onError(e, 'Error Fetching Appointments'))
-  } else {
+  setLoading(true)
+
+  if (!providerIds) {
     return axios
       .get(`${api}/Appointment`, {
         params: {
@@ -126,6 +103,7 @@ export const getAppointmentsList = ({
       })
       .then(response => {
         parseAppointments({
+          setLoading,
           onError,
           setAppointments,
           setProviders,
@@ -137,4 +115,35 @@ export const getAppointmentsList = ({
       })
       .catch(e => onError(e, 'Error Fetching Appointments'))
   }
+
+  // TODO: This isn't currently used, maybe we should clean it up
+  Promise.all(
+    providerIds.map(providerId => {
+      return axios
+        .get<IGetAppointmentResponseType>(`${api}/Appointment`, {
+          params: {
+            practitioner: providerId,
+            patient: patientId,
+            patient_key: patientKey,
+            date: `ge${formatDateForAPI(new Date())}`,
+          },
+        })
+        .then(response => {
+          return { providerId, appointments: response.data }
+        })
+    })
+  )
+    .then(responses =>
+      parseAppointments({
+        setLoading,
+        onError,
+        setAppointments,
+        setProviders,
+        api,
+        providerAppointments: responses,
+        patientId,
+        patientKey,
+      })
+    )
+    .catch(e => onError(e, 'Error Fetching Appointments'))
 }
