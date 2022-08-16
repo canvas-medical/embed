@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ParsedSlotsType, SlotType } from '../../utils'
-import { getPractitioners } from '../get-practitioners'
 import {
   GetSlotsParamsType,
   IGetSlotsResponse,
@@ -13,15 +12,6 @@ export const parseSlots = ({
   setLoading,
   responses,
   setTimeSlots,
-  onError,
-  setProviders,
-  api,
-  providerIds,
-  patientId,
-  patientKey,
-  onLoad,
-  initialized,
-  setInitialized,
 }: ParseSlotsParamsType): void => {
   const slots: ParsedSlotsType[] = []
   responses.forEach((response: any) => {
@@ -39,20 +29,9 @@ export const parseSlots = ({
     }
     slots.push({ providerId: response.providerId, providerSlots })
   })
-  setTimeSlots(slots)
 
-  getPractitioners({
-    setLoading,
-    onError,
-    setProviders,
-    api,
-    providerIds,
-    patientId,
-    patientKey,
-    onLoad,
-    initialized,
-    setInitialized,
-  })
+  setTimeSlots(slots)
+  setLoading(false)
 }
 
 export const getTimeSlots = ({
@@ -68,9 +47,6 @@ export const getTimeSlots = ({
   patientKey,
   providerIds,
   setProviders,
-  onLoad,
-  initialized,
-  setInitialized,
 }: GetSlotsParamsType) => {
   setLoading(true)
 
@@ -104,9 +80,6 @@ export const getTimeSlots = ({
         providerIds,
         patientId,
         patientKey,
-        onLoad,
-        initialized,
-        setInitialized,
       })
     )
     .catch(e => onError(e, 'Error Fetching Appointments'))

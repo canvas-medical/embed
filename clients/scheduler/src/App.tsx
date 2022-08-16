@@ -2,9 +2,22 @@ import { h } from 'preact'
 import { AppContainer, Body, Error, Header } from '@canvas-medical/embed-common'
 import { useAppContext } from './hooks'
 import { Confirmation, TimeSlotSelect } from './components'
+import { useEffect, useState } from 'preact/hooks'
 
 export const App = () => {
-  const { bailoutURL, colors, screen, error, fontFamily } = useAppContext()
+  const { bailoutURL, colors, screen, error, fontFamily, fetchProviders, initialized, onLoad } = useAppContext()
+
+  const [loadStartTime] = useState(new Date())
+
+  useEffect(() => {
+    fetchProviders()
+  }, [])
+
+  useEffect(() => {
+    if (initialized) {
+      onLoad((new Date().getTime() - loadStartTime.getTime()))
+    }
+  }, [initialized, loadStartTime])
 
   return (
     <AppContainer fontFamily={fontFamily}>

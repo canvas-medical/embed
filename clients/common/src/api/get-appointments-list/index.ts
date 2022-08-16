@@ -17,9 +17,6 @@ export const parseAppointments = ({
   providerAppointments,
   patientId,
   patientKey,
-  initialized,
-  setInitialized,
-  onLoad,
 }: ParseAppointmentsParamsType) => {
   const parsedAppointments: AppointmentType[] = []
   const parsedProviders: string[] = []
@@ -71,16 +68,14 @@ export const parseAppointments = ({
 
   setAppointments(parsedAppointments)
   getPractitioners({
-    setLoading,
     onError,
     setProviders,
     api,
     providerIds: parsedProviders,
     patientId,
     patientKey,
-    initialized,
-    setInitialized,
-    onLoad,
+  }).then(() => {
+    setLoading(false)
   })
 }
 
@@ -94,46 +89,10 @@ export const getAppointmentsList = ({
   patientId,
   patientKey,
   providerIds,
-  initialized,
-  setInitialized,
-  onLoad,
 }: GetAppointmentsListParamsType) => {
   setLoading(true)
 
-  if (providerIds) {
-    Promise.all(
-      providerIds.map(providerId => {
-        return axios
-          .get<IGetAppointmentResponseType>(`${api}/Appointment`, {
-            params: {
-              practitioner: providerId,
-              patient: patientId,
-              patient_key: patientKey,
-              date: `ge${formatDateForAPI(new Date())}`,
-            },
-          })
-          .then(response => {
-            return { providerId, appointments: response.data }
-          })
-      })
-    )
-      .then(responses =>
-        parseAppointments({
-          setLoading,
-          onError,
-          setAppointments,
-          setProviders,
-          api,
-          providerAppointments: responses,
-          patientId,
-          patientKey,
-          initialized,
-          setInitialized,
-          onLoad,
-        })
-      )
-      .catch(e => onError(e, 'Error Fetching Appointments'))
-  } else {
+  if (!providerIds) {
     return axios
       .get(`${api}/Appointment`, {
         params: {
@@ -152,11 +111,39 @@ export const getAppointmentsList = ({
           appointments: response.data,
           patientId,
           patientKey,
-          initialized,
-          setInitialized,
-          onLoad,
         })
       })
       .catch(e => onError(e, 'Error Fetching Appointments'))
   }
+
+  // TODO: This isn't currently used, maybe we should clean it up
+  Promise.all(
+    providerIds.map(providerId => {
+      return axios
+        .get<IGetAppointmentResponseType>(`${api}/Appointment`, {
+          params: {
+            practitioner: providerId,
+            patient: patientId,
+            patient_key: patientKey,
+            date: `ge${formatDateForAPI(new Date())}`,
+          },
+        })
+        .then(response => {
+          return { providerId, appointments: response.data }
+        })
+    })
+  )
+    .then(responses =>
+      parseAppointments({
+        setLoading,
+        onError,
+        setAppointments,
+        setProviders,
+        api,
+        providerAppointments: responses,
+        patientId,
+        patientKey,
+      })
+    )
+    .catch(e => onError(e, 'Error Fetching Appointments'))
 }

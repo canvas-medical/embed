@@ -43,7 +43,9 @@
         onError: (error, msg) => {
           // console.error('error', error, msg)
         },
-        onLoad: () => {},
+        onLoad: (loadTimeInMs) => {
+          // console.log(`Appointments loaded in ${loadTimeInMs}`)
+        },
       }
 
       const config = {

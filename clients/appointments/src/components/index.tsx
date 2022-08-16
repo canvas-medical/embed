@@ -48,6 +48,7 @@ export const AppointmentsView = ({
   const [appointments, setAppointments] = useState<AppointmentType[]>([])
   const [providers, setProviders] = useState<ProvidersType[]>([])
   const [initialized, setInitialized] = useState<boolean>(false)
+  const [loadStartTime] = useState(new Date())
 
   const handleCancel = (appointment: AppointmentType) => {
     setAppointmentCancellation({ popoverOpen: true, appointment })
@@ -59,6 +60,13 @@ export const AppointmentsView = ({
     setLoading(false)
   }
 
+  useEffect(() => {
+    if (!loading && !initialized) {
+      setInitialized(true)
+      callbacks?.onLoad?.((new Date().getTime() - loadStartTime.getTime()))
+    }
+  }, [loading, initialized])
+
   const fetchAppointments = useCallback(() => {
     getAppointmentsList({
       setLoading,
@@ -69,11 +77,8 @@ export const AppointmentsView = ({
       api,
       patientId,
       patientKey,
-      initialized,
-      setInitialized,
-      onLoad: callbacks?.onLoad || noOp,
     })
-  }, [api, patientId, patientKey, providerIds, initialized])
+  }, [api, patientId, patientKey, providerIds])
 
   const afterCancel = () => {
     setAppointmentCancellation({

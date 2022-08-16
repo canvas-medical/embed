@@ -20,6 +20,7 @@ export const TimeSlotSelect = () => {
     appointmentBufferInMintues,
     preloadBooking,
     initialized,
+    setInitialized,
     providers,
     callbacks,
   } = useAppContext()
@@ -54,8 +55,12 @@ export const TimeSlotSelect = () => {
       )
 
       setProviderTimeSlots(mergedProviderAvailability)
+
+      if (!initialized) {
+        setInitialized(true)
+      }
     },
-    [providerTimeSlots]
+    [providerTimeSlots, initialized]
   )
 
   const { minDate, maxDate } = useMemo(() => {
