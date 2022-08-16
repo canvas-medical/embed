@@ -15,7 +15,7 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onError: HandleErrorType
-    onLoad: () => void
+    onLoad: (loadTime: number) => void
   }
   locationId: string
   patientId: string
