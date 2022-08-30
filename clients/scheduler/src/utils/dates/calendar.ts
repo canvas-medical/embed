@@ -14,8 +14,8 @@ const monthStrings = [
   'August',
   'September',
   'October',
-  'Novemeber',
-  'Decemeber',
+  'November',
+  'December',
 ]
 
 export const getMonthAndYearOptions = (): MonthAndYearType[] => {
