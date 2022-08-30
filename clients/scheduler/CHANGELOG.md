@@ -74,7 +74,7 @@
 
 - Updated the `resetTimeslot` function to reset preload booking data too
 
-## [0.1.91] - 2022-08-30
+## [0.1.10] - 2022-08-30
 
 ### Changed
 
