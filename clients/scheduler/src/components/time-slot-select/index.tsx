@@ -114,7 +114,7 @@ export const TimeSlotSelect = () => {
   const previousInitializedValue = usePreviousValue(initialized)
 
   useEffect(() => {
-    if (initialized) {
+    if (initialized && dayOfTimeSlots.length > 0) {
       callbacks?.onDateChange?.({
         dayOfTimeSlots: dayOfTimeSlots.map(({ providerId, ...rest }) => ({
           ...rest,
@@ -125,7 +125,7 @@ export const TimeSlotSelect = () => {
         date,
       })
     }
-  }, [date, initialized])
+  }, [date, dayOfTimeSlots, initialized])
 
   useEffect(() => {
     if (typeof minDate !== 'undefined' && date < minDate) {
