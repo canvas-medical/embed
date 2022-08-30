@@ -73,3 +73,9 @@
 ### Added
 
 - Updated the `resetTimeslot` function to reset preload booking data too
+
+## [0.1.91] - 2022-08-30
+
+### Changed
+
+- Fixed typos in the calendar (November and December)
