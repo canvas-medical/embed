@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-scheduler",
-  "version": "0.1.11-rc2",
+  "version": "0.1.11-rc3",
   "private": false,
   "main": "dist/scheduler.js",
   "license": "MIT",
