@@ -79,3 +79,9 @@
 ### Changed
 
 - Fixed typos in the calendar (November and December)
+
+## [0.1.11] - 2022-09-01
+
+### Changed
+
+- Prevented calling the onDateChange callback when there are no timeslots available
