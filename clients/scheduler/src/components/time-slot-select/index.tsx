@@ -115,11 +115,8 @@ export const TimeSlotSelect = () => {
 
   useEffect(() => {
     const hasSlots = dayOfTimeSlots.filter(({ providerSlots }) => providerSlots.length > 0).length > 0
-    console.log("hasSlots:", hasSlots)
-    console.log("time slot select v 0.1.11-rc2, initialized:", initialized)
 
     if (hasSlots && (initialized)) {
-    console.log("firing callback")
       callbacks?.onDateChange?.({
         dayOfTimeSlots: dayOfTimeSlots.map(({ providerId, ...rest }) => ({
           ...rest,
