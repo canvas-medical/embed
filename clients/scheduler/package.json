@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-scheduler",
-  "version": "0.1.9",
+  "version": "0.1.11-rc6",
   "private": false,
   "main": "dist/scheduler.js",
   "license": "MIT",
@@ -8,6 +8,7 @@
     "build": "webpack build --env prod",
     "build:esm": "webpack build --env prod --env esm",
     "prepack": "npm run build",
+    "gitpkg": "gitpkg publish --repository git@github.com:modern-age/canvas-embed.git",
     "start": "webpack server --open",
     "test": "TZ=UTC jest ./tests",
     "test:update": "yarn test --updateSnapshot"
@@ -80,6 +81,7 @@
     "css-loader": "^6.6.0",
     "eslint": "^8.9.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "gitpkg": "^1.0.0-beta.4",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
     "jest-preset-preact": "^4.0.5",
