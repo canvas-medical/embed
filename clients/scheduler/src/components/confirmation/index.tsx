@@ -26,6 +26,7 @@ export const Confirmation = () => {
     returnURL,
     cancelAppointment,
     fetchScheduledAppointment,
+    resetTimeSlot,
     shadowRoot,
     setScreen,
     callbacks: { onClick },
@@ -51,6 +52,7 @@ export const Confirmation = () => {
 
   const handleCancelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setPopoverOpen(true)
+    resetTimeSlot()
     onClick(e)
   }
 
