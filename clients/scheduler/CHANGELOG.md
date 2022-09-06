@@ -85,3 +85,9 @@
 ### Changed
 
 - Prevented calling the onDateChange callback when there are no timeslots available
+
+## [0.1.12] - 2022-09-06
+
+### Changed
+
+- Updated to reset preloaded booking info if a user cancels instead of confirming
