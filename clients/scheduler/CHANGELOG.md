@@ -91,3 +91,9 @@
 ### Changed
 
 - Updated to reset preloaded booking info if a user cancels instead of confirming
+
+## [0.1.13] - 2022-09-06
+
+### Changed
+
+- Fixed regression from 0.1.11, ensured dateChange events always fire
