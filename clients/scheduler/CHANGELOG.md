@@ -97,3 +97,10 @@
 ### Changed
 
 - Fixed regression from 0.1.11, ensured dateChange events always fire
+
+## [0.1.14] - 2022-09-14
+
+### Changed
+
+- Fixed regression from 0.1.11, ensured dateChange events contain correct isFirstDateViewed property
+- added datesViewed property to segment dateChange callback
