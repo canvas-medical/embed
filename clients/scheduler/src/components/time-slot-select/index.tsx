@@ -27,6 +27,7 @@ export const TimeSlotSelect = () => {
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>(
     []
   )
+  const [datesViewed, setDatesViewed] = useState(0)
 
   const addTimeSlots = useCallback(
     (newProviderTimeSlots: ParsedSlotsType[]) => {
@@ -122,10 +123,13 @@ export const TimeSlotSelect = () => {
           ...rest,
           provider: findProvider(providerId, providers),
         })),
-        isFirstDateViewed:
-          previousInitializedValue === false && initialized === true,
+        isFirstDateViewed: datesViewed === 0,
+        datesViewed,
         date,
       })
+
+      setDatesViewed(datesViewed + 1)
+
     }
   }, [date])
 
