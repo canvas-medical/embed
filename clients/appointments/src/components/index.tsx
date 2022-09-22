@@ -1,4 +1,6 @@
 import { h } from 'preact'
+import date from 'date-and-time'
+import { createEvent, DateArray } from 'ics'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import {
   AppointmentType,
@@ -80,6 +82,61 @@ export const AppointmentsView = ({
     })
   }, [api, patientId, patientKey, providerIds])
 
+  const onAddToCalendar = () => {
+    try {
+      appointments.map((appointment) => {
+      // locationId comes back as auto-incrementing numbers
+      // 1: Flatiron
+      // 2: Upper East Side
+      const locationAddresses = {
+        '1': '100 5th Avenue, New York, NY 10011',
+        '2': '1296 Third Ave, New York, NY 10021',
+      }
+        // Select address based on locationId
+        let locationAddress
+        const keys = Object.keys(locationAddresses)
+        const appointmentLocationId = appointment.locationId as keyof Object
+        if (appointmentLocationId && keys.includes(appointmentLocationId)) {
+          locationAddress = locationAddresses[appointmentLocationId].toString()
+        }
+    
+        const startDate = new Date(appointment.start)
+        const appointmentStart = new Date(appointment.start).getTime()
+        const appointmentEnd = new Date(appointment.end).getTime()
+        const appointmentDuration = new Date(appointmentEnd - appointmentStart).getMinutes()
+        const icsStartTime = date.format(startDate, 'YYYY;MM;DD;HH;mm').split(';').map(Number) as DateArray
+        const validDescription =
+            appointment.description &&
+            appointment.description.length > 0 &&
+            appointment.description !== 'No description given'
+        const visitReason = validDescription ? appointment.description : appointment.display
+
+        // generate ics string
+        const { value } = createEvent({
+        start: icsStartTime,
+        duration: { minutes: appointmentDuration },
+        title: 'Modern Age Appointment',
+        description: `Thanks for booking an appointment with Modern Age. We look forward to your visit. Visit Reason: ${visitReason}`,
+        location: locationAddress,
+        status: 'CONFIRMED',
+        busyStatus: 'BUSY',
+        organizer: { name: 'Admin', email: 'info@modern-age.com' },
+        attendees: [
+          {
+            rsvp: true,
+            partstat: 'ACCEPTED',
+            role: 'REQ-PARTICIPANT',
+          },
+        ],
+      })
+      // Open/Save link in Modern Browsers
+      window.open(encodeURI('data:text/calendar;charset=utf8,' + value ?? ''))
+    })
+    } catch (e) {
+      handleError(e as Error, 'Error Adding Appointment To Calendar')
+    }
+  }
+
   const afterCancel = () => {
     setAppointmentCancellation({
       popoverOpen: false,
@@ -145,6 +202,7 @@ export const AppointmentsView = ({
       onCancel={onCancel}
       onKeep={onKeep}
       handleCancel={handleCancel}
+      onAddToCalendar={onAddToCalendar}
       shadowRoot={shadowRoot}
       appointmentCancellation={appointmentCancellation}
     />
