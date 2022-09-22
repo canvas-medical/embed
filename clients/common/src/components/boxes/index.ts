@@ -13,6 +13,7 @@ type AppContainerPropsType = {
 type BoxPropsType = {
   alignItems?: string
   flexDirection?: string
+  justifyContent?: string
   maxWidth?: string
   width?: string
 }
@@ -38,6 +39,7 @@ export const Body = styled.div`
 
 export const Box = styled.div<MarginPropsType & BoxPropsType>`
   align-items: ${p => p.alignItems || 'center'};
+  justify-content: ${p => p.justifyContent || 'normal'};
   display: flex;
   flex-direction: ${p => p.flexDirection || 'column'};
   margin-top: ${p => p.mt || p.my || p.m};
@@ -61,4 +63,9 @@ export const AccentBox = styled(Box)<BackgroundColorPropType>`
   background-color: ${p => p.bc};
   border-radius: 5px;
   padding: 1rem;
+`
+export const VerticalDivider = styled.span`
+  border-inline-end: 1px solid black;
+  height: 50px;
+  margin-inline: 16px;
 `
