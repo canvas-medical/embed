@@ -65,7 +65,7 @@ export const AppointmentsView = ({
   useEffect(() => {
     if (!loading && !initialized) {
       setInitialized(true)
-      callbacks?.onLoad?.((new Date().getTime() - loadStartTime.getTime()))
+      callbacks?.onLoad?.(new Date().getTime() - loadStartTime.getTime())
     }
   }, [loading, initialized])
 
@@ -82,9 +82,8 @@ export const AppointmentsView = ({
     })
   }, [api, patientId, patientKey, providerIds])
 
-  const onAddToCalendar = () => {
+  const onAddToCalendar = (appointment: AppointmentType) => {
     try {
-      appointments.map((appointment) => {
       // locationId comes back as auto-incrementing numbers
       // 1: Flatiron
       // 2: Upper East Side
@@ -92,27 +91,34 @@ export const AppointmentsView = ({
         '1': '100 5th Avenue, New York, NY 10011',
         '2': '1296 Third Ave, New York, NY 10021',
       }
-        // Select address based on locationId
-        let locationAddress
-        const keys = Object.keys(locationAddresses)
-        const appointmentLocationId = appointment.locationId as keyof Object
-        if (appointmentLocationId && keys.includes(appointmentLocationId)) {
-          locationAddress = locationAddresses[appointmentLocationId].toString()
-        }
-    
-        const startDate = new Date(appointment.start)
-        const appointmentStart = new Date(appointment.start).getTime()
-        const appointmentEnd = new Date(appointment.end).getTime()
-        const appointmentDuration = new Date(appointmentEnd - appointmentStart).getMinutes()
-        const icsStartTime = date.format(startDate, 'YYYY;MM;DD;HH;mm').split(';').map(Number) as DateArray
-        const validDescription =
-            appointment.description &&
-            appointment.description.length > 0 &&
-            appointment.description !== 'No description given'
-        const visitReason = validDescription ? appointment.description : appointment.display
+      // Select address based on locationId
+      let locationAddress
+      const keys = Object.keys(locationAddresses)
+      const appointmentLocationId = appointment.locationId as keyof Object
+      if (appointmentLocationId && keys.includes(appointmentLocationId)) {
+        locationAddress = locationAddresses[appointmentLocationId].toString()
+      }
 
-        // generate ics string
-        const { value } = createEvent({
+      const startDate = new Date(appointment.start)
+      const appointmentStart = new Date(appointment.start).getTime()
+      const appointmentEnd = new Date(appointment.end).getTime()
+      const appointmentDuration = new Date(
+        appointmentEnd - appointmentStart
+      ).getMinutes()
+      const icsStartTime = date
+        .format(startDate, 'YYYY;MM;DD;HH;mm')
+        .split(';')
+        .map(Number) as DateArray
+      const validDescription =
+        appointment.description &&
+        appointment.description.length > 0 &&
+        appointment.description !== 'No description given'
+      const visitReason = validDescription
+        ? appointment.description
+        : appointment.display
+
+      // generate ics string
+      const { value } = createEvent({
         start: icsStartTime,
         duration: { minutes: appointmentDuration },
         title: 'Modern Age Appointment',
@@ -129,9 +135,8 @@ export const AppointmentsView = ({
           },
         ],
       })
-      // Open/Save link in Modern Browsers
+      // Open/Save ics file
       window.open(encodeURI('data:text/calendar;charset=utf8,' + value ?? ''))
-    })
     } catch (e) {
       handleError(e as Error, 'Error Adding Appointment To Calendar')
     }
