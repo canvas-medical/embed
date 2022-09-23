@@ -7,6 +7,7 @@ import {
   H3,
   Span,
   Popover,
+  VerticalDivider,
   getAppointmentType,
   formatDate,
   formatTime,
@@ -22,6 +23,7 @@ type UiPropsType = {
   appointments: AppointmentType[]
   providers: ProvidersType[]
   colors: GeneratedColorsType
+  onAddToCalendar: Function
   onCancel: Function
   onKeep: Function
   handleCancel: Function
@@ -37,6 +39,7 @@ export const Ui = ({
   providers,
   colors,
   onCancel,
+  onAddToCalendar,
   onKeep,
   handleCancel,
   shadowRoot,
@@ -50,6 +53,9 @@ export const Ui = ({
             appointment.description &&
             appointment.description.length > 0 &&
             appointment.description !== 'No description given'
+          const visitReason = validDescription
+            ? appointment.description
+            : appointment.display
           const appointmentDate = new Date(appointment.start)
           const dateString = `${formatDate(appointmentDate)} at ${formatTime(
             appointmentDate
@@ -67,13 +73,18 @@ export const Ui = ({
                 <H3>{dateString}</H3>
               </Box>
               <Box my="8px">
-                <Span>{`${
-                  validDescription
-                    ? appointment.description
-                    : appointment.display
-                } with ${provider}`}</Span>
+                <Span>{`${visitReason} with ${provider}`}</Span>
               </Box>
-              <Box>
+              <Box flexDirection='row' justifyContent='center'>
+                <Button
+                bc={colors.accent.main}
+                hc={colors.accent.hover}
+                fc={colors.accent.font}
+                onClick={() => onAddToCalendar(appointment)}
+                >
+                  Add to Calendar
+                </Button>
+                <VerticalDivider/>
                 <Button
                   bc={colors.accent.main}
                   hc={colors.accent.hover}
