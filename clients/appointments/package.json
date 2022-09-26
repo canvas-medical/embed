@@ -1,6 +1,6 @@
 {
   "name": "@canvas-medical/embed-appointments",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "main": "dist/appointments.js",
   "license": "MIT",
