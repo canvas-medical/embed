@@ -40,6 +40,15 @@ export const AppointmentsView = ({
   providerIds,
   shadowRoot,
 }: IAppProps) => {
+  // locationId comes back as auto-incrementing numbers
+  const locationAddresses = new Map([
+    ['1', '100 5th Avenue, New York, NY 10011'],
+    ['2', '1296 Third Ave, New York, NY 10021'],
+  ])
+
+  const locationAddress = locationId
+    ? locationAddresses.get(locationId)
+    : undefined
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<ErrorType>()
   const [appointmentCancellation, setAppointmentCancellation] = useState({
@@ -84,27 +93,13 @@ export const AppointmentsView = ({
 
   const onAddToCalendar = (appointment: AppointmentType) => {
     try {
-      // locationId comes back as auto-incrementing numbers
-      // 1: Flatiron
-      // 2: Upper East Side
-      const locationAddresses = {
-        '1': '100 5th Avenue, New York, NY 10011',
-        '2': '1296 Third Ave, New York, NY 10021',
-      }
-      // Select address based on locationId
-      let locationAddress
-      const keys = Object.keys(locationAddresses)
-      const appointmentLocationId = appointment.locationId as keyof Object
-      if (appointmentLocationId && keys.includes(appointmentLocationId)) {
-        locationAddress = locationAddresses[appointmentLocationId].toString()
-      }
-
       const startDate = new Date(appointment.start)
       const appointmentStart = new Date(appointment.start).getTime()
       const appointmentEnd = new Date(appointment.end).getTime()
-      const appointmentDuration = new Date(
-        appointmentEnd - appointmentStart
-      ).getMinutes()
+      // appointment duration in minutes
+      const appointmentDuration = Math.round(
+        (appointmentEnd - appointmentStart) / 60000
+      )
       const icsStartTime = date
         .format(startDate, 'YYYY;MM;DD;HH;mm')
         .split(';')
@@ -135,7 +130,7 @@ export const AppointmentsView = ({
           },
         ],
       })
-      // Open/Save ics file
+      // open/save ics file
       window.open(encodeURI('data:text/calendar;charset=utf8,' + value ?? ''))
     } catch (e) {
       handleError(e as Error, 'Error Adding Appointment To Calendar')
@@ -202,6 +197,8 @@ export const AppointmentsView = ({
   return (
     <Ui
       appointments={appointments}
+      locationId={locationId}
+      locationAddress={locationAddress}
       providers={providers}
       colors={colors}
       onCancel={onCancel}

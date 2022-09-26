@@ -21,6 +21,8 @@ import { NoAppointments } from './no-appointments'
 
 type UiPropsType = {
   appointments: AppointmentType[]
+  locationId: string
+  locationAddress?: string
   providers: ProvidersType[]
   colors: GeneratedColorsType
   onAddToCalendar: Function
@@ -36,6 +38,8 @@ type UiPropsType = {
 
 export const Ui = ({
   appointments,
+  locationId,
+  locationAddress,
   providers,
   colors,
   onCancel,
@@ -63,6 +67,13 @@ export const Ui = ({
           const provider = providers.find(
             ({ id }) => id === appointment.providerId
           )?.name
+          const locationTitles = new Map([
+            ['1', 'Flatiron'],
+            ['2', 'Upper East Side'],
+          ])
+          const locationTitle = locationId
+            ? locationTitles.get(locationId)
+            : undefined
 
           return (
             <AccentBox key={appointment.id} bc={colors.background} my="16px">
@@ -72,19 +83,23 @@ export const Ui = ({
               <Box mb="8px">
                 <H3>{dateString}</H3>
               </Box>
+              <Box mb="8px">
+                <H3>{locationTitle}</H3>
+                <Span>{locationAddress}</Span>
+              </Box>
               <Box my="8px">
                 <Span>{`${visitReason} with ${provider}`}</Span>
               </Box>
-              <Box flexDirection='row' justifyContent='center'>
+              <Box flexDirection="row" justifyContent="center">
                 <Button
-                bc={colors.accent.main}
-                hc={colors.accent.hover}
-                fc={colors.accent.font}
-                onClick={() => onAddToCalendar(appointment)}
+                  bc={colors.accent.main}
+                  hc={colors.accent.hover}
+                  fc={colors.accent.font}
+                  onClick={() => onAddToCalendar(appointment)}
                 >
                   Add to Calendar
                 </Button>
-                <VerticalDivider/>
+                <VerticalDivider />
                 <Button
                   bc={colors.accent.main}
                   hc={colors.accent.hover}
