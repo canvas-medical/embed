@@ -11,3 +11,9 @@
 
 - Updated `onAddToCalendar` function to target appointment clicked
 - Updated appointment `duration` in minutes
+
+## [0.1.8] - 2022-09-26
+
+### Changed
+
+- Updated appointment address to be an `<a>` tag with `href` to goolge maps link
