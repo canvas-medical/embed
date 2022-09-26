@@ -74,6 +74,19 @@ export const Ui = ({
           const locationTitle = locationId
             ? locationTitles.get(locationId)
             : undefined
+          const locationHrefs = new Map([
+            [
+              '1',
+              'https://www.google.com/maps/search/?api=1&query=Modern+Age&query_place_id=ChIJteRvDUZZwokRgWP69EH-uzg',
+            ],
+            [
+              '2',
+              'https://www.google.com/maps/search/?api=1&query=Modern+Age&query_place_id=ChIJyUAhVZVYwokRpDqk9zPFf4E',
+            ],
+          ])
+          const locationHref = locationId
+            ? locationHrefs.get(locationId)
+            : undefined
 
           return (
             <AccentBox key={appointment.id} bc={colors.background} my="16px">
@@ -85,7 +98,7 @@ export const Ui = ({
               </Box>
               <Box mb="8px">
                 <H3>{locationTitle}</H3>
-                <Span>{locationAddress}</Span>
+                <a href={locationHref}>{locationAddress}</a>
               </Box>
               <Box my="8px">
                 <Span>{`${visitReason} with ${provider}`}</Span>
