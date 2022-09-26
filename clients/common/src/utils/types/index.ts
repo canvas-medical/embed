@@ -37,7 +37,7 @@ export type AppointmentType = {
   description: string
   display: string
   locationId?: string
-  patient: PatientType
+  patient?: PatientType
   providerId: string
   start: string
   end: string
