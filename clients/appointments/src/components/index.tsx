@@ -124,6 +124,8 @@ export const AppointmentsView = ({
         organizer: { name: 'Admin', email: 'info@modern-age.com' },
         attendees: [
           {
+            name: 'Modern Age Patient',
+            email: 'guest@modern-age.com',
             rsvp: true,
             partstat: 'ACCEPTED',
             role: 'REQ-PARTICIPANT',
