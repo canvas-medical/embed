@@ -1,5 +1,10 @@
 export * from './application'
 
+export type PatientType = {
+  email: string
+  name: string
+}
+
 export type ProvidersType = {
   name?: string
   id: string
@@ -32,6 +37,7 @@ export type AppointmentType = {
   description: string
   display: string
   locationId?: string
+  patient?: PatientType
   providerId: string
   start: string
   end: string
