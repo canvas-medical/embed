@@ -17,3 +17,9 @@
 ### Changed
 
 - Updated appointment address to be an `<a>` tag with `href` to goolge maps link
+
+## [0.1.9] - 2022-09-27
+
+### Changed
+
+- Updated ics attendee to have default `name` and `email`
