@@ -13,3 +13,9 @@
 ### Added
 
 - added `PatientType` and updated `AppointmentType` to include optional `patient`
+
+## [0.1.7] - 2022-10-05
+
+### Added
+
+- Appointment `locatoinId` is set to `undefined` if absent from API response
