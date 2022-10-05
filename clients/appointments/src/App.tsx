@@ -12,7 +12,7 @@ const defaultCallbacks = {
 export const App = ({
   api,
   bailoutURL,
-  locationId,
+  locationMap,
   patientId,
   patientKey,
   providerIds,
@@ -38,7 +38,7 @@ export const App = ({
         bailoutURL={bailoutURL}
         callbacks={finalCallbacks}
         colors={colors}
-        locationId={locationId}
+        locationMap={locationMap}
         patientId={patientId}
         patientKey={patientKey}
         providerIds={providerIds}

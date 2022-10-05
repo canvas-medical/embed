@@ -21,8 +21,7 @@ import { NoAppointments } from './no-appointments'
 
 type UiPropsType = {
   appointments: AppointmentType[]
-  locationId: string
-  locationAddress?: string
+  locationMap: Map<string, {title: string; address: string; href: string}>
   providers: ProvidersType[]
   colors: GeneratedColorsType
   onAddToCalendar: Function
@@ -38,8 +37,6 @@ type UiPropsType = {
 
 export const Ui = ({
   appointments,
-  locationId,
-  locationAddress,
   providers,
   colors,
   onCancel,
@@ -48,6 +45,7 @@ export const Ui = ({
   handleCancel,
   shadowRoot,
   appointmentCancellation,
+  locationMap,
 }: UiPropsType) => {
   return (
     <Body>
@@ -67,26 +65,8 @@ export const Ui = ({
           const provider = providers.find(
             ({ id }) => id === appointment.providerId
           )?.name
-          const locationTitles = new Map([
-            ['1', 'Flatiron'],
-            ['2', 'Upper East Side'],
-          ])
-          const locationTitle = locationId
-            ? locationTitles.get(locationId)
-            : undefined
-          const locationHrefs = new Map([
-            [
-              '1',
-              'https://www.google.com/maps/search/?api=1&query=Modern+Age&query_place_id=ChIJteRvDUZZwokRgWP69EH-uzg',
-            ],
-            [
-              '2',
-              'https://www.google.com/maps/search/?api=1&query=Modern+Age&query_place_id=ChIJyUAhVZVYwokRpDqk9zPFf4E',
-            ],
-          ])
-          const locationHref = locationId
-            ? locationHrefs.get(locationId)
-            : undefined
+
+          const location = appointment.locationId ? locationMap.get(appointment.locationId) : undefined
 
           return (
             <AccentBox key={appointment.id} bc={colors.background} my="16px">
@@ -96,10 +76,12 @@ export const Ui = ({
               <Box mb="8px">
                 <H3>{dateString}</H3>
               </Box>
-              <Box mb="8px">
-                <H3>{locationTitle}</H3>
-                <a href={locationHref}>{locationAddress}</a>
-              </Box>
+              { location &&
+                <Box mb="8px">
+                  <H3>{location.title}</H3>
+                  <a href={location.href}>{location.address}</a>
+                </Box>
+              }
               <Box my="8px">
                 <Span>{`${visitReason} with ${provider}`}</Span>
               </Box>

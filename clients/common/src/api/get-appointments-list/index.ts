@@ -32,7 +32,8 @@ export const parseAppointments = ({
               description: resource.description || '',
               display: resource.appointmentType.coding[0].display || '',
               locationId:
-                resource.supportingInformation[0].reference.split('/')[1] || '',
+                resource.supportingInformation[0].reference.split('/')[1] ||
+                undefined,
               providerId: response.providerId,
               start: resource.start,
               end: resource.end,
@@ -55,7 +56,8 @@ export const parseAppointments = ({
           description: resource.description || '',
           display: resource.appointmentType.coding[0].display || '',
           locationId:
-            resource.supportingInformation[0].reference.split('/')[1] || '',
+            resource.supportingInformation[0].reference.split('/')[1] ||
+            undefined,
           providerId,
           start: resource.start,
           end: resource.end,
