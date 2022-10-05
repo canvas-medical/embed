@@ -9,7 +9,7 @@ export const Appointments = (props: IAppointmentProps) => {
     api,
     bailoutURL,
     callbacks,
-    locationId,
+    locationMap,
     patientId,
     patientKey,
     providerIds,
@@ -31,7 +31,7 @@ export const Appointments = (props: IAppointmentProps) => {
           bailoutURL={bailoutURL}
           callbacks={callbacks}
           colors={colors}
-          locationId={locationId}
+          locationMap={locationMap}
           patientId={patientId}
           patientKey={patientKey}
           providerIds={providerIds}
@@ -49,7 +49,7 @@ export const init = ({
   api,
   bailoutURL,
   callbacks = {},
-  locationId,
+  locationMap,
   patientId,
   patientKey,
   providerIds,
@@ -83,7 +83,7 @@ export const init = ({
       api={api}
       bailoutURL={bailoutURL}
       callbacks={callbacks}
-      locationId={locationId}
+      locationMap={locationMap}
       patientId={patientId}
       patientKey={patientKey}
       providerIds={providerIds}

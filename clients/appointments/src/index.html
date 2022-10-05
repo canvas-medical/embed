@@ -70,11 +70,14 @@
           Appointments.init({
             api: apiBaseUrl,
             bailoutURL: 'https://canvasmedical.com',
-            locationId: '1',
             patientId: config.patientId,
             patientKey: patientKey,
             rootId: 'embed-root',
             callbacks,
+            locationMap: new Map([
+              ["some id", {title: "some title", address: "some address", href: "some href"}],
+            ]),
+            locationId: "0",
             // brandColor: '',
             // accentColor: '',
             // fontFamily: 'Arial, serif',

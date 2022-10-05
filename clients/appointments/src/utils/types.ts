@@ -17,7 +17,7 @@ export interface IMainAppProps {
     onError: HandleErrorType
     onLoad: (loadTime: number) => void
   }
-  locationId: string
+  locationMap: Map<string, { title: string; address: string; href: string }>
   patientId: string
   patientKey: string
   providerIds?: string[]

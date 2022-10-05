@@ -14,10 +14,6 @@ export const hasAllValues = (values: IMainAppProps) => {
     errorMessages.push('No Bailout URL supplied.')
   }
 
-  if (!values.locationId) {
-    errorMessages.push('No Location ID supplied.')
-  }
-
   if (!values.patientId) {
     errorMessages.push('No Patient ID supplied.')
   }

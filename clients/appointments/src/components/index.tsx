@@ -34,21 +34,12 @@ export const AppointmentsView = ({
   api,
   colors,
   callbacks,
-  locationId,
   patientId,
   patientKey,
   providerIds,
   shadowRoot,
+  locationMap,
 }: IAppProps) => {
-  // locationId comes back as auto-incrementing numbers
-  const locationAddresses = new Map([
-    ['1', '100 5th Avenue, New York, NY 10011'],
-    ['2', '1296 Third Ave, New York, NY 10021'],
-  ])
-
-  const locationAddress = locationId
-    ? locationAddresses.get(locationId)
-    : undefined
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<ErrorType>()
   const [appointmentCancellation, setAppointmentCancellation] = useState({
@@ -112,13 +103,15 @@ export const AppointmentsView = ({
         ? appointment.description
         : appointment.display
 
+      const location = appointment.locationId ? locationMap.get(appointment.locationId) : undefined
+
       // generate ics string
       const { value } = createEvent({
         start: icsStartTime,
         duration: { minutes: appointmentDuration },
         title: 'Modern Age Appointment',
         description: `Thanks for booking an appointment with Modern Age. We look forward to your visit. Visit Reason: ${visitReason}`,
-        location: locationAddress,
+        location: location?.address,
         status: 'CONFIRMED',
         busyStatus: 'BUSY',
         organizer: { name: 'Admin', email: 'info@modern-age.com' },
@@ -159,7 +152,7 @@ export const AppointmentsView = ({
             defaultAppointmentType.code,
         },
         locationId:
-          appointmentCancellation.appointment.locationId || locationId,
+          appointmentCancellation.appointment.locationId || '',
         timeSlot: {
           start: appointmentCancellation.appointment.start,
           end: appointmentCancellation.appointment.end,
@@ -199,8 +192,6 @@ export const AppointmentsView = ({
   return (
     <Ui
       appointments={appointments}
-      locationId={locationId}
-      locationAddress={locationAddress}
       providers={providers}
       colors={colors}
       onCancel={onCancel}
@@ -209,6 +200,7 @@ export const AppointmentsView = ({
       onAddToCalendar={onAddToCalendar}
       shadowRoot={shadowRoot}
       appointmentCancellation={appointmentCancellation}
+      locationMap={locationMap}
     />
   )
 }
