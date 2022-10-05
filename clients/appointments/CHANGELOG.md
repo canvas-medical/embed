@@ -23,3 +23,11 @@
 ### Changed
 
 - Updated ics attendee to have default `name` and `email`
+
+## [0.1.10] - 2022-10-05
+
+### Changed
+
+- Removed `locationId` prop from Appointments embed
+- Added support for a `locationMap` prop to provide multiple location titles, addresses, and URL's
+- Determines location data by API response rather than passed `locationId`
