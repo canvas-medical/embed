@@ -16,4 +16,4 @@ EXPOSE 3000
 
 # This command is suitable for local development, and should be updated
 # when using this Dockerfile in production.
-# CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000"]
