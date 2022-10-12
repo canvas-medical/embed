@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:2.7.5
 
 RUN apt-get update \
     && apt-get -y install build-essential libpq-dev \
