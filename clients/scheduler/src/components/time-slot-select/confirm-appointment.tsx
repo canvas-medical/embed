@@ -23,7 +23,7 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
     appointmentCoding,
     date,
     createAppointment,
-    callbacks: { onClick },
+    callbacks: { onClick, overrideClick },
   } = useAppContext()
 
   const display =
@@ -33,8 +33,12 @@ export const ConfirmAppointment = ({ onCancel }: ConfirmAppointmentType) => {
   const onClickConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     // run the passed in onClick first
     // Enables the wrapping page to e.preventDefault() or otherwise interrupt booking
-    onClick(e)
-    createAppointment()
+    if (overrideClick) {
+      overrideClick(e)
+    } else {
+      onClick(e)
+      createAppointment()
+    }
   }
   const onClickCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClick(e)

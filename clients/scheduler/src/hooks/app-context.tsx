@@ -32,7 +32,7 @@ export const AppContext = createContext<IAppContext>({
     onError: noOp,
     onLoad: noOp,
     onDateChange: noOp,
-    overrideTimeSlotSelect: undefined,
+    overrideClick: undefined,
   },
   daysToFetch: 7,
   duration: 20,
