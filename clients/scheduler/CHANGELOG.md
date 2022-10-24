@@ -104,3 +104,9 @@
 
 - Fixed regression from 0.1.11, ensured dateChange events contain correct isFirstDateViewed property
 - added datesViewed property to segment dateChange callback
+
+## [0.1.15] - 2022-10-24
+
+### Changed
+
+- Updated onClickOverride method to be more generic, applied to appointment confirmation
