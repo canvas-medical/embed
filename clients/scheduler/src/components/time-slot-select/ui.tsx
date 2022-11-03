@@ -8,7 +8,6 @@ import {
 } from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import { TimeSlots } from './time-slots'
-import { ConfirmAppointment } from './confirm-appointment'
 import { findProvider } from '../../utils/functions'
 
 type UiPropsType = {
@@ -29,11 +28,8 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
     setTimeSlot,
     preloadBooking,
     loading,
-    shadowRoot,
-    resetTimeSlot,
     providers,
   } = useAppContext()
-  const [popoverOpen, setPopoverOpen] = useState(false)
 
   useEffect(() => {
     if (preloadBooking && preloadBooking.start && preloadBooking.start !== timeSlot.start) {
@@ -51,12 +47,6 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
       end,
       provider,
     })
-    setPopoverOpen(true)
-  }
-
-  const cancelConfirmation = () => {
-    setPopoverOpen(false)
-    resetTimeSlot()
   }
 
   if (!providers.length || loading) {
@@ -75,13 +65,6 @@ export const TimeSlotUi = ({ timeSlots }: UiPropsType) => {
           />
         )
       })}
-      <Popover
-        shadowRoot={shadowRoot}
-        open={popoverOpen}
-        titleId={'confirm-slot'}
-      >
-        <ConfirmAppointment onCancel={() => cancelConfirmation()} />
-      </Popover>
     </Fragment>
   )
 }

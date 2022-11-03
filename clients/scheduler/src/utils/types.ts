@@ -8,6 +8,7 @@ import {
   SlotType,
 } from '@canvas-medical/embed-common'
 
+
 type OnDateChangeParam = {
   dayOfTimeSlots: { provider: ProvidersType; providerSlots: SlotType[] }[]
   isFirstDateViewed: boolean
@@ -20,6 +21,7 @@ export interface IMainAppProps {
   appointmentCoding: AppointmentCodingType
   bailoutURL: string
   callbacks: {
+    onCancel: (e: React.MouseEvent<HTMLButtonElement>) => void
     onClick: (
       e: React.MouseEvent<HTMLButtonElement>,
       config?: Record<string, any>
@@ -29,8 +31,8 @@ export interface IMainAppProps {
       config?: Record<string, any>
     ) => void
     onError: HandleErrorType
-    overrideClick?: (
-      e: React.ChangeEvent<HTMLSelectElement>,
+    overrideTimeSlotSelect?: (
+      e: React.MouseEvent<HTMLButtonElement>,
       config?: Record<string, any>
     ) => void
     onLoad: (loadTimeInMs: number) => void
@@ -62,6 +64,8 @@ export interface IInitializerProps
 }
 
 export interface ISchedulerProps extends IMainAppProps, IInitializerOnlyProps {
+  timeSlot: TimeSlotType
+  screen: string
   shadowRoot: any
 }
 

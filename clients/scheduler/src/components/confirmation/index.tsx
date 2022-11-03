@@ -29,7 +29,9 @@ export const Confirmation = () => {
     resetTimeSlot,
     shadowRoot,
     setScreen,
-    callbacks: { onClick },
+    setInitialized,
+    initialized,
+    callbacks: { onClick, onCancel, onLoad },
   } = useAppContext()
   const [appointmentId, setAppointmentId] = useState(null)
   const [popoverOpen, setPopoverOpen] = useState(false)
@@ -38,9 +40,19 @@ export const Confirmation = () => {
     fetchScheduledAppointment(setAppointmentId)
   }, [fetchScheduledAppointment])
 
+  useEffect(() => {
+    if (!initialized) {
+      setInitialized(true)
+    }
+  }, [initialized])
+
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (appointmentId) {
-      cancelAppointment(appointmentId, () => setScreen('SELECT'))
+      cancelAppointment(appointmentId, () => {
+        resetTimeSlot()
+        setScreen('SELECT')
+        onCancel(e)
+      })
     }
     onClick(e)
   }
@@ -52,7 +64,6 @@ export const Confirmation = () => {
 
   const handleCancelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setPopoverOpen(true)
-    resetTimeSlot()
     onClick(e)
   }
 

@@ -27,12 +27,13 @@ export const AppContext = createContext<IAppContext>({
   appointmentCoding: {},
   bailoutURL: '',
   callbacks: {
+    onCancel: noOp,
     onClick: noOp,
     onChange: noOp,
     onError: noOp,
     onLoad: noOp,
     onDateChange: noOp,
-    overrideClick: undefined,
+    overrideTimeSlotSelect: noOp,
   },
   daysToFetch: 7,
   duration: 20,
@@ -90,13 +91,13 @@ const blankTimeSlot = () => ({
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
-  const [screen, setScreen] = useState<string>('SELECT')
+  const [screen, setScreen] = useState<string>(values.screen)
   const [date, setDate] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | string[]>('')
   const [providers, setProviders] = useState<ProvidersType[]>([])
   const [preloadTimeSlot, setPreloadTimeSlot] = useState<TimeSlotType>(values.preloadBooking)
-  const [timeSlot, setTimeSlot] = useState<TimeSlotType>(blankTimeSlot())
+  const [timeSlot, setTimeSlot] = useState<TimeSlotType>(values.timeSlot)
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const handleError: HandleErrorType = (error, msg) => {
