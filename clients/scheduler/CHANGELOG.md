@@ -110,3 +110,9 @@
 ### Changed
 
 - Updated onClickOverride method to be more generic, applied to appointment confirmation
+
+## [0.1.17] - 2022-12-21
+
+### Added
+
+- Added `sortProviders` to allow providers to be sorted by the number of available time slots they have per day
