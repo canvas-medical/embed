@@ -23,6 +23,7 @@ export const TimeSlotSelect = () => {
     setInitialized,
     providers,
     callbacks,
+    sortProviders,
   } = useAppContext()
   const [providerTimeSlots, setProviderTimeSlots] = useState<ParsedSlotsType[]>(
     []
@@ -102,7 +103,7 @@ export const TimeSlotSelect = () => {
   }, [date])
 
   const dayOfTimeSlots = useMemo(() => {
-    return providerTimeSlots.map(provider => {
+    const sameDayTimeSlots = providerTimeSlots.map(provider => {
       return {
         providerId: provider.providerId,
         providerSlots: provider.providerSlots.filter(slot => {
@@ -110,6 +111,12 @@ export const TimeSlotSelect = () => {
         }),
       }
     })
+    if (sortProviders) {
+      sameDayTimeSlots.sort((a , b) => {
+        return b.providerSlots.length - a.providerSlots.length
+      })
+    }
+    return sameDayTimeSlots
   }, [date, providerTimeSlots])
 
   const previousInitializedValue = usePreviousValue(initialized)

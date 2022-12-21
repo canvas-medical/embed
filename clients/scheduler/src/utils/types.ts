@@ -50,6 +50,7 @@ export interface IMainAppProps {
   description: string
   returnURL: string
   fontFamily?: string
+  sortProviders: boolean
 }
 
 interface IInitializerOnlyProps {

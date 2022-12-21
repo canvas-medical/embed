@@ -78,7 +78,8 @@ export const AppContext = createContext<IAppContext>({
   cancelAppointment: noOp,
   initialized: false,
   setInitialized: noOp,
-  onLoad: noOp
+  onLoad: noOp,
+  sortProviders: false,
 })
 
 const blankTimeSlot = () => ({

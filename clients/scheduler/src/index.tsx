@@ -28,7 +28,8 @@ export const Scheduler = (props: ISchedulerProps) => {
     shadowRoot,
     fontFamily,
     screen,
-    timeSlot
+    timeSlot,
+    sortProviders,
   } = props
   const colors = generateColors(brandColor, accentColor)
   const allValuesProvided = hasAllValues(props)
@@ -83,6 +84,7 @@ export const Scheduler = (props: ISchedulerProps) => {
             fetchScheduledAppointment: () => {},
             createAppointment: () => {},
             cancelAppointment: () => {},
+            sortProviders,
           }}
         >
           <App />
@@ -116,7 +118,8 @@ export const init = ({
   accentColor,
   fontFamily,
   screen,
-  timeSlot
+  timeSlot,
+  sortProviders,
 }: IInitializerProps) => {
   const appRoot = document.querySelector(`#${rootId}`)
 
@@ -162,6 +165,7 @@ export const init = ({
       fontFamily={fontFamily}
       screen={screen}
       timeSlot={timeSlot}
+      sortProviders={sortProviders}
     />,
     appRoot.shadowRoot
   )
