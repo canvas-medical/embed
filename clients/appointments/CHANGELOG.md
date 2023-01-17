@@ -31,3 +31,9 @@
 - Removed `locationId` prop from Appointments embed
 - Added support for a `locationMap` prop to provide multiple location titles, addresses, and URL's
 - Determines location data by API response rather than passed `locationId`
+
+## [0.1.11] - 2023-01-17
+
+### Changed
+
+- Updated text on "No Appointments" page
