@@ -6,7 +6,7 @@ export const NoAppointments = () => {
     <Box mt="68px">
       <Calendar height={36} width={34} fill={colors.font.grey25} />
       <Box mt="16px">
-        <Span fc={colors.font.grey50}>No Appointments on Record</Span>
+        <Span fc={colors.font.grey50}>You have no upcoming appointments.</Span>
       </Box>
     </Box>
   )
