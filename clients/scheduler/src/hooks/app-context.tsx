@@ -97,7 +97,9 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | string[]>('')
   const [providers, setProviders] = useState<ProvidersType[]>([])
-  const [preloadTimeSlot, setPreloadTimeSlot] = useState<TimeSlotType>(values.preloadBooking)
+  const [preloadTimeSlot, setPreloadTimeSlot] = useState<TimeSlotType>(
+    values.preloadBooking
+  )
   const [timeSlot, setTimeSlot] = useState<TimeSlotType>(values.timeSlot)
   const [initialized, setInitialized] = useState<boolean>(false)
 
@@ -215,7 +217,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       setInitialized,
       onLoad: values.callbacks?.onLoad || noOp,
     }
-  }, [screen, date, loading, error, timeSlot, initialized])
+  }, [screen, date, loading, error, timeSlot, providers, initialized])
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
