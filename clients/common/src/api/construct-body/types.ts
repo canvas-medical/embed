@@ -7,4 +7,5 @@ export type ConstructBodyParamsType = {
   patientId: string
   status: string
   timeSlot: TimeSlotType
+  id?: string
 }
