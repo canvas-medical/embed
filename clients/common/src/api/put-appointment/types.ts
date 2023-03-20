@@ -17,4 +17,5 @@ export type PutAppointmentParamsType = {
   patientKey: string
   api: string
   appointmentId: string
+  id?: string
 }

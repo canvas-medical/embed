@@ -17,6 +17,7 @@ export const putAppointment = ({
 }: PutAppointmentParamsType) => {
   setLoading(true)
   const data = constructBody({
+    id: appointmentId,
     status: statuses.cancelled,
     appointmentCoding,
     locationId,
