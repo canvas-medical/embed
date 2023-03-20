@@ -116,3 +116,9 @@
 ### Added
 
 - Added `sortProviders` to allow providers to be sorted by the number of available time slots they have per day
+
+## [0.1.18] - 2023-03-20
+
+### Added
+
+- Fix for race condition on scheduler slot load
