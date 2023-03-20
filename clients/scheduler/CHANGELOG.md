@@ -122,3 +122,9 @@
 ### Added
 
 - Fix for race condition on scheduler slot load
+
+## [0.1.19] - 2023-03-20
+
+### Added
+
+- Include appointment ID in body when cancelling, needed for caching work
