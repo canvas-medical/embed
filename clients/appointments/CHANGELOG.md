@@ -43,3 +43,9 @@
 ### Changed
 
 - Update appointment `put` body
+
+## [0.1.13] - 2023-03-21
+
+### Changed
+
+- Bump @canvas-medical/embed-common to v0.1.8
