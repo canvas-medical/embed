@@ -177,7 +177,6 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
         patientId: values.patientId,
         patientKey: values.patientKey,
         api: values.api,
-        id: appointmentId,
         appointmentId: appointmentId,
       })
     },
