@@ -99,16 +99,10 @@ export const TimeSlotSelect = () => {
   }, [providerTimeSlots])
 
   useEffect(() => {
-    if (typeof minDate !== 'undefined' && date < minDate) {
-      setDate(minDate)
-    }
-  }, [date, minDate])
-
-  useEffect(() => {
     if (typeof maxDate === 'undefined' || date >= maxDate) {
       fetchTimeSlots(addTimeSlots)
     }
-  }, [date, maxDate])
+  }, [date])
 
   const dayOfTimeSlots = useMemo(() => {
     const sameDayTimeSlots: ParsedSlotsType[] = []
@@ -160,6 +154,12 @@ export const TimeSlotSelect = () => {
       setDatesViewed(datesViewed + 1)
     }
   }, [date])
+
+  useEffect(() => {
+    if (typeof minDate !== 'undefined' && date < minDate) {
+      setDate(minDate)
+    }
+  }, [minDate, setDate])
 
   useEffect(() => {
     if (
