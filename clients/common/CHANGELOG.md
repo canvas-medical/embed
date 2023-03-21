@@ -19,3 +19,9 @@
 ### Added
 
 - Appointment `locatoinId` is set to `undefined` if absent from API response
+
+## [0.1.8] - 2023-03-21
+
+### Changed
+
+- Update appointment `put` body
