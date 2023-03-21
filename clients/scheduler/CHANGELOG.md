@@ -128,3 +128,9 @@
 ### Added
 
 - Include appointment ID in body when cancelling, needed for caching work
+
+## [0.1.20] - 2023-03-21
+
+### Added
+
+- Revert changes to minDate, maxDate scheduler useEffects that were causing an infinite loop of slot fetches
