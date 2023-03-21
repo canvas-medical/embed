@@ -119,7 +119,7 @@
 
 ## [0.1.18] - 2023-03-20
 
-### Added
+### Changed
 
 - Fix for race condition on scheduler slot load
 
@@ -131,6 +131,12 @@
 
 ## [0.1.20] - 2023-03-21
 
-### Added
+### Changed
 
 - Revert changes to minDate, maxDate scheduler useEffects that were causing an infinite loop of slot fetches
+
+## [0.1.21] - 2023-03-21
+
+### Changed
+
+- Bump @canvas-medical/embed-common to v0.1.8
