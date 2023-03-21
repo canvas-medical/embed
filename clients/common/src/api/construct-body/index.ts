@@ -49,5 +49,5 @@ export const constructBody = ({
     },
   }
 
-  return JSON.stringify(body)
+  return body
 }
