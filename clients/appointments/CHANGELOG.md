@@ -37,3 +37,9 @@
 ### Changed
 
 - Updated text on "No Appointments" page
+
+## [0.1.12] - 2023-03-21
+
+### Changed
+
+- Update appointment `put` body
