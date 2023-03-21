@@ -8,9 +8,11 @@ export const constructBody = ({
   locationId,
   timeSlot,
   patientId,
+  id,
 }: ConstructBodyParamsType) => {
   const body = {
     resource: {
+      id,
       resourceType: 'Appointment',
       status,
       appointmentType: {
@@ -47,5 +49,5 @@ export const constructBody = ({
     },
   }
 
-  return JSON.stringify(body)
+  return body
 }
