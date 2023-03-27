@@ -1016,9 +1016,9 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@canvas-medical/embed-common@modern-age/canvas-embed#canvas-medical-embed-common-v0.1.8-gitpkg":
-  version "0.1.8"
-  resolved "https://codeload.github.com/modern-age/canvas-embed/tar.gz/3b15c57cae2f497a1e49b7ba74d3c58dcbd75ca9"
+"@canvas-medical/embed-common@modern-age/canvas-embed#canvas-medical-embed-common-v0.1.9-gitpkg":
+  version "0.1.9"
+  resolved "https://codeload.github.com/modern-age/canvas-embed/tar.gz/1b598dba27fe7b158c5f60095abbe5cc3f27e403"
   dependencies:
     axios "^0.25.0"
     color "^4.2.1"
