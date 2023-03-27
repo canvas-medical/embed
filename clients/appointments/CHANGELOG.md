@@ -49,3 +49,9 @@
 ### Changed
 
 - Bump @canvas-medical/embed-common to v0.1.8
+
+## [0.1.14] - 2023-03-27
+
+### Changed
+
+- Restore sending appointment body as stringify'd JSON based on API destination
