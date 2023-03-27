@@ -16,7 +16,8 @@ export const putAppointment = ({
   appointmentId,
 }: PutAppointmentParamsType) => {
   setLoading(true)
-  const data = constructBody({
+
+  const body = constructBody({
     id: appointmentId,
     status: statuses.cancelled,
     appointmentCoding,
@@ -24,6 +25,9 @@ export const putAppointment = ({
     timeSlot,
     patientId,
   })
+
+  const data =
+    api.indexOf('canvasmedical.com') === -1 ? body : JSON.stringify(body)
 
   axios
     .put(`${api}/Appointment/${appointmentId}`, data, {
