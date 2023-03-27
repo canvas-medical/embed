@@ -25,3 +25,9 @@
 ### Changed
 
 - Update appointment `put` body
+
+## [0.1.9] - 2023-03-27
+
+### Changed
+
+- Update appointment `put` body to check URL route and use JSON/form-unencoded
