@@ -18,8 +18,10 @@ const monthStrings = [
   'December',
 ]
 
-export const getMonthAndYearOptions = (): MonthAndYearType[] => {
-  const date = new Date()
+export const getMonthAndYearOptions = (
+  startDate: Date | null
+): MonthAndYearType[] => {
+  const date = startDate || new Date()
   const year = date.getFullYear()
   const startMonth = date.getMonth()
   const months: MonthAndYearType[] = []
@@ -109,7 +111,11 @@ const getDaysInMonth = (date: Date) => {
   }
 }
 
-export const generateDays = (date: Date, enabledDates: Set<string>, maxDate?: Date) => {
+export const generateDays = (
+  date: Date,
+  enabledDates: Set<string>,
+  maxDate?: Date
+) => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const daysInMonth = getDaysInMonth(date)
@@ -131,7 +137,11 @@ export const generateDays = (date: Date, enabledDates: Set<string>, maxDate?: Da
       const day = new Date(year, month, i)
       days.push({
         date: i,
-        disabled: (maxDate && maxDate < day) || enabledDates.has(day.toLocaleDateString()) ? false: true,
+        disabled:
+          (maxDate && maxDate < day) ||
+          enabledDates.has(day.toLocaleDateString())
+            ? false
+            : true,
         dateString: getDateString(year, month, i),
       })
     }

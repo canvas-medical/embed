@@ -10,7 +10,7 @@ import {
 } from '@canvas-medical/embed-common'
 import { useAppContext } from '../../hooks'
 import {
-  isTodayOrBefore,
+  isEarliestDateOrBefore,
   scrollDateBack,
   scrollDateForward,
   userTimezone,
@@ -30,9 +30,10 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType) => {
     colors,
     date,
     setDate,
+    startDate,
   } = useAppContext()
   const [calendarOpen, setCalendarOpen] = useState(false)
-  const backDisabled = isTodayOrBefore(date)
+  const backDisabled = isEarliestDateOrBefore(date, startDate)
 
   useEffect(() => {
     const handleEsc = (event: any) => {
@@ -56,9 +57,9 @@ export const DateSelect = ({ enabledDates, maxDate }: DateSelectPropsType) => {
       onClick(e, { direction, date: newDate })
     }
     if (direction === 'back') {
-      scrollDateBack(date, callback)
+      scrollDateBack(date, callback, startDate)
     } else {
-      scrollDateForward(date, callback)
+      scrollDateForward(date, callback, startDate)
     }
   }
 

@@ -55,6 +55,7 @@ export const AppContext = createContext<IAppContext>({
   shadowRoot: null,
   date: new Date(),
   setDate: noOp,
+  startDate: null,
   error: '',
   loading: false,
   screen: 'SELECT',
@@ -92,8 +93,28 @@ const blankTimeSlot = () => ({
 })
 
 export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
+  const getStartDateFromURL = () => {
+    const searchParams = new URLSearchParams(window.location.search)
+    const startDateParam = searchParams.get('startDate')
+    // ISO 8601 format (e.g., '2023-08-21')
+    if (startDateParam) {
+      // Create a new Date object in UTC
+      const utcDate = new Date(startDateParam + 'T00:00:00Z')
+
+      // Adjust the date to the local time zone to display correctly
+      const localDate = new Date(
+        utcDate.getTime() + utcDate.getTimezoneOffset() * 60000
+      )
+
+      return localDate
+    } else {
+      return null
+    }
+  }
+
+  const startDate = getStartDateFromURL()
   const [screen, setScreen] = useState<string>(values.screen)
-  const [date, setDate] = useState<Date>(new Date())
+  const [date, setDate] = useState<Date>(startDate || new Date())
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | string[]>('')
   const [providers, setProviders] = useState<ProvidersType[]>([])
@@ -216,6 +237,7 @@ export const ContextWrapper = ({ children, values }: ContextWrapperProps) => {
       initialized,
       setInitialized,
       onLoad: values.callbacks?.onLoad || noOp,
+      startDate,
     }
   }, [screen, date, loading, error, timeSlot, providers, initialized])
 

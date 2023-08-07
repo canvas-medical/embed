@@ -4,7 +4,7 @@ import {
   getMonthAndYearOptions,
   getNextMonth,
   getPreviousMonth,
-  isTodayOrBefore,
+  isEarliestDateOrBefore,
   sameMonthAndYear,
 } from '../../../utils/dates'
 import { Ui } from './ui'
@@ -25,9 +25,10 @@ export const Calendar = ({
   const {
     callbacks: { onClick },
     date,
+    startDate,
     setDate,
   } = useAppContext()
-  const monthsAndYears = getMonthAndYearOptions()
+  const monthsAndYears = getMonthAndYearOptions(startDate)
 
   const backDisabled = sameMonthAndYear(date, monthsAndYears[0].date)
   const forwardDisabled = sameMonthAndYear(
@@ -56,8 +57,8 @@ export const Calendar = ({
 
     let newDate = new Date(year, month, day)
 
-    if (isTodayOrBefore(newDate)) {
-      newDate = new Date()
+    if (isEarliestDateOrBefore(newDate, startDate)) {
+      newDate = startDate || new Date()
     }
 
     setDate(newDate)

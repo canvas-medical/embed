@@ -1,36 +1,50 @@
-export const isTodayOrBefore = (date: Date): boolean => {
-  const today = new Date()
+export const isEarliestDateOrBefore = (
+  date: Date,
+  startDate: Date | null
+): boolean => {
+  const earliestDate = startDate || new Date()
 
   return (
-    date.getDate() <= today.getDate() &&
-    date.getMonth() <= today.getMonth() &&
-    date.getFullYear() <= today.getFullYear()
+    date.getFullYear() < earliestDate.getFullYear() ||
+    (date.getFullYear() === earliestDate.getFullYear() &&
+      date.getMonth() < earliestDate.getMonth()) ||
+    (date.getFullYear() === earliestDate.getFullYear() &&
+      date.getMonth() === earliestDate.getMonth() &&
+      date.getDate() <= earliestDate.getDate())
   )
 }
 
-export const scrollDateBack = (date: Date, setter: Function): void => {
+export const scrollDateBack = (
+  date: Date,
+  setter: Function,
+  startDate: Date | null
+): void => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const day = date.getDate() - 1
 
   const newDate = new Date(year, month, day)
 
-  if (isTodayOrBefore(newDate)) {
-    setter(new Date())
+  if (isEarliestDateOrBefore(newDate, startDate)) {
+    setter(startDate || new Date())
   } else {
     setter(new Date(year, month, day))
   }
 }
 
-export const scrollDateForward = (date: Date, setter: Function): void => {
+export const scrollDateForward = (
+  date: Date,
+  setter: Function,
+  startDate: Date | null
+): void => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const day = date.getDate() + 1
 
   const newDate = new Date(year, month, day)
 
-  if (isTodayOrBefore(newDate)) {
-    setter(new Date())
+  if (isEarliestDateOrBefore(newDate, startDate)) {
+    setter(startDate || new Date())
   } else {
     setter(new Date(year, month, day))
   }

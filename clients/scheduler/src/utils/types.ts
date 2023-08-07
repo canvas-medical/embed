@@ -8,7 +8,6 @@ import {
   SlotType,
 } from '@canvas-medical/embed-common'
 
-
 type OnDateChangeParam = {
   dayOfTimeSlots: { provider: ProvidersType; providerSlots: SlotType[] }[]
   isFirstDateViewed: boolean
@@ -75,6 +74,7 @@ export interface IAppContext extends IMainAppProps {
   shadowRoot: any
   date: Date
   setDate: (date: Date) => void
+  startDate: Date | null
   error: string | string[]
   loading: boolean
   screen: string
